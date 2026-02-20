@@ -3,6 +3,7 @@ import { getLangFromUrl } from "../i18n/utils";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+import "../styles/fa-subset.css";
 
 interface Props {
   title: string;
@@ -52,11 +53,7 @@ const lang = getLangFromUrl(Astro.url);
       href="/_next/static/css/7ffcc02a3c67389b.css"
       data-precedence="next"
     />
-    <link
-      rel="stylesheet"
-      href="/_next/static/css/c20e76e7d11dec32.css"
-      data-precedence="next"
-    />
+
     <link
       rel="stylesheet"
       href="/_next/static/css/7a7e0581b3b5826a.css"
