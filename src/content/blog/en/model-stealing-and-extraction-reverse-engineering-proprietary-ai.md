@@ -3,8 +3,9 @@ title: "Model stealing & extraction: Reverse-engineering proprietary AI"
 description: "How attackers steal proprietary AI models via public APIs. Explore model extraction, knowledge distillation, and defenses like watermarking."
 pubDate: 2025-05-16T10:00:00.000Z
 coverImage: "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/9UiCwdn_q_o/upload/a9defed9122be4c82aa2baea393042ed.jpeg"
-tags: ["model extraction", "intellectual property theft", "knowledge distillation", "api security", "adversarial machine learning", "watermarking", "side channel attacks"]
-series: "offensive-ai-landscape"
+tags: ["API Security", "Adversarial Machine Learning", "Watermarking", "Side-Channel Attacks", "Model Extraction", "Knowledge Distillation", "Intellectual Property (IP) Theft"]
+series: "offensive-ai-landscape" 
+seriesOrder: 6 
 readTime: 3
 ---
 

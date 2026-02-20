@@ -23,10 +23,12 @@ const t = useTranslations(lang as any);
 const allPosts = await getCollection("blog", ({ slug }: { slug: string }) =>
     slug.startsWith(`${lang}/`)
 );
-const seriesPosts = allPosts.filter(
-    (post: CollectionEntry<"blog">) =>
-        post.data.series === entry.slug.split("/").pop()
-);
+const seriesPosts = allPosts
+    .filter(
+        (post: CollectionEntry<"blog">) =>
+            post.data.series === entry.slug.split("/").pop()
+    )
+    .sort((a, b) => (a.data.seriesOrder || 0) - (b.data.seriesOrder || 0));
 ---
 
 <Layout title={title} description={description}>
@@ -115,6 +117,26 @@ const seriesPosts = allPosts.filter(
                                                                     )}
                                                                 </header>
                                                                 <div class="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                                                                    {post.data
+                                                                        .seriesOrder && (
+                                                                        <>
+                                                                            <span class="whitespace-nowrap font-medium text-foreground">
+                                                                                {`${
+                                                                                    t(
+                                                                                        "article.part"
+                                                                                    ) ||
+                                                                                    "Part"
+                                                                                } ${
+                                                                                    post
+                                                                                        .data
+                                                                                        .seriesOrder
+                                                                                }`}
+                                                                            </span>
+                                                                            <span aria-hidden="true">
+                                                                                ·
+                                                                            </span>
+                                                                        </>
+                                                                    )}
                                                                     <span class="whitespace-nowrap">
                                                                         {post.data.pubDate.toLocaleDateString(
                                                                             lang,

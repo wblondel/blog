@@ -4,7 +4,8 @@ description: "Mitigate Shadow AI risks. Analyze how unauthorized LLMs cause data
 pubDate: 2025-09-05T10:00:00.000Z
 coverImage: "https://cdn.hashnode.com/res/hashnode/image/upload/v1770986441771/8f85bd92-c7e5-4f4d-8b32-dda8f243be94.jpeg"
 tags: ["shadow AI", "DevSecOps", "supplychainsecurity", "data exfiltration", "genai"]
-series: "secure-coding-ai"
+series: "secure-coding-ai" 
+seriesOrder: 1 
 readTime: 4
 ---
 

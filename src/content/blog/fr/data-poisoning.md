@@ -4,7 +4,8 @@ description: "How attackers corrupt AI training data with hidden backdoors. Expl
 pubDate: 2025-05-23T10:00:00.000Z
 coverImage: "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/-WXQm_NTK0U/upload/c2d5a8d0f0eb8bd3e6904e2a3bc0d2a5.jpeg"
 tags: ["Backdoor Attacks", "Clean Label Attack", "Dataset Integrity", "Data Poisoning", "adversarial machine learning", "supply chain security", "AI Safety"]
-series: "offensive-ai-landscape"
+series: "offensive-ai-landscape" 
+seriesOrder: 1 
 readTime: 3
 ---
 ## Introduction: The Invisible Backdoor

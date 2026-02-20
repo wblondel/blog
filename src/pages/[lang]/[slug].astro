@@ -45,7 +45,7 @@ if (series) {
                                     <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-balance text-foreground transition-colors">{title}</h1>
                                     {description && <p class="text-base sm:text-lg font-normal text-muted-foreground text-balance">{description}</p>}
                                     <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
-                                        <div class="flex items-center gap-2"><i class="fa-jelly fa-calendar h-4 w-4 text-muted-foreground" aria-hidden="true"></i><span>Updated</span><time dateTime={pubDate.toISOString()}>{formattedDate}</time></div><span class="text-muted-foreground">•</span><div class="flex items-center gap-2"><i class="fa-jelly fa-clock h-4 w-4 text-muted-foreground" aria-hidden="true"></i><span>{readTime} <!-- -->min read</span></div>
+                                        <div class="flex items-center gap-2"><i class="fa-jelly fa-calendar h-4 w-4 text-muted-foreground" aria-hidden="true"></i><span>Updated</span><time datetime={pubDate.toISOString()}>{formattedDate}</time></div><span class="text-muted-foreground">•</span><div class="flex items-center gap-2"><i class="fa-jelly fa-clock h-4 w-4 text-muted-foreground" aria-hidden="true"></i><span>{readTime} <!-- -->min read</span></div>
                                     </div>
                                 </div>
                             </header>
@@ -66,7 +66,7 @@ if (series) {
                             <div class="max-w-2xl mx-auto">
                                 <a class="group flex items-center gap-3 rounded-lg border border-border px-3 py-2 transition hover:border-primary hover:bg-accent" href={`/${lang}/series/${series}`}>
                                     <i class="fa-jelly fa-layer-group h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true"></i>
-                                    <div class="flex flex-col"><span class="text-sm text-muted-foreground">Part of series</span><span class="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{seriesData.data.title}</span></div>
+                                    <div class="flex flex-col"><span class="text-sm text-muted-foreground">{entry.data.seriesOrder ? `${t('article.part') || 'Part'} ${entry.data.seriesOrder} of series` : 'Part of series'}</span><span class="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{seriesData.data.title}</span></div>
                                 </a>
                             </div>
                             )}
