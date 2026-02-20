@@ -10,11 +10,11 @@ const t = useTranslations(lang);
     <div class="relative w-full mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem] px-4 sm:px-12 md:px-18 lg:px-16 xl:px-10">
         <div class="flex items-center justify-between gap-3 xl:hidden">
             <div class="flex items-center gap-3 min-w-0 flex-1"><a
-                    href={`/${lang}`}
+                    href={`${import.meta.env.BASE_URL}${lang}`}
                     class="inline-flex items-center justify-center text-lg text-muted-foreground hover:text-foreground transition border rounded-md h-9 w-9 shrink-0 border-border hover:bg-muted"><i
                         class="text-xl fa-brands fa-hashnode" aria-hidden="true"></i><span
                         class="sr-only">Hashnode</span></a><a title="William Blondel"
-                    class="text-lg font-semibold text-foreground truncate min-w-0" href={`/${lang}`}>William Blondel</a>
+                    class="text-lg font-semibold text-foreground truncate min-w-0" href={`${import.meta.env.BASE_URL}${lang}`}>William Blondel</a>
             </div>
             <div class="flex items-center gap-2 shrink-0"><button
                     class="gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent py-2 h-9 w-9 px-0 flex items-center justify-center text-muted-foreground hover:text-foreground bg-transparent border-border shadow-none"
@@ -33,13 +33,13 @@ const t = useTranslations(lang);
         </div>
         <div class="hidden xl:grid gap-4 items-center xl:grid-cols-[1fr_auto_1fr] xl:gap-6 max-w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">
             <div class="flex flex-wrap items-center w-full gap-3"><a
-                    href={`/${lang}`}
+                    href={`${import.meta.env.BASE_URL}${lang}`}
                     class="inline-flex items-center justify-center text-lg text-muted-foreground hover:text-foreground transition border rounded-md h-9 w-9 border-border hover:bg-muted"><i
                         class="text-xl fa-brands fa-hashnode" aria-hidden="true"></i><span
                         class="sr-only">Hashnode</span></a><span class="h-6 border-l border-border"></span>
                 <p
                     class="text-base font-semibold text-center sm:text-xl text-foreground max-w-[400px] truncate">
-                    <a title="William Blondel" href={`/${lang}`}>William Blondel</a></p>
+                    <a title="William Blondel" href={`${import.meta.env.BASE_URL}${lang}`}>William Blondel</a></p>
             </div>
             <nav aria-label="Main navigation" class="flex justify-center w-full">
                 <nav aria-label="Main" data-orientation="horizontal" dir="ltr"
@@ -50,13 +50,13 @@ const t = useTranslations(lang);
                             dir="ltr">
                             <li class="relative"><a
                                     class="data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex-col p-2 outline-none focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
-                                    href={`/${lang}/series/offensive-ai-landscape`}>{t('nav.series.offensive-ai')}</a></li>
+                                    href={`${import.meta.env.BASE_URL}${lang}/series/offensive-ai-landscape`}>{t('nav.series.offensive-ai')}</a></li>
                             <li class="relative"><a
                                     class="data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex-col p-2 outline-none focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
-                                    href={`/${lang}/series/ai-driven-defense`}>{t('nav.series.ai-defense')}</a></li>
+                                    href={`${import.meta.env.BASE_URL}${lang}/series/ai-driven-defense`}>{t('nav.series.ai-defense')}</a></li>
                             <li class="relative"><a
                                     class="data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex-col p-2 outline-none focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
-                                    href={`/${lang}/series/secure-coding-ai`}>{t('nav.series.secure-coding')}</a></li>
+                                    href={`${import.meta.env.BASE_URL}${lang}/series/secure-coding-ai`}>{t('nav.series.secure-coding')}</a></li>
                             <li class="relative"><button
                                     id="radix-_R_6ekiltlb_" data-state="closed" aria-expanded="false"
                                     class="group w-max focus:bg-accent focus:text-accent-foreground data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent outline-none focus-visible:outline-1 group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent py-2 h-9 px-3 text-muted-foreground hover:text-foreground bg-transparent shadow-none data-[state=open]:bg-transparent"

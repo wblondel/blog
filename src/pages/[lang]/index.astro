@@ -41,7 +41,7 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                             {leftSidePosts.map((post: CollectionEntry<'blog'>) => (
                                                 <div class="min-h-[140px] md:min-h-40 lg:min-h-[180px] flex-1">
                                                     <article class="h-full">
-                                                        <a class="block h-full hover:bg-muted transition-colors" href={`/${lang}/${post.slug.split('/').pop()}`}>
+                                                        <a class="block h-full hover:bg-muted transition-colors" href={`${import.meta.env.BASE_URL}${lang}/${post.slug.split('/').pop()}`}>
                                                             <div class="flex flex-col gap-3 p-4 h-full">
                                                                 {post.data.coverImage && (
                                                                 <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
@@ -65,7 +65,7 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                         {heroPost && (
                                         <div class="order-1 md:col-span-2 lg:col-span-2 border-b md:border-b-0 border-border">
                                             <article class="h-full">
-                                                <a class="block h-full hover:bg-muted transition-colors" href={`/${lang}/${heroPost.slug.split('/').pop()}`}>
+                                                <a class="block h-full hover:bg-muted transition-colors" href={`${import.meta.env.BASE_URL}${lang}/${heroPost.slug.split('/').pop()}`}>
                                                     <div class="flex flex-col gap-4 p-4 md:p-6 h-full">
                                                         {heroPost.data.coverImage && (
                                                         <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
@@ -92,7 +92,7 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                             {rightSidePosts.map((post: CollectionEntry<'blog'>) => (
                                                 <div class="min-h-[140px] md:min-h-40 lg:min-h-[180px] flex-1">
                                                     <article class="h-full">
-                                                        <a class="block h-full hover:bg-muted transition-colors" href={`/${lang}/${post.slug.split('/').pop()}`}>
+                                                        <a class="block h-full hover:bg-muted transition-colors" href={`${import.meta.env.BASE_URL}${lang}/${post.slug.split('/').pop()}`}>
                                                             <div class="flex flex-col gap-3 p-4 h-full">
                                                                 {post.data.coverImage && (
                                                                 <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
@@ -171,7 +171,7 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                                 {chunk.map((post: CollectionEntry<'blog'>, postIndex: number) => (
                                                     <div class={postIndex === 0 ? "border-border" : postIndex === 1 ? "border-t md:border-t-0 md:border-l lg:border-l divide-border border-border" : "border-t md:col-span-2 md:border-t lg:col-span-1 lg:border-t-0 lg:border-l border-border"}>
                                                         <article class="h-full">
-                                                            <a class="block h-full hover:bg-muted transition-colors" href={`/${lang}/${post.slug.split('/').pop()}`}>
+                                                            <a class="block h-full hover:bg-muted transition-colors" href={`${import.meta.env.BASE_URL}${lang}/${post.slug.split('/').pop()}`}>
                                                                 <div class="flex flex-col gap-3 p-4 md:p-5 h-full">
                                                                     {post.data.coverImage && (
                                                                     <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">

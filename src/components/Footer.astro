@@ -25,13 +25,13 @@ const currentYear = new Date().getFullYear();
                     <li>
                         <a
                             class="transition hover:text-foreground"
-                            href={`/${lang}/archive`}>{t("footer.archive")}</a
+                            href={`${import.meta.env.BASE_URL}${lang}/archive`}>{t("footer.archive")}</a
                         >
                     </li>
                     <li>
                         <a
                             class="transition hover:text-foreground"
-                            href={`/${lang}/tags`}>{t("footer.tags")}</a
+                            href={`${import.meta.env.BASE_URL}${lang}/tags`}>{t("footer.tags")}</a
                         >
                     </li>
                 </ul>
@@ -42,7 +42,7 @@ const currentYear = new Date().getFullYear();
                     rel="noopener"
                     class="flex items-center gap-2 text-sm transition hover:text-foreground"
                     title="Sitemap"
-                    href="/sitemap-index.xml"
+                    href={`${import.meta.env.BASE_URL}sitemap-index.xml`}
                     ><i class="fa-regular fa-sitemap" aria-hidden="true"
                     ></i><span>Sitemap</span>
                 </a><a
@@ -50,7 +50,7 @@ const currentYear = new Date().getFullYear();
                     rel="noopener"
                     class="flex items-center gap-2 text-sm transition hover:text-foreground"
                     title="RSS Feed"
-                    href={`/${lang}/rss.xml`}
+                    href={`${import.meta.env.BASE_URL}${lang}/rss.xml`}
                     ><i class="fa-regular fa-rss" aria-hidden="true"></i><span
                         >RSS</span
                     >
