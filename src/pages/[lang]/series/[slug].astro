@@ -7,35 +7,29 @@ import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 export async function getStaticPaths() {
     const seriesEntries = await getCollection("series");
     
-    // Explicit cross-language dictionary for Series translations
-    const seriesTranslations: Record<string, { en: string; fr: string }> = {
-        "offensive-ai-landscape": { en: "offensive-ai-landscape", fr: "menaces-ia-offensive" },
-        "menaces-ia-offensive": { en: "offensive-ai-landscape", fr: "menaces-ia-offensive" },
+    // Group series dynamically by their frontmatter translationKey
+    const seriesByTranslationKey: Record<string, {lang: string, slug: string}[]> = {};
+    
+    seriesEntries.forEach((entry: CollectionEntry<"series">) => {
+        const [lang, ...slugParts] = entry.slug.split("/");
+        const slug = slugParts.join("/");
+        const tKey = entry.data.translationKey || slug; // Fallback to slug if no key exists
         
-        "ai-driven-defense": { en: "ai-driven-defense", fr: "defense-ia-active" },
-        "defense-ia-active": { en: "ai-driven-defense", fr: "defense-ia-active" },
-        
-        "secure-coding-ai": { en: "secure-coding-ai", fr: "devsecops-ia" },
-        "devsecops-ia": { en: "secure-coding-ai", fr: "devsecops-ia" },
-        
-        "ai-governance-future": { en: "ai-governance-future", fr: "gouvernance-ia-futur" },
-        "gouvernance-ia-futur": { en: "ai-governance-future", fr: "gouvernance-ia-futur" }
-    };
+        if (!seriesByTranslationKey[tKey]) seriesByTranslationKey[tKey] = [];
+        seriesByTranslationKey[tKey].push({ lang, slug });
+    });
 
     return seriesEntries.map((entry: CollectionEntry<"series">) => {
         const [lang, ...slugParts] = entry.slug.split("/");
         const slug = slugParts.join("/");
+        const tKey = entry.data.translationKey || slug;
         
-        // Generate alternates mapping using the dictionary
-        const translationMap = seriesTranslations[slug];
-        let rawAlternates: { lang: string; href: string }[] = [];
-        
-        if (translationMap) {
-            rawAlternates = [
-                { lang: 'en', href: `${import.meta.env.BASE_URL.slice(1)}en/series/${translationMap.en}` },
-                { lang: 'fr', href: `${import.meta.env.BASE_URL.slice(1)}fr/series/${translationMap.fr}` }
-            ];
-        }
+        // Generate alternates mapping using the dynamically linked group
+        const translations = seriesByTranslationKey[tKey] || [];
+        const rawAlternates = translations.map(t => ({
+            lang: t.lang,
+            href: `${import.meta.env.BASE_URL.slice(1)}${t.lang}/series/${t.slug}`
+        }));
 
         return {
             params: { lang, slug },

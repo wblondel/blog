@@ -19,6 +19,7 @@ const series = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
+        translationKey: z.string().optional(),
     })
 });
 
