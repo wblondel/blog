@@ -65,7 +65,15 @@ const lang = getLangFromUrl(Astro.url);
     <link
       href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <script type="text/javascript" is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
