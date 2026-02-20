@@ -9,7 +9,7 @@ import icon from 'astro-icon';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wblondel.github.io',
-  base: '/blog/',
+  base: '/blog/', 
   image: {
     domains: ["cdn.hashnode.com"]
   },
@@ -21,7 +21,15 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    sitemap(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en',
+          fr: 'fr',
+        }
+      }
+    }),
     icon({
       include: {
         "fa6-solid": ["*"],
