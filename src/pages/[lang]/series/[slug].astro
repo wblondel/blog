@@ -6,20 +6,49 @@ import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 
 export async function getStaticPaths() {
     const seriesEntries = await getCollection("series");
+    
+    // Group series by original slug baseline (e.g. 'devsecops-ia')
+    const seriesBySlug: Record<string, string[]> = {};
+    seriesEntries.forEach((entry: CollectionEntry<"series">) => {
+        const [lang, ...slugParts] = entry.slug.split("/");
+        const baseSlug = slugParts.join("/");
+        if (!seriesBySlug[baseSlug]) seriesBySlug[baseSlug] = [];
+        seriesBySlug[baseSlug].push(lang);
+    });
+
     return seriesEntries.map((entry: CollectionEntry<"series">) => {
         const [lang, ...slugParts] = entry.slug.split("/");
         const slug = slugParts.join("/");
+        
+        // Generate alternates mapping
+        const langsAvailable = seriesBySlug[slug] || [];
+        const rawAlternates = langsAvailable.map(l => ({
+            lang: l,
+            href: `${import.meta.env.BASE_URL.slice(1)}${l}/series/${slug}`
+        }));
+
         return {
             params: { lang, slug },
-            props: { entry },
+            props: { entry, rawAlternates },
         };
     });
 }
 
-const { entry } = Astro.props;
+const { entry, rawAlternates } = Astro.props;
 const { title, description } = entry.data;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang as any);
+
+// Resolve alternate URLs
+const alternates = rawAlternates?.map((alt: any) => ({
+    lang: alt.lang,
+    href: `${Astro.site}${alt.href}`
+})) || [];
+
+const xDefault = alternates.find((a: any) => a.lang === 'en') || alternates[0];
+if (xDefault) {
+    alternates.push({ lang: 'x-default', href: xDefault.href });
+}
 
 const allPosts = await getCollection("blog", ({ slug }: { slug: string }) =>
     slug.startsWith(`${lang}/`)
@@ -32,7 +61,7 @@ const seriesPosts = allPosts
     .sort((a, b) => (a.data.seriesOrder || 0) - (b.data.seriesOrder || 0));
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} alternates={alternates}>
     <div class="px-4 sm:px-8">
         <div class="w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">
             <div class="flex flex-col gap-8 pt-2 sm:pt-10">

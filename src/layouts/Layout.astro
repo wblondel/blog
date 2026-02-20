@@ -18,6 +18,14 @@ const {
   alternates,
 } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+
+// Calculate the safe language-striped normalized root path for default alternate generation
+let defaultRelativePath = "";
+const base = import.meta.env.BASE_URL;
+let urlPath = Astro.url.pathname.startsWith(base) ? Astro.url.pathname.slice(base.length) : Astro.url.pathname.replace(/^\//, "");
+let cleanPath = urlPath.replace(/^(en|fr)\//, "").replace(/^(en|fr)$/, "");
+if (cleanPath.startsWith('/')) cleanPath = cleanPath.slice(1);
+defaultRelativePath = cleanPath ? '/' + cleanPath : '';
 ---
 
 <!DOCTYPE html>
@@ -41,29 +49,17 @@ const lang = getLangFromUrl(Astro.url);
         <link
           rel="alternate"
           hreflang="en"
-          href={`${Astro.site}${import.meta.env.BASE_URL.slice(1)}en${
-            Astro.url.pathname.startsWith(import.meta.env.BASE_URL)
-              ? "/" + Astro.url.pathname.slice(import.meta.env.BASE_URL.length)
-              : Astro.url.pathname.replace(/^\/(en|fr)/, "").replace(/^\//, "")
-          }`}
+          href={`${import.meta.env.SITE || Astro.site}${import.meta.env.BASE_URL.slice(1)}en${defaultRelativePath}`}
         />
         <link
           rel="alternate"
           hreflang="fr"
-          href={`${Astro.site}${import.meta.env.BASE_URL.slice(1)}fr${
-            Astro.url.pathname.startsWith(import.meta.env.BASE_URL)
-              ? "/" + Astro.url.pathname.slice(import.meta.env.BASE_URL.length)
-              : Astro.url.pathname.replace(/^\/(en|fr)/, "").replace(/^\//, "")
-          }`}
+          href={`${import.meta.env.SITE || Astro.site}${import.meta.env.BASE_URL.slice(1)}fr${defaultRelativePath}`}
         />
         <link
           rel="alternate"
           hreflang="x-default"
-          href={`${Astro.site}${import.meta.env.BASE_URL.slice(1)}en${
-            Astro.url.pathname.startsWith(import.meta.env.BASE_URL)
-              ? "/" + Astro.url.pathname.slice(import.meta.env.BASE_URL.length)
-              : Astro.url.pathname.replace(/^\/(en|fr)/, "").replace(/^\//, "")
-          }`}
+          href={`${import.meta.env.SITE || Astro.site}${import.meta.env.BASE_URL.slice(1)}en${defaultRelativePath}`}
         />
       </>
     )}
