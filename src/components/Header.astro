@@ -101,11 +101,11 @@ if (alternates) {
                         aria-hidden="true"
                     /><span class="sr-only">Toggle theme</span>
                 </button><button
+                    id="mobile-menu-btn"
                     class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground py-2 h-9 w-10 px-0 shadow-none"
                     type="button"
                     aria-haspopup="dialog"
                     aria-expanded="false"
-                    data-state="closed"
                     ><Icon
                         name="fa6-solid:bars"
                         class=""
@@ -269,6 +269,55 @@ if (alternates) {
     </div>
 </header>
 
+<dialog id="mobile-menu" class="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 w-full h-full max-w-none m-0 p-0 text-foreground open:flex items-start justify-end">
+    <div class="fixed inset-y-0 right-0 z-50 h-full w-3/4 gap-4 border-l border-border bg-background p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm flex flex-col">
+        <div class="flex items-center justify-between gap-3 mb-4">
+            <span class="text-sm font-semibold">{t("nav.series")}</span>
+            <button id="mobile-menu-close" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:bg-accent hover:text-accent-foreground h-8 w-8 ml-auto">
+                <Icon name="fa6-solid:xmark" class="h-4 w-4" aria-hidden="true" />
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+        
+        <nav class="flex flex-col gap-1 flex-1 overflow-y-auto mt-2">
+            <a class="flex items-center justify-between rounded-md px-3 py-3 text-sm font-medium border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors" href={`${import.meta.env.BASE_URL}${lang}/series/${t("nav.slug.offensive-ai")}`}>
+                {t("nav.series.offensive-ai")}
+                <Icon name="fa6-solid:angle-right" class="h-3 w-3 text-muted-foreground" aria-hidden="true" />
+            </a>
+            <a class="flex items-center justify-between rounded-md px-3 py-3 text-sm font-medium border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors" href={`${import.meta.env.BASE_URL}${lang}/series/${t("nav.slug.ai-defense")}`}>
+                {t("nav.series.ai-defense")}
+                <Icon name="fa6-solid:angle-right" class="h-3 w-3 text-muted-foreground" aria-hidden="true" />
+            </a>
+            <a class="flex items-center justify-between rounded-md px-3 py-3 text-sm font-medium border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors" href={`${import.meta.env.BASE_URL}${lang}/series/${t("nav.slug.secure-coding")}`}>
+                {t("nav.series.secure-coding")}
+                <Icon name="fa6-solid:angle-right" class="h-3 w-3 text-muted-foreground" aria-hidden="true" />
+            </a>
+            <a class="flex items-center justify-between rounded-md px-3 py-3 text-sm font-medium border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors" href={`${import.meta.env.BASE_URL}${lang}/series/${t("nav.slug.ai-governance")}`}>
+                {t("nav.series.ai-governance")}
+                <Icon name="fa6-solid:angle-right" class="h-3 w-3 text-muted-foreground" aria-hidden="true" />
+            </a>
+        </nav>
+        
+        <div class="mt-auto flex flex-col gap-4 border-t border-border pt-4">
+            <div class="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+                <a href={`${import.meta.env.BASE_URL}sitemap-index.xml`} class="flex items-center gap-2 hover:text-foreground transition-colors">
+                    <Icon name="fa6-solid:sitemap" class="h-4 w-4" aria-hidden="true" />
+                    {t("nav.sitemap")}
+                </a>
+                <a href={`${import.meta.env.BASE_URL}${lang}/rss.xml`} class="flex items-center gap-2 hover:text-foreground transition-colors">
+                    <Icon name="fa6-solid:rss" class="h-4 w-4" aria-hidden="true" />
+                    {t("nav.rss")}
+                </a>
+            </div>
+            
+            <a href="https://hashnode.com" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted-foreground hover:text-foreground transition-colors py-2">
+                <Icon name="fa6-brands:hashnode" class="h-5 w-5" aria-hidden="true" />
+                <span class="font-semibold">{t("nav.hashnode")}</span>
+            </a>
+        </div>
+    </div>
+</dialog>
+
 <script>
     const themeButtons = document.querySelectorAll(".theme-toggle");
     themeButtons.forEach((btn) => {
@@ -283,4 +332,32 @@ if (alternates) {
             }
         });
     });
+
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenuCloseBtn = document.getElementById("mobile-menu-close");
+    const mobileMenuDialog = document.getElementById("mobile-menu") as HTMLDialogElement;
+
+    if (mobileMenuBtn && mobileMenuCloseBtn && mobileMenuDialog) {
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenuDialog.setAttribute("data-state", "open");
+            document.body.style.overflow = "hidden"; // Prevent background scrolling
+            mobileMenuDialog.showModal();
+        });
+
+        const closeDialog = () => {
+            mobileMenuDialog.setAttribute("data-state", "closed");
+            document.body.style.overflow = ""; // Restore background scrolling
+            // Small timeout to allow the exit animation to play out (if CSS driven)
+            setTimeout(() => {
+                mobileMenuDialog.close();
+            }, 300);
+        };
+
+        mobileMenuCloseBtn.addEventListener("click", closeDialog);
+
+        // Close when clicking outside the visual dialog boundaries (on the backdrop)
+        mobileMenuDialog.addEventListener("click", (e) => {
+            if (e.target === mobileMenuDialog) closeDialog();
+        });
+    }
 </script>
