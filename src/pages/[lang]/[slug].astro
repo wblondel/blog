@@ -63,7 +63,7 @@ if (xDefault) {
                                     <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-balance text-foreground transition-colors">{title}</h1>
                                     {description && <p class="text-base sm:text-lg font-normal text-muted-foreground text-balance">{description}</p>}
                                     <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
-                                        <div class="flex items-center gap-2"><Icon name="fa6-solid:calendar" class="h-4 w-4 text-muted-foreground" aria-hidden="true" /><span>Updated</span><time datetime={pubDate.toISOString()}>{formattedDate}</time></div><span class="text-muted-foreground">•</span><div class="flex items-center gap-2"><Icon name="fa6-solid:clock" class="h-4 w-4 text-muted-foreground" aria-hidden="true" /><span>{readTime} <!-- -->min read</span></div>
+                                        <div class="flex items-center gap-2"><Icon name="fa6-solid:calendar" class="h-4 w-4 text-muted-foreground" aria-hidden="true" /><span>{t("article.updatedOn")}</span><time datetime={pubDate.toISOString()}>{formattedDate}</time></div><span class="text-muted-foreground">•</span><div class="flex items-center gap-2"><Icon name="fa6-solid:clock" class="h-4 w-4 text-muted-foreground" aria-hidden="true" /><span>{readTime} <!-- -->{t("article.readTime")}</span></div>
                                     </div>
                                 </div>
                             </header>
@@ -93,7 +93,7 @@ if (xDefault) {
                                 <aside class="hidden xl:block absolute top-0 left-0 h-full">
                                     <nav class="sticky top-8 w-44">
                                         <div class="hidden xl:block max-h-[calc(100vh-3rem)] overflow-y-auto">
-                                            <p class="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">On this page</p>
+                                            <p class="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">{t("article.onThisPage")}</p>
                                             <nav aria-label="On this page">
                                                 {headings.map((heading) => (
                                                     <a class="block py-1 text-sm text-muted-foreground transition-colors hover:text-foreground" style={`padding-left:${(heading.depth - 2)}rem`} href={`#${heading.slug}`}>{heading.text}</a>
