@@ -6,7 +6,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  outDir: './dist/blog',
   site: 'https://wblondel.github.io',
   base: '/blog/',
   image: {
