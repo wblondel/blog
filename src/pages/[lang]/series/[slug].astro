@@ -1,0 +1,180 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+
+export async function getStaticPaths() {
+    const seriesEntries = await getCollection("series");
+    return seriesEntries.map((entry: CollectionEntry<"series">) => {
+        const [lang, ...slugParts] = entry.slug.split("/");
+        const slug = slugParts.join("/");
+        return {
+            params: { lang, slug },
+            props: { entry },
+        };
+    });
+}
+
+const { entry } = Astro.props;
+const { title, description } = entry.data;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang as any);
+
+const allPosts = await getCollection("blog", ({ slug }: { slug: string }) =>
+    slug.startsWith(`${lang}/`)
+);
+const seriesPosts = allPosts.filter(
+    (post: CollectionEntry<"blog">) =>
+        post.data.series === entry.slug.split("/").pop()
+);
+---
+
+<Layout title={title} description={description}>
+    <div class="px-4 sm:px-8">
+        <div class="w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">
+            <div class="flex flex-col gap-8 pt-2 sm:pt-10">
+                <section class="pb-16">
+                    <div class="space-y-8 max-w-4xl w-full mx-auto">
+                        <header class="mb-8 space-y-4 text-center">
+                            <p
+                                class="text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+                            >
+                                {t("nav.series") || "Series"}
+                            </p>
+                            <div class="flex flex-col items-center gap-3">
+                                <h1
+                                    class="text-3xl sm:text-4xl font-bold tracking-tight text-balance text-foreground"
+                                >
+                                    {title}
+                                </h1>
+                                <span
+                                    class="inline-flex items-center rounded-full border border-border px-3 py-1 text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+                                    aria-label={`${seriesPosts.length} post${
+                                        seriesPosts.length === 1 ? "" : "s"
+                                    } in this series`}
+                                    >{seriesPosts.length}
+                                    <!-- -->post{
+                                        seriesPosts.length === 1 ? "" : "s"
+                                    }</span
+                                >
+                            </div>
+                            <div
+                                class="prose prose-lg dark:prose-invert max-w-none text-muted-foreground"
+                            >
+                                <p>{description}</p>
+                            </div>
+                        </header>
+
+                        {
+                            seriesPosts.length === 0 ? (
+                                <div class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border p-12 text-center">
+                                    <div class="mb-6 h-40 w-40 relative">
+                                        <img
+                                            alt="No posts"
+                                            loading="lazy"
+                                            decoding="async"
+                                            class="object-contain w-full h-full"
+                                            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1584017401345/LrrwlBZC0.png"
+                                        />
+                                    </div>
+                                    <p class="text-lg font-semibold text-muted-foreground">
+                                        No posts yet
+                                    </p>
+                                </div>
+                            ) : (
+                                <div class="grid grid-cols-1 gap-6">
+                                    {seriesPosts.map(
+                                        (post: CollectionEntry<"blog">) => (
+                                            <article class="h-full">
+                                                <a
+                                                    class="block h-full"
+                                                    href={`/${lang}/${post.slug
+                                                        .split("/")
+                                                        .pop()}`}
+                                                >
+                                                    <div class="rounded-xl border bg-card text-card-foreground transition hover:border-slate-400 dark:hover:border-slate-600 h-full">
+                                                        <div class="grid h-full gap-4 p-4 items-stretch md:gap-6 md:p-6 md:grid-cols-[1.2fr_1fr]">
+                                                            <div class="flex flex-col gap-4">
+                                                                <header class="flex flex-col gap-3">
+                                                                    <h3 class="text-foreground text-lg sm:text-xl font-semibold transition-colors line-clamp-3">
+                                                                        {
+                                                                            post
+                                                                                .data
+                                                                                .title
+                                                                        }
+                                                                    </h3>
+                                                                    {post.data
+                                                                        .description && (
+                                                                        <p class="text-sm text-muted-foreground line-clamp-3">
+                                                                            {
+                                                                                post
+                                                                                    .data
+                                                                                    .description
+                                                                            }
+                                                                        </p>
+                                                                    )}
+                                                                </header>
+                                                                <div class="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                                                                    <span class="whitespace-nowrap">
+                                                                        {post.data.pubDate.toLocaleDateString(
+                                                                            lang,
+                                                                            {
+                                                                                year: "numeric",
+                                                                                month: "short",
+                                                                                day: "numeric",
+                                                                            }
+                                                                        )}
+                                                                    </span>
+                                                                    <span class="whitespace-nowrap">
+                                                                        <span
+                                                                            class="mr-3"
+                                                                            aria-hidden="true"
+                                                                        >
+                                                                            ·
+                                                                        </span>
+                                                                        {
+                                                                            post
+                                                                                .data
+                                                                                .readTime
+                                                                        }{" "}
+                                                                        min read
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            {post.data
+                                                                .coverImage && (
+                                                                <div class="flex items-center md:justify-end order-first md:order-last">
+                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5] w-full md:max-w-[320px]">
+                                                                        <img
+                                                                            alt={
+                                                                                post
+                                                                                    .data
+                                                                                    .title
+                                                                            }
+                                                                            loading="lazy"
+                                                                            decoding="async"
+                                                                            class="object-cover object-center w-full h-full absolute inset-0 text-transparent"
+                                                                            src={
+                                                                                post
+                                                                                    .data
+                                                                                    .coverImage
+                                                                            }
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </article>
+                                        )
+                                    )}
+                                </div>
+                            )
+                        }
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,107 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+export async function getStaticPaths() {
+  const blogs = await getCollection('blog');
+  return blogs.map((entry: CollectionEntry<'blog'>) => {
+    const [lang, ...slugParts] = entry.slug.split('/');
+    const slug = slugParts.join('/');
+    return {
+      params: { lang, slug },
+      props: { entry },
+    };
+  });
+}
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+const { title, description, pubDate, coverImage, tags, series, readTime } = entry.data;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang as any);
+const formattedDate = pubDate.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' });
+
+let seriesData = null;
+if (series) {
+    const seriesCollection = await getCollection('series');
+    seriesData = seriesCollection.find((s: CollectionEntry<'series'>) => s.slug === `${lang}/${series}`);
+}
+---
+<Layout title={title} description={description}>
+    <section class="py-8">
+        <div class="px-4 sm:px-8">
+            <div class="w-full max-w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">
+                <div class="grid gap-5 max-w-full">
+                    <article class="w-full max-w-full rounded-xl border bg-card text-card-foreground">
+                        <div class="px-5 pt-12 pb-8 sm:px-8">
+                            <header class="space-y-5">
+                                <div class="space-y-3 text-center max-w-2xl mx-auto">
+                                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-balance text-foreground transition-colors">{title}</h1>
+                                    {description && <p class="text-base sm:text-lg font-normal text-muted-foreground text-balance">{description}</p>}
+                                    <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
+                                        <div class="flex items-center gap-2"><i class="fa-jelly fa-calendar h-4 w-4 text-muted-foreground" aria-hidden="true"></i><span>Updated</span><time dateTime={pubDate.toISOString()}>{formattedDate}</time></div><span class="text-muted-foreground">•</span><div class="flex items-center gap-2"><i class="fa-jelly fa-clock h-4 w-4 text-muted-foreground" aria-hidden="true"></i><span>{readTime} <!-- -->min read</span></div>
+                                    </div>
+                                </div>
+                            </header>
+                        </div>
+                        {coverImage && (
+                        <div class="relative w-full overflow-hidden aspect-[8/5]">
+                            <img alt={title} loading="lazy" decoding="async" class="w-full h-full object-cover" src={coverImage} />
+                        </div>
+                        )}
+                        <div class="px-5 py-12 sm:px-8 space-y-8">
+                            <div class="max-w-2xl mx-auto">
+                                <div class="flex flex-col gap-5">
+                                    <div class="flex gap-3 items-start"><a target="_blank" rel="noopener" href={`/${lang}`}><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border border-border transition-opacity hover:opacity-80"><span class="flex h-full w-full items-center justify-center rounded-full bg-muted text-muted-foreground font-semibold text-lg">W</span></span></a><div class="min-w-0"><a target="_blank" rel="noopener" class="hover:text-primary transition-colors" href={`/${lang}`}><p class="font-medium text-foreground">William Blondel</p></a><div class="text-sm text-muted-foreground line-clamp-2"><p>Hi there 👋! I'm a Senior Full Stack Web Developer. I dedicate my free time to uncovering family history through genealogy.</p></div></div></div>
+                                </div>
+                            </div>
+                            
+                            {seriesData && (
+                            <div class="max-w-2xl mx-auto">
+                                <a class="group flex items-center gap-3 rounded-lg border border-border px-3 py-2 transition hover:border-primary hover:bg-accent" href={`/${lang}/series/${series}`}>
+                                    <i class="fa-jelly fa-layer-group h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true"></i>
+                                    <div class="flex flex-col"><span class="text-sm text-muted-foreground">Part of series</span><span class="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{seriesData.data.title}</span></div>
+                                </a>
+                            </div>
+                            )}
+
+                            <div class="relative">
+                                <aside class="hidden xl:block absolute top-0 left-0 h-full">
+                                    <nav class="sticky top-8 w-44">
+                                        <div class="hidden xl:block max-h-[calc(100vh-3rem)] overflow-y-auto">
+                                            <p class="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">On this page</p>
+                                            <nav aria-label="On this page">
+                                                {headings.map((heading) => (
+                                                    <a class="block py-1 text-sm text-muted-foreground transition-colors hover:text-foreground" style={`padding-left:${(heading.depth - 2)}rem`} href={`#${heading.slug}`}>{heading.text}</a>
+                                                ))}
+                                            </nav>
+                                        </div>
+                                    </nav>
+                                </aside>
+                                <div class="max-w-2xl mx-auto min-w-0 contain-[inline-size]">
+                                    <div class="prose dark:prose-invert prose-pre:bg-foreground prose-pre:text-background prose-pre:border prose-pre:border-border prose-pre:rounded prose-pre:px-5 prose-pre:py-4 dark:prose-pre:bg-muted dark:prose-pre:text-foreground dark:prose-pre:border-border prose-pre:overflow-x-auto max-w-none text-base sm:text-lg [&>div>p:first-child]:mt-0 [&>div>p:first-child]:pt-0 min-w-0 wrap-break-word [&_a]:break-all **:max-w-full">
+                                        <Content />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="max-w-2xl mx-auto border-t border-border pt-8 space-y-5">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    {tags?.map((tag) => (
+                                        <a class="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-muted-foreground transition hover:border-primary hover:text-primary" href={`/${lang}/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`}># <!-- -->{tag}</a>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

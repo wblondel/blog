@@ -1,0 +1,123 @@
+---
+import { getLangFromUrl } from "../i18n/utils";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "William Blondel - Senior full-stack web developer and amateur genealogist.",
+} = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={`${Astro.site}en${Astro.url.pathname.replace(/^\/(en|fr)/, "")}`}
+    />
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href={`${Astro.site}fr${Astro.url.pathname.replace(/^\/(en|fr)/, "")}`}
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={`${Astro.site}en${Astro.url.pathname.replace(/^\/(en|fr)/, "")}`}
+    />
+
+    <link
+      rel="stylesheet"
+      href="/_next/static/css/76065335918d0eb5.css"
+      data-precedence="next"
+    />
+    <link
+      rel="stylesheet"
+      href="/_next/static/css/7ffcc02a3c67389b.css"
+      data-precedence="next"
+    />
+    <link
+      rel="stylesheet"
+      href="/_next/static/css/c20e76e7d11dec32.css"
+      data-precedence="next"
+    />
+    <link
+      rel="stylesheet"
+      href="/_next/static/css/7a7e0581b3b5826a.css"
+      data-precedence="next"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+      rel="stylesheet"
+    />
+    <script type="text/javascript" is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+    </script>
+  </head>
+  <body class="__variable_e2c820 bg-background dark:bg-background">
+    <script is:inline>
+      ((a, b, c, d, e, f, g, h) => {
+        let i = document.documentElement,
+          j = ["light", "dark"];
+        function k(b) {
+          var c;
+          (Array.isArray(a) ? a : [a]).forEach((a) => {
+            let c = "class" === a,
+              d = c && f ? e.map((a) => f[a] || a) : e;
+            c
+              ? (i.classList.remove(...d),
+                i.classList.add(f && f[b] ? f[b] : b))
+              : i.setAttribute(a, b);
+          }),
+            (c = b),
+            h && j.includes(c) && (i.style.colorScheme = c);
+        }
+        if (d) k(d);
+        else
+          try {
+            let a = localStorage.getItem(b) || c,
+              d =
+                g && "system" === a
+                  ? window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light"
+                  : a;
+            k(d);
+          } catch (a) {}
+      })("class", "theme", "system", null, ["light", "dark"], null, true, true);
+    </script>
+    <main
+      id="main-content"
+      class="min-h-screen bg-background dark:bg-background"
+    >
+      <Header />
+      <div class="">
+        <slot />
+      </div>
+      <Footer />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,217 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/utils';
+import { languages } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+
+const allPosts = await getCollection('blog', ({ slug }) => slug.startsWith(`${lang}/`));
+allPosts.sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const heroPost = allPosts.length > 0 ? allPosts[0] : null;
+const leftSidePosts = allPosts.slice(1, 3);
+const rightSidePosts = allPosts.slice(3, 5);
+const remainingPosts = allPosts.slice(5);
+
+const remainingChunks = [];
+for (let i = 0; i < remainingPosts.length; i += 3) {
+    remainingChunks.push(remainingPosts.slice(i, i + 3));
+}
+---
+<Layout title="William Blondel">
+    <div class="">
+        <div class="w-full mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem] px-4 sm:px-12 md:px-18 lg:px-16 xl:px-10">
+            <div class="flex flex-col gap-8 pt-2 sm:pt-10">
+                <section class="pb-16">
+                    <div class="space-y-6 w-full mx-auto">
+                        <section aria-labelledby="_R_4ltlb_" class="flex flex-col gap-8">
+                            <h2 id="_R_4ltlb_" class="sr-only">Latest articles</h2>
+                            <div class="flex flex-col gap-8">
+                                
+                                {allPosts.length > 0 && (
+                                <div class="rounded-xl border border-border bg-card overflow-hidden">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                                        <div class="order-2 md:order-2 lg:order-1 md:col-span-1 flex flex-col divide-y divide-border md:border-t lg:border-t-0 lg:border-r border-border">
+                                            {leftSidePosts.map((post: CollectionEntry<'blog'>) => (
+                                                <div class="min-h-[140px] md:min-h-40 lg:min-h-[180px] flex-1">
+                                                    <article class="h-full">
+                                                        <a class="block h-full hover:bg-muted transition-colors" href={`/${lang}/${post.slug.split('/').pop()}`}>
+                                                            <div class="flex flex-col gap-3 p-4 h-full">
+                                                                {post.data.coverImage && (
+                                                                <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                    <img alt={post.data.title} loading="lazy" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
+                                                                </div>
+                                                                )}
+                                                                <header class="flex flex-col gap-1">
+                                                                    <h3 class="text-foreground text-base font-semibold transition-colors line-clamp-2">{post.data.title}</h3>
+                                                                </header>
+                                                                <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mt-auto">
+                                                                    <span class="whitespace-nowrap">{post.data.pubDate.toLocaleDateString(lang, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                                                                    <span class="whitespace-nowrap"><span class="mr-3" aria-hidden="true">·</span>{post.data.readTime} min read</span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </article>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {heroPost && (
+                                        <div class="order-1 md:col-span-2 lg:col-span-2 border-b md:border-b-0 border-border">
+                                            <article class="h-full">
+                                                <a class="block h-full hover:bg-muted transition-colors" href={`/${lang}/${heroPost.slug.split('/').pop()}`}>
+                                                    <div class="flex flex-col gap-4 p-4 md:p-6 h-full">
+                                                        {heroPost.data.coverImage && (
+                                                        <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                            <img alt={heroPost.data.title} loading="lazy" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={heroPost.data.coverImage} />
+                                                        </div>
+                                                        )}
+                                                        <header class="flex flex-col gap-2">
+                                                            <h3 class="text-foreground text-xl sm:text-2xl font-semibold transition-colors line-clamp-3">{heroPost.data.title}</h3>
+                                                            {heroPost.data.description && (
+                                                            <p class="text-sm sm:text-base text-muted-foreground line-clamp-3">{heroPost.data.description}</p>
+                                                            )}
+                                                        </header>
+                                                        <div class="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mt-auto">
+                                                            <span class="whitespace-nowrap">{heroPost.data.pubDate.toLocaleDateString(lang, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                                                            <span class="whitespace-nowrap"><span class="mr-3" aria-hidden="true">·</span>{heroPost.data.readTime} min read</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </article>
+                                        </div>
+                                        )}
+
+                                        <div class="order-3 md:col-span-1 flex flex-col divide-y divide-border border-t lg:border-t-0 lg:border-l border-border">
+                                            {rightSidePosts.map((post: CollectionEntry<'blog'>) => (
+                                                <div class="min-h-[140px] md:min-h-40 lg:min-h-[180px] flex-1">
+                                                    <article class="h-full">
+                                                        <a class="block h-full hover:bg-muted transition-colors" href={`/${lang}/${post.slug.split('/').pop()}`}>
+                                                            <div class="flex flex-col gap-3 p-4 h-full">
+                                                                {post.data.coverImage && (
+                                                                <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                    <img alt={post.data.title} loading="lazy" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
+                                                                </div>
+                                                                )}
+                                                                <header class="flex flex-col gap-1">
+                                                                    <h3 class="text-foreground text-base font-semibold transition-colors line-clamp-2">{post.data.title}</h3>
+                                                                </header>
+                                                                <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mt-auto">
+                                                                    <span class="whitespace-nowrap">{post.data.pubDate.toLocaleDateString(lang, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                                                                    <span class="whitespace-nowrap"><span class="mr-3" aria-hidden="true">·</span>{post.data.readTime} min read</span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </article>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                )}
+
+                                <div class="grid grid-cols-1 gap-6 items-stretch lg:grid-cols-2">
+                                    <aside aria-label="About the publication" class="h-full *:h-full">
+                                        <div class="rounded-xl border bg-card text-card-foreground transition hover:border-slate-400 dark:hover:border-slate-600 p-5 flex flex-col justify-center">
+                                            <div class="space-y-5">
+                                                <div class="flex items-start gap-3">
+                                                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-muted border border-border"><i class="text-lg fa-brands fa-hashnode text-foreground" aria-hidden="true"></i></div>
+                                                    <div class="space-y-1 min-w-0">
+                                                        <p class="text-lg font-semibold text-foreground">William Blondel</p>
+                                                        <p class="text-sm text-muted-foreground">{allPosts.length} posts published</p>
+                                                    </div>
+                                                </div>
+                                                <div class="prose prose-sm dark:prose-invert max-w-none text-muted-foreground">
+                                                    <p>Senior full-stack web developer and amateur genealogist. Born geek with an Amstrad CPC 6128. PHP &amp; Laravel Expert 🐘</p>
+                                                </div>
+                                                <div class="border-t border-border pt-5">
+                                                    <div class="flex flex-wrap items-center gap-3">
+                                                        <a href="https://twitter.com/wgblondel" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted" aria-label="Twitter"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+                                                        <a href="https://github.com/wblondel" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                                                        <a href="https://www.linkedin.com/in/wgblondel/" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+                                                        <a href="https://williamblondel.fr" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted" aria-label="Website"><i class="fa-jelly fa-globe" aria-hidden="true"></i></a>
+                                                        <a href="https://hashnode.com/@wblondel" target="_blank" rel="noopener" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted" aria-label="Hashnode"><i class="fa-brands fa-hashnode" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </aside>
+                                    <section aria-label="Newsletter sign-up" class="h-full *:h-full">
+                                        <div class="rounded-xl border bg-card text-card-foreground transition hover:border-slate-400 dark:hover:border-slate-600 w-full flex flex-col justify-center p-5">
+                                            <div class="space-y-5">
+                                                <div class="flex items-start gap-3">
+                                                    <div class="flex shrink-0 items-center justify-center rounded-full bg-muted border border-border h-12 w-12"><i class="fa-jelly fa-regular fa-envelope text-lg" aria-hidden="true"></i></div>
+                                                    <div class="space-y-1 min-w-0">
+                                                        <p class="font-semibold text-foreground text-lg">Subscribe to the newsletter</p>
+                                                        <p class="text-sm text-muted-foreground">Get new posts delivered to your inbox.</p>
+                                                    </div>
+                                                </div>
+                                                <form class="space-y-3">
+                                                    <div data-slot="input-group" role="group" class="group/input-group dark:bg-input/30 relative flex w-full items-center border shadow-xs transition-[color,box-shadow] outline-none min-w-0 has-[>textarea]:h-auto has-[>[data-align=inline-start]]:[&>input]:pl-2 has-[>[data-align=inline-end]]:[&>input]:pr-2 has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3 has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-ring/50 has-[[data-slot=input-group-control]:focus-visible]:ring-[3px] has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[[data-slot][aria-invalid=true]]:border-destructive dark:has-[[data-slot][aria-invalid=true]]:ring-destructive/40 h-auto rounded-lg bg-muted border-border p-1.5 gap-2">
+                                                        <input type="email" data-slot="input-group-control" class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground border-input h-9 w-full min-w-0 px-3 transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent py-3 text-base" placeholder="you@example.com" aria-label="Email address" required="" name="email" value="" />
+                                                        <button class="justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 text-sm shadow-none flex items-center h-8 gap-1.5 has-[>svg]:px-2.5 rounded-md px-4 py-0.5" type="submit" data-size="sm">Subscribe</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                {remainingChunks.length > 0 && (
+                                <div class="flex flex-col gap-6">
+                                    {remainingChunks.map((chunk) => (
+                                        <div class="rounded-xl border border-border bg-card overflow-hidden">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                                                {chunk.map((post: CollectionEntry<'blog'>, postIndex: number) => (
+                                                    <div class={postIndex === 0 ? "border-border" : postIndex === 1 ? "border-t md:border-t-0 md:border-l lg:border-l divide-border border-border" : "border-t md:col-span-2 md:border-t lg:col-span-1 lg:border-t-0 lg:border-l border-border"}>
+                                                        <article class="h-full">
+                                                            <a class="block h-full hover:bg-muted transition-colors" href={`/${lang}/${post.slug.split('/').pop()}`}>
+                                                                <div class="flex flex-col gap-3 p-4 md:p-5 h-full">
+                                                                    {post.data.coverImage && (
+                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                        <img alt={post.data.title} loading="lazy" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
+                                                                    </div>
+                                                                    )}
+                                                                    <header class="flex flex-col gap-2">
+                                                                        <h3 class="text-foreground text-base sm:text-lg font-semibold transition-colors line-clamp-2">{post.data.title}</h3>
+                                                                        {post.data.description && (
+                                                                        <p class="text-sm text-muted-foreground line-clamp-2">{post.data.description}</p>
+                                                                        )}
+                                                                    </header>
+                                                                    <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mt-auto">
+                                                                        <span class="whitespace-nowrap">{post.data.pubDate.toLocaleDateString(lang, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                                                                        <span class="whitespace-nowrap"><span class="mr-3" aria-hidden="true">·</span>{post.data.readTime} min read</span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </article>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                )}
+                                
+                                {remainingPosts.length > 0 && (
+                                <div class="flex justify-center py-8">
+                                    <button type="button" class="group flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50" aria-controls="_R_4ltlbH1_" aria-label="Load more posts">
+                                        <span aria-live="polite">Load more posts</span>
+                                        <i class="fa-regular fa-arrow-down text-sm transition-transform group-hover:translate-y-0.5" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                )}
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</Layout>

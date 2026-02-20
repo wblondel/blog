@@ -1,0 +1,109 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<header class="sticky top-0 z-50 w-full py-4 bg-background backdrop-blur-sm transition-transform duration-300 translate-y-0">
+    <a href="#main-content"
+        class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:shadow">Skip
+        to main content</a>
+    <div class="relative w-full mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem] px-4 sm:px-12 md:px-18 lg:px-16 xl:px-10">
+        <div class="flex items-center justify-between gap-3 xl:hidden">
+            <div class="flex items-center gap-3 min-w-0 flex-1"><a
+                    href={`/${lang}`}
+                    class="inline-flex items-center justify-center text-lg text-muted-foreground hover:text-foreground transition border rounded-md h-9 w-9 shrink-0 border-border hover:bg-muted"><i
+                        class="text-xl fa-brands fa-hashnode" aria-hidden="true"></i><span
+                        class="sr-only">Hashnode</span></a><a title="William Blondel"
+                    class="text-lg font-semibold text-foreground truncate min-w-0" href={`/${lang}`}>William Blondel</a>
+            </div>
+            <div class="flex items-center gap-2 shrink-0"><button
+                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent py-2 h-9 w-9 px-0 flex items-center justify-center text-muted-foreground hover:text-foreground bg-transparent border-border shadow-none"
+                    aria-label="Open search"><i
+                        class="fa-jelly fa-search text-sm" aria-hidden="true"></i><span class="sr-only">Open
+                        search</span></button><button
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent w-9 px-3 h-9 text-muted-foreground hover:text-foreground shadow-none theme-toggle"
+                    type="button" aria-expanded="false"><i
+                        class="fa-jelly fa-sun text-sm scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
+                        aria-hidden="true"></i><i
+                        class="fa-jelly fa-moon absolute text-sm scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"
+                        aria-hidden="true"></i><span class="sr-only">Toggle theme</span></button><button
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground py-2 h-9 w-10 px-0 shadow-none"
+                    type="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed"><i class="fa-jelly fa-bars"
+                        aria-hidden="true"></i><span class="sr-only">Open menu</span></button></div>
+        </div>
+        <div class="hidden xl:grid gap-4 items-center xl:grid-cols-[1fr_auto_1fr] xl:gap-6 max-w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">
+            <div class="flex flex-wrap items-center w-full gap-3"><a
+                    href={`/${lang}`}
+                    class="inline-flex items-center justify-center text-lg text-muted-foreground hover:text-foreground transition border rounded-md h-9 w-9 border-border hover:bg-muted"><i
+                        class="text-xl fa-brands fa-hashnode" aria-hidden="true"></i><span
+                        class="sr-only">Hashnode</span></a><span class="h-6 border-l border-border"></span>
+                <p
+                    class="text-base font-semibold text-center sm:text-xl text-foreground max-w-[400px] truncate">
+                    <a title="William Blondel" href={`/${lang}`}>William Blondel</a></p>
+            </div>
+            <nav aria-label="Main navigation" class="flex justify-center w-full">
+                <nav aria-label="Main" data-orientation="horizontal" dir="ltr"
+                    class="group/navigation-menu relative flex flex-1 items-center max-w-max justify-center">
+                    <div style="position:relative">
+                        <ul data-orientation="horizontal"
+                            class="group flex flex-1 list-none items-center flex-nowrap justify-center gap-1 text-sm text-muted-foreground"
+                            dir="ltr">
+                            <li class="relative"><a
+                                    class="data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex-col p-2 outline-none focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                                    href={`/${lang}/series/offensive-ai-landscape`}>{t('nav.series.offensive-ai')}</a></li>
+                            <li class="relative"><a
+                                    class="data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex-col p-2 outline-none focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                                    href={`/${lang}/series/ai-driven-defense`}>{t('nav.series.ai-defense')}</a></li>
+                            <li class="relative"><a
+                                    class="data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex-col p-2 outline-none focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                                    href={`/${lang}/series/secure-coding-ai`}>{t('nav.series.secure-coding')}</a></li>
+                            <li class="relative"><button
+                                    id="radix-_R_6ekiltlb_" data-state="closed" aria-expanded="false"
+                                    class="group w-max focus:bg-accent focus:text-accent-foreground data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent outline-none focus-visible:outline-1 group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent py-2 h-9 px-3 text-muted-foreground hover:text-foreground bg-transparent shadow-none data-[state=open]:bg-transparent"
+                                    type="button" aria-haspopup="menu">{t('nav.more')}<!-- --> <span
+                                        class="ml-1 flex items-center justify-center"><i
+                                            class="fa-jelly fa-regular fa-angle-down size-3 leading-none transition duration-300 group-data-[state=open]:rotate-180"
+                                            aria-hidden="true"></i></span></button></li>
+                        </ul>
+                    </div>
+                </nav>
+            </nav>
+            <div class="flex flex-wrap items-center justify-end gap-3 text-muted-foreground"><button
+                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent py-2 h-9 w-9 px-0 flex items-center justify-center text-muted-foreground hover:text-foreground bg-transparent border-border shadow-none"
+                    aria-label="Open search"><i
+                        class="fa-jelly fa-search text-sm" aria-hidden="true"></i><span class="sr-only">Open
+                        search</span></button>
+                <div class="flex items-center gap-3"><button
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent w-9 px-3 h-9 text-muted-foreground hover:text-foreground shadow-none theme-toggle"
+                        type="button" aria-expanded="false"><i
+                            class="fa-jelly fa-sun text-sm scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
+                            aria-hidden="true"></i><i
+                            class="fa-jelly fa-moon absolute text-sm scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"
+                            aria-hidden="true"></i><span class="sr-only">Toggle theme</span></button><button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 py-2 gap-2 px-3 h-9 shadow-none"
+                        type="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed"><i
+                            class="text-sm fa-jelly fa-envelope" aria-hidden="true"></i><span
+                            class="flex items-center gap-1">{t('nav.subscribe')}</span></button><a target="_blank"
+                        rel="noopener"
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground py-2 gap-2 px-3 h-9 shadow-none"
+                        href="https://hn.new"><i class="text-sm fa-jelly fa-pencil"
+                            aria-hidden="true"></i>{t('nav.write')}</a></div>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    const themeButtons = document.querySelectorAll('.theme-toggle');
+    themeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    });
+</script>
