@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
@@ -52,7 +53,7 @@ if (series) {
                         </div>
                         {coverImage && (
                         <div class="relative w-full overflow-hidden aspect-[8/5]">
-                            <img alt={title} loading="lazy" decoding="async" class="w-full h-full object-cover" src={coverImage} />
+                            <Image inferSize={true} width={1200} alt={title} loading="lazy" decoding="async" class="w-full h-full object-cover" src={coverImage} />
                         </div>
                         )}
                         <div class="px-5 py-12 sm:px-8 space-y-8">
