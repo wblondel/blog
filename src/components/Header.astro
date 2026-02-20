@@ -180,12 +180,13 @@ if (alternates) {
                                     >{t("nav.series.secure-coding")}</a
                                 >
                             </li>
-                            <li class="relative">
+
+                            <li class="relative group/more">
                                 <button
                                     id="radix-_R_6ekiltlb_"
                                     data-state="closed"
                                     aria-expanded="false"
-                                    class="group w-max focus:bg-accent focus:text-accent-foreground data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent outline-none focus-visible:outline-1 group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent py-2 h-9 px-3 text-muted-foreground hover:text-foreground bg-transparent shadow-none data-[state=open]:bg-transparent"
+                                    class="group w-max focus:bg-accent focus:text-accent-foreground group-hover/more:bg-accent group-hover/more:text-accent-foreground outline-none focus-visible:outline-1 group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent py-2 h-9 px-3 text-muted-foreground hover:text-foreground bg-transparent shadow-none"
                                     type="button"
                                     aria-haspopup="menu"
                                     >{t("nav.more")}<!-- -->
@@ -193,11 +194,23 @@ if (alternates) {
                                         class="ml-1 flex items-center justify-center"
                                         ><Icon
                                             name="fa6-solid:angle-down"
-                                            class="fa-jelly size-3 leading-none transition duration-300 group-data-[state=open]:rotate-180"
+                                            class="fa-jelly size-3 leading-none transition duration-300 group-hover/more:rotate-180"
                                             aria-hidden="true"
                                         />
                                     </span>
                                 </button>
+                                <div class="absolute -right-4 top-full pt-2 hidden min-w-[200px] flex-col group-hover/more:flex z-50">
+                                    <div class="rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md">
+                                        <a
+                                            href={`${
+                                                import.meta.env.BASE_URL
+                                            }${lang}/series/${t("nav.slug.ai-governance")}`}
+                                            class="relative flex cursor-pointer select-none items-center rounded-sm px-3 py-2 text-sm font-medium outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+                                        >
+                                            {t("nav.series.ai-governance")}
+                                        </a>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
