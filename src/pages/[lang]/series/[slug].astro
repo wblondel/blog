@@ -7,25 +7,35 @@ import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 export async function getStaticPaths() {
     const seriesEntries = await getCollection("series");
     
-    // Group series by original slug baseline (e.g. 'devsecops-ia')
-    const seriesBySlug: Record<string, string[]> = {};
-    seriesEntries.forEach((entry: CollectionEntry<"series">) => {
-        const [lang, ...slugParts] = entry.slug.split("/");
-        const baseSlug = slugParts.join("/");
-        if (!seriesBySlug[baseSlug]) seriesBySlug[baseSlug] = [];
-        seriesBySlug[baseSlug].push(lang);
-    });
+    // Explicit cross-language dictionary for Series translations
+    const seriesTranslations: Record<string, { en: string; fr: string }> = {
+        "offensive-ai-landscape": { en: "offensive-ai-landscape", fr: "menaces-ia-offensive" },
+        "menaces-ia-offensive": { en: "offensive-ai-landscape", fr: "menaces-ia-offensive" },
+        
+        "ai-driven-defense": { en: "ai-driven-defense", fr: "defense-ia-active" },
+        "defense-ia-active": { en: "ai-driven-defense", fr: "defense-ia-active" },
+        
+        "secure-coding-ai": { en: "secure-coding-ai", fr: "devsecops-ia" },
+        "devsecops-ia": { en: "secure-coding-ai", fr: "devsecops-ia" },
+        
+        "ai-governance-future": { en: "ai-governance-future", fr: "gouvernance-ia-futur" },
+        "gouvernance-ia-futur": { en: "ai-governance-future", fr: "gouvernance-ia-futur" }
+    };
 
     return seriesEntries.map((entry: CollectionEntry<"series">) => {
         const [lang, ...slugParts] = entry.slug.split("/");
         const slug = slugParts.join("/");
         
-        // Generate alternates mapping
-        const langsAvailable = seriesBySlug[slug] || [];
-        const rawAlternates = langsAvailable.map(l => ({
-            lang: l,
-            href: `${import.meta.env.BASE_URL.slice(1)}${l}/series/${slug}`
-        }));
+        // Generate alternates mapping using the dictionary
+        const translationMap = seriesTranslations[slug];
+        let rawAlternates: { lang: string; href: string }[] = [];
+        
+        if (translationMap) {
+            rawAlternates = [
+                { lang: 'en', href: `${import.meta.env.BASE_URL.slice(1)}en/series/${translationMap.en}` },
+                { lang: 'fr', href: `${import.meta.env.BASE_URL.slice(1)}fr/series/${translationMap.fr}` }
+            ];
+        }
 
         return {
             params: { lang, slug },
