@@ -6,24 +6,79 @@ import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 
 export async function getStaticPaths() {
     const allPosts = await getCollection("blog");
-    const tags = new Set<string>();
+    
+    // Map tag data: lang -> Set<string> of tag IDs
+    const tagsByLang: Record<string, Set<string>> = {
+        en: new Set(),
+        fr: new Set()
+    };
+    
+    interface TagMap {
+        [dateVal: number]: string[];
+    }
+    // pubDate.valueOf() -> tags array per post
+    const postTagsByDate: Record<string, TagMap> = {
+        en: {},
+        fr: {}
+    };
 
     allPosts.forEach((post: CollectionEntry<"blog">) => {
+        const lang = post.slug.split('/')[0] as 'en' | 'fr';
         if (post.data.tags) {
-            post.data.tags.forEach((tag: string) => {
-                tags.add(tag.toLowerCase().replace(/\s+/g, "-"));
-            });
+            const rawTags = post.data.tags.map(t => t.toLowerCase().replace(/\s+/g, "-"));
+            rawTags.forEach(tag => tagsByLang[lang].add(tag));
+            postTagsByDate[lang][post.data.pubDate.valueOf()] = rawTags;
         }
     });
 
-    const langs = ["en", "fr"];
     const paths: any[] = [];
+    
+    // Generate paths strictly for existing tags per language
+    Object.keys(tagsByLang).forEach((lang) => {
+        tagsByLang[lang].forEach((tag) => {
+            // Find which articles have this tag
+            let relatedDates: number[] = [];
+            for (const [dateVal, tgs] of Object.entries(postTagsByDate[lang])) {
+                if (tgs.includes(tag)) relatedDates.push(Number(dateVal));
+            }
+            
+            // Generate alternates by checking those exact same dates in other languages
+            let alternates: { lang: string; href: string }[] = [];
+            
+            // Add self
+            alternates.push({
+                lang: lang,
+                href: `${import.meta.env.BASE_URL.slice(1)}${lang}/tag/${tag}` // temporary relative path for template processing
+            });
 
-    langs.forEach((lang) => {
-        tags.forEach((tag) => {
+            // Find translation in other languages
+            const otherLangs = ['en', 'fr'].filter(l => l !== lang);
+            for (const otherLang of otherLangs) {
+                // Find potential translated tags
+                let possibleTags: Record<string, number> = {};
+                for (const d of relatedDates) {
+                    const transTags = postTagsByDate[otherLang]?.[d];
+                    if (transTags) {
+                        for (const t of transTags) {
+                            possibleTags[t] = (possibleTags[t] || 0) + 1;
+                        }
+                    }
+                }
+                
+                // If there's a highly correlated tag, link it!
+                if (Object.keys(possibleTags).length > 0) {
+                    // Get the tag that appeared in the most translated identical posts
+                    const mostLikelyTag = Object.keys(possibleTags).reduce((a, b) => possibleTags[a] > possibleTags[b] ? a : b);
+                    alternates.push({
+                        lang: otherLang,
+                        href: `${import.meta.env.BASE_URL.slice(1)}${otherLang}/tag/${mostLikelyTag}`
+                    });
+                }
+            }
+
             paths.push({
                 params: { lang, tag },
-                props: { tagId: tag },
+                props: { tagId: tag, rawAlternates: alternates },
             });
         });
     });
@@ -31,9 +86,19 @@ export async function getStaticPaths() {
     return paths;
 }
 
-const { tagId } = Astro.props;
+const { tagId, rawAlternates } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang as any);
+
+// Resolve alternates correctly with Astro.site
+const alternates = rawAlternates.map((alt: any) => ({
+    lang: alt.lang,
+    href: `${Astro.site}${alt.href}`
+}));
+const xDefault = alternates.find((a: any) => a.lang === 'en') || alternates[0];
+if (xDefault) {
+    alternates.push({ lang: 'x-default', href: xDefault.href });
+}
 
 const allPosts = await getCollection("blog", ({ slug }: { slug: string }) =>
     slug.startsWith(`${lang}/`)
@@ -58,6 +123,7 @@ const originalTag =
 <Layout
     title={`#${originalTag}`}
     description={`Posts tagged with #${originalTag}`}
+    alternates={alternates}
 >
     <div class="px-4 sm:px-8">
         <div class="w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">
