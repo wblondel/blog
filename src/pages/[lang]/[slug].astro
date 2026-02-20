@@ -34,8 +34,24 @@ if (series) {
     const seriesCollection = await getCollection('series');
     seriesData = seriesCollection.find((s: CollectionEntry<'series'>) => s.slug === `${lang}/${series}`);
 }
+
+const allBlogs = await getCollection('blog');
+const translatedEntries = allBlogs.filter((b: CollectionEntry<'blog'>) => b.data.pubDate.valueOf() === pubDate.valueOf());
+
+const alternates: { lang: string; href: string }[] = translatedEntries.map((b: CollectionEntry<'blog'>) => {
+    const bLang = b.slug.split('/')[0];
+    const bSlug = b.slug.split('/').slice(1).join('/');
+    return {
+        lang: bLang,
+        href: `${Astro.site}${import.meta.env.BASE_URL.slice(1)}${bLang}/${bSlug}`
+    };
+});
+const xDefault = alternates.find(a => a.lang === 'en') || alternates[0];
+if (xDefault) {
+    alternates.push({ lang: 'x-default', href: xDefault.href });
+}
 ---
-<Layout title={title} description={description}>
+<Layout title={title} description={description} alternates={alternates}>
     <section class="py-8">
         <div class="px-4 sm:px-8">
             <div class="w-full max-w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">

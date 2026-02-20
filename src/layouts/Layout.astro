@@ -9,11 +9,13 @@ import "../styles/geist-mono.css";
 interface Props {
   title: string;
   description?: string;
+  alternates?: { lang: string; href: string }[];
 }
 
 const {
   title,
   description = "William Blondel - Senior full-stack web developer and amateur genealogist.",
+  alternates,
 } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 ---
@@ -32,33 +34,39 @@ const lang = getLangFromUrl(Astro.url);
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <link
-      rel="alternate"
-      hreflang="en"
-      href={`${Astro.site}${import.meta.env.BASE_URL.slice(1)}en${
-        Astro.url.pathname.startsWith(import.meta.env.BASE_URL)
-          ? "/" + Astro.url.pathname.slice(import.meta.env.BASE_URL.length)
-          : Astro.url.pathname.replace(/^\/(en|fr)/, "").replace(/^\//, "")
-      }`}
-    />
-    <link
-      rel="alternate"
-      hreflang="fr"
-      href={`${Astro.site}${import.meta.env.BASE_URL.slice(1)}fr${
-        Astro.url.pathname.startsWith(import.meta.env.BASE_URL)
-          ? "/" + Astro.url.pathname.slice(import.meta.env.BASE_URL.length)
-          : Astro.url.pathname.replace(/^\/(en|fr)/, "").replace(/^\//, "")
-      }`}
-    />
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href={`${Astro.site}${import.meta.env.BASE_URL.slice(1)}en${
-        Astro.url.pathname.startsWith(import.meta.env.BASE_URL)
-          ? "/" + Astro.url.pathname.slice(import.meta.env.BASE_URL.length)
-          : Astro.url.pathname.replace(/^\/(en|fr)/, "").replace(/^\//, "")
-      }`}
-    />
+    {alternates ? alternates.map((alt: { lang: string; href: string }) => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    )) : (
+      <>
+        <link
+          rel="alternate"
+          hreflang="en"
+          href={`${Astro.site}${import.meta.env.BASE_URL.slice(1)}en${
+            Astro.url.pathname.startsWith(import.meta.env.BASE_URL)
+              ? "/" + Astro.url.pathname.slice(import.meta.env.BASE_URL.length)
+              : Astro.url.pathname.replace(/^\/(en|fr)/, "").replace(/^\//, "")
+          }`}
+        />
+        <link
+          rel="alternate"
+          hreflang="fr"
+          href={`${Astro.site}${import.meta.env.BASE_URL.slice(1)}fr${
+            Astro.url.pathname.startsWith(import.meta.env.BASE_URL)
+              ? "/" + Astro.url.pathname.slice(import.meta.env.BASE_URL.length)
+              : Astro.url.pathname.replace(/^\/(en|fr)/, "").replace(/^\//, "")
+          }`}
+        />
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={`${Astro.site}${import.meta.env.BASE_URL.slice(1)}en${
+            Astro.url.pathname.startsWith(import.meta.env.BASE_URL)
+              ? "/" + Astro.url.pathname.slice(import.meta.env.BASE_URL.length)
+              : Astro.url.pathname.replace(/^\/(en|fr)/, "").replace(/^\//, "")
+          }`}
+        />
+      </>
+    )}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
