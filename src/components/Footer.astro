@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -25,13 +26,15 @@ const currentYear = new Date().getFullYear();
                     <li>
                         <a
                             class="transition hover:text-foreground"
-                            href={`${import.meta.env.BASE_URL}${lang}/archive`}>{t("footer.archive")}</a
+                            href={`${import.meta.env.BASE_URL}${lang}/archive`}
+                            >{t("footer.archive")}</a
                         >
                     </li>
                     <li>
                         <a
                             class="transition hover:text-foreground"
-                            href={`${import.meta.env.BASE_URL}${lang}/tags`}>{t("footer.tags")}</a
+                            href={`${import.meta.env.BASE_URL}${lang}/tags`}
+                            >{t("footer.tags")}</a
                         >
                     </li>
                 </ul>
@@ -43,17 +46,22 @@ const currentYear = new Date().getFullYear();
                     class="flex items-center gap-2 text-sm transition hover:text-foreground"
                     title="Sitemap"
                     href={`${import.meta.env.BASE_URL}sitemap-index.xml`}
-                    ><i class="fa-regular fa-sitemap" aria-hidden="true"
-                    ></i><span>Sitemap</span>
+                    ><Icon
+                        name="fa6-solid:sitemap"
+                        class=""
+                        aria-hidden="true"
+                    /><span>Sitemap</span>
                 </a><a
                     target="_blank"
                     rel="noopener"
                     class="flex items-center gap-2 text-sm transition hover:text-foreground"
                     title="RSS Feed"
                     href={`${import.meta.env.BASE_URL}${lang}/rss.xml`}
-                    ><i class="fa-regular fa-rss" aria-hidden="true"></i><span
-                        >RSS</span
-                    >
+                    ><Icon
+                        name="fa6-solid:rss"
+                        class=""
+                        aria-hidden="true"
+                    /><span>RSS</span>
                 </a>
             </div>
             <!--             <div class="pt-10 text-center">

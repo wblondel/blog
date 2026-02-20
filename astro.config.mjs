@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
+import icon from 'astro-icon';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wblondel.github.io',
@@ -17,7 +19,17 @@ export default defineConfig({
     },
     plugins: [tailwindcss()]
   },
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap(),
+    icon({
+      include: {
+        "fa6-solid": ["*"],
+        "fa6-brands": ["*"],
+        "fa6-regular": ["*"]
+      }
+    })
+  ],
   i18n: {
     defaultLocale: "en",
     locales: ["en", "fr"],
