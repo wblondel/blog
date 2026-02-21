@@ -44,7 +44,8 @@ if (alternates) {
 ---
 
 <header
-    class="sticky top-0 z-50 w-full py-4 bg-background backdrop-blur-sm transition-transform duration-300 translate-y-0"
+    id="site-header"
+    class="sticky top-0 z-50 w-full py-4 bg-background backdrop-blur-sm transition-transform duration-300 translate-y-0 [&.is-hidden]:-translate-y-full"
 >
     <a
         href="#main-content"
@@ -339,5 +340,33 @@ if (alternates) {
         mobileMenuBtn.addEventListener("click", openMenu);
         mobileMenuCloseBtn.addEventListener("click", closeMenu);
         mobileMenuBackdrop.addEventListener("click", closeMenu);
+    }
+
+    // ── Scroll-hide / show header ─────────────────────────────────────────────
+    const header = document.getElementById("site-header");
+    if (header) {
+        let lastScrollY = window.scrollY;
+        const THRESHOLD = 10; // px — ignore tiny micro-scrolls
+
+        window.addEventListener("scroll", () => {
+            const currentScrollY = window.scrollY;
+            const delta = currentScrollY - lastScrollY;
+
+            if (currentScrollY <= 0) {
+                // Always show at the very top
+                header.classList.remove("is-hidden");
+            } else if (delta > THRESHOLD) {
+                // Scrolling DOWN — hide
+                header.classList.add("is-hidden");
+                // Also close the mobile menu if it was open
+                mobileMenuDialog?.setAttribute("data-state", "closed");
+                document.body.style.overflow = "";
+            } else if (delta < -THRESHOLD) {
+                // Scrolling UP — show
+                header.classList.remove("is-hidden");
+            }
+
+            lastScrollY = currentScrollY;
+        }, { passive: true });
     }
 </script>
