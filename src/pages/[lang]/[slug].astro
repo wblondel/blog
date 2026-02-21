@@ -40,7 +40,7 @@ if (series) {
 const allBlogs = await getCollection('blog');
 const translatedEntries = allBlogs.filter((b: CollectionEntry<'blog'>) => b.data.pubDate.valueOf() === pubDate.valueOf());
 
-const alternates: { lang: string; href: string }[] = translatedEntries.map((b: CollectionEntry<'blog'>) => {
+const alternates: { lang: string; href: string; isFallback?: boolean }[] = translatedEntries.map((b: CollectionEntry<'blog'>) => {
     const bLang = b.slug.split('/')[0];
     const bSlug = b.slug.split('/').slice(1).join('/');
     return {
@@ -48,7 +48,22 @@ const alternates: { lang: string; href: string }[] = translatedEntries.map((b: C
         href: `${Astro.site}${import.meta.env.BASE_URL.slice(1)}${bLang}/${bSlug}`
     };
 });
-const xDefault = alternates.find(a => a.lang === 'en') || alternates[0];
+
+// For any language that has no real translation, add a fallback to the homepage.
+// isFallback:true → Layout won't emit a hreflang for it, but Header still gets
+// a valid URL so the language switcher doesn't generate a broken /fr/[en-slug] link.
+const allLangs = ['en', 'fr'];
+for (const otherLang of allLangs) {
+    if (!alternates.some(a => a.lang === otherLang)) {
+        alternates.push({
+            lang: otherLang,
+            href: `${Astro.site}${import.meta.env.BASE_URL.slice(1)}${otherLang}/`,
+            isFallback: true,
+        });
+    }
+}
+
+const xDefault = alternates.find(a => a.lang === 'en' && !a.isFallback) || alternates[0];
 if (xDefault) {
     alternates.push({ lang: 'x-default', href: xDefault.href });
 }
