@@ -1,9 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
 import { getCollection, type CollectionEntry } from "astro:content";
-import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import AuthorCard from "../../components/AuthorCard.astro";
+import PostCard from "../../components/PostCard.astro";
 import { useTranslations, usePlural } from "../../i18n/utils";
 import { languages } from "../../i18n/ui";
 
@@ -12,6 +12,7 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
+const langStr = lang!; // getStaticPaths guarantees this is always defined
 const t = useTranslations(lang as any);
 const p = usePlural(lang as any);
 
@@ -60,227 +61,24 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                                                 {heroPost && (
                                                     <div class="order-1 lg:order-2 md:col-span-2 lg:col-span-2 border-b md:border-b-0 border-border">
-                                                        <article class="h-full">
-                                                            <a
-                                                                class="block h-full hover:bg-muted transition-colors"
-                                                                href={`${
-                                                                    import.meta
-                                                                        .env
-                                                                        .BASE_URL
-                                                                }${lang}/${heroPost.slug
-                                                                    .split("/")
-                                                                    .pop()}`}
-                                                            >
-                                                                <div class="flex flex-col gap-4 p-4 md:p-6 h-full">
-                                                                    {heroPost.data.coverImage && (
-                                                                        typeof heroPost.data.coverImage === 'string' ? (
-                                                                            <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                <Image inferSize={true} width={1200} alt={heroPost.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={heroPost.data.coverImage} />
-                                                                            </div>
-                                                                        ) : (
-                                                                            <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                <Image widths={[400, 800, 1200]} sizes="(max-width: 1200px) 100vw, 1200px" alt={heroPost.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={heroPost.data.coverImage} />
-                                                                            </div>
-                                                                        )
-                                                                    )}
-                                                                    <header class="flex flex-col gap-2">
-                                                                        <h3 class="text-foreground text-xl sm:text-2xl font-semibold transition-colors line-clamp-3">
-                                                                            {
-                                                                                heroPost
-                                                                                    .data
-                                                                                    .title
-                                                                            }
-                                                                        </h3>
-                                                                        {heroPost
-                                                                            .data
-                                                                            .description && (
-                                                                            <p class="text-sm sm:text-base text-muted-foreground line-clamp-3">
-                                                                                {
-                                                                                    heroPost
-                                                                                        .data
-                                                                                        .description
-                                                                                }
-                                                                            </p>
-                                                                        )}
-                                                                    </header>
-                                                                    <div class="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mt-auto">
-                                                                        <span class="whitespace-nowrap">
-                                                                            {heroPost.data.pubDate.toLocaleDateString(
-                                                                                lang,
-                                                                                {
-                                                                                    year: "numeric",
-                                                                                    month: "short",
-                                                                                    day: "numeric",
-                                                                                }
-                                                                            )}
-                                                                        </span>
-                                                                        <span class="whitespace-nowrap">
-                                                                            <span
-                                                                                class="mr-3"
-                                                                                aria-hidden="true"
-                                                                            >
-                                                                                ·
-                                                                            </span>
-                                                                            {
-                                                                                heroPost
-                                                                                    .data
-                                                                                    .readTime
-                                                                            }{" "}
-                                                                            {t("article.readTime")}
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </article>
+                                                        <PostCard post={heroPost} lang={langStr} variant="hero" />
                                                     </div>
                                                 )}
 
                                                 <div class="order-2 lg:order-1 md:col-span-1 flex flex-col divide-y divide-border md:border-t lg:border-t-0 lg:border-r border-border">
-                                                    {leftSidePosts.map(
-                                                        (
-                                                            post: CollectionEntry<"blog">
-                                                        ) => (
-                                                            <div class="min-h-[140px] md:min-h-40 lg:min-h-[180px] flex-1">
-                                                                <article class="h-full">
-                                                                    <a
-                                                                        class="block h-full hover:bg-muted transition-colors"
-                                                                        href={`${
-                                                                            import.meta
-                                                                                .env
-                                                                                .BASE_URL
-                                                                        }${lang}/${post.slug
-                                                                            .split(
-                                                                                "/"
-                                                                            )
-                                                                            .pop()}`}
-                                                                    >
-                                                                        <div class="flex flex-col gap-3 p-4 h-full">
-                                                                            {post.data.coverImage && (
-                                                                                typeof post.data.coverImage === 'string' ? (
-                                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                        <Image inferSize={true} width={800} alt={post.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
-                                                                                    </div>
-                                                                                ) : (
-                                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                        <Image widths={[400, 800]} sizes="(max-width: 800px) 100vw, 800px" alt={post.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
-                                                                                    </div>
-                                                                                )
-                                                                            )}
-                                                                            <header class="flex flex-col gap-1">
-                                                                                <h3 class="text-foreground text-base font-semibold transition-colors line-clamp-2">
-                                                                                    {
-                                                                                        post
-                                                                                            .data
-                                                                                            .title
-                                                                                    }
-                                                                                </h3>
-                                                                            </header>
-                                                                            <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mt-auto">
-                                                                                <span class="whitespace-nowrap">
-                                                                                    {post.data.pubDate.toLocaleDateString(
-                                                                                        lang,
-                                                                                        {
-                                                                                            year: "numeric",
-                                                                                            month: "short",
-                                                                                            day: "numeric",
-                                                                                        }
-                                                                                    )}
-                                                                                </span>
-                                                                                <span class="whitespace-nowrap">
-                                                                                    <span
-                                                                                        class="mr-3"
-                                                                                        aria-hidden="true"
-                                                                                    >
-                                                                                        ·
-                                                                                    </span>
-                                                                                    {
-                                                                                        post
-                                                                                            .data
-                                                                                            .readTime
-                                                                                    }{" "}
-                                                                                    {t("article.readTime")}
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                </article>
-                                                            </div>
-                                                        )
-                                                    )}
+                                                    {leftSidePosts.map((post: CollectionEntry<"blog">) => (
+                                                        <div class="min-h-[140px] md:min-h-40 lg:min-h-[180px] flex-1">
+                                                            <PostCard post={post} lang={langStr} variant="sidebar" />
+                                                        </div>
+                                                    ))}
                                                 </div>
 
                                                 <div class="order-3 md:col-span-1 flex flex-col divide-y divide-border border-t lg:border-t-0 lg:border-l border-border">
-                                                    {rightSidePosts.map(
-                                                        (
-                                                            post: CollectionEntry<"blog">
-                                                        ) => (
-                                                            <div class="min-h-[140px] md:min-h-40 lg:min-h-[180px] flex-1">
-                                                                <article class="h-full">
-                                                                    <a
-                                                                        class="block h-full hover:bg-muted transition-colors"
-                                                                        href={`${
-                                                                            import.meta
-                                                                                .env
-                                                                                .BASE_URL
-                                                                        }${lang}/${post.slug
-                                                                            .split(
-                                                                                "/"
-                                                                            )
-                                                                            .pop()}`}
-                                                                    >
-                                                                        <div class="flex flex-col gap-3 p-4 h-full">
-                                                                            {post.data.coverImage && (
-                                                                                typeof post.data.coverImage === 'string' ? (
-                                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                        <Image inferSize={true} width={800} alt={post.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
-                                                                                    </div>
-                                                                                ) : (
-                                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                        <Image widths={[400, 800]} sizes="(max-width: 800px) 100vw, 800px" alt={post.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
-                                                                                    </div>
-                                                                                )
-                                                                            )}
-                                                                            <header class="flex flex-col gap-1">
-                                                                                <h3 class="text-foreground text-base font-semibold transition-colors line-clamp-2">
-                                                                                    {
-                                                                                        post
-                                                                                            .data
-                                                                                            .title
-                                                                                    }
-                                                                                </h3>
-                                                                            </header>
-                                                                            <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mt-auto">
-                                                                                <span class="whitespace-nowrap">
-                                                                                    {post.data.pubDate.toLocaleDateString(
-                                                                                        lang,
-                                                                                        {
-                                                                                            year: "numeric",
-                                                                                            month: "short",
-                                                                                            day: "numeric",
-                                                                                        }
-                                                                                    )}
-                                                                                </span>
-                                                                                <span class="whitespace-nowrap">
-                                                                                    <span
-                                                                                        class="mr-3"
-                                                                                        aria-hidden="true"
-                                                                                    >
-                                                                                        ·
-                                                                                    </span>
-                                                                                    {
-                                                                                        post
-                                                                                            .data
-                                                                                            .readTime
-                                                                                    }{" "}
-                                                                                    {t("article.readTime")}
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                </article>
-                                                            </div>
-                                                        )
-                                                    )}
+                                                    {rightSidePosts.map((post: CollectionEntry<"blog">) => (
+                                                        <div class="min-h-[140px] md:min-h-40 lg:min-h-[180px] flex-1">
+                                                            <PostCard post={post} lang={langStr} variant="sidebar" />
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             </div>
                                         </div>
@@ -366,99 +164,19 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                             {remainingChunks.map((chunk) => (
                                                 <div class="rounded-xl border border-border bg-card overflow-hidden">
                                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                                                        {chunk.map(
-                                                            (
-                                                                post: CollectionEntry<"blog">,
-                                                                postIndex: number
-                                                            ) => (
-                                                                <div
-                                                                    class={
-                                                                        postIndex ===
-                                                                        0
-                                                                            ? "border-border"
-                                                                            : postIndex ===
-                                                                              1
-                                                                            ? "border-t md:border-t-0 md:border-l lg:border-l divide-border border-border"
-                                                                            : "border-t md:col-span-2 md:border-t lg:col-span-1 lg:border-t-0 lg:border-l border-border"
-                                                                    }
-                                                                >
-                                                                    <article class="h-full">
-                                                                        <a
-                                                                            class="block h-full hover:bg-muted transition-colors"
-                                                                            href={`${
-                                                                                import.meta
-                                                                                    .env
-                                                                                    .BASE_URL
-                                                                            }${lang}/${post.slug
-                                                                                .split(
-                                                                                    "/"
-                                                                                )
-                                                                                .pop()}`}
-                                                                        >
-                                                                            <div class="flex flex-col gap-3 p-4 md:p-5 h-full">
-                                                                                {post.data.coverImage && (
-                                                                                    typeof post.data.coverImage === 'string' ? (
-                                                                                        <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                            <Image inferSize={true} width={800} alt={post.data.title} loading="lazy" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
-                                                                                        </div>
-                                                                                    ) : (
-                                                                                        <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                            <Image widths={[400, 800]} sizes="(max-width: 800px) 100vw, 800px" alt={post.data.title} loading="lazy" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
-                                                                                        </div>
-                                                                                    )
-                                                                                )}
-                                                                                <header class="flex flex-col gap-2">
-                                                                                    <h3 class="text-foreground text-base sm:text-lg font-semibold transition-colors line-clamp-2">
-                                                                                        {
-                                                                                            post
-                                                                                                .data
-                                                                                                .title
-                                                                                        }
-                                                                                    </h3>
-                                                                                    {post
-                                                                                        .data
-                                                                                        .description && (
-                                                                                        <p class="text-sm text-muted-foreground line-clamp-2">
-                                                                                            {
-                                                                                                post
-                                                                                                    .data
-                                                                                                    .description
-                                                                                            }
-                                                                                        </p>
-                                                                                    )}
-                                                                                </header>
-                                                                                <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mt-auto">
-                                                                                    <span class="whitespace-nowrap">
-                                                                                        {post.data.pubDate.toLocaleDateString(
-                                                                                            lang,
-                                                                                            {
-                                                                                                year: "numeric",
-                                                                                                month: "short",
-                                                                                                day: "numeric",
-                                                                                            }
-                                                                                        )}
-                                                                                    </span>
-                                                                                    <span class="whitespace-nowrap">
-                                                                                        <span
-                                                                                            class="mr-3"
-                                                                                            aria-hidden="true"
-                                                                                        >
-                                                                                            ·
-                                                                                        </span>
-                                                                                        {
-                                                                                            post
-                                                                                                .data
-                                                                                                .readTime
-                                                                                        }{" "}
-                                                                                        {t("article.readTime")}
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </a>
-                                                                    </article>
-                                                                </div>
-                                                            )
-                                                        )}
+                                                        {chunk.map((post: CollectionEntry<"blog">, postIndex: number) => (
+                                                            <div
+                                                                class={
+                                                                    postIndex === 0
+                                                                        ? "border-border"
+                                                                        : postIndex === 1
+                                                                        ? "border-t md:border-t-0 md:border-l lg:border-l divide-border border-border"
+                                                                        : "border-t md:col-span-2 md:border-t lg:col-span-1 lg:border-t-0 lg:border-l border-border"
+                                                                }
+                                                            >
+                                                                <PostCard post={post} lang={langStr} variant="tile" />
+                                                            </div>
+                                                        ))}
                                                     </div>
                                                 </div>
                                             ))}

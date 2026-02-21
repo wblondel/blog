@@ -4,6 +4,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import AuthorCard from '../../components/AuthorCard.astro';
+import CoverImage from '../../components/CoverImage.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 export async function getStaticPaths() {
@@ -90,16 +91,18 @@ const articleSchema = JSON.stringify({
                                 </div>
                             </header>
                         </div>
-                        {coverImage && (
-            typeof coverImage === 'string' ? (
-                <div class="relative w-full overflow-hidden aspect-[8/5]">
-                    <Image inferSize={true} width={1200} alt={title} loading="eager" fetchpriority="high" decoding="async" class="w-full h-full object-cover" src={coverImage} />
-                </div>
-            ) : (
-                <div class="relative w-full overflow-hidden aspect-[8/5]">
-                    <Image widths={[400, 800, 1200]} sizes="(max-width: 1200px) 100vw, 1200px" alt={title} loading="eager" fetchpriority="high" decoding="async" class="w-full h-full object-cover" src={coverImage} />
-                </div>
-            )
+        {coverImage && (
+            <CoverImage
+                src={coverImage}
+                alt={title}
+                loading="eager"
+                fetchpriority="high"
+                widths={[400, 800, 1200]}
+                sizes="(max-width: 1200px) 100vw, 1200px"
+                maxWidth={1200}
+                wrapperClass="relative w-full overflow-hidden aspect-[8/5]"
+                imgClass="w-full h-full object-cover"
+            />
         )}
                         <div class="px-5 py-12 sm:px-8 space-y-8">
                             <div class="max-w-2xl mx-auto">

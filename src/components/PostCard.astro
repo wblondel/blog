@@ -1,0 +1,197 @@
+---
+/**
+ * PostCard — reusable post card with three layout variants:
+ *
+ *  • 'hero'       — large vertical card, big title, description, full-width image above.
+ *                   Used for the featured/hero post on the homepage.
+ *
+ *  • 'sidebar'    — compact vertical card, small title, no description, image above.
+ *                   Used in the left/right sidebar columns on the homepage.
+ *
+ *  • 'tile'       — medium vertical card, medium title + description, image above.
+ *                   Used in the 3-column remaining-posts grid on the homepage.
+ *
+ *  • 'horizontal' — two-column card (text left, image right), title + description.
+ *                   Used in tag/[tag].astro and series/[slug].astro post listings.
+ */
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import CoverImage from "./CoverImage.astro";
+import type { CollectionEntry } from "astro:content";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+    post: CollectionEntry<"blog">;
+    lang: string;
+    variant?: "hero" | "sidebar" | "tile" | "horizontal";
+    /** Used only in series listings to show "Part N" */
+    showSeriesOrder?: boolean;
+}
+
+const {
+    post,
+    lang,
+    variant = "horizontal",
+    showSeriesOrder = false,
+} = Astro.props;
+
+const t = useTranslations(lang as "en" | "fr");
+const slug = post.slug.split("/").pop();
+const href = `${import.meta.env.BASE_URL}${lang}/${slug}`;
+const formattedDate = post.data.pubDate.toLocaleDateString(lang, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+});
+---
+
+{variant === "hero" && (
+    <article class="h-full">
+        <a class="block h-full hover:bg-muted transition-colors" href={href}>
+            <div class="flex flex-col gap-4 p-4 md:p-6 h-full">
+                {post.data.coverImage && (
+                    <CoverImage
+                        src={post.data.coverImage}
+                        alt={post.data.title}
+                        loading="eager"
+                        fetchpriority="high"
+                        widths={[400, 800, 1200]}
+                        sizes="(max-width: 1200px) 100vw, 1200px"
+                        maxWidth={1200}
+                        imgClass="object-cover object-center absolute inset-0 h-full w-full text-transparent"
+                    />
+                )}
+                <header class="flex flex-col gap-2">
+                    <h3 class="text-foreground text-xl sm:text-2xl font-semibold transition-colors line-clamp-3">
+                        {post.data.title}
+                    </h3>
+                    {post.data.description && (
+                        <p class="text-sm sm:text-base text-muted-foreground line-clamp-3">
+                            {post.data.description}
+                        </p>
+                    )}
+                </header>
+                <div class="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mt-auto">
+                    <span class="whitespace-nowrap">{formattedDate}</span>
+                    <span class="whitespace-nowrap">
+                        <span class="mr-3" aria-hidden="true">·</span>
+                        {post.data.readTime}{" "}{t("article.readTime")}
+                    </span>
+                </div>
+            </div>
+        </a>
+    </article>
+)}
+
+{variant === "sidebar" && (
+    <article class="h-full">
+        <a class="block h-full hover:bg-muted transition-colors" href={href}>
+            <div class="flex flex-col gap-3 p-4 h-full">
+                {post.data.coverImage && (
+                    <CoverImage
+                        src={post.data.coverImage}
+                        alt={post.data.title}
+                        loading="eager"
+                        fetchpriority="high"
+                        imgClass="object-cover object-center absolute inset-0 h-full w-full text-transparent"
+                    />
+                )}
+                <header class="flex flex-col gap-1">
+                    <h3 class="text-foreground text-base font-semibold transition-colors line-clamp-2">
+                        {post.data.title}
+                    </h3>
+                </header>
+                <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mt-auto">
+                    <span class="whitespace-nowrap">{formattedDate}</span>
+                    <span class="whitespace-nowrap">
+                        <span class="mr-3" aria-hidden="true">·</span>
+                        {post.data.readTime}{" "}{t("article.readTime")}
+                    </span>
+                </div>
+            </div>
+        </a>
+    </article>
+)}
+
+{variant === "tile" && (
+    <article class="h-full">
+        <a class="block h-full hover:bg-muted transition-colors" href={href}>
+            <div class="flex flex-col gap-3 p-4 md:p-5 h-full">
+                {post.data.coverImage && (
+                    <CoverImage
+                        src={post.data.coverImage}
+                        alt={post.data.title}
+                        loading="lazy"
+                        imgClass="object-cover object-center absolute inset-0 h-full w-full text-transparent"
+                    />
+                )}
+                <header class="flex flex-col gap-2">
+                    <h3 class="text-foreground text-base sm:text-lg font-semibold transition-colors line-clamp-2">
+                        {post.data.title}
+                    </h3>
+                    {post.data.description && (
+                        <p class="text-sm text-muted-foreground line-clamp-2">
+                            {post.data.description}
+                        </p>
+                    )}
+                </header>
+                <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mt-auto">
+                    <span class="whitespace-nowrap">{formattedDate}</span>
+                    <span class="whitespace-nowrap">
+                        <span class="mr-3" aria-hidden="true">·</span>
+                        {post.data.readTime}{" "}{t("article.readTime")}
+                    </span>
+                </div>
+            </div>
+        </a>
+    </article>
+)}
+
+{variant === "horizontal" && (
+    <article class="h-full">
+        <a class="block h-full" href={href}>
+            <div class="rounded-xl border bg-card text-card-foreground transition hover:border-slate-400 dark:hover:border-slate-600 h-full">
+                <div class="grid h-full gap-4 p-4 items-stretch md:gap-6 md:p-6 md:grid-cols-[1.2fr_1fr]">
+                    <div class="flex flex-col gap-4">
+                        <header class="flex flex-col gap-3">
+                            <h3 class="text-foreground text-lg sm:text-xl font-semibold transition-colors line-clamp-3">
+                                {post.data.title}
+                            </h3>
+                            {post.data.description && (
+                                <p class="text-sm text-muted-foreground line-clamp-3">
+                                    {post.data.description}
+                                </p>
+                            )}
+                        </header>
+                        <div class="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                            {showSeriesOrder && post.data.seriesOrder && (
+                                <>
+                                    <span class="whitespace-nowrap font-medium text-foreground">
+                                        {t("article.part")} {post.data.seriesOrder}
+                                    </span>
+                                    <span aria-hidden="true">·</span>
+                                </>
+                            )}
+                            <span class="whitespace-nowrap">{formattedDate}</span>
+                            <span class="whitespace-nowrap">
+                                <span class="mr-3" aria-hidden="true">·</span>
+                                {post.data.readTime}{" "}{t("article.readTime")}
+                            </span>
+                        </div>
+                    </div>
+                    {post.data.coverImage && (
+                        <div class="flex items-center md:justify-end order-first md:order-last">
+                            <CoverImage
+                                src={post.data.coverImage}
+                                alt={post.data.title}
+                                loading="lazy"
+                                wrapperClass="relative overflow-hidden rounded-lg bg-muted aspect-[8/5] w-full md:max-w-[320px]"
+                                imgClass="object-cover object-center w-full h-full absolute inset-0 text-transparent"
+                            />
+                        </div>
+                    )}
+                </div>
+            </div>
+        </a>
+    </article>
+)}

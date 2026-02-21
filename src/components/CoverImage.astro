@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    src: string | ImageMetadata;
+    alt: string;
+    /** Use 'eager' for above-the-fold images, 'lazy' otherwise */
+    loading?: "eager" | "lazy";
+    fetchpriority?: "high" | "low" | "auto";
+    /** Extra classes on the wrapper div */
+    wrapperClass?: string;
+    /** Extra classes on the img element */
+    imgClass?: string;
+    /** Widths for responsive srcset (only used for local ImageMetadata) */
+    widths?: number[];
+    sizes?: string;
+    /** Max width for remote (string) images */
+    maxWidth?: number;
+}
+
+const {
+    src,
+    alt,
+    loading = "lazy",
+    fetchpriority,
+    wrapperClass = "relative overflow-hidden rounded-lg bg-muted aspect-[8/5]",
+    imgClass = "object-cover object-center w-full h-full absolute inset-0 text-transparent",
+    widths = [400, 800],
+    sizes = "(max-width: 800px) 100vw, 800px",
+    maxWidth = 800,
+} = Astro.props;
+---
+
+<div class={wrapperClass}>
+    {typeof src === "string" ? (
+        <Image
+            inferSize={true}
+            width={maxWidth}
+            src={src}
+            alt={alt}
+            loading={loading}
+            fetchpriority={fetchpriority}
+            decoding="async"
+            class={imgClass}
+        />
+    ) : (
+        <Image
+            widths={widths}
+            sizes={sizes}
+            src={src}
+            alt={alt}
+            loading={loading}
+            fetchpriority={fetchpriority}
+            decoding="async"
+            class={imgClass}
+        />
+    )}
+</div>

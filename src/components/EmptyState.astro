@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    message: string;
+    /** Optional local illustration image */
+    image?: ImageMetadata;
+    imageAlt?: string;
+}
+
+const { message, image, imageAlt = "" } = Astro.props;
+---
+
+<div class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border p-12 text-center">
+    {image && (
+        <div class="mb-6 h-40 w-40 relative">
+            <Image
+                src={image}
+                alt={imageAlt}
+                loading="lazy"
+                decoding="async"
+                class="object-contain w-full h-full"
+            />
+        </div>
+    )}
+    <p class="text-lg font-semibold text-muted-foreground">{message}</p>
+</div>
