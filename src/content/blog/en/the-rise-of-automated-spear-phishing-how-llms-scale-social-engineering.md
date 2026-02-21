@@ -1,5 +1,5 @@
 ---
-title: "The rise of automated spear phishing: How LLMs scale social engineering"
+title: "Automated Spear Phishing: How LLMs Scale Social Engineering"
 description: "Discover how LLMs automate spear phishing. Analyze the shift from generic spam to AI-driven social engineering and learn key defense strategies."
 pubDate: 2025-03-14T18:10:00.000Z
 coverImage: "../../../assets/post-covers/le-vu-vSlCNmZdjHQ-unsplash.jpg"

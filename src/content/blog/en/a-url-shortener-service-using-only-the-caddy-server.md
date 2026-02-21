@@ -1,6 +1,6 @@
 ---
 title: "A URL shortener service using only the Caddy server"
-description: "Shedding excess features: my shift from YOURLS"
+description: "How to build a URL shortener using only the Caddy server and GitHub. Replacing YOURLS with a minimal, self-hosted solution using Docker and Fly.io."
 pubDate: 2024-02-10T21:41:00.000Z
 coverImage: "../../../assets/post-covers/url_shortener.jpg"
 tags: ["Caddy", "URL Shortener", "GitHub", "Makefile", "GitHub Actions", "Fly.io", "Docker", "CI CD", "Backup", "Dependabot"]

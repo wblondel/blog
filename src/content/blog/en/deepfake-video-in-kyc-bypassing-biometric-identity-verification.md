@@ -1,5 +1,5 @@
 ---
-title: "Deepfake video in KYC: Bypassing biometric identity verification"
+title: "Deepfake Video in KYC: Bypassing Biometric Verification"
 description: "How deepfake video injections defeat KYC identity verification. Analyze the threat to liveness detection and the need for hardware-level defense."
 pubDate: 2025-04-04T18:04:00.000Z
 coverImage: "../../../assets/post-covers/tom-kotov-jIQqNvDihBA-unsplash.jpg"

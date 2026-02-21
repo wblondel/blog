@@ -1,5 +1,5 @@
 ---
-title: "Model stealing & extraction: Reverse-engineering proprietary AI"
+title: "Model Stealing & Extraction: Reverse-Engineering AI"
 description: "How attackers steal proprietary AI models via public APIs. Explore model extraction, knowledge distillation, and defenses like watermarking."
 pubDate: 2025-05-16T10:00:00.000Z
 coverImage: "../../../assets/post-covers/rock-staar-9UiCwdn_q_o-unsplash.jpg"

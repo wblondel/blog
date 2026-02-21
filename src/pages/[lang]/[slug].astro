@@ -45,7 +45,7 @@ const alternates: { lang: string; href: string; isFallback?: boolean }[] = trans
     const bSlug = b.slug.split('/').slice(1).join('/');
     return {
         lang: bLang,
-        href: `${Astro.site}${import.meta.env.BASE_URL.slice(1)}${bLang}/${bSlug}`
+        href: `${Astro.site}${import.meta.env.BASE_URL.slice(1)}${bLang}/${bSlug}/`
     };
 });
 

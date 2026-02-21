@@ -1,5 +1,5 @@
 ---
-title: "Data poisoning: Sabotaging training datasets to corrupt future models"
+title: "Data Poisoning: Sabotaging AI Training Datasets"
 description: "How attackers corrupt AI training data with hidden backdoors. Explore 'Clean Label' poisoning, triggers, and the risk to open-source datasets."
 pubDate: 2025-05-23T10:00:00.000Z
 coverImage: "../../../assets/post-covers/deng-xiang--WXQm_NTK0U-unsplash.jpg"

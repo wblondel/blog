@@ -46,9 +46,9 @@ const sortedTags = Array.from(tagsMap.entries())
 // Build hreflang alternates (no hardcoded URLs)
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const tagsAlternates = [
-    { lang: 'en', href: new URL(`${base}/en/tags`, Astro.site).toString() },
-    { lang: 'fr', href: new URL(`${base}/fr/tags`, Astro.site).toString() },
-    { lang: 'x-default', href: new URL(`${base}/en/tags`, Astro.site).toString() },
+    { lang: 'en', href: new URL(`${base}/en/tags/`, Astro.site).toString() },
+    { lang: 'fr', href: new URL(`${base}/fr/tags/`, Astro.site).toString() },
+    { lang: 'x-default', href: new URL(`${base}/en/tags/`, Astro.site).toString() },
 ];
 ---
 

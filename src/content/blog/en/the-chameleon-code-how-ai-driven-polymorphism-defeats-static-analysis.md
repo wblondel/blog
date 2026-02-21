@@ -1,5 +1,5 @@
 ---
-title: "The chameleon code: How AI-Driven polymorphism defeats static analysis"
+title: "The Chameleon Code: AI-Driven Polymorphic Malware"
 description: "How AI polymorphic malware defeats antivirus signatures. Explore code mutation, obfuscation techniques, and the critical shift to EDR defense."
 pubDate: 2025-03-21T18:12:00.000Z
 coverImage: "../../../assets/post-covers/hasmik-ghazaryan-olson-N_GrR8c2EMk-unsplash.jpg"

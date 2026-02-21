@@ -1,5 +1,5 @@
 ---
-title: "The weaponization of Artificial Intelligence: the industrialization of cyber threats"
+title: "AI Weaponization: The Industrialization of Cyber Threats"
 description: "Analyze the weaponization of AI in cybersecurity. From polymorphic malware to deepfakes, understand how LLMs industrialize modern cyber threats."
 pubDate: 2025-03-07T10:00:00.000Z
 coverImage: "../../../assets/post-covers/julien-tromeur-6UDansS-rPI-unsplash.jpg"

@@ -24,9 +24,9 @@ allPosts.sort(
 // Build hreflang alternates
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const archiveAlternates = [
-    { lang: 'en', href: new URL(`${base}/en/archive`, Astro.site).toString() },
-    { lang: 'fr', href: new URL(`${base}/fr/archive`, Astro.site).toString() },
-    { lang: 'x-default', href: new URL(`${base}/en/archive`, Astro.site).toString() },
+    { lang: 'en', href: new URL(`${base}/en/archive/`, Astro.site).toString() },
+    { lang: 'fr', href: new URL(`${base}/fr/archive/`, Astro.site).toString() },
+    { lang: 'x-default', href: new URL(`${base}/en/archive/`, Astro.site).toString() },
 ];
 ---
 
