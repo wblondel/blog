@@ -57,6 +57,9 @@ export const ui = {
         'generic.posts.other': '{count} posts',
         'tags.noPosts': 'No posts found',
         'generic.noPosts': 'No posts yet',
+        'tags.pageDescription': 'Browse all topics and tags on the blog',
+        'tag.description': 'Posts tagged with #{tag}',
+        'archive.pageDescription': 'All blog posts, in chronological order',
     },
     fr: {
         'nav.home': 'Accueil',
@@ -109,5 +112,8 @@ export const ui = {
         'generic.posts.other': '{count} articles',
         'generic.noPosts': 'Pas d\'article pour l\'instant',
         'tags.noPosts': 'Aucun article trouvé',
+        'tags.pageDescription': 'Parcourir tous les sujets et tags du blog',
+        'tag.description': 'Articles avec le tag #{tag}',
+        'archive.pageDescription': 'Tous les articles, par ordre chronologique',
     },
 } as const;

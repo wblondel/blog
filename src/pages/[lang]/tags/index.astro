@@ -39,11 +39,22 @@ const sortedTags = Array.from(tagsMap.entries())
         if (b.count !== a.count) return b.count - a.count;
         return a.name.localeCompare(b.name);
     });
+// Sorted tag list computed above
+
+// Build hreflang alternates (no hardcoded URLs)
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const tagsAlternates = [
+    { lang: 'en', href: new URL(`${base}/en/tags`, Astro.site).toString() },
+    { lang: 'fr', href: new URL(`${base}/fr/tags`, Astro.site).toString() },
+    { lang: 'x-default', href: new URL(`${base}/en/tags`, Astro.site).toString() },
+];
 ---
 
 <Layout
     title={`${t("tags.title")} - William Blondel`}
-    description="Browse all available tags for the blog"
+    description={t('tags.pageDescription' as any)}
+    alternates={tagsAlternates}
+    ogImage={`${import.meta.env.BASE_URL}og-default.png`}
 >
     <div class="w-full mx-auto max-w-4xl px-4 py-16 sm:px-8 sm:py-24">
         <header class="mb-16 text-center">

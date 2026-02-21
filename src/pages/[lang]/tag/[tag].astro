@@ -119,12 +119,22 @@ const originalTag =
               (tg: string) => tg.toLowerCase().replace(/\s+/g, "-") === tagId
           )
         : tagId;
+// Derive the dynamic OG image URL for this tag (sibling og.png endpoint)
+const ogImageURL = new URL(
+    `${import.meta.env.BASE_URL}${lang}/tag/${tagId}/og.png`,
+    Astro.site
+).toString();
+
+// Build localized description — simple #{tag} param replacement
+const tagDescription = t('tag.description' as any).replace('#{tag}', String(originalTag));
 ---
 
 <Layout
     title={`#${originalTag}`}
-    description={`Posts tagged with #${originalTag}`}
+    description={tagDescription}
     alternates={alternates}
+    ogImage={ogImageURL}
+    ogImageAlt={`#${originalTag}`}
 >
     <div class="px-4 sm:px-8">
         <div class="w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">

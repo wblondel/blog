@@ -33,7 +33,11 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
 }
 ---
 
-<Layout title="William Blondel">
+<Layout
+    title="William Blondel"
+    description={t('home.about')}
+    ogImage={`${import.meta.env.BASE_URL}og-default.png`}
+>
     <div class="">
         <div
             class="w-full mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem] px-4 sm:px-12 md:px-18 lg:px-16 xl:px-10"
