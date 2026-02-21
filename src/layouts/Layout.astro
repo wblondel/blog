@@ -10,12 +10,18 @@ interface Props {
   title: string;
   description?: string;
   alternates?: { lang: string; href: string }[];
+  ogImage?: string | null;
+  ogType?: string;
+  articleSchema?: string;
 }
 
 const {
   title,
   description = "William Blondel - Senior full-stack web developer and amateur genealogist.",
   alternates,
+  ogImage,
+  ogType = "website",
+  articleSchema,
 } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 
@@ -42,6 +48,27 @@ defaultRelativePath = cleanPath ? '/' + cleanPath : '';
     <title>{title}</title>
     <meta name="description" content={description} />
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site)} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={Astro.url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />}
+
+    {articleSchema && (
+      <script type="application/ld+json" set:html={articleSchema} />
+    )}
+
     {alternates ? alternates.map((alt: { lang: string; href: string }) => (
       <link rel="alternate" hreflang={alt.lang} href={alt.href} />
     )) : (
@@ -49,17 +76,17 @@ defaultRelativePath = cleanPath ? '/' + cleanPath : '';
         <link
           rel="alternate"
           hreflang="en"
-          href={`${import.meta.env.SITE || Astro.site}${import.meta.env.BASE_URL.slice(1)}en${defaultRelativePath}`}
+          href={new URL(`${import.meta.env.BASE_URL}en${defaultRelativePath}`, Astro.site).toString()}
         />
         <link
           rel="alternate"
           hreflang="fr"
-          href={`${import.meta.env.SITE || Astro.site}${import.meta.env.BASE_URL.slice(1)}fr${defaultRelativePath}`}
+          href={new URL(`${import.meta.env.BASE_URL}fr${defaultRelativePath}`, Astro.site).toString()}
         />
         <link
           rel="alternate"
           hreflang="x-default"
-          href={`${import.meta.env.SITE || Astro.site}${import.meta.env.BASE_URL.slice(1)}en${defaultRelativePath}`}
+          href={new URL(`${import.meta.env.BASE_URL}en${defaultRelativePath}`, Astro.site).toString()}
         />
       </>
     )}

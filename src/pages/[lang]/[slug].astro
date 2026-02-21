@@ -50,8 +50,24 @@ const xDefault = alternates.find(a => a.lang === 'en') || alternates[0];
 if (xDefault) {
     alternates.push({ lang: 'x-default', href: xDefault.href });
 }
+
+const ogImageURL = typeof coverImage === 'string' ? coverImage : coverImage?.src;
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "image": ogImageURL ? [new URL(ogImageURL, Astro.site).toString()] : undefined,
+  "datePublished": pubDate.toISOString(),
+  "author": [{
+      "@type": "Person",
+      "name": "William Blondel",
+      "url": new URL(`${import.meta.env.BASE_URL}${lang}`, Astro.site).toString()
+  }]
+});
 ---
-<Layout title={title} description={description} alternates={alternates}>
+<Layout title={title} description={description} alternates={alternates} ogImage={ogImageURL} ogType="article" articleSchema={articleSchema}>
     <section class="py-8">
         <div class="px-4 sm:px-8">
             <div class="w-full max-w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">
