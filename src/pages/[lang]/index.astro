@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
+import AuthorCard from "../../components/AuthorCard.astro";
 import { useTranslations, usePlural } from "../../i18n/utils";
 import { languages } from "../../i18n/ui";
 
@@ -293,114 +294,7 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                         aria-label="About the publication"
                                         class="h-full *:h-full"
                                     >
-                                        <div
-                                            class="rounded-xl border bg-card text-card-foreground transition hover:border-slate-400 dark:hover:border-slate-600 p-5 flex flex-col justify-center"
-                                        >
-                                            <div class="space-y-5">
-                                                <div
-                                                    class="flex items-start gap-3"
-                                                >
-                                                    <div
-                                                        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-muted border border-border"
-                                                    >
-                                                        <Icon
-                                                            name="fa6-brands:hashnode"
-                                                            class="text-lg text-foreground"
-                                                            aria-hidden="true"
-                                                        />
-                                                    </div>
-                                                    <div
-                                                        class="space-y-1 min-w-0"
-                                                    >
-                                                        <p
-                                                            class="text-lg font-semibold text-foreground"
-                                                        >
-                                                            William Blondel
-                                                        </p>
-                                                        <p
-                                                            class="text-sm text-muted-foreground"
-                                                        >
-                                                            {p(allPosts.length, "home.postsPublished")}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="prose prose-sm dark:prose-invert max-w-none text-muted-foreground"
-                                                >
-                                                    <p>
-                                                        {t('home.about')}
-                                                    </p>
-                                                </div>
-                                                <div
-                                                    class="border-t border-border pt-5"
-                                                >
-                                                    <div
-                                                        class="flex flex-wrap items-center gap-3"
-                                                    >
-                                                        <a
-                                                            href="https://twitter.com/wgblondel"
-                                                            target="_blank"
-                                                            rel="noopener"
-                                                            class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
-                                                            aria-label="Twitter"
-                                                            ><Icon
-                                                                name="fa6-brands:x-twitter"
-                                                                class=""
-                                                                aria-hidden="true"
-                                                            />
-                                                        </a>
-                                                        <a
-                                                            href="https://github.com/wblondel"
-                                                            target="_blank"
-                                                            rel="noopener"
-                                                            class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
-                                                            aria-label="GitHub"
-                                                            ><Icon
-                                                                name="fa6-brands:github"
-                                                                class=""
-                                                                aria-hidden="true"
-                                                            />
-                                                        </a>
-                                                        <a
-                                                            href="https://www.linkedin.com/in/wgblondel/"
-                                                            target="_blank"
-                                                            rel="noopener"
-                                                            class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
-                                                            aria-label="LinkedIn"
-                                                            ><Icon
-                                                                name="fa6-brands:linkedin"
-                                                                class=""
-                                                                aria-hidden="true"
-                                                            />
-                                                        </a>
-                                                        <a
-                                                            href="https://williamblondel.fr"
-                                                            target="_blank"
-                                                            rel="noopener"
-                                                            class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
-                                                            aria-label="Website"
-                                                            ><Icon
-                                                                name="fa6-solid:globe"
-                                                                class=""
-                                                                aria-hidden="true"
-                                                            />
-                                                        </a>
-                                                        <a
-                                                            href="https://hashnode.com/@wblondel"
-                                                            target="_blank"
-                                                            rel="noopener"
-                                                            class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
-                                                            aria-label="Hashnode"
-                                                            ><Icon
-                                                                name="fa6-brands:hashnode"
-                                                                class=""
-                                                                aria-hidden="true"
-                                                            />
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <AuthorCard postCount={allPosts.length} lang={lang} />
                                     </aside>
                                     <section
                                         aria-label="Newsletter sign-up"

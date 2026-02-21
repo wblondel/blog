@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
+import AuthorCard from '../../components/AuthorCard.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 export async function getStaticPaths() {
@@ -54,6 +55,9 @@ if (xDefault) {
 // Point to the dynamically-generated Satori OG image endpoint
 const postSlug = entry.slug.split('/').slice(1).join('/');
 const ogImageURL = new URL(`${import.meta.env.BASE_URL}${lang}/${postSlug}/og.png`, Astro.site).toString();
+
+// Count total posts for this language (for the author card)
+const postCount = allBlogs.filter((b: CollectionEntry<'blog'>) => b.slug.startsWith(`${lang}/`)).length;
 
 const articleSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -142,6 +146,17 @@ const articleSchema = JSON.stringify({
                             </div>
                         </div>
                     </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author card — between post content and footer -->
+    <section class="pb-8">
+        <div class="px-4 sm:px-8">
+            <div class="w-full max-w-full xl:mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem]">
+                <div class="max-w-4xl w-full mx-auto">
+                    <AuthorCard postCount={postCount} lang={lang} />
                 </div>
             </div>
         </div>
