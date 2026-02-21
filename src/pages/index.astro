@@ -1,3 +1,36 @@
 ---
-return Astro.redirect('/en/');
+// Root landing page: instant language-aware redirect
+// - <meta refresh> handles search engine crawlers (always → /en/)
+// - JS handles human users (→ /fr/ if browser is French, /en/ otherwise)
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const enUrl = `${base}/en/`;
+const frUrl = `${base}/fr/`;
 ---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>William Blondel</title>
+
+    <!-- Crawlers: instant redirect to English (no JS needed) -->
+    <meta http-equiv="refresh" content={`0; url=${enUrl}`} />
+
+    <!-- Canonical: tell search engines English is the default -->
+    <link rel="canonical" href={`https://williamblondel.fr${enUrl}`} />
+
+    <!-- hreflang: let crawlers discover both language variants -->
+    <link rel="alternate" hreflang="en" href={`https://williamblondel.fr${enUrl}`} />
+    <link rel="alternate" hreflang="fr" href={`https://williamblondel.fr${frUrl}`} />
+    <link rel="alternate" hreflang="x-default" href={`https://williamblondel.fr${enUrl}`} />
+
+    <!-- Humans: instant JS redirect before first paint, with language detection -->
+    <script define:vars={{ enUrl, frUrl }}>
+      const lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      window.location.replace(lang.startsWith('fr') ? frUrl : enUrl);
+    </script>
+  </head>
+  <body>
+    <!-- Fallback for no-JS: the meta refresh above handles it -->
+  </body>
+</html>
