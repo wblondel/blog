@@ -7,72 +7,78 @@ import { getLangFromUrl, useTranslations, usePlural } from "../../../i18n/utils"
 
 export async function getStaticPaths() {
     const allPosts = await getCollection("blog");
-    
-    // Map tag data: lang -> Set<string> of tag IDs
-    const tagsByLang: Record<string, Set<string>> = {
-        en: new Set(),
-        fr: new Set()
-    };
-    
-    interface TagMap {
-        [dateVal: number]: string[];
+
+    // For each lang+tag, store which post dates use it and at what index.
+    // We match translated tags by position (index) within the tags array:
+    // e.g. FR ["papotage", "bienvenue"][0] → EN ["talking", "welcome"][0]
+    // This avoids the frequency-tie bug that arose when a post had multiple tags.
+
+    interface PostTagEntry {
+        dateVal: number;
+        tagIndex: number;
     }
-    // pubDate.valueOf() -> tags array per post
-    const postTagsByDate: Record<string, TagMap> = {
-        en: {},
-        fr: {}
+
+    // lang -> tag -> list of {dateVal, tagIndex} from posts using that tag
+    const tagPostEntries: Record<string, Map<string, PostTagEntry[]>> = {
+        en: new Map(),
+        fr: new Map(),
+    };
+
+    // lang -> dateVal -> ordered tag array (slugified)
+    const postTagsByDate: Record<string, Map<number, string[]>> = {
+        en: new Map(),
+        fr: new Map(),
     };
 
     allPosts.forEach((post: CollectionEntry<"blog">) => {
-        const lang = post.slug.split('/')[0] as 'en' | 'fr';
-        if (post.data.tags) {
-            const rawTags = post.data.tags.map(t => t.toLowerCase().replace(/\s+/g, "-"));
-            rawTags.forEach(tag => tagsByLang[lang].add(tag));
-            postTagsByDate[lang][post.data.pubDate.valueOf()] = rawTags;
+        const lang = post.slug.split("/")[0] as "en" | "fr";
+        if (post.data.tags && post.data.tags.length > 0) {
+            const rawTags = post.data.tags.map((tag: string) =>
+                tag.toLowerCase().replace(/\s+/g, "-")
+            );
+            const dateVal = post.data.pubDate.valueOf();
+            postTagsByDate[lang].set(dateVal, rawTags);
+
+            rawTags.forEach((tag: string, tagIndex: number) => {
+                if (!tagPostEntries[lang].has(tag)) {
+                    tagPostEntries[lang].set(tag, []);
+                }
+                tagPostEntries[lang].get(tag)!.push({ dateVal, tagIndex });
+            });
         }
     });
 
     const paths: any[] = [];
-    
-    // Generate paths strictly for existing tags per language
-    Object.keys(tagsByLang).forEach((lang) => {
-        tagsByLang[lang].forEach((tag) => {
-            // Find which articles have this tag
-            let relatedDates: number[] = [];
-            for (const [dateVal, tgs] of Object.entries(postTagsByDate[lang])) {
-                if (tgs.includes(tag)) relatedDates.push(Number(dateVal));
-            }
-            
-            // Generate alternates by checking those exact same dates in other languages
-            let alternates: { lang: string; href: string }[] = [];
-            
-            // Add self
-            alternates.push({
-                lang: lang,
-                href: `${import.meta.env.BASE_URL.slice(1)}${lang}/tag/${tag}` // temporary relative path for template processing
-            });
 
-            // Find translation in other languages
-            const otherLangs = ['en', 'fr'].filter(l => l !== lang);
+    Object.keys(tagPostEntries).forEach((lang) => {
+        tagPostEntries[lang].forEach((entries, tag) => {
+            const alternates: { lang: string; href: string }[] = [
+                {
+                    lang,
+                    href: `${import.meta.env.BASE_URL.slice(1)}${lang}/tag/${tag}`,
+                },
+            ];
+
+            const otherLangs = ["en", "fr"].filter((l) => l !== lang);
             for (const otherLang of otherLangs) {
-                // Find potential translated tags
-                let possibleTags: Record<string, number> = {};
-                for (const d of relatedDates) {
-                    const transTags = postTagsByDate[otherLang]?.[d];
-                    if (transTags) {
-                        for (const t of transTags) {
-                            possibleTags[t] = (possibleTags[t] || 0) + 1;
-                        }
+                // For each post that uses this tag, look up the translated post (same pubDate)
+                // and vote for the tag at the SAME index position. This guarantees
+                // papotage (index 0) maps to talking (index 0), not welcome (index 1).
+                const votes: Record<string, number> = {};
+                for (const { dateVal, tagIndex } of entries) {
+                    const otherTags = postTagsByDate[otherLang].get(dateVal);
+                    if (otherTags && otherTags[tagIndex] !== undefined) {
+                        const candidate = otherTags[tagIndex];
+                        votes[candidate] = (votes[candidate] || 0) + 1;
                     }
                 }
-                
-                // If there's a highly correlated tag, link it!
-                if (Object.keys(possibleTags).length > 0) {
-                    // Get the tag that appeared in the most translated identical posts
-                    const mostLikelyTag = Object.keys(possibleTags).reduce((a, b) => possibleTags[a] > possibleTags[b] ? a : b);
+                if (Object.keys(votes).length > 0) {
+                    const bestTag = Object.keys(votes).reduce((a, b) =>
+                        votes[a] >= votes[b] ? a : b
+                    );
                     alternates.push({
                         lang: otherLang,
-                        href: `${import.meta.env.BASE_URL.slice(1)}${otherLang}/tag/${mostLikelyTag}`
+                        href: `${import.meta.env.BASE_URL.slice(1)}${otherLang}/tag/${bestTag}`,
                     });
                 }
             }
