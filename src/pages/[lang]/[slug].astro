@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
@@ -51,7 +51,12 @@ if (xDefault) {
     alternates.push({ lang: 'x-default', href: xDefault.href });
 }
 
-const ogImageURL = typeof coverImage === 'string' ? coverImage : coverImage?.src;
+let ogImageURL = typeof coverImage === 'string' ? coverImage : coverImage?.src;
+
+if (coverImage && typeof coverImage !== 'string') {
+    const optimizedOgImage = await getImage({ src: coverImage, width: 1200, height: 630, format: 'webp' });
+    ogImageURL = optimizedOgImage.src;
+}
 
 const articleSchema = JSON.stringify({
   "@context": "https://schema.org",
