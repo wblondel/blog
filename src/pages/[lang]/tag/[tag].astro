@@ -52,7 +52,7 @@ export async function getStaticPaths() {
 
     Object.keys(tagPostEntries).forEach((lang) => {
         tagPostEntries[lang].forEach((entries, tag) => {
-            const alternates: { lang: string; href: string }[] = [
+            const alternates: { lang: string; href: string; isFallback?: boolean }[] = [
                 {
                     lang,
                     href: `${import.meta.env.BASE_URL.slice(1)}${lang}/tag/${tag}`,
@@ -80,6 +80,14 @@ export async function getStaticPaths() {
                         lang: otherLang,
                         href: `${import.meta.env.BASE_URL.slice(1)}${otherLang}/tag/${bestTag}`,
                     });
+                } else {
+                    // No translated tag exists — don't emit hreflang (SEO: avoid pointing
+                    // to a non-existent page), but give the UI switcher a valid fallback.
+                    alternates.push({
+                        lang: otherLang,
+                        href: `${import.meta.env.BASE_URL.slice(1)}${otherLang}/tags`,
+                        isFallback: true,
+                    });
                 }
             }
 
@@ -98,12 +106,14 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang as any);
 const p = usePlural(lang as any);
 
-// Resolve alternates correctly with Astro.site
+// Resolve alternates correctly with Astro.site, preserving isFallback
 const alternates = rawAlternates.map((alt: any) => ({
     lang: alt.lang,
-    href: `${Astro.site}${alt.href}`
+    href: `${Astro.site}${alt.href}`,
+    isFallback: alt.isFallback ?? false,
 }));
-const xDefault = alternates.find((a: any) => a.lang === 'en') || alternates[0];
+// x-default should point to the real EN page (never a fallback)
+const xDefault = alternates.find((a: any) => a.lang === 'en' && !a.isFallback) || alternates[0];
 if (xDefault) {
     alternates.push({ lang: 'x-default', href: xDefault.href });
 }

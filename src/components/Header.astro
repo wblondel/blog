@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 interface Props {
-  alternates?: { lang: string; href: string }[];
+  alternates?: { lang: string; href: string; isFallback?: boolean }[];
 }
 
 const { alternates } = Astro.props;
