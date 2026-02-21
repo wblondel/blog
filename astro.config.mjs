@@ -12,7 +12,7 @@ import path from 'node:path';
 
 function getLocaleRedirects() {
     const redirects = {};
-    const base = '/blog';
+    const base = '';
     
     try {
         const parseLanguageDir = (lang) => {
@@ -66,8 +66,8 @@ function getLocaleRedirects() {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://wblondel.github.io',
-  base: '/blog/', 
+  site: 'https://williamblondel.fr',
+  //base: '/blog/', 
   image: {
     domains: ["cdn.hashnode.com"]
   },

@@ -8,7 +8,7 @@
 
 A bilingual personal blog and portfolio built with [Astro](https://astro.build), hosted on GitHub Pages.
 
-📍 **Live site:** [wblondel.github.io/blog](https://wblondel.github.io/blog/)
+📍 **Live site:** [williamblondel.fr](https://williamblondel.fr/)
 
 ### ✨ Features
 
@@ -117,7 +117,7 @@ MIT
 
 Un blog personnel et portfolio bilingue construit avec [Astro](https://astro.build), hébergé sur GitHub Pages.
 
-📍 **Site en ligne :** [wblondel.github.io/blog](https://wblondel.github.io/blog/)
+📍 **Site en ligne :** [williamblondel.fr](https://williamblondel.fr/)
 
 ### ✨ Fonctionnalités
 
