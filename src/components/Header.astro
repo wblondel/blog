@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 
 const targetLang = lang === 'en' ? 'fr' : 'en';
 const targetLabel = targetLang === 'en' ? 'EN' : 'FR';
-const reverseLabel = targetLang === 'en' ? 'Passer en Français' : 'Switch to English';
+const reverseLabel = targetLang === 'fr' ? 'Passer en Français' : 'Switch to English';
 
 let targetRelativeHref = import.meta.env.BASE_URL;
 
