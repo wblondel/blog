@@ -6,6 +6,64 @@ import sitemap from '@astrojs/sitemap';
 
 import icon from 'astro-icon';
 
+// Auto-generate french fallback redirects to preserve localized routing exactly without causing 404s
+import fs from 'node:fs';
+import path from 'node:path';
+
+function getLocaleRedirects() {
+    const redirects = {};
+    const base = '/blog';
+    
+    try {
+        const parseLanguageDir = (lang) => {
+            const blogDir = path.resolve(`./src/content/blog/${lang}`);
+            if (fs.existsSync(blogDir)) {
+                const files = fs.readdirSync(blogDir);
+                for (const file of files) {
+                    if (file.endsWith('.md')) {
+                        const slug = file.replace('.md', '');
+                        // Map lang route. (English defaults might get overwritten by FR intentionally if we reverse the loop, but we do EN first then FR overwrites.)
+                        redirects[`/${slug}`] = `${base}/${lang}/${slug}`;
+                        
+                        const content = fs.readFileSync(path.join(blogDir, file), 'utf-8');
+                        const tagsMatch = content.match(/tags:\s*\[([^\]]+)\]/);
+                        if (tagsMatch) {
+                            const tags = tagsMatch[1].split(',').map(t => t.replace(/['"]/g, '').trim().toLowerCase().replace(/\s+/g, '-'));
+                            for (const tag of tags) {
+                                redirects[`/tag/${tag}`] = `${base}/${lang}/tag/${tag}`;
+                            }
+                        }
+                    }
+                }
+            }
+            const seriesDir = path.resolve(`./src/content/series/${lang}`);
+            if (fs.existsSync(seriesDir)) {
+                const files = fs.readdirSync(seriesDir);
+                for (const file of files) {
+                    if (file.endsWith('.md')) {
+                        const slug = file.replace('.md', '');
+                        redirects[`/series/${slug}`] = `${base}/${lang}/series/${slug}`;
+                    }
+                }
+            }
+        };
+
+        // Parse English first.
+        parseLanguageDir('en');
+        // Parse French second (so identical slugs get directed to French if explicitly requested by someone reading FR? Wait, actually we usually want EN as default. Let's do FR first, then EN overwrites).
+        parseLanguageDir('fr');
+        parseLanguageDir('en');
+        
+        redirects['/tags'] = `${base}/en/tags`;
+        redirects['/archive'] = `${base}/en/archive`;
+        redirects['/series'] = `${base}/en/series`;
+        
+    } catch (e) {
+        console.error("Error generating redirects:", e);
+    }
+    return redirects;
+}
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wblondel.github.io',
@@ -44,10 +102,6 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: true
     }
-  }
-  //redirects: {
-  //  "/cv": "https://www.linkedin.com/in/wgblondel",
-  // "/en/cv": "https://www.linkedin.com/in/wgblondel",
-  //  "/fr/cv": "https://www.linkedin.com/in/wgblondel/?locale=fr_FR",
-  //}
+  },
+  redirects: getLocaleRedirects()
 });
