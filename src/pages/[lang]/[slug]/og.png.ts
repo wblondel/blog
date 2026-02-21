@@ -98,11 +98,17 @@ async function loadCoverAsBase64(coverImage: unknown): Promise<string> {
 
 // ─── Main endpoint ─────────────────────────────────────────────────────────────
 
-export async function GET({ props }: { props: { entry: CollectionEntry<"blog"> } }) {
+const ctaLabels: Record<string, string> = {
+  fr: "En savoir plus",
+  en: "Learn More",
+};
+
+export async function GET({ props, params }: { props: { entry: CollectionEntry<"blog"> }; params: { lang: string } }) {
   await acquireLock();
 
   try {
     const { title, coverImage } = props.entry.data;
+    const ctaLabel = ctaLabels[params.lang] ?? ctaLabels.en;
 
     const [coverBase64] = await Promise.all([
       loadCoverAsBase64(coverImage),
@@ -265,7 +271,7 @@ export async function GET({ props }: { props: { entry: CollectionEntry<"blog"> }
                           borderRadius: 10,
                           display: "flex",
                         },
-                        children: "Learn More",
+                        children: ctaLabel,
                       },
                     },
                   },
