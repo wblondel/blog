@@ -31,6 +31,11 @@
 }
 
 @layer base {
+    html {
+        /* Offset for the sticky header so anchor links land below it */
+        scroll-padding-top: 5rem;
+    }
+
     * {
         border-color: var(--border);
     }

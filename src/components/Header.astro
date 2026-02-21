@@ -348,6 +348,19 @@ if (alternates) {
         let lastScrollY = window.scrollY;
         const THRESHOLD = 10; // px — ignore tiny micro-scrolls
 
+        // Track programmatic scrolls (e.g. TOC / anchor clicks)
+        // so we don't re-show the header when they scroll upward
+        let isProgrammaticScroll = false;
+        document.addEventListener("click", (e) => {
+            const anchor = (e.target as Element)?.closest('a[href^="#"]');
+            if (!anchor) return;
+            isProgrammaticScroll = true;
+            // Reset when scroll settles (scrollend) or after 1s fallback
+            const reset = () => { isProgrammaticScroll = false; };
+            window.addEventListener("scrollend", reset, { once: true });
+            setTimeout(reset, 1000);
+        });
+
         window.addEventListener("scroll", () => {
             const currentScrollY = window.scrollY;
             const delta = currentScrollY - lastScrollY;
@@ -361,8 +374,8 @@ if (alternates) {
                 // Also close the mobile menu if it was open
                 mobileMenuDialog?.setAttribute("data-state", "closed");
                 document.body.style.overflow = "";
-            } else if (delta < -THRESHOLD) {
-                // Scrolling UP — show
+            } else if (delta < -THRESHOLD && !isProgrammaticScroll) {
+                // Scrolling UP manually — show (not triggered by anchor clicks)
                 header.classList.remove("is-hidden");
             }
 
