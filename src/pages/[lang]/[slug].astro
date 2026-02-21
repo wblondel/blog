@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
@@ -51,12 +51,9 @@ if (xDefault) {
     alternates.push({ lang: 'x-default', href: xDefault.href });
 }
 
-let ogImageURL = typeof coverImage === 'string' ? coverImage : coverImage?.src;
-
-if (coverImage && typeof coverImage !== 'string') {
-    const optimizedOgImage = await getImage({ src: coverImage, width: 1200, height: 630, format: 'webp' });
-    ogImageURL = optimizedOgImage.src;
-}
+// Point to the dynamically-generated Satori OG image endpoint
+const postSlug = entry.slug.split('/').slice(1).join('/');
+const ogImageURL = new URL(`${import.meta.env.BASE_URL}${lang}/${postSlug}/og.png`, Astro.site).toString();
 
 const articleSchema = JSON.stringify({
   "@context": "https://schema.org",
