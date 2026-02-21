@@ -2,7 +2,7 @@
 title: "Voice cloning & vishing: the new frontier of CEO fraud"
 description: "How AI voice cloning enables advanced CEO fraud. Analyze the threat of real-time deepfake audio (Vishing) and the necessary procedural defenses."
 pubDate: 2025-03-28T18:41:00.000Z
-coverImage: "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/X-etICbUKec/upload/e92546a33c9729a4b84d6a9b503c6a5d.jpeg"
+coverImage: "../../../assets/post-covers/kelly-sikkema-X-etICbUKec-unsplash.jpg"
 tags: ["Deepfakes", "Vishing", "Voice Cloning", "CEO Fraud", "Biometric Security", "Identity Theft", "Social Engineering"]
 series: "offensive-ai-landscape" 
 seriesOrder: 4 

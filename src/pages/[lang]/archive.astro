@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { useTranslations } from "../../i18n/utils";
+import { useTranslations, usePlural } from "../../i18n/utils";
 import { languages } from "../../i18n/ui";
 
 export function getStaticPaths() {
@@ -10,6 +10,7 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as any);
+const p = usePlural(lang as any);
 
 const allPosts = await getCollection("blog", ({ slug }) =>
     slug.startsWith(`${lang}/`)
@@ -29,8 +30,7 @@ allPosts.sort(
                 {t("archive.title")}
             </h1>
             <p class="mt-4 text-lg text-muted-foreground">
-                {allPosts.length}
-                {t("archive.subtitle")}
+                {p(allPosts.length, "archive.subtitle")}
             </p>
         </header>
 

@@ -2,7 +2,7 @@
 title: "Bienvenue dans le monde des machines et des humains !"
 description: "J'ai enfin créé mon blog ! Laissez-moi vous raconter rapidement de quoi je vais parler dessus."
 pubDate: 2024-01-25T07:44:00.000Z
-coverImage: "https://cdn.hashnode.com/res/hashnode/image/upload/v1706165552932/a3976907-f95c-49b2-8e9a-2cbfcbdc3a5d.jpeg"
+coverImage: "../../../assets/post-covers/futurama.jpg"
 tags: ["papotage", "bienvenue"]
 readTime: 1
 ---

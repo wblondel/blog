@@ -2,7 +2,7 @@
 title: "The chameleon code: How AI-Driven polymorphism defeats static analysis"
 description: "How AI polymorphic malware defeats antivirus signatures. Explore code mutation, obfuscation techniques, and the critical shift to EDR defense."
 pubDate: 2025-03-21T18:12:00.000Z
-coverImage: "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/N_GrR8c2EMk/upload/f7a6ac0cad88eb3ee2c2ec22b71bba31.jpeg"
+coverImage: "../../../assets/post-covers/hasmik-ghazaryan-olson-N_GrR8c2EMk-unsplash.jpg"
 tags: ["Obfuscation", "Signature Detection", "Polymorphic Malware", "Heuristics", "Malware Analysis", "Static Analysis", "EDR (Endpoint Detection & Response)"]
 series: "offensive-ai-landscape" 
 seriesOrder: 3 

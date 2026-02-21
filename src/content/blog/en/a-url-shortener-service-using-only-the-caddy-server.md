@@ -2,7 +2,7 @@
 title: "A URL shortener service using only the Caddy server"
 description: "Shedding excess features: my shift from YOURLS"
 pubDate: 2024-02-10T21:41:00.000Z
-coverImage: "   https://cdn.hashnode.com/res/hashnode/image/upload/v1707640511027/1cc22d0c-d3c9-48b5-82df-cb422c883d51.jpeg"
+coverImage: "../../../assets/post-covers/url_shortener.jpg"
 tags: ["Caddy", "URL Shortener", "GitHub", "Makefile", "GitHub Actions", "Fly.io", "Docker", "CI CD", "Backup", "Dependabot"]
 readTime: 14
 ---

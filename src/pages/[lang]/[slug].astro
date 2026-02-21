@@ -69,10 +69,16 @@ if (xDefault) {
                             </header>
                         </div>
                         {coverImage && (
-                        <div class="relative w-full overflow-hidden aspect-[8/5]">
-                            <Image inferSize={true} width={1200} alt={title} loading="eager" fetchpriority="high" decoding="async" class="w-full h-full object-cover" src={coverImage} />
-                        </div>
-                        )}
+            typeof coverImage === 'string' ? (
+                <div class="relative w-full overflow-hidden aspect-[8/5]">
+                    <Image inferSize={true} width={1200} alt={title} loading="eager" fetchpriority="high" decoding="async" class="w-full h-full object-cover" src={coverImage} />
+                </div>
+            ) : (
+                <div class="relative w-full overflow-hidden aspect-[8/5]">
+                    <Image widths={[400, 800, 1200]} sizes="(max-width: 1200px) 100vw, 1200px" alt={title} loading="eager" fetchpriority="high" decoding="async" class="w-full h-full object-cover" src={coverImage} />
+                </div>
+            )
+        )}
                         <div class="px-5 py-12 sm:px-8 space-y-8">
                             <div class="max-w-2xl mx-auto">
                                 <div class="flex flex-col gap-5">

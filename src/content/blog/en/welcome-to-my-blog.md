@@ -2,7 +2,7 @@
 title: "Welcome to the world of machines and humans!"
 description: "I finally created my blog! Let me tell you quickly what I'll talk about on it."
 pubDate: 2024-01-25T07:44:00.000Z
-coverImage: "https://cdn.hashnode.com/res/hashnode/image/upload/v1706165552932/a3976907-f95c-49b2-8e9a-2cbfcbdc3a5d.jpeg"
+coverImage: "../../../assets/post-covers/futurama.jpg"
 tags: ["talking", "welcome"]
 readTime: 1
 ---

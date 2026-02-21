@@ -2,7 +2,7 @@
 title: "The weaponization of Artificial Intelligence: the industrialization of cyber threats"
 description: "Analyze the weaponization of AI in cybersecurity. From polymorphic malware to deepfakes, understand how LLMs industrialize modern cyber threats."
 pubDate: 2025-03-07T10:00:00.000Z
-coverImage: "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/6UDansS-rPI/upload/42785754078e1568b42b91a68bd86cd0.jpeg"
+coverImage: "../../../assets/post-covers/julien-tromeur-6UDansS-rPI-unsplash.jpg"
 tags: ["Polymorphic Malware", "Deepfakes", "Zero Trust Security", "AI Weaponization", "Social Engineering"]
 series: "offensive-ai-landscape" 
 seriesOrder: 1 

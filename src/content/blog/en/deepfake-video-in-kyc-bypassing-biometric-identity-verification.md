@@ -2,7 +2,7 @@
 title: "Deepfake video in KYC: Bypassing biometric identity verification"
 description: "How deepfake video injections defeat KYC identity verification. Analyze the threat to liveness detection and the need for hardware-level defense."
 pubDate: 2025-04-04T18:04:00.000Z
-coverImage: "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/jIQqNvDihBA/upload/45b537da0c119c6c2324a1038812822d.jpeg"
+coverImage: "../../../assets/post-covers/tom-kotov-jIQqNvDihBA-unsplash.jpg"
 tags: ["Biometrics", "Face Swapping", "Fraud Prevention", "Deepfakes", "KYC (Know Your Customer)", "Identity Verification", "Liveness Detection"]
 series: "offensive-ai-landscape" 
 seriesOrder: 5 

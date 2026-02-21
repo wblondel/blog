@@ -45,4 +45,9 @@ export default defineConfig({
       prefixDefaultLocale: true
     }
   }
+  //redirects: {
+  //  "/cv": "https://www.linkedin.com/in/wgblondel",
+  // "/en/cv": "https://www.linkedin.com/in/wgblondel",
+  //  "/fr/cv": "https://www.linkedin.com/in/wgblondel/?locale=fr_FR",
+  //}
 });

@@ -2,7 +2,7 @@
 title: "Data poisoning: Sabotaging training datasets to corrupt future models"
 description: "How attackers corrupt AI training data with hidden backdoors. Explore 'Clean Label' poisoning, triggers, and the risk to open-source datasets."
 pubDate: 2025-05-23T10:00:00.000Z
-coverImage: "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/-WXQm_NTK0U/upload/c2d5a8d0f0eb8bd3e6904e2a3bc0d2a5.jpeg"
+coverImage: "../../../assets/post-covers/deng-xiang--WXQm_NTK0U-unsplash.jpg"
 tags: ["Dataset Integrity", "Adversarial Machine Learning", "Data Poisoning", "Backdoor Attacks", "Clean Label Attack", "Supply Chain Security", "AI Safety"]
 series: "offensive-ai-landscape" 
 seriesOrder: 7 

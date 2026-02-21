@@ -2,7 +2,7 @@
 title: "The rise of automated spear phishing: How LLMs scale social engineering"
 description: "Discover how LLMs automate spear phishing. Analyze the shift from generic spam to AI-driven social engineering and learn key defense strategies."
 pubDate: 2025-03-14T18:10:00.000Z
-coverImage: "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/vSlCNmZdjHQ/upload/7617301fe45dbe93553a4558d0e4b570.jpeg"
+coverImage: "../../../assets/post-covers/le-vu-vSlCNmZdjHQ-unsplash.jpg"
 tags: ["OSINT Automation", "FIDO2 Authentication", "Generative AI Threats", "Spear Phishing", "LLM Security", "Social Engineering", "WormGPT", "Business Email Compromise (BEC)"]
 series: "offensive-ai-landscape" 
 seriesOrder: 2 

@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
-import { useTranslations } from "../../i18n/utils";
+import { useTranslations, usePlural } from "../../i18n/utils";
 import { languages } from "../../i18n/ui";
 
 export function getStaticPaths() {
@@ -12,6 +12,7 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as any);
+const p = usePlural(lang as any);
 
 const allPosts = await getCollection("blog", ({ slug }) =>
     slug.startsWith(`${lang}/`)
@@ -66,33 +67,16 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                                                     .pop()}`}
                                                             >
                                                                 <div class="flex flex-col gap-4 p-4 md:p-6 h-full">
-                                                                    {heroPost
-                                                                        .data
-                                                                        .coverImage && (
-                                                                        <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                            <Image
-                                                                                inferSize={
-                                                                                    true
-                                                                                }
-                                                                                width={
-                                                                                    1200
-                                                                                }
-                                                                                alt={
-                                                                                    heroPost
-                                                                                        .data
-                                                                                        .title
-                                                                                }
-                                                                                loading="eager"
-                                                                                fetchpriority="high"
-                                                                                decoding="async"
-                                                                                class="object-cover object-center absolute inset-0 h-full w-full text-transparent"
-                                                                                src={
-                                                                                    heroPost
-                                                                                        .data
-                                                                                        .coverImage
-                                                                                }
-                                                                            />
-                                                                        </div>
+                                                                    {heroPost.data.coverImage && (
+                                                                        typeof heroPost.data.coverImage === 'string' ? (
+                                                                            <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                                <Image inferSize={true} width={1200} alt={heroPost.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={heroPost.data.coverImage} />
+                                                                            </div>
+                                                                        ) : (
+                                                                            <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                                <Image widths={[400, 800, 1200]} sizes="(max-width: 1200px) 100vw, 1200px" alt={heroPost.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={heroPost.data.coverImage} />
+                                                                            </div>
+                                                                        )
                                                                     )}
                                                                     <header class="flex flex-col gap-2">
                                                                         <h3 class="text-foreground text-xl sm:text-2xl font-semibold transition-colors line-clamp-3">
@@ -166,33 +150,16 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                                                             .pop()}`}
                                                                     >
                                                                         <div class="flex flex-col gap-3 p-4 h-full">
-                                                                            {post
-                                                                                .data
-                                                                                .coverImage && (
-                                                                                <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                    <Image
-                                                                                        inferSize={
-                                                                                            true
-                                                                                        }
-                                                                                        width={
-                                                                                            800
-                                                                                        }
-                                                                                        alt={
-                                                                                            post
-                                                                                                .data
-                                                                                                .title
-                                                                                        }
-                                                                                        loading="eager"
-                                                                                        fetchpriority="high"
-                                                                                        decoding="async"
-                                                                                        class="object-cover object-center absolute inset-0 h-full w-full text-transparent"
-                                                                                        src={
-                                                                                            post
-                                                                                                .data
-                                                                                                .coverImage
-                                                                                        }
-                                                                                    />
-                                                                                </div>
+                                                                            {post.data.coverImage && (
+                                                                                typeof post.data.coverImage === 'string' ? (
+                                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                                        <Image inferSize={true} width={800} alt={post.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
+                                                                                    </div>
+                                                                                ) : (
+                                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                                        <Image widths={[400, 800]} sizes="(max-width: 800px) 100vw, 800px" alt={post.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
+                                                                                    </div>
+                                                                                )
                                                                             )}
                                                                             <header class="flex flex-col gap-1">
                                                                                 <h3 class="text-foreground text-base font-semibold transition-colors line-clamp-2">
@@ -257,33 +224,16 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                                                             .pop()}`}
                                                                     >
                                                                         <div class="flex flex-col gap-3 p-4 h-full">
-                                                                            {post
-                                                                                .data
-                                                                                .coverImage && (
-                                                                                <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                    <Image
-                                                                                        inferSize={
-                                                                                            true
-                                                                                        }
-                                                                                        width={
-                                                                                            800
-                                                                                        }
-                                                                                        alt={
-                                                                                            post
-                                                                                                .data
-                                                                                                .title
-                                                                                        }
-                                                                                        loading="eager"
-                                                                                        fetchpriority="high"
-                                                                                        decoding="async"
-                                                                                        class="object-cover object-center absolute inset-0 h-full w-full text-transparent"
-                                                                                        src={
-                                                                                            post
-                                                                                                .data
-                                                                                                .coverImage
-                                                                                        }
-                                                                                    />
-                                                                                </div>
+                                                                            {post.data.coverImage && (
+                                                                                typeof post.data.coverImage === 'string' ? (
+                                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                                        <Image inferSize={true} width={800} alt={post.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
+                                                                                    </div>
+                                                                                ) : (
+                                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                                        <Image widths={[400, 800]} sizes="(max-width: 800px) 100vw, 800px" alt={post.data.title} loading="eager" fetchpriority="high" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
+                                                                                    </div>
+                                                                                )
                                                                             )}
                                                                             <header class="flex flex-col gap-1">
                                                                                 <h3 class="text-foreground text-base font-semibold transition-colors line-clamp-2">
@@ -366,7 +316,7 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                                         <p
                                                             class="text-sm text-muted-foreground"
                                                         >
-                                                            {allPosts.length} {t("home.postsPublished")}
+                                                            {p(allPosts.length, "home.postsPublished")}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -553,32 +503,16 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                                                                 .pop()}`}
                                                                         >
                                                                             <div class="flex flex-col gap-3 p-4 md:p-5 h-full">
-                                                                                {post
-                                                                                    .data
-                                                                                    .coverImage && (
-                                                                                    <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
-                                                                                        <Image
-                                                                                            inferSize={
-                                                                                                true
-                                                                                            }
-                                                                                            width={
-                                                                                                800
-                                                                                            }
-                                                                                            alt={
-                                                                                                post
-                                                                                                    .data
-                                                                                                    .title
-                                                                                            }
-                                                                                            loading="lazy"
-                                                                                            decoding="async"
-                                                                                            class="object-cover object-center absolute inset-0 h-full w-full text-transparent"
-                                                                                            src={
-                                                                                                post
-                                                                                                    .data
-                                                                                                    .coverImage
-                                                                                            }
-                                                                                        />
-                                                                                    </div>
+                                                                                {post.data.coverImage && (
+                                                                                    typeof post.data.coverImage === 'string' ? (
+                                                                                        <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                                            <Image inferSize={true} width={800} alt={post.data.title} loading="lazy" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
+                                                                                        </div>
+                                                                                    ) : (
+                                                                                        <div class="relative overflow-hidden rounded-lg bg-muted aspect-[8/5]">
+                                                                                            <Image widths={[400, 800]} sizes="(max-width: 800px) 100vw, 800px" alt={post.data.title} loading="lazy" decoding="async" class="object-cover object-center absolute inset-0 h-full w-full text-transparent" src={post.data.coverImage} />
+                                                                                        </div>
+                                                                                    )
                                                                                 )}
                                                                                 <header class="flex flex-col gap-2">
                                                                                     <h3 class="text-foreground text-base sm:text-lg font-semibold transition-colors line-clamp-2">
