@@ -30,7 +30,7 @@ const archiveAlternates = [
 ---
 
 <Layout
-    title={`${t("archive.title")} — William Blondel`}
+    title={`${t("archive.title")} — William Blondel Blog`}
     description={t('archive.pageDescription' as any)}
     alternates={archiveAlternates}
     ogImage={`${import.meta.env.BASE_URL}og-default.png`}
@@ -53,7 +53,7 @@ const archiveAlternates = [
                             })}
                         </time>
                         <a
-                            href={`${import.meta.env.BASE_URL}${lang}/${post.slug.split("/").pop()}`}
+                            href={`${import.meta.env.BASE_URL}${lang}/${post.slug.split("/").pop()}/`}
                             class="text-lg font-medium text-foreground hover:text-primary transition-colors flex-1"
                         >
                             {post.data.title}
