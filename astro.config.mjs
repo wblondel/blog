@@ -23,14 +23,14 @@ function getLocaleRedirects() {
                     if (file.endsWith('.md')) {
                         const slug = file.replace('.md', '');
                         // Map lang route. (English defaults might get overwritten by FR intentionally if we reverse the loop, but we do EN first then FR overwrites.)
-                        redirects[`/${slug}`] = `${base}/${lang}/${slug}`;
+                        redirects[`/${slug}`] = `${base}/${lang}/${slug}/`;
                         
                         const content = fs.readFileSync(path.join(blogDir, file), 'utf-8');
                         const tagsMatch = content.match(/tags:\s*\[([^\]]+)\]/);
                         if (tagsMatch) {
                             const tags = tagsMatch[1].split(',').map(t => t.replace(/['"]/g, '').trim().toLowerCase().replace(/\s+/g, '-'));
                             for (const tag of tags) {
-                                redirects[`/tag/${tag}`] = `${base}/${lang}/tag/${tag}`;
+                                redirects[`/tag/${tag}`] = `${base}/${lang}/tag/${tag}/`;
                             }
                         }
                     }
@@ -42,7 +42,7 @@ function getLocaleRedirects() {
                 for (const file of files) {
                     if (file.endsWith('.md')) {
                         const slug = file.replace('.md', '');
-                        redirects[`/series/${slug}`] = `${base}/${lang}/series/${slug}`;
+                        redirects[`/series/${slug}`] = `${base}/${lang}/series/${slug}/`;
                     }
                 }
             }
@@ -54,9 +54,9 @@ function getLocaleRedirects() {
         parseLanguageDir('fr');
         parseLanguageDir('en');
         
-        redirects['/tags'] = `${base}/en/tags`;
-        redirects['/archive'] = `${base}/en/archive`;
-        redirects['/series'] = `${base}/en/series`;
+        redirects['/tags'] = `${base}/en/tags/`;
+        redirects['/archive'] = `${base}/en/archive/`;
+        redirects['/series'] = `${base}/en/series/`;
         
     } catch (e) {
         console.error("Error generating redirects:", e);

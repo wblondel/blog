@@ -28,9 +28,9 @@ if (pathWithoutLang.startsWith('/')) {
 }
 
 // Reconstruct the new localized path
-targetRelativeHref = `${import.meta.env.BASE_URL}${targetLang}${pathWithoutLang ? '/' + pathWithoutLang : ''}`;
+targetRelativeHref = `${import.meta.env.BASE_URL}${targetLang}${pathWithoutLang ? '/' + pathWithoutLang : '/'}`;
 
-if (alternates) {
+if (alternates) {   
     const matchedAlt = alternates.find(a => a.lang === targetLang);
     if (matchedAlt) {
         try {
