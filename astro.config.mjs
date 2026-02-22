@@ -110,5 +110,9 @@ export default defineConfig({
       status: 301,
       destination: 'https://www.linkedin.com/in/wgblondel/',
     },
+    '/cv': {
+      status: 301,
+      destination: 'https://www.linkedin.com/in/wgblondel/',
+    }
   }
 });
