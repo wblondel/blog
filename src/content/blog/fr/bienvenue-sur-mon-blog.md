@@ -1,6 +1,6 @@
 ---
 title: "Bienvenue dans le monde des machines et des humains !"
-description: "J'ai enfin créé mon blog ! Laissez-moi vous raconter rapidement de quoi je vais parler dessus."
+description: "J'ai enfin créé mon blog ! Découvrez ce dont je vais parler : cybersécurité, IA, développement web et ma passion pour la généalogie amateur."
 pubDate: 2024-01-25T07:44:00.000Z
 coverImage: "../../../assets/post-covers/futurama.jpg"
 tags: ["papotage", "bienvenue"]

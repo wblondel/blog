@@ -112,11 +112,6 @@ const alternates = rawAlternates.map((alt: any) => ({
     href: `${Astro.site}${alt.href}`,
     isFallback: alt.isFallback ?? false,
 }));
-// x-default should point to the real EN page (never a fallback)
-const xDefault = alternates.find((a: any) => a.lang === 'en' && !a.isFallback) || alternates[0];
-if (xDefault) {
-    alternates.push({ lang: 'x-default', href: xDefault.href });
-}
 
 const allPosts = await getCollection("blog", ({ slug }: { slug: string }) =>
     slug.startsWith(`${lang}/`)

@@ -52,11 +52,6 @@ const alternates = rawAlternates?.map((alt: any) => ({
     href: `${Astro.site}${alt.href}`
 })) || [];
 
-const xDefault = alternates.find((a: any) => a.lang === 'en') || alternates[0];
-if (xDefault) {
-    alternates.push({ lang: 'x-default', href: xDefault.href });
-}
-
 const allPosts = await getCollection("blog", ({ slug }: { slug: string }) =>
     slug.startsWith(`${lang}/`)
 );
@@ -69,7 +64,7 @@ const seriesPosts = allPosts
 ---
 
 <Layout
-    title={title}
+    title={`${title} — William Blondel`}
     description={description}
     alternates={alternates}
     ogImage={`${import.meta.env.BASE_URL}og-default.png`}

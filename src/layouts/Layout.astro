@@ -108,17 +108,12 @@ defaultRelativePath = cleanPath ? '/' + cleanPath : '';
         <link
           rel="alternate"
           hreflang="en"
-          href={new URL(`${import.meta.env.BASE_URL}en${defaultRelativePath}`, Astro.site).toString()}
+          href={new URL(`${import.meta.env.BASE_URL}en${defaultRelativePath}/`, Astro.site).toString()}
         />
         <link
           rel="alternate"
           hreflang="fr"
-          href={new URL(`${import.meta.env.BASE_URL}fr${defaultRelativePath}`, Astro.site).toString()}
-        />
-        <link
-          rel="alternate"
-          hreflang="x-default"
-          href={new URL(`${import.meta.env.BASE_URL}en${defaultRelativePath}`, Astro.site).toString()}
+          href={new URL(`${import.meta.env.BASE_URL}fr${defaultRelativePath}/`, Astro.site).toString()}
         />
       </>
     )}

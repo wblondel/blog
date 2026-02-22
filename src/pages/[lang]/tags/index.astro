@@ -48,12 +48,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const tagsAlternates = [
     { lang: 'en', href: new URL(`${base}/en/tags/`, Astro.site).toString() },
     { lang: 'fr', href: new URL(`${base}/fr/tags/`, Astro.site).toString() },
-    { lang: 'x-default', href: new URL(`${base}/en/tags/`, Astro.site).toString() },
 ];
 ---
 
 <Layout
-    title={`${t("tags.title")} - William Blondel`}
+    title={`${t("tags.title")} — William Blondel`}
     description={t('tags.pageDescription' as any)}
     alternates={tagsAlternates}
     ogImage={`${import.meta.env.BASE_URL}og-default.png`}

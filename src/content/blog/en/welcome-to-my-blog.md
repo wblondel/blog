@@ -1,6 +1,6 @@
 ---
 title: "Welcome to the world of machines and humans!"
-description: "I finally created my blog! Let me tell you quickly what I'll talk about on it."
+description: "I finally created my blog! Discover what I'll write about: cybersecurity, AI threats, web development, and my journey as a developer and amateur genealogist."
 pubDate: 2024-01-25T07:44:00.000Z
 coverImage: "../../../assets/post-covers/futurama.jpg"
 tags: ["talking", "welcome"]

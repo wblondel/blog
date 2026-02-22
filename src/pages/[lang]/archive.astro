@@ -26,12 +26,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const archiveAlternates = [
     { lang: 'en', href: new URL(`${base}/en/archive/`, Astro.site).toString() },
     { lang: 'fr', href: new URL(`${base}/fr/archive/`, Astro.site).toString() },
-    { lang: 'x-default', href: new URL(`${base}/en/archive/`, Astro.site).toString() },
 ];
 ---
 
 <Layout
-    title={`${t("archive.title")} - William Blondel`}
+    title={`${t("archive.title")} — William Blondel`}
     description={t('archive.pageDescription' as any)}
     alternates={archiveAlternates}
     ogImage={`${import.meta.env.BASE_URL}og-default.png`}

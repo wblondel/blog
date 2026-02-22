@@ -63,10 +63,6 @@ for (const otherLang of allLangs) {
     }
 }
 
-const xDefault = alternates.find(a => a.lang === 'en' && !a.isFallback) || alternates[0];
-if (xDefault) {
-    alternates.push({ lang: 'x-default', href: xDefault.href });
-}
 
 // Point to the dynamically-generated Satori OG image endpoint
 const postSlug = entry.slug.split('/').slice(1).join('/');
