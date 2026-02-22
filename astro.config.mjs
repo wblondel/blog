@@ -104,5 +104,11 @@ export default defineConfig({
       redirectToDefaultLocale: false
     }
   },
-  redirects: getLocaleRedirects()
+  redirects: {
+    ...getLocaleRedirects(),
+    '/resume': {
+      status: 301,
+      destination: 'https://www.linkedin.com/in/wgblondel/',
+    },
+  }
 });
