@@ -122,5 +122,21 @@ export default defineConfig({
       status: 301,
       destination: '/en/tag/business-email-compromise-(bec)/',
     },
+    '/tag/url-shortening': {
+      status: 301,
+      destination: '/en/tag/url-shortener/',
+    },
+    '/tag/url-shortening/': {
+      status: 301,
+      destination: '/en/tag/url-shortener/',
+    },
+    '/tag/web-servers': {
+      status: 301,
+      destination: '/en/tag/caddy/',
+    },
+    '/tag/web-servers/': {
+      status: 301,
+      destination: '/en/tag/caddy/',
+    },
   }
 });
