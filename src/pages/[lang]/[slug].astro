@@ -124,7 +124,7 @@ const articleSchema = JSON.stringify({
                             
                             {seriesData && (
                             <div class="max-w-2xl mx-auto">
-                                <a class="group flex items-center gap-3 rounded-lg border border-border px-3 py-2 transition hover:border-primary hover:bg-accent" href={`${import.meta.env.BASE_URL}${lang}/series/${series}`}>
+                                <a class="group flex items-center gap-3 rounded-lg border border-border px-3 py-2 transition hover:border-primary hover:bg-accent" href={`${import.meta.env.BASE_URL}${lang}/series/${series}/`}>
                                     <Icon name="fa6-solid:layer-group" class="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
                                     <div class="flex flex-col"><span class="text-sm text-muted-foreground">{entry.data.seriesOrder ? `${t('article.part') || 'Part'} ${entry.data.seriesOrder} of series` : 'Part of series'}</span><span class="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{seriesData.data.title}</span></div>
                                 </a>

@@ -139,10 +139,13 @@ const ogImageURL = new URL(
 
 // Build localized description — simple #{tag} param replacement
 const tagDescription = t('tag.description' as any).replace('#{tag}', String(originalTag));
+// For <title> only, strip parentheticals to keep length under 60 chars
+// e.g. 'EDR (Endpoint Detection & Response)' → 'EDR'
+const tagForTitle = originalTag.replace(/\s*\(.*?\)\s*/g, '').trim();
 ---
 
 <Layout
-    title={`${t('tag.title.prefix' as any)} #${originalTag} — ${t('site.name' as any)}`}
+    title={`${t('tag.title.prefix' as any)} #${tagForTitle} — ${t('site.name' as any)}`}
     description={tagDescription}
     alternates={alternates}
     ogImage={ogImageURL}
