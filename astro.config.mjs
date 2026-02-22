@@ -113,6 +113,14 @@ export default defineConfig({
     '/cv': {
       status: 301,
       destination: 'https://www.linkedin.com/in/wgblondel/',
-    }
+    },
+    '/tag/business-email-compromise-bec': {
+      status: 301,
+      destination: '/en/tag/business-email-compromise-(bec)/',
+    },
+    '/tag/business-email-compromise-bec/': {
+      status: 301,
+      destination: '/en/tag/business-email-compromise-(bec)/',
+    },
   }
 });
