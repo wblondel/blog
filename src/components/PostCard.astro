@@ -167,7 +167,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString(lang, {
                             {showSeriesOrder && post.data.seriesOrder && (
                                 <>
                                     <span class="whitespace-nowrap font-medium text-foreground">
-                                        {t("article.part")} {post.data.seriesOrder}
+                                        {t("article.part")}{" "}{post.data.seriesOrder}
                                     </span>
                                     <span aria-hidden="true">·</span>
                                 </>
