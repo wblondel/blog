@@ -4,9 +4,11 @@ interface Props {
     subtitle?: string;
     /** Optional eyebrow label above the title (e.g. "Series") */
     eyebrow?: string;
+    /** Optional screen-reader-only suffix appended to the h1 for SEO H1 length */
+    srOnlySuffix?: string;
 }
 
-const { title, subtitle, eyebrow } = Astro.props;
+const { title, subtitle, eyebrow, srOnlySuffix } = Astro.props;
 ---
 
 <header class="mb-16 text-center">
@@ -16,7 +18,7 @@ const { title, subtitle, eyebrow } = Astro.props;
         </p>
     )}
     <h1 class="text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-balance">
-        {title}
+        {title}{srOnlySuffix && <span class="sr-only">{srOnlySuffix}</span>}
     </h1>
     {subtitle && (
         <p class="mt-4 text-lg text-muted-foreground">{subtitle}</p>
