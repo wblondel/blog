@@ -122,7 +122,7 @@ const tagPosts = allPosts.filter(
         post.data.tags
             .map((tg: string) => tg.toLowerCase().replace(/\s+/g, "-"))
             .includes(tagId as string)
-);
+).sort((a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 // We need the original tag name for display
 const originalTag =
