@@ -1,28 +1,24 @@
 ---
 title: "Bienvenue dans le monde des machines et des humains !"
-description: "J'ai enfin créé mon blog ! Découvrez ce dont je vais parler : cybersécurité, IA, développement web et ma passion pour la généalogie amateur."
+description: "J'ai enfin créé mon blog ! Découvrez ce dont je vais parler : cybersécurité, menaces IA, développement web et mon parcours de développeur et généalogiste amateur."
 pubDate: 2024-01-25T07:44:00.000Z
 coverImage: "../../../assets/post-covers/futurama.jpg"
 tags: ["papotage", "bienvenue"]
 readTime: 1
 ---
 
-C'est enfin fait ! Je suis ravi de vous accueillir sur mon tout nouveau blog.
+Bonjour et bienvenue sur mon blog 😁
 
-Après avoir longtemps hésité, j'ai enfin décidé de franchir le pas et de créer cet espace pour partager mes réflexions, mes découvertes et mes expériences dans le monde passionnant de la technologie.
+Et voilà ! C'est enfin là ! Ça fait un bon moment que je remettais ce moment à plus tard...
 
-### Pourquoi ce blog ?
+J'ai souvent pensé que ce serait une bonne idée de créer un blog sur lequel je partagerais mes connaissances.
 
-Comme le titre l'indique, ce blog sera un lieu de rencontre entre les machines et les humains. Nous vivons dans une ère où la technologie est omniprésente, et je pense qu'il est essentiel de prendre le temps de réfléchir à la manière dont elle impacte nos vies, notre travail et notre société.
+C'est maintenant une réalité !
 
-### De quoi allons-nous parler ?
+Sur ce blog, vous trouverez des guides, des tutoriels et divers articles sur le développement web, l'administration système, la sécurité et la généalogie. Ainsi, mon blog sera aussi mon Wikipedia personnel.
 
-Je prévois d'aborder une grande variété de sujets, notamment :
-- **Le développement logiciel** et les bonnes pratiques.
-- **L'intelligence artificielle** et son évolution fulgurante.
-- **L'expérience utilisateur** et la place de l'humain au cœur du design.
-- **Des billets d'humeur** sur ma vie de développeur et de passionné.
+J'ai commencé à programmer très jeune sur un [Amstrad CPC 6128](https://fr.wikipedia.org/wiki/Amstrad_CPC), et aujourd'hui je suis développeur web full-stack, avec une préférence pour les écosystèmes PHP et Python. J'adore [Laravel](https://laravel.com/) et [Django](https://www.djangoproject.com/) !
 
-J'espère que vous prendrez autant de plaisir à lire mes articles que j'en aurai à les écrire. N'hésitez pas à me faire part de vos retours et à partager vos propres idées.
+Depuis presque 2 ans maintenant, je vis aux Philippines et j'y savoure chaque instant. Avant cela, j'ai vécu en Malaisie et en France. Je ne sais pas encore si ce sera sur ce même blog, mais j'ai hâte de partager avec vous toutes ces aventures et expériences !
 
-Merci d'être là, et à très bientôt pour le premier véritable article !
+À très bientôt dans le prochain article 😁 !
