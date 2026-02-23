@@ -125,6 +125,10 @@ export default defineConfig({
     '/tag/web-servers': {
       status: 301,
       destination: '/en/tag/caddy/',
+    },
+    '/tag/dan-do-anything-now/': {
+      status: 301,
+      destination: '/en/tag/dan-(do-anything-now)/',
     }
   }
 });
