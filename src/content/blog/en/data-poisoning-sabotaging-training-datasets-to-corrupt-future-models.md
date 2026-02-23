@@ -3,11 +3,12 @@ title: "Data Poisoning: Sabotaging AI Training Datasets"
 description: "How attackers corrupt AI training data with hidden backdoors. Explore 'Clean Label' poisoning, triggers, and the risk to open-source datasets."
 pubDate: 2025-05-23T10:00:00.000Z
 coverImage: "../../../assets/post-covers/deng-xiang--WXQm_NTK0U-unsplash.jpg"
-tags: ["Dataset Integrity", "Adversarial Machine Learning", "Data Poisoning", "Backdoor Attacks", "Clean Label Attack", "Supply Chain Security", "AI Safety"]
+tags: ["Data Poisoning", "Backdoor Attacks", "Adversarial Machine Learning", "Clean Label Attack", "Supply Chain Security", "AI Safety", "Dataset Integrity"]
 series: "offensive-ai-landscape" 
-seriesOrder: 7 
+seriesOrder: 12 
 readTime: 3
 ---
+
 ## Introduction: The Invisible Backdoor
 
 We often assume that AI models are objective. They are not; they are a direct reflection of their training data. **Data Poisoning** is an attack where a malicious actor injects "bad" data into the training set *before* the model is built.
