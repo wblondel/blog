@@ -64,6 +64,55 @@ function getLocaleRedirects() {
     return redirects;
 }
 
+// 301 redirects for renamed slugs — maintained by scripts/rename-numbered-posts.mjs --audit --fix
+function getSlugRedirects() {
+    const redirectsFile = path.resolve('./src/redirects/slug-redirects.json');
+    if (!fs.existsSync(redirectsFile)) return {};
+    try {
+        const map = JSON.parse(fs.readFileSync(redirectsFile, 'utf-8'));
+        const result = {};
+        for (const [oldUrl, newUrl] of Object.entries(map)) {
+            result[oldUrl] = { status: 301, destination: newUrl };
+        }
+        return result;
+    } catch (e) {
+        console.error('Error reading slug-redirects.json:', e);
+        return {};
+    }
+}
+
+function getTagRedirects() {
+    const redirectsFile = path.resolve('./src/redirects/tag-redirects.json');
+    if (!fs.existsSync(redirectsFile)) return {};
+    try {
+        const map = JSON.parse(fs.readFileSync(redirectsFile, 'utf-8'));
+        const result = {};
+        for (const [oldUrl, newUrl] of Object.entries(map)) {
+            result[oldUrl] = { status: 301, destination: newUrl };
+        }
+        return result;
+    } catch (e) {
+        console.error('Error reading tag-redirects.json:', e);
+        return {};
+    }
+}
+
+function getCustomRedirects() {
+    const redirectsFile = path.resolve('./src/redirects/custom-redirects.json');
+    if (!fs.existsSync(redirectsFile)) return {};
+    try {
+        const map = JSON.parse(fs.readFileSync(redirectsFile, 'utf-8'));
+        const result = {};
+        for (const [oldUrl, newUrl] of Object.entries(map)) {
+            result[oldUrl] = { status: 301, destination: newUrl };
+        }
+        return result;
+    } catch (e) {
+        console.error('Error reading custom-redirects.json:', e);
+        return {};
+    }
+}
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://williamblondel.fr',
@@ -106,29 +155,8 @@ export default defineConfig({
   },
   redirects: {
     ...getLocaleRedirects(),
-    '/resume': {
-      status: 301,
-      destination: 'https://www.linkedin.com/in/wgblondel/',
-    },
-    '/cv': {
-      status: 301,
-      destination: 'https://www.linkedin.com/in/wgblondel/',
-    },
-    '/tag/business-email-compromise-bec': {
-      status: 301,
-      destination: '/en/tag/business-email-compromise-(bec)/',
-    },
-    '/tag/url-shortening': {
-      status: 301,
-      destination: '/en/tag/url-shortener/',
-    },
-    '/tag/web-servers': {
-      status: 301,
-      destination: '/en/tag/caddy/',
-    },
-    '/tag/dan-do-anything-now/': {
-      status: 301,
-      destination: '/en/tag/dan-(do-anything-now)/',
-    }
+    ...getSlugRedirects(),
+    ...getTagRedirects(),
+    ...getCustomRedirects(),
   }
 });

@@ -1,5 +1,5 @@
 ---
-title: "Jailbreaking LLMs: The \"DAN\" (Do Anything Now) Phenomenon"
+title: 'Jailbreaking LLMs: The "DAN" (Do Anything Now) Phenomenon'
 description: "How users bypass AI safety filters with \"DAN\" jailbreaks. Explore the evolution from roleplay to automated attacks and the failure of RLHF alignment."
 pubDate: 2025-04-18T18:02:00.000Z
 coverImage: "../../../assets/post-covers/jailbreaking-llms.png"

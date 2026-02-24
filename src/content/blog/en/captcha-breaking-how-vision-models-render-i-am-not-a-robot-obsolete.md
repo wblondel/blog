@@ -1,5 +1,5 @@
 ---
-title: "CAPTCHA breaking: How vision models render \"I am not a robot\" obsolete"
+title: 'CAPTCHA breaking: How vision models render "I am not a robot" obsolete'
 description: "How AI vision models like YOLO have rendered CAPTCHA obsolete. Why bots now beat humans at visual puzzles and the shift to invisible security."
 pubDate: 2025-05-02T18:09:00.000Z
 coverImage: "../../../assets/post-covers/karen-grigorean-9D6UlCW38Ss-unsplash.jpg"
