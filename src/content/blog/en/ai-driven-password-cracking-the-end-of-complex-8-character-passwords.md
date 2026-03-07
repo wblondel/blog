@@ -63,6 +63,6 @@ If AI can guess the password, the password must not be the only key.
 * **Passkeys (FIDO2):** The industry is moving towards passwordless standards. Passkeys use public-key cryptography stored on the device. There is no "shared secret" (password) to be guessed or stolen from a server database.
     
 
-### Conclusion
+## Conclusion
 
 PassGAN marks the end of the 8-character password era. For systems administrators, the takeaway is clear: update Active Directory policies to require a minimum of **12 to 14 characters** and aggressively deploy MFA. Any policy still relying on "8 chars + 1 symbol" is offering a false sense of security against modern AI tools.

@@ -9,19 +9,19 @@ seriesOrder: 6
 readTime: 5
 ---
 
-### Introduction: The Trust Crisis in Digital Identity
+## Introduction: The Trust Crisis in Digital Identity
 
 In Series 1 (Week 5), we explored how attackers use real-time deepfake injection to bypass "Know Your Customer" (KYC) video selfies. This offensive capability created a profound crisis for digital identity: if an AI can perfectly mimic a human face and voice, how does a system prove the user on the other side of the screen is actually real?
 
 The answer lies in **Biometric Liveness Detection**. Facial recognition alone is no longer authentication; it merely identifies *who* the person claims to be (like a username). Liveness detection is the true authenticator (the password), proving that the biometric data is being captured from a live, physically present human being, rather than a synthetic digital construct or a printed mask.
 
-### 1. The Evolution: From Active to Passive Liveness
+## 1. The Evolution: From Active to Passive Liveness
 
 Early defenses relied on **Active Liveness**. The system would prompt the user to perform a specific action: *"Turn your head to the right," "Blink twice,"* or *"Read these numbers aloud."* As we discussed in the Red Team series, generative AI rendered this obsolete. Attackers now use "puppetry" software that maps the attacker's real-time head movements onto the deepfake face, effortlessly passing active challenges.
 
 The industry has therefore pivoted to **Passive Liveness**. This approach requires zero effort from the user. Instead of asking for a deliberate action, defensive AI analyzes the video feed in the background for involuntary human physiological traits and microscopic digital artifacts that generative models fail to render correctly.
 
-### 2. How Defensive AI Spots the Fake
+## 2. How Defensive AI Spots the Fake
 
 Defensive Machine Learning models look for anomalies in two main categories: physical human biology and digital rendering flaws.
 
@@ -29,7 +29,7 @@ Defensive Machine Learning models look for anomalies in two main categories: phy
 * **Micro-Expressions and Physics:** AI struggles with the complex physics of the human body. Defensive models analyze the micro-movements of eyes (saccades), the way light reflects dynamically off the cornea, and the subtle interactions between lighting and skin texture.
 * **Frequency and Artifact Analysis:** Deepfake generation often leaves digital fingerprints. Defensive AI translates the image into the frequency domain (using techniques like Discrete Fourier Transform) to look for unnatural noise patterns, blending boundaries around the jawline, or compression artifacts introduced by face-swapping algorithms.
 
-### 3. Hardware-Backed Biometrics: The 3D Depth Advantage
+## 3. Hardware-Backed Biometrics: The 3D Depth Advantage
 
 Software-based liveness is a continuous arms race. The most robust defense combines AI with specialized hardware.
 
@@ -37,12 +37,12 @@ Standard webcams capture a flat, 2D image, making them highly vulnerable to inje
 
 These hardware modules project thousands of invisible infrared dots onto the user's face to create a 3D topological map. A 2D deepfake displayed on an iPad or fed through a virtual camera driver lacks this physical depth. By mathematically combining the 3D depth data with the 2D infrared texture and feeding it into an ML classifier, the system achieves a near-zero False Acceptance Rate (FAR).
 
-### 4. Defending Against Audio Deepfakes (Anti-Vishing)
+## 4. Defending Against Audio Deepfakes (Anti-Vishing)
 
 Liveness isn't restricted to video. To counter the voice cloning (Vishing) threats discussed in Week 4, telecom providers and enterprise security teams are deploying **Audio Liveness Detection**.
 
 These models do not listen to *what* is being said, nor do they try to match the voice to a specific person. Instead, they analyze the acoustic environment. They look for the absence of natural breathing, unnatural vocal tract resonances, or the subtle digital "vocoder" artifacts that AI text-to-speech engines leave behind. 
 
-### Conclusion
+## Conclusion
 
 Deepfakes forced the cybersecurity industry to realize that biometric data is not a secret; our faces and voices are public information. By shifting the defensive focus from "matching the face" to "proving the life," AI-powered liveness detection restores trust in digital onboarding and authentication. In a Zero Trust architecture, verifying liveness is the mandatory first step before granting access to critical infrastructure.

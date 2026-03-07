@@ -9,13 +9,13 @@ seriesOrder: 10
 readTime: 5
 ---
 
-### Introduction: The Endpoint as the New Perimeter
+## Introduction: The Endpoint as the New Perimeter
 
 With the rise of remote work, cloud computing, and Zero Trust architectures, the traditional corporate network perimeter has dissolved. Today, the true perimeter is the **Endpoint**—the employee's laptop, the mobile device, or the cloud server. 
 
 For years, we protected endpoints with traditional Antivirus (AV) software. But legacy AV is fundamentally broken in the face of modern, AI-driven offensive tactics. To survive, organizations have shifted to **Endpoint Detection and Response (EDR)**. At the heart of a modern EDR platform is not a static database of known bad files, but a dynamic, on-device Machine Learning (ML) agent capable of making split-second defensive decisions.
 
-### 1. The Death of Signatures and the Rise of Fileless Attacks
+## 1. The Death of Signatures and the Rise of Fileless Attacks
 
 Traditional AV operates like a digital bouncer holding a blacklist (signatures and file hashes). If a file matches the blacklist, it gets blocked. 
 
@@ -23,7 +23,7 @@ Attackers easily bypass this using two methods:
 * **Polymorphic Malware:** Attackers use AI to automatically rewrite the code of their malware for every single target. The hash changes, the signature becomes useless, and the AV lets it through.
 * **Fileless Malware & Living off the Land (LotL):** Sophisticated hackers don't drop malicious `.exe` files onto the hard drive anymore. Instead, they hijack legitimate, built-in administrative tools like PowerShell or Windows Management Instrumentation (WMI) to inject malicious code directly into the computer's volatile memory (RAM). Because there is no "file" to scan, legacy AV sees nothing.
 
-### 2. Local ML Agents: Defense at the Edge
+## 2. Local ML Agents: Defense at the Edge
 
 To catch fileless malware, EDR shifts the focus from *what a file looks like* to *how a process behaves*. This requires immense computational analysis. 
 
@@ -31,7 +31,7 @@ Crucially, this AI analysis cannot happen entirely in the cloud. If ransomware b
 
 Modern EDR solves this by deploying **Local ML Agents** directly onto the OS kernel. These are highly compressed, incredibly fast AI models that monitor system calls, memory allocation, and registry changes in real-time, operating completely independently of an internet connection.
 
-### 3. Behavioral Correlation in Action
+## 3. Behavioral Correlation in Action
 
 How does an ML agent catch a Living off the Land attack without generating thousands of false positives? By looking at the contextual chain of events.
 
@@ -42,7 +42,7 @@ Imagine an employee receives a phishing email and opens a Word document.
 
 The EDR's machine learning model recognizes this specific sequence of behaviors as the footprint of an attack. Even though Word and PowerShell are legitimate applications, their combined *behavior* violates the established ML baseline.
 
-### 4. Autonomous Containment and Rollback
+## 4. Autonomous Containment and Rollback
 
 Detection is useless without immediate response. When the local ML agent determines with high confidence that an attack is underway, it executes automated containment protocols faster than any human could:
 
@@ -50,7 +50,7 @@ Detection is useless without immediate response. When the local ML agent determi
 * **Network Isolation:** It alters the endpoint's local firewall rules, severing its connection to the corporate network and the internet to prevent the ransomware from spreading laterally or exfiltrating data. The only connection left open is a secure tunnel to the SOC (Security Operations Center) for investigation.
 * **Automated Rollback:** Advanced EDR systems continuously monitor file modifications. If the AI detects the rapid file encryption characteristic of ransomware, it doesn't just stop the process; it autonomously restores the encrypted files using protected local shadow copies, effectively reversing the attack in seconds.
 
-### Conclusion
+## Conclusion
 
 The local ML agent is the ultimate last line of defense. When the firewall fails, when the Secure Email Gateway is bypassed, and when the user clicks the malicious link, the EDR agent stands between the attacker and the total compromise of the machine. 
 

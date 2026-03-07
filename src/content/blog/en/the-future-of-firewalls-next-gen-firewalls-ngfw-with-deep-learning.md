@@ -9,7 +9,7 @@ seriesOrder: 12
 readTime: 5
 ---
 
-### Introduction: The Evolution of the Perimeter
+## Introduction: The Evolution of the Perimeter
 
 The firewall is the oldest concept in network security, but it has undergone massive transformations to stay relevant. The first generation relied on simple packet filtering (checking IP addresses and ports). The second generation introduced Stateful Inspection. The third, the **Next-Generation Firewall (NGFW)**, brought Deep Packet Inspection (DPI) and Application Awareness, allowing defenders to block specific apps (like BitTorrent) rather than just ports.
 
@@ -17,7 +17,7 @@ However, traditional NGFWs still fundamentally rely on signatures. When a new th
 
 To eliminate Patient Zero, the industry is moving to the fourth generation: **NGFWs powered by Inline Deep Learning**.
 
-### 1. Inline Deep Learning: Zero-Delay Signatures
+## 1. Inline Deep Learning: Zero-Delay Signatures
 
 Historically, machine learning in firewalls was "out-of-band." If a firewall saw a suspicious file, it would send it to a cloud sandbox for detonation. Five minutes later, the sandbox would confirm it was malware and update the firewall's signature database. But by then, the malicious file was already downloaded and executing on the victim's machine.
 
@@ -27,7 +27,7 @@ Modern NGFWs (pioneered by vendors like Palo Alto Networks and Check Point) embe
 * **The Mechanism:** As a file passes through the firewall, the neural network analyzes its structural features and mathematical entropy in milliseconds, without needing to match it against a known signature. 
 * **The Result:** The firewall blocks a completely novel, polymorphic zero-day ransomware variant *while it is still being downloaded*. This is known as "Single Pass Inspection with Inline Prevention." When combined with cloud threat intelligence, these firewalls can generate and distribute a custom signature globally in single-digit seconds (Zero-Delay Signatures).
 
-### 2. Defeating C2 with Neural DNS Security
+## 2. Defeating C2 with Neural DNS Security
 
 In Week 24, we discussed how attackers hide in encrypted traffic. Another major evasion technique used by malware to communicate with Command and Control (C2) servers is the **Domain Generation Algorithm (DGA)**.
 
@@ -40,7 +40,7 @@ Deep learning firewalls tackle this using Recurrent Neural Networks (RNNs) and L
 
 
 
-### 3. IoT Visibility and Microsegmentation
+## 3. IoT Visibility and Microsegmentation
 
 The modern corporate network is flooded with unmanaged "Internet of Things" (IoT) devices: smart TVs, IP cameras, medical sensors, and connected HVAC systems. You cannot install an EDR agent on a smart lightbulb, making them prime targets for botnets.
 
@@ -48,12 +48,12 @@ AI-powered NGFWs act as the ultimate security guard for these "headless" devices
 * **Behavioral Profiling:** The firewall uses machine learning to passively listen to network traffic and automatically fingerprint every connected device. It identifies the vendor, OS, and firmware version without any manual configuration.
 * **Automated Policy Generation:** Once the AI identifies an IP camera, it baselines its normal behavior (e.g., streaming video to an internal server). If that camera suddenly tries to initiate an outbound SSH connection to a server in Russia, the firewall instantly blocks it. The AI automatically recommends and enforces strict microsegmentation policies, ensuring IoT devices can only speak to their designated controllers.
 
-### 4. The Hardware Reality: Processing at Cloud Scale
+## 4. The Hardware Reality: Processing at Cloud Scale
 
 Analyzing traffic with deep neural networks in real-time requires immense computational power. If a firewall introduces a 500-millisecond delay to every packet, network performance collapses. 
 
 To achieve this, hardware architecture has changed. Modern NGFWs utilize specialized Data Processing Units (DPUs) and Tensor Processing Units (TPUs) specifically designed to accelerate matrix multiplication (the math behind deep learning). Furthermore, they heavily utilize a **Secure Access Service Edge (SASE)** architecture, offloading the heaviest deep learning computations to massive cloud environments while keeping latency near zero for the end user.
 
-### Conclusion
+## Conclusion
 
 The firewall is no longer just a wall; it is an intelligent, learning gateway. By integrating inline deep learning, NGFWs have shifted from recognizing *known bad* signatures to understanding the *fundamental characteristics* of malicious code and behavior. They are the essential heavy infantry of the Blue Team.
