@@ -1,5 +1,6 @@
 ---
 title: "Automated Incident Response (SOAR): Defending at Machine Speed"
+seoTitle: "Automated Incident Response (SOAR) at Machine Speed"
 description: "Learn how SOAR platforms use AI and automated playbooks to orchestrate incident response, isolate threats, and drastically reduce MTTR in the SOC."
 pubDate: 2025-06-20T10:00:00.000Z
 coverImage: "../../../assets/post-covers/automated-incident-response-soar.png"

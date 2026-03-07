@@ -1,5 +1,6 @@
 ---
 title: "Secure Coding with Copilot: Best Practices for AI-Assisted Dev"
+seoTitle: "Secure Coding with Copilot: Best Practices for AI Dev"
 coverImage: "../../../assets/post-covers/secure-coding-with-copilot-best-practices-for-ai-assisted-dev.png"
 description: "Learn essential DevSecOps best practices for using AI coding assistants like GitHub Copilot securely, from prompt engineering to IDE guardrails."
 pubDate: 2025-09-27T10:00:00.000Z

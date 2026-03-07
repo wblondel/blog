@@ -1,5 +1,6 @@
 ---
 title: 'The Risk of "Hallucinated" Vulnerabilities: False Positives in Audits'
+seoTitle: "Hallucinated Vulnerabilities: False Positives in AI Audits"
 coverImage: "../../../assets/post-covers/the-risk-of-hallucinated-vulnerabilities-false-positives-in-audits.png"
 description: "Discover the hidden costs of AI-driven code audits. Learn why LLMs hallucinate vulnerabilities and how reachability analysis grounds AI in deterministic truth."
 pubDate: 2025-11-08T10:00:00.000Z

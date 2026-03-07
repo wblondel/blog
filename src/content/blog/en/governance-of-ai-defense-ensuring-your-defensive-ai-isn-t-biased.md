@@ -1,5 +1,6 @@
 ---
 title: "Governance of AI Defense: Ensuring Your Defensive AI Isn't Biased"
+seoTitle: "AI Defense Governance: Ensuring Your AI Isn't Biased"
 description: "Explore the risks of algorithmic bias in cybersecurity. Learn how Explainable AI (XAI) and governance prevent defensive models from making discriminatory decisions."
 pubDate: 2025-09-05T10:00:00.000Z
 coverImage: "../../../assets/post-covers/jeshoots-com-fzOITuS1DIQ-unsplash.jpg"

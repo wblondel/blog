@@ -1,5 +1,6 @@
 ---
 title: "Network Traffic Analysis (NTA): Detecting Encrypted Malicious Traffic"
+seoTitle: "NTA: Detecting Encrypted Malicious Network Traffic"
 description: "Learn how AI-powered Network Traffic Analysis (NTA) detects malware and data exfiltration hidden inside encrypted HTTPS and TLS traffic without decrypting it."
 pubDate: 2025-08-15T10:00:00.000Z
 tags: ["Network Traffic Analysis", "NTA", "Encrypted Traffic", "TLS", "Machine Learning", "Blue Team", "Cyber Defense"]

@@ -1,5 +1,6 @@
 ---
 title: "UEBA: Moving Beyond Signatures with AI-Driven Behavioral Analytics"
+seoTitle: "UEBA: Moving Beyond Signatures with AI Behavioral Analytics"
 description: "Discover how UEBA uses Machine Learning to baseline user behavior, detect anomalies, and stop insider threats or compromised credentials in real-time."
 pubDate: 2025-06-06T10:00:00.000Z
 coverImage: "../../../assets/post-covers/ueba-behavioral-analytics.png"

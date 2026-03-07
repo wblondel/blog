@@ -1,5 +1,6 @@
 ---
 title: "Web Application Firewalls (WAF): Adapting to New Injection Vectors"
+seoTitle: "WAF Security: Adapting to New AI Injection Vectors"
 coverImage: "../../../assets/post-covers/web-application-firewalls-waf-adapting-to-new-injection-vectors.png"
 description: "Discover how traditional WAFs are failing against AI-generated payloads and Prompt Injection, and how ML-driven WAAPs are securing modern LLM-integrated apps."
 pubDate: 2025-11-01T10:00:00.000Z

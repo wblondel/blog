@@ -142,10 +142,14 @@ const tagDescription = t('tag.description' as any).replace('#{tag}', String(orig
 // For <title> only, strip parentheticals to keep length under 60 chars
 // e.g. 'EDR (Endpoint Detection & Response)' → 'EDR'
 const tagForTitle = originalTag.replace(/\s*\(.*?\)\s*/g, '').trim();
+
+const fullTitle = `${t('tag.title.prefix' as any)} #${tagForTitle} — ${t('site.name' as any)}`;
+const seoTagTitle = fullTitle.length > 61 ? `${t('tag.title.prefix' as any)} #${tagForTitle}` : fullTitle;
 ---
 
 <Layout
-    title={`${t('tag.title.prefix' as any)} #${tagForTitle} — ${t('site.name' as any)}`}
+    title={fullTitle}
+    seoTitle={seoTagTitle}
     description={tagDescription}
     alternates={alternates}
     ogImage={ogImageURL}

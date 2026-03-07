@@ -1,5 +1,6 @@
 ---
 title: "API Security: Detecting Anomaly Usage Patterns in Microservices"
+seoTitle: "API Security: Detecting Anomaly Usage in Microservices"
 coverImage: "../../../assets/post-covers/api-security-detecting-anomaly-usage-patterns-in-microservices.png"
 description: "Discover how AI and Machine Learning transform API security by detecting Shadow APIs, BOLA attacks, and anomalous usage patterns in modern microservices."
 pubDate: 2025-10-11T10:00:00.000Z

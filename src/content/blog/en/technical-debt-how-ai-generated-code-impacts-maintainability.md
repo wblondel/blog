@@ -1,5 +1,6 @@
 ---
 title: "Technical Debt: How AI-Generated Code Impacts Maintainability"
+seoTitle: "Technical Debt: AI Code's Impact on Maintainability"
 coverImage: "../../../assets/post-covers/technical-debt-how-ai-generated-code-impacts-maintainability.png"
 description: "Explore the hidden costs of AI coding assistants. Learn how LLM-generated boilerplate, inconsistent patterns, and lack of context accelerate technical debt."
 pubDate: 2025-12-06T10:00:00.000Z

@@ -1,5 +1,6 @@
 ---
 title: 'AI-driven password cracking: The end of "complex" 8-character passwords'
+seoTitle: "AI Password Cracking: The End of 8-Character Passwords"
 description: "How PassGAN uses AI to crack complex passwords in minutes. Why length beats complexity and the shift to 12+ character passphrases."
 pubDate: 2025-04-25T18:19:00.000Z
 coverImage: "../../../assets/post-covers/sasun-bughdaryan-KdCJ1nIkgOU-unsplash.jpg"

@@ -1,5 +1,6 @@
 ---
 title: "Zero Trust Architecture in the Age of AI: Continuous Verification"
+seoTitle: "Zero Trust Architecture & AI: Continuous Verification"
 description: "Explore how Artificial Intelligence powers modern Zero Trust Architectures through continuous authentication, dynamic risk scoring, and microsegmentation."
 pubDate: 2025-07-04T10:00:00.000Z
 coverImage: "../../../assets/post-covers/zero-trust-architecture-ai-continuous-verification.png"

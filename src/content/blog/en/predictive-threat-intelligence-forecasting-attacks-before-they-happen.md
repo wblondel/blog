@@ -1,5 +1,6 @@
 ---
 title: "Predictive Threat Intelligence: Forecasting Attacks Before They Happen"
+seoTitle: "Predictive Threat Intelligence: Forecasting Cyber Attacks"
 description: "Discover how AI transforms Threat Intelligence from reactive blacklists into predictive models that forecast cyberattacks before they happen."
 pubDate: 2025-06-27T10:00:00.000Z
 coverImage: "../../../assets/post-covers/predictive-threat-intelligence.png"
