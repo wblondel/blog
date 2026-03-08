@@ -237,6 +237,17 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
             }
         };
 
+        const checkAndLoad = () => {
+            if (loadMoreWrapper && !loadMoreWrapper.classList.contains('hidden')) {
+                const rect = loadMoreWrapper.getBoundingClientRect();
+                if (rect.top <= window.innerHeight + 500) {
+                    loadNextChunk();
+                    // Recursively check until the wrapper is pushed out of the viewport
+                    setTimeout(checkAndLoad, 50);
+                }
+            }
+        };
+
         if (loadMoreBtn && hiddenItems.length > 0) {
             loadMoreBtn.addEventListener('click', loadNextChunk);
 
@@ -245,12 +256,12 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            loadNextChunk();
+                            checkAndLoad();
                         }
                     });
                 }, {
-                    rootMargin: '200px', // Trigger slightly before the button comes into view
-                    threshold: 0.1
+                    rootMargin: '500px', // Trigger slightly before the button comes into view
+                    threshold: 0.01
                 });
 
                 observer.observe(loadMoreWrapper as Element);
