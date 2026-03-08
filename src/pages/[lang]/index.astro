@@ -161,9 +161,11 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
 
                                 {
                                     remainingChunks.length > 0 && (
-                                        <div class="flex flex-col gap-6">
-                                            {remainingChunks.map((chunk) => (
-                                                <div class="rounded-xl border border-border bg-card overflow-hidden">
+                                        <div class="flex flex-col gap-6" id="posts-container">
+                                            {remainingChunks.map((chunk, chunkIndex) => (
+                                                <div 
+                                                    class={`rounded-xl border border-border bg-card overflow-hidden ${chunkIndex > 0 ? "hidden load-more-item" : ""}`}
+                                                >
                                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                                                         {chunk.map((post: CollectionEntry<"blog">, postIndex: number) => (
                                                             <div
@@ -186,12 +188,13 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                 }
 
                                 {
-                                    remainingPosts.length > 0 && (
-                                        <div class="flex justify-center py-8">
+                                    remainingChunks.length > 1 && (
+                                        <div class="flex justify-center py-8" id="load-more-wrapper">
                                             <button
                                                 type="button"
+                                                id="load-more-btn"
                                                 class="group flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50"
-                                                aria-controls="_R_4ltlbH1_"
+                                                aria-controls="posts-container"
                                                 aria-label="Load more posts"
                                             >
                                                 <span aria-live="polite">
@@ -214,3 +217,26 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
         </div>
     </div>
 </Layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const loadMoreWrapper = document.getElementById('load-more-wrapper');
+        const hiddenItems = document.querySelectorAll('.load-more-item.hidden');
+        
+        let currentHiddenIndex = 0;
+
+        if (loadMoreBtn && hiddenItems.length > 0) {
+            loadMoreBtn.addEventListener('click', () => {
+                if (currentHiddenIndex < hiddenItems.length) {
+                    hiddenItems[currentHiddenIndex].classList.remove('hidden');
+                    currentHiddenIndex++;
+
+                    if (currentHiddenIndex >= hiddenItems.length && loadMoreWrapper) {
+                        loadMoreWrapper.classList.add('hidden');
+                    }
+                }
+            });
+        }
+    });
+</script>
