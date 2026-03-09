@@ -5,7 +5,7 @@ pubDate: 2026-01-17T10:00:00.000Z
 coverImage: "../../../assets/post-covers/quantum-computing-threat-to-current-encryption.png"
 tags: ["Quantum Computing", "Cryptography", "Post-Quantum", "PQC", "Cybersecurity Strategy"]
 series: "ai-governance-future" 
-seriesOrder: 6
+seriesOrder: 6 
 readTime: 5
 ---
 
