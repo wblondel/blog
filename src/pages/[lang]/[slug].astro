@@ -6,6 +6,7 @@ import Layout from '../../layouts/Layout.astro';
 import AuthorCard from '../../components/AuthorCard.astro';
 import CoverImage from '../../components/CoverImage.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import wblondelImage from '../../assets/wblondel.jpeg';
 
 export async function getStaticPaths() {
   const blogs = await getCollection('blog');
@@ -119,9 +120,9 @@ const articleSchema = JSON.stringify({
                             <div class="max-w-2xl mx-auto">
                                 <div class="flex flex-col gap-5">
                                     <div class="flex gap-3 items-center">
-                                        <a target="_blank" rel="noopener" href={`${import.meta.env.BASE_URL}${lang}/`}>
+                                        <a target="_blank" rel="noopener" href={`${import.meta.env.BASE_URL}${lang}/`} title="William Blondel">
                                             <span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border border-border transition-opacity hover:opacity-80">
-                                                <img class="aspect-square h-full w-full" alt="William Blondel" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1706156694564/0567ac0d-2355-430b-b90b-a5f6b479094b.jpeg?auto=compress,format&amp;format=webp">
+                                                <Image src={wblondelImage} alt="Photo of William Blondel" width={80} height={80} class="aspect-square h-full w-full" loading="lazy" decoding="async" fetchpriority="low" />
                                             </span>
                                         </a>
                                         <div class="min-w-0">
