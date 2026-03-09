@@ -118,7 +118,7 @@ const articleSchema = JSON.stringify({
                         <div class="px-5 py-12 sm:px-8 space-y-8">
                             <div class="max-w-2xl mx-auto">
                                 <div class="flex flex-col gap-5">
-                                    <div class="flex gap-3 items-start"><a target="_blank" rel="noopener" href={`${import.meta.env.BASE_URL}${lang}/`}><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border border-border transition-opacity hover:opacity-80"><span class="flex h-full w-full items-center justify-center rounded-full bg-muted text-muted-foreground font-semibold text-lg">W</span></span></a><div class="min-w-0"><a target="_blank" rel="noopener" class="hover:text-primary transition-colors" href={`${import.meta.env.BASE_URL}${lang}/`}><p class="font-medium text-foreground">William Blondel</p></a><div class="text-sm text-muted-foreground line-clamp-2"><p>Hi there 👋! I'm a Senior Full Stack Web Developer. I dedicate my free time to uncovering family history through genealogy.</p></div></div></div>
+                                    <div class="flex gap-3 items-start"><a target="_blank" rel="noopener" href={`${import.meta.env.BASE_URL}${lang}/`}><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border border-border transition-opacity hover:opacity-80"><span class="flex h-full w-full items-center justify-center rounded-full bg-muted text-muted-foreground font-semibold text-lg">W</span></span></a><div class="min-w-0"><a target="_blank" rel="noopener" class="hover:text-primary transition-colors" href={`${import.meta.env.BASE_URL}${lang}/`}><p class="font-medium text-foreground">William Blondel</p></a><div class="text-sm text-muted-foreground"><p>Hi there 👋! I'm a Senior Full Stack Web Developer. I dedicate my free time to uncovering family history through genealogy.</p></div></div></div>
                                 </div>
                             </div>
                             
@@ -126,7 +126,7 @@ const articleSchema = JSON.stringify({
                             <div class="max-w-2xl mx-auto">
                                 <a class="group flex items-center gap-3 rounded-lg border border-border px-3 py-2 transition hover:border-primary hover:bg-accent" href={`${import.meta.env.BASE_URL}${lang}/series/${series}/`}>
                                     <Icon name="fa6-solid:layer-group" class="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
-                                    <div class="flex flex-col"><span class="text-sm text-muted-foreground">{entry.data.seriesOrder ? `${t('article.part') || 'Part'} ${entry.data.seriesOrder} of series` : 'Part of series'}</span><span class="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{seriesData.data.title}</span></div>
+                                    <div class="flex flex-col"><span class="text-sm text-muted-foreground">{entry.data.seriesOrder ? `${t('article.part')} ${entry.data.seriesOrder} ${t('article.partOfSeries')}` : t('article.partOfSeriesNoOrder')}</span><span class="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{seriesData.data.title}</span></div>
                                 </a>
                             </div>
                             )}
