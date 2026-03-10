@@ -1,0 +1,32 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  description?: string;
+  formattedDate: string;
+  pubDateISO: string;
+  readTime: number;
+  t: any;
+}
+
+const { title, description, formattedDate, pubDateISO, readTime, t } = Astro.props;
+---
+<header class="space-y-5">
+    <div class="space-y-3 text-center max-w-2xl mx-auto">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-balance text-foreground transition-colors">{title}</h1>
+        {description && <p class="text-base sm:text-lg font-normal text-muted-foreground text-balance">{description}</p>}
+        <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
+            <div class="flex items-center gap-2">
+                <Icon name="fa6-solid:calendar" class="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+                <span>{t("article.updatedOn")}</span>
+                <time datetime={pubDateISO}>{formattedDate}</time>
+            </div>
+            <span class="text-muted-foreground">•</span>
+            <div class="flex items-center gap-2">
+                <Icon name="fa6-solid:clock" class="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+                <span>{readTime} <!-- -->{t("article.readTime")}</span>
+            </div>
+        </div>
+    </div>
+</header>

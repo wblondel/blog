@@ -1,0 +1,22 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+  t: any;
+}
+
+const { headings, t } = Astro.props;
+---
+{headings.length > 0 && (
+<aside class="hidden xl:block absolute top-0 left-0 h-full">
+    <nav class="sticky top-8 w-44">
+        <div class="hidden xl:block max-h-[calc(100vh-3rem)] overflow-y-auto">
+            <p class="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">{t("article.onThisPage")}</p>
+            <nav aria-label="On this page">
+                {headings.map((heading) => (
+                    <a class="block py-1 text-sm text-muted-foreground transition-colors hover:text-foreground" style={`padding-left:${(heading.depth - 2)}rem`} href={`#${heading.slug}`}>{heading.text}</a>
+                ))}
+            </nav>
+        </div>
+    </nav>
+</aside>
+)}
