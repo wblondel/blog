@@ -33,6 +33,29 @@ const remainingChunks = [];
 for (let i = 0; i < remainingPosts.length; i += 3) {
     remainingChunks.push(remainingPosts.slice(i, i + 3));
 }
+
+// Compute top tags
+const tagsMap = new Map<string, { name: string; count: number }>();
+allPosts.forEach((post) => {
+    if (post.data.tags) {
+        post.data.tags.forEach((tag: string) => {
+            const id = tag.toLowerCase().replace(/\s+/g, "-");
+            if (tagsMap.has(id)) {
+                tagsMap.get(id)!.count++;
+            } else {
+                tagsMap.set(id, { name: tag, count: 1 });
+            }
+        });
+    }
+});
+
+const topTags = Array.from(tagsMap.entries())
+    .map(([id, data]) => ({ id, name: data.name, count: data.count }))
+    .sort((a, b) => {
+        if (b.count !== a.count) return b.count - a.count;
+        return a.name.localeCompare(b.name);
+    })
+    .slice(0, 6); // Take top 6 tags
 ---
 
 <Layout
@@ -96,64 +119,41 @@ for (let i = 0; i < remainingPosts.length; i += 3) {
                                         <AuthorCard postCount={allPosts.length} lang={lang} />
                                     </aside>
                                     <section
-                                        aria-label="Newsletter sign-up"
+                                        aria-label="Popular tags"
                                         class="h-full *:h-full"
                                     >
                                         <div
-                                            class="rounded-xl border bg-card text-card-foreground transition hover:border-slate-400 dark:hover:border-slate-600 w-full flex flex-col justify-center p-5"
+                                            class="rounded-xl border bg-card text-card-foreground w-full flex flex-col p-5"
                                         >
-                                            <div class="space-y-5">
-                                                <div
-                                                    class="flex items-start gap-3"
-                                                >
-                                                    <div
-                                                        class="flex shrink-0 items-center justify-center rounded-full bg-muted border border-border h-12 w-12"
-                                                    >
-                                                        <Icon
-                                                            name="fa6-solid:envelope"
-                                                            class="fa-jelly text-lg"
-                                                            aria-hidden="true"
-                                                        />
+                                            <div class="space-y-4">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="flex shrink-0 items-center justify-center rounded-full bg-muted border border-border h-12 w-12">
+                                                        <Icon name="fa6-solid:tags" class="text-muted-foreground text-lg" aria-hidden="true" />
                                                     </div>
-                                                    <div
-                                                        class="space-y-1 min-w-0"
-                                                    >
-                                                        <p
-                                                            class="font-semibold text-foreground text-lg"
-                                                        >
-                                                            {t("home.subscribe")}
-                                                        </p>
-                                                        <p
-                                                            class="text-sm text-muted-foreground"
-                                                        >
-                                                            {t("home.subscribeSubtitle")}
-                                                        </p>
+                                                    <div>
+                                                        <p class="font-semibold text-foreground text-lg">{t('tags.popular')}</p>
                                                     </div>
                                                 </div>
-                                                <form class="space-y-3">
-                                                    <div
-                                                        data-slot="input-group"
-                                                        role="group"
-                                                        class="group/input-group dark:bg-input/30 relative flex w-full items-center border shadow-xs transition-[color,box-shadow] outline-none min-w-0 has-[>textarea]:h-auto has-[>[data-align=inline-start]]:[&>input]:pl-2 has-[>[data-align=inline-end]]:[&>input]:pr-2 has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3 has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-ring/50 has-[[data-slot=input-group-control]:focus-visible]:ring-[3px] has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[[data-slot][aria-invalid=true]]:border-destructive dark:has-[[data-slot][aria-invalid=true]]:ring-destructive/40 h-auto rounded-lg bg-muted border-border p-1.5 gap-2"
-                                                    >
-                                                        <input
-                                                            type="email"
-                                                            data-slot="input-group-control"
-                                                            class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground border-input h-9 w-full min-w-0 px-3 transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent py-3 text-base"
-                                                            placeholder="you@example.com"
-                                                            aria-label="Email address"
-                                                            required=""
-                                                            name="email"
-                                                            value=""
-                                                        />
-                                                        <button
-                                                            class="justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 text-sm shadow-none flex items-center h-8 gap-1.5 has-[>svg]:px-2.5 rounded-md px-4 py-0.5"
-                                                            type="submit"
-                                                            data-size="sm"
-                                                            >Subscribe</button
+                                                
+                                                <div class="flex flex-wrap gap-2">
+                                                    {topTags.map((tag) => (
+                                                        <a 
+                                                            href={`${import.meta.env.BASE_URL}${lang}/tag/${tag.id}/`}
+                                                            class="inline-flex items-center gap-1.5 rounded-full bg-muted/50 border border-border px-3 py-1.5 text-sm font-medium text-foreground transition hover:border-primary hover:text-primary hover:bg-muted"
                                                         >
-                                                    </div>
-                                                </form>
+                                                            <span class="text-muted-foreground font-normal">#</span>
+                                                            {tag.name}
+                                                            <span class="ml-1 text-xs text-muted-foreground">({tag.count})</span>
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                                
+                                                <div class="pt-2">
+                                                    <a href={`${import.meta.env.BASE_URL}${lang}/tags/`} class="text-sm font-medium text-primary hover:underline flex items-center gap-1">
+                                                        {t('nav.more') || 'View all'}
+                                                        <Icon name="fa6-solid:arrow-right" class="h-3 w-3" aria-hidden="true" />
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </section>
