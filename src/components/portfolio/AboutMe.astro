@@ -1,0 +1,75 @@
+---
+import { Icon } from "astro-icon/components";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+    about: any;
+    project: any;
+    lang: string;
+}
+
+const { about, project, lang } = Astro.props;
+const t = useTranslations(lang as any);
+---
+
+<section class="flex flex-col md:flex-row gap-8 items-start">
+    <div class="w-full md:w-1/3 flex flex-col items-center text-center gap-6">
+        <div class="relative group w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border-4 border-muted p-1 bg-gradient-to-tr from-primary/20 to-primary/5 shadow-xl">
+            <div class="w-full h-full rounded-full overflow-hidden bg-muted flex items-center justify-center">
+                <!-- Using a placeholder for now as requested -->
+                <Icon name="fa6-solid:user" class="w-24 h-24 text-muted-foreground/50" />
+            </div>
+            <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+        </div>
+
+        <div class="flex flex-col gap-4 w-full items-center">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted text-muted-foreground text-sm font-medium border border-border/50">
+                <Icon name="fa6-solid:calendar" class="w-3.5 h-3.5" />
+                {about.age} {t('portfolio.years')}
+            </span>
+
+            <a 
+                href={about.cv_link} 
+                target="_blank" 
+                class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary text-primary-foreground px-6 py-3 font-medium hover:bg-primary/90 transition-colors shadow-sm"
+            >
+                <Icon name="fa6-solid:download" class="w-4 h-4" />
+                {t('portfolio.downloadCv')}
+            </a>
+
+            <div class="flex justify-center gap-4 mt-2">
+                <a href={about.contact.github} target="_blank" aria-label="GitHub" class="p-3 bg-card border border-border rounded-full text-muted-foreground hover:text-foreground hover:border-primary transition-colors">
+                    <Icon name="fa6-brands:github" class="w-5 h-5" />
+                </a>
+                <a href={about.contact.linkedin} target="_blank" aria-label="LinkedIn" class="p-3 bg-card border border-border rounded-full text-muted-foreground hover:text-foreground hover:border-primary transition-colors">
+                    <Icon name="fa6-brands:linkedin-in" class="w-5 h-5" />
+                </a>
+                <a href={`mailto:${about.contact.email}`} aria-label="Email" class="p-3 bg-card border border-border rounded-full text-muted-foreground hover:text-foreground hover:border-primary transition-colors">
+                    <Icon name="fa6-solid:envelope" class="w-5 h-5" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full md:w-2/3 flex flex-col gap-6 text-center md:text-left">
+        <div class="space-y-4">
+            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-foreground bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70 mx-auto md:mx-0 max-w-fit">
+                William Blondel
+            </h1>
+            <p class="text-xl text-primary font-medium tracking-wide">
+                {project.target_job}
+            </p>
+            <p class="text-lg text-muted-foreground leading-relaxed whitespace-pre-line mt-4">
+                {about.bio}
+            </p>
+            
+            <div class="pt-4 flex flex-wrap justify-center md:justify-start gap-2">
+                {about.qualities.map((quality: string) => (
+                    <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full border border-primary/20">
+                        {quality}
+                    </span>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>

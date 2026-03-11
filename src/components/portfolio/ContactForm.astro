@@ -1,0 +1,65 @@
+---
+import { Icon } from "astro-icon/components";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+    email: string;
+    lang: string;
+}
+
+const { email, lang } = Astro.props;
+const t = useTranslations(lang as any);
+
+// Obscurcit l'email à la compilation
+const encodedEmail = Buffer.from(email).toString('base64');
+---
+
+<section class="mt-16 mb-8 max-w-4xl mx-auto">
+    <div class="bg-gradient-to-br from-card to-muted border border-border rounded-3xl p-8 md:p-12 shadow-sm text-center relative overflow-hidden">
+        <!-- Visual decorators -->
+        <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+
+        <div class="relative flex flex-col items-center justify-center space-y-6">
+            <div class="p-4 bg-background border border-border shadow-sm text-primary rounded-full mb-2 group transition-transform hover:scale-110 duration-300">
+                <Icon name="fa6-solid:paper-plane" class="w-8 h-8 group-hover:-rotate-12 transition-transform duration-300" />
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">{t('portfolio.contact')}</h2>
+            
+            <p class="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                {lang === 'fr' 
+                    ? "Je suis toujours ouvert à la discussion sur de nouvelles opportunités, des projets passionnants ou simplement pour échanger sur la technologie."
+                    : "I am always open to discussing new opportunities, exciting projects, or simply chatting about tech."}
+            </p>
+            
+            <div class="pt-4">
+                <a 
+                    href="#"
+                    data-contact={encodedEmail}
+                    class="email-protection inline-flex items-center gap-3 bg-primary text-primary-foreground font-medium text-lg px-8 py-4 rounded-full hover:bg-primary/90 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/30"
+                >
+                    <Icon name="fa6-solid:envelope" class="w-5 h-5" />
+                    {lang === 'fr' ? 'Dites bonjour !' : 'Say hello!'}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function decodeEmails() {
+        const links = document.querySelectorAll('.email-protection');
+        links.forEach(link => {
+            const encoded = link.getAttribute('data-contact');
+            if (encoded) {
+                link.setAttribute('href', `mailto:${atob(encoded)}`);
+                // On retire l'attribut pour plus de propreté une fois décodé
+                link.removeAttribute('data-contact');
+            }
+        });
+    }
+
+    decodeEmails();
+    document.addEventListener('astro:page-load', decodeEmails);
+</script>

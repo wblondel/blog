@@ -1,0 +1,115 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AboutMe from "../../components/portfolio/AboutMe.astro";
+import ExperienceAndEducation from "../../components/portfolio/ExperienceAndEducation.astro";
+import Skills from "../../components/portfolio/Skills.astro";
+import Projects from "../../components/portfolio/Projects.astro";
+import ContactForm from "../../components/portfolio/ContactForm.astro";
+import Recommendations from "../../components/portfolio/Recommendations.astro";
+import { useTranslations } from "../../i18n/utils";
+import { languages } from "../../i18n/ui";
+import { getCollection } from "astro:content";
+
+// Import data
+import portfolioEn from "../../data/portfolio-en.json";
+import portfolioFr from "../../data/portfolio-fr.json";
+
+export function getStaticPaths() {
+    return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const langStr = lang!;
+const t = useTranslations(lang as any);
+
+// Load correct localized data
+const portfolioData = lang === 'fr' ? portfolioFr : portfolioEn;
+
+// Load Projects from content collections
+const projects = await getCollection("projects", ({ id }) => {
+    return id.startsWith(`${lang}/`);
+});
+---
+
+<Layout 
+    title={t('portfolio.seoTitle')} 
+    description={t('portfolio.description')}
+>
+    <!-- Screen Reader Only H1 for SEO -->
+    <h1 class="sr-only">{t('portfolio.title')}</h1>
+
+    <div class="w-full mx-auto xl:max-w-[75rem] 2xl:max-w-[85rem] px-4 sm:px-8 md:px-12 lg:px-16 pt-10 pb-20 fade-in">
+        <div class="space-y-24">
+            
+            <!-- Hero / About Me Section -->
+            <AboutMe 
+                about={portfolioData.about} 
+                project={portfolioData.professional_project} 
+                lang={langStr} 
+            />
+
+            <!-- Decorative Divider -->
+            <div class="flex items-center justify-center gap-4 text-muted-foreground/30 py-8">
+                <div class="h-px bg-border w-16 sm:w-32"></div>
+                <!-- Using an Icon from package.json -->
+                <span class="block w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-primary/20"></span>
+                <span class="block w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-primary/40"></span>
+                <span class="block w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-primary/20"></span>
+                <div class="h-px bg-border w-16 sm:w-32"></div>
+            </div>
+
+            <!-- Experience and Education Timeline -->
+            <ExperienceAndEducation 
+                experience={portfolioData.experience} 
+                education={portfolioData.education} 
+                lang={langStr} 
+            />
+
+            <!-- Skills, Certifications, and Interests -->
+            <Skills 
+                skills={portfolioData.skills} 
+                certifications={portfolioData.certifications} 
+                interests={portfolioData.interests} 
+                lang={langStr} 
+            />
+
+            <!-- Recommendations -->
+            {portfolioData.recommendations && portfolioData.recommendations.length > 0 && (
+                <Recommendations recommendations={portfolioData.recommendations} lang={langStr}>
+                    <Fragment slot="title">
+                        {langStr === 'fr' ? 'Recommandations' : 'Recommendations'}
+                    </Fragment>
+                </Recommendations>
+            )}
+
+            <!-- Projects Gallery -->
+            <Projects 
+                projects={projects} 
+                lang={langStr} 
+            />
+
+            <!-- Contact CTA -->
+            <ContactForm 
+                email={portfolioData.about.contact.email} 
+                lang={langStr} 
+            />
+
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

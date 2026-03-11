@@ -1,0 +1,126 @@
+{
+    "about": {
+        "title": "About Me",
+        "bio": "I am an experienced Full-Stack Web Developer with a passion for software design and DevOps. I specialize in building robust solutions from the ground up and leading development teams to solve complex technical challenges.\n\nWhether it’s architecting new systems or optimizing existing ones, I combine technical know-how with strategic thinking to deliver software that exceeds expectations.",
+        "qualities": [
+            "Rigorous",
+            "Curious",
+            "Problem Solver",
+            "Team Player"
+        ],
+        "age": 28,
+        "contact": {
+            "email": "contact@williamblondel.fr",
+            "linkedin": "https://www.linkedin.com/in/wgblondel/",
+            "github": "https://github.com/wblondel"
+        },
+        "cv_link": "/cv-placeholder.pdf"
+    },
+    "professional_project": {
+        "title": "Professional Project",
+        "target_job": "Senior Full-Stack Developer / Security Engineer",
+        "specialty": "Web application security and DevSecOps integration."
+    },
+    "experience": [
+        {
+            "id": "exp-1",
+            "role": "Senior Full-Stack Developer",
+            "company": "Tech Company",
+            "location": "Paris, France",
+            "startDate": "2021-01",
+            "endDate": "Present",
+            "current": true,
+            "description": "Leading the development of secure web applications using Laravel and Vue.js. Implementing DevSecOps practices."
+        }
+    ],
+    "skills": {
+        "technical": [
+            "PHP",
+            "Laravel",
+            "Javascript",
+            "TypeScript",
+            "Astro",
+            "TailwindCSS",
+            "SQL",
+            "Docker"
+        ],
+        "soft": [
+            "Agile Methodologies",
+            "Code Review",
+            "Mentoring"
+        ]
+    },
+    "education": [
+        {
+            "id": "edu-2",
+            "degree": "BTS SIO (Services Informatiques aux Organisations) - Option SLAM",
+            "institution": "CNED",
+            "location": "Remote",
+            "startDate": "2024-09",
+            "endDate": "2026-06",
+            "current": true,
+            "description": "Focus on software solutions and business applications."
+        },
+        {
+            "id": "edu-1",
+            "degree": "Bachelor in Computer Science",
+            "institution": "University of Technology",
+            "location": "City, Country",
+            "startDate": "2015-09",
+            "endDate": "2018-06",
+            "current": false,
+            "description": "General computer science degree."
+        }
+    ],
+    "certifications": [
+        {
+            "id": "cert-1",
+            "name": "AWS Certified Developer - Associate",
+            "issuer": "Amazon Web Services",
+            "date": "2023-05"
+        }
+    ],
+    "interests": [
+        "Genealogy",
+        "Retro-gaming (Amstrad CPC 6128)",
+        "Cybersecurity research"
+    ],
+    "recommendations": [
+        {
+            "id": "rec-1",
+            "text": "[William] consistently delivered high-quality code and demonstrated a deep understanding of both front-end and back-end technologies. His problem-solving skills and dedication to meeting deadlines make him an asset to any development team.",
+            "author": "Ronak Koya",
+            "role": "Project Manager",
+            "company": "Bacancy",
+            "avatar": "ronak-koya.jpeg",
+            "linkedin": "https://www.linkedin.com/in/ronak-koya/"
+        },
+        {
+            "id": "rec-2",
+            "text": "Apart from his technical expertise, [William] is helpful to juniors and mentors them freely. An honest person, open for feedback and criticism. Overall a very solid team player and team leader.",
+            "author": "Cedrick Rey Lariosa",
+            "role": "Product Analyst",
+            "company": "Med-Metrix",
+            "avatar": "cedrick-rey-lariosa.jpeg",
+            "linkedin": "https://www.linkedin.com/in/cedrick-rey-lariosa-952b3067/"
+        },
+        {
+            "id": "rec-3",
+            "text": "I often relied on his expertise to navigate and resolve complex technical challenges... What sets William apart is not just his technical proficiency but also his approachability... ensuring that our clients received prompt and effective solutions.",
+            "author": "Almon Joyce Herodias",
+            "role": "Account Manager",
+            "company": "Oracle NetSuite",
+            "avatar": "almon-joyce-herodias.jpeg",
+            "linkedin": "https://www.linkedin.com/in/almonjoyceherodias/"
+        },
+        {
+            "id": "rec-4",
+            "text": "His exceptional skills and dedication were evident in his role on our project, contributing significantly to its success. A true asset to any team.",
+            "author": "Jitendra Oza",
+            "role": "Software Engineer",
+            "company": "ScaleTech Solutions",
+            "avatar": "jitendra-oza.jpeg",
+            "linkedin": "https://www.linkedin.com/in/jitendraoza/"
+        }
+    ]
+}

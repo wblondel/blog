@@ -1,0 +1,158 @@
+{
+    "about": {
+        "title": "À propos de moi",
+        "bio": "En tant que développeur Web Full-Stack expérimenté, j'ai dirigé des équipes de développement, construit des solutions logicielles de A à Z et amélioré celles-ci grâce à un mélange de savoir-faire technique et de réflexion stratégique. \n\nAvec une solide expérience en conception de logiciels, tests de logiciels et DevOps, j'apprécie résoudre des problèmes complexes et proposer des idées nouvelles. Que ce soit pour corriger des bugs, mettre à jour des systèmes ou guider de nouveaux membres de l'équipe, je suis dévoué à améliorer les choses et à dépasser les attentes à chaque étape.",
+        "qualities": [
+            "Rigoureux",
+            "Curieux",
+            "Trouveur de solutions",
+            "Esprit d'équipe"
+        ],
+        "age": 31,
+        "contact": {
+            "email": "contact@williamblondel.fr",
+            "linkedin": "https://www.linkedin.com/in/wgblondel/",
+            "github": "https://github.com/wblondel"
+        },
+        "cv_link": "/cv-placeholder.pdf"
+    },
+    "professional_project": {
+        "title": "Projet professionnel",
+        "target_job": "Développeur Full-Stack Senior / Ingénieur Sécurité",
+        "specialty": "Sécurité des applications web et intégration DevSecOps."
+    },
+    "experience": [
+        {
+            "id": "exp-1",
+            "role": "Développeur Full-Stack Senior",
+            "company": "Tech Company",
+            "location": "Paris, France",
+            "startDate": "2021-01",
+            "endDate": "Present",
+            "current": true,
+            "description": "Direction du développement d'applications web sécurisées utilisant Laravel et Vue.js. Implémentation des pratiques DevSecOps."
+        },
+        {
+            "id": "exp-2",
+            "role": "Développeur Full-Stack Senior",
+            "company": "Tech Company",
+            "location": "Paris, France",
+            "startDate": "2019-01",
+            "endDate": "2020-12",
+            "current": false,
+            "description": "Direction du développement d'applications web sécurisées utilisant Laravel et Vue.js. Implémentation des pratiques DevSecOps."
+        },
+        {
+            "id": "exp-3",
+            "role": "Développeur Full-Stack Senior",
+            "company": "Tech Company",
+            "location": "Paris, France",
+            "startDate": "2012-01",
+            "endDate": "2020-11",
+            "current": false,
+            "description": "Direction du développement d'applications web sécurisées utilisant Laravel et Vue.js. Implémentation des pratiques DevSecOps."
+        }
+    ],
+    "skills": {
+        "technical": [
+            "PHP",
+            "Laravel",
+            "Javascript",
+            "TypeScript",
+            "Astro",
+            "TailwindCSS",
+            "SQL",
+            "Docker"
+        ],
+        "soft": [
+            "Méthodologies Agiles",
+            "Revue de code",
+            "Mentorat"
+        ]
+    },
+    "education": [
+        {
+            "id": "edu-2",
+            "degree": "BTS SIO (Services Informatiques aux Organisations) - Option SLAM",
+            "institution": "CNED",
+            "location": "À distance",
+            "startDate": "2024-09",
+            "endDate": "2026-06",
+            "current": true,
+            "description": "Spécialisation dans les solutions logicielles et les applications métiers."
+        },
+        {
+            "id": "edu-1",
+            "degree": "Licence en Informatique",
+            "institution": "Université de Technologie",
+            "location": "Ville, Pays",
+            "startDate": "2015-09",
+            "endDate": "2018-06",
+            "current": false,
+            "description": "Diplôme général en informatique."
+        }
+    ],
+    "certifications": [
+        {
+            "id": "cert-1",
+            "name": "Développeur certifié AWS - Associé",
+            "issuer": "Amazon Web Services",
+            "date": "2023-05"
+        },
+        {
+            "id": "cert-2",
+            "name": "Dummy Certification",
+            "issuer": "Google",
+            "date": "2022-05"
+        },
+        {
+            "id": "cert-3",
+            "name": "Dummy Certification",
+            "issuer": "Microsoft",
+            "date": "2021-05"
+        }
+    ],
+    "interests": [
+        "Généalogie",
+        "Rétro-gaming (Amstrad CPC 6128)",
+        "Recherche en cybersécurité"
+    ],
+    "recommendations": [
+        {
+            "id": "rec-1",
+            "text": "[William] a constamment fourni du code de haute qualité et démontré une profonde maîtrise des technologies front-end et back-end. Ses compétences en résolution de problèmes et son respect des délais font de lui un atout majeur pour toute équipe de développement.",
+            "author": "Ronak Koya",
+            "role": "Project Manager",
+            "company": "Bacancy",
+            "avatar": "ronak-koya.jpeg",
+            "linkedin": "https://www.linkedin.com/in/ronak-koya/"
+        },
+        {
+            "id": "rec-2",
+            "text": "Au-delà de son expertise technique, [William] aide volontiers les juniors et les mentore naturellement. Une personne honnête, ouverte aux retours et à la critique. Dans l'ensemble, un excellent coéquipier et leader.",
+            "author": "Cedrick Rey Lariosa",
+            "role": "Product Analyst",
+            "company": "Med-Metrix",
+            "avatar": "cedrick-rey-lariosa.jpeg",
+            "linkedin": "https://www.linkedin.com/in/cedrick-rey-lariosa-952b3067/"
+        },
+        {
+            "id": "rec-3",
+            "text": "J'ai souvent compté sur son expertise pour résoudre des défis techniques complexes... Ce qui distingue William n'est pas seulement sa compétence technique, mais aussi son accessibilité... garantissant à nos clients des solutions rapides et efficaces.",
+            "author": "Almon Joyce Herodias",
+            "role": "Account Manager",
+            "company": "Oracle NetSuite",
+            "avatar": "almon-joyce-herodias.jpeg",
+            "linkedin": "https://www.linkedin.com/in/almonjoyceherodias/"
+        },
+        {
+            "id": "rec-4",
+            "text": "Ses compétences exceptionnelles et son dévouement ont été évidents dans son rôle sur notre projet, contribuant significativement à son succès. Un véritable atout pour toute équipe.",
+            "author": "Jitendra Oza",
+            "role": "Software Engineer",
+            "company": "ScaleTech Solutions",
+            "avatar": "jitendra-oza.jpeg",
+            "linkedin": "https://www.linkedin.com/in/jitendraoza/"
+        }
+    ]
+}

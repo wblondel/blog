@@ -1,0 +1,241 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+const { recommendations, lang = 'fr' } = Astro.props;
+
+// Dynamically import all recommendation images
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/recommendations/*.{jpeg,jpg,png,webp}');
+
+// Helper to get the correct ImageMetadata payload from the glob
+const getImage = async (filename: string) => {
+    const path = `/src/assets/recommendations/${filename}`;
+    if (imageFiles[path]) {
+        return (await imageFiles[path]()).default;
+    }
+    return null;
+};
+
+// Pre-resolve all images so we can pass them safely to the Astro template
+const resolvedRecommendations = await Promise.all(
+    recommendations.map(async (rec: any) => ({
+        ...rec,
+        imageMetadata: await getImage(rec.avatar)
+    }))
+);
+---
+
+<div class="mt-20 max-w-5xl mx-auto">
+    <div class="flex items-center gap-3 mb-8">
+        <div class="p-3 bg-primary/10 text-primary rounded-xl shrink-0">
+            <Icon name="fa6-solid:comment-dots" class="w-6 h-6" />
+        </div>
+        <h2 class="text-3xl font-bold tracking-tight text-foreground">
+            <slot name="title">Recommandations</slot>
+        </h2>
+    </div>
+
+    <div class="relative w-full group">
+        <!-- Carousel Container -->
+        <div class="recommendations-slider flex overflow-x-hidden snap-x snap-mandatory rounded-3xl border border-border bg-card shadow-sm">
+            {resolvedRecommendations.map((rec, index) => (
+                <div class="recommendation-slide w-full flex-shrink-0 snap-center p-8 md:p-14 flex flex-col items-center justify-center transition-opacity duration-300" data-index={index}>
+                    
+                    <div class="relative w-full max-w-3xl mx-auto text-center">
+                        <Icon name="fa6-solid:quote-left" class="absolute -top-4 -left-2 md:-left-8 w-8 h-8 text-primary/20" />
+                        
+                        <blockquote class="text-lg md:text-xl font-medium leading-relaxed text-foreground/90 italic z-10 relative px-6 md:px-0">
+                            {rec.text}
+                        </blockquote>
+                        
+                        <Icon name="fa6-solid:quote-right" class="absolute -bottom-4 -right-2 md:-right-8 w-8 h-8 text-primary/20" />
+                    </div>
+
+                    <div class="mt-10 flex flex-col items-center gap-4">
+                        {rec.imageMetadata ? (
+                            <div class="relative w-20 h-20 rounded-full overflow-hidden border-2 border-primary/20 shadow-md">
+                                <Image 
+                                    src={rec.imageMetadata} 
+                                    alt={rec.author} 
+                                    class="w-full h-full object-cover"
+                                    width={80}
+                                    height={80}
+                                />
+                            </div>
+                        ) : (
+                            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl border-2 border-primary/20">
+                                {rec.author.charAt(0)}
+                            </div>
+                        )}
+                        
+                        <div class="text-center">
+                            <div class="flex items-center justify-center gap-2">
+                                <h4 class="font-bold text-foreground text-lg">{rec.author}</h4>
+                                {rec.linkedin && (
+                                    <a href={rec.linkedin} target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors" aria-label={`Profil LinkedIn de ${rec.author}`}>
+                                        <Icon name="fa6-brands:linkedin" class="w-4 h-4" />
+                                    </a>
+                                )}
+                            </div>
+                            <p class="text-sm text-muted-foreground">
+                                {rec.role} {lang === 'fr' ? 'chez' : 'at'} {rec.company}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Navigation Buttons (Desktop) -->
+        <button class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -ml-6 bg-background border border-border rounded-full p-3 text-muted-foreground hover:text-foreground hover:bg-muted shadow-md opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:opacity-100 z-10 prev-button cursor-pointer" aria-label="Previous recommendation">
+            <Icon name="fa6-solid:chevron-left" class="w-5 h-5 pointer-events-none" />
+        </button>
+        <button class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 -mr-6 bg-background border border-border rounded-full p-3 text-muted-foreground hover:text-foreground hover:bg-muted shadow-md opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:opacity-100 z-10 next-button cursor-pointer" aria-label="Next recommendation">
+            <Icon name="fa6-solid:chevron-right" class="w-5 h-5 pointer-events-none" />
+        </button>
+
+        <!-- Carousel Dots -->
+        <div class="flex justify-center gap-3 mt-8">
+            {resolvedRecommendations.map((_, index) => (
+                <button 
+                    class="carousel-dot w-3 h-3 rounded-full border border-primary/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                    aria-label={`Go to recommendation ${index + 1}`}
+                    data-target={index}
+                ></button>
+            ))}
+        </div>
+    </div>
+</div>
+
+<script>
+    // Pure JS Carousel Logic
+    function initCarousel() {
+        const slider = document.querySelector('.recommendations-slider');
+        const slides = document.querySelectorAll('.recommendation-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        if (!slider || slides.length === 0 || dots.length === 0) return;
+
+        let currentIndex = 0;
+        let isTransitioning = false;
+
+        const updateDots = (index: number) => {
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('bg-primary', 'scale-125');
+                    dot.classList.remove('bg-transparent');
+                } else {
+                    dot.classList.remove('bg-primary', 'scale-125');
+                    dot.classList.add('bg-transparent');
+                }
+            });
+        };
+
+        const goToSlide = (index: number) => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            
+            currentIndex = index;
+            const slideWidth = slider.clientWidth;
+            
+            slider.scrollTo({
+                left: slideWidth * index,
+                behavior: 'smooth'
+            });
+
+            updateDots(index);
+            
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 500);
+        };
+
+        // Initialize dots
+        updateDots(0);
+
+        // Dot click handlers
+        dots.forEach((dot) => {
+            dot.addEventListener('click', (e) => {
+                const target = parseInt((e.currentTarget as HTMLButtonElement).dataset.target || '0');
+                goToSlide(target);
+            });
+        });
+
+        // Listen for manual scrolling (swipe on mobile) to update dots
+        let scrollTimeout: any;
+        slider.addEventListener('scroll', () => {
+            if (isTransitioning) return;
+            
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const slideWidth = slider.clientWidth;
+                const newIndex = Math.round(slider.scrollLeft / slideWidth);
+                if (newIndex !== currentIndex) {
+                    currentIndex = newIndex;
+                    updateDots(currentIndex);
+                }
+            }, 100);
+        });
+
+        // Autoplay Management
+        let autoplayInterval: any;
+        
+        const startAutoplay = () => {
+            clearInterval(autoplayInterval);
+            autoplayInterval = setInterval(() => {
+                const nextIndex = (currentIndex + 1) % slides.length;
+                goToSlide(nextIndex);
+            }, 8000);
+        };
+        
+        const stopAutoplay = () => clearInterval(autoplayInterval);
+
+        startAutoplay();
+
+        // Pause autoplay on interaction
+        slider.addEventListener('mouseenter', stopAutoplay);
+        slider.addEventListener('mouseleave', startAutoplay);
+        slider.addEventListener('touchstart', stopAutoplay, { passive: true });
+        slider.addEventListener('touchend', startAutoplay, { passive: true });
+        
+        // Navigation buttons
+        const prevBtn = document.querySelector('.prev-button');
+        const nextBtn = document.querySelector('.next-button');
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+                goToSlide(prevIndex);
+                startAutoplay(); // Reset timer
+            });
+            prevBtn.addEventListener('mouseenter', stopAutoplay);
+            prevBtn.addEventListener('mouseleave', startAutoplay);
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                const nextIndex = (currentIndex + 1) % slides.length;
+                goToSlide(nextIndex);
+                startAutoplay(); // Reset timer
+            });
+            nextBtn.addEventListener('mouseenter', stopAutoplay);
+            nextBtn.addEventListener('mouseleave', startAutoplay);
+        }
+    }
+
+    // Run on initial page load and after Astro view transitions
+    initCarousel();
+    document.addEventListener('astro:page-load', initCarousel);
+</script>
+
+<style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .recommendations-slider::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .recommendations-slider {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+</style>

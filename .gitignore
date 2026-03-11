@@ -26,3 +26,5 @@ pnpm-debug.log*
 hashnode_source
 .lighthouse
 .sitebulb
+
+test-*.mjs
