@@ -37,7 +37,7 @@ const resolvedRecommendations = await Promise.all(
 
     <div class="relative w-full group">
         <!-- Carousel Container -->
-        <div class="recommendations-slider flex overflow-x-hidden snap-x snap-mandatory rounded-3xl border border-border bg-card shadow-sm">
+        <div class="recommendations-slider flex overflow-x-auto snap-x snap-mandatory rounded-3xl border border-border bg-card shadow-sm">
             {resolvedRecommendations.map((rec, index) => (
                 <div class="recommendation-slide w-full flex-shrink-0 snap-center p-8 md:p-14 flex flex-col items-center justify-center transition-opacity duration-300" data-index={index}>
                     
