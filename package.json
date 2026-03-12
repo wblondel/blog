@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.18.0",
     "astro-icon": "^1.1.5",
+    "astro-pagefind": "^1.8.5",
     "satori": "^0.25.0",
     "satori-html": "^0.3.2",
     "sharp": "^0.34.5",

@@ -56,6 +56,7 @@ const tagsAlternates = [
     description={t('tags.pageDescription' as any)}
     alternates={tagsAlternates}
     ogImage={`${import.meta.env.BASE_URL}og-default.png`}
+    noIndex={true}
 >
     <div class="w-full mx-auto max-w-4xl px-4 py-16 sm:px-8 sm:py-24">
         <PageHeader title={t("tags.title")} subtitle={p(sortedTags.length, "tags.subtitle")} srOnlySuffix=" — William Blondel Blog" />

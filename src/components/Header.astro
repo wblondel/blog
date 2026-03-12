@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import Search from "astro-pagefind/components/Search";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 interface Props {
@@ -81,6 +82,7 @@ if (alternates) {
                     {targetLabel}
                 </a>
                 <button
+                    id="search-btn-mobile"
                     class="gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent py-2 h-9 w-9 px-0 flex items-center justify-center text-muted-foreground hover:text-foreground bg-transparent border-border shadow-none"
                     aria-label="Open search"
                     ><Icon
@@ -230,6 +232,7 @@ if (alternates) {
                 class="flex flex-wrap items-center justify-end gap-3 text-muted-foreground"
             >
                 <button
+                    id="search-btn-desktop"
                     class="gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent py-2 h-9 w-9 px-0 flex items-center justify-center text-muted-foreground hover:text-foreground bg-transparent border-border shadow-none"
                     aria-label="Open search"
                     ><Icon
@@ -301,6 +304,22 @@ if (alternates) {
     </div>
 </div>
 
+<div id="search-modal" data-state="closed" class="fixed inset-0 z-[100] transition-all duration-300 data-[state=closed]:opacity-0 data-[state=closed]:pointer-events-none data-[state=open]:opacity-100 flex items-start justify-center pt-20 px-4">
+    <div id="search-modal-backdrop" class="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+    <div class="relative z-10 w-full max-w-2xl bg-background border border-border rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh]">
+        <div class="flex items-center justify-between p-4 border-b border-border">
+            <h2 class="text-lg font-semibold text-foreground px-2">Recherche / Search</h2>
+            <button id="search-modal-close" class="inline-flex items-center justify-center rounded-md border border-border text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-accent hover:text-accent-foreground h-8 w-8 shrink-0">
+                <Icon name="fa6-solid:xmark" class="h-4 w-4" aria-hidden="true" />
+                <span class="sr-only">Close search</span>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto pagefind-custom-theme">
+            <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
+        </div>
+    </div>
+</div>
+
 <script>
     const themeButtons = document.querySelectorAll(".theme-toggle");
     themeButtons.forEach((btn) => {
@@ -340,6 +359,43 @@ if (alternates) {
         mobileMenuBtn.addEventListener("click", openMenu);
         mobileMenuCloseBtn.addEventListener("click", closeMenu);
         mobileMenuBackdrop.addEventListener("click", closeMenu);
+    }
+
+    // --- Search Modal Logic ---
+    const searchBtnMobile = document.getElementById("search-btn-mobile");
+    const searchBtnDesktop = document.getElementById("search-btn-desktop");
+    const searchModalCloseBtn = document.getElementById("search-modal-close");
+    const searchModalDialog = document.getElementById("search-modal");
+    const searchModalBackdrop = document.getElementById("search-modal-backdrop");
+
+    if ((searchBtnMobile || searchBtnDesktop) && searchModalCloseBtn && searchModalDialog && searchModalBackdrop) {
+        const openSearchMenu = () => {
+            searchModalDialog.setAttribute("data-state", "open");
+            document.body.style.overflow = "hidden"; // Prevent background scrolling
+            
+            // Focus the search input dynamically if Pagefind has loaded it
+            setTimeout(() => {
+                const searchInput = document.querySelector('.pagefind-ui__search-input');
+                if (searchInput) (searchInput as HTMLElement).focus();
+            }, 100);
+        };
+
+        const closeSearchMenu = () => {
+            searchModalDialog.setAttribute("data-state", "closed");
+            document.body.style.overflow = ""; // Restore background scrolling
+        };
+
+        if (searchBtnMobile) searchBtnMobile.addEventListener("click", openSearchMenu);
+        if (searchBtnDesktop) searchBtnDesktop.addEventListener("click", openSearchMenu);
+        searchModalCloseBtn.addEventListener("click", closeSearchMenu);
+        searchModalBackdrop.addEventListener("click", closeSearchMenu);
+        
+        // Escape to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchModalDialog.getAttribute('data-state') === 'open') {
+                closeSearchMenu();
+            }
+        });
     }
 
     // ── Scroll-hide / show header ─────────────────────────────────────────────
@@ -383,3 +439,62 @@ if (alternates) {
         }, { passive: true });
     }
 </script>
+
+<style is:global>
+    /* Pagefind Custom Theme to match the site's styling */
+    .pagefind-custom-theme {
+        --pagefind-ui-scale: 1;
+        --pagefind-ui-primary: hsl(var(--primary));
+        --pagefind-ui-text: hsl(var(--foreground));
+        --pagefind-ui-background: hsl(var(--background));
+        --pagefind-ui-border: hsl(var(--border));
+        --pagefind-ui-tag: hsl(var(--accent));
+        --pagefind-ui-border-width: 1px;
+        --pagefind-ui-border-radius: 0.5rem;
+        --pagefind-ui-font: inherit;
+    }
+    
+    .pagefind-custom-theme .pagefind-ui__search-input {
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        border: 1px solid hsl(var(--border));
+        border-radius: var(--pagefind-ui-border-radius);
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        font-weight: 500;
+        transition: border-color 0.2s ease;
+    }
+
+    .pagefind-custom-theme .pagefind-ui__search-input:focus {
+        outline: none;
+        border-color: hsl(var(--primary));
+        box-shadow: 0 0 0 1px hsl(var(--primary));
+    }
+    
+    .pagefind-custom-theme .pagefind-ui__search-clear {
+        background-color: transparent;
+        color: hsl(var(--foreground));
+        font-size: 0.8rem;
+    }
+    
+    .pagefind-custom-theme .pagefind-ui__result-link {
+        color: hsl(var(--primary));
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .pagefind-custom-theme .pagefind-ui__result-link:hover {
+        text-decoration: underline;
+    }
+    
+    .pagefind-custom-theme .pagefind-ui__result-excerpt {
+        color: hsl(var(--muted-foreground));
+    }
+
+    .pagefind-custom-theme mark {
+        background-color: hsl(var(--primary)/0.2);
+        color: hsl(var(--foreground));
+        font-weight: 600;
+        padding: 0 2px;
+        border-radius: 2px;
+    }
+</style>

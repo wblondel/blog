@@ -15,6 +15,7 @@ interface Props {
   ogImageAlt?: string;
   ogType?: string;
   articleSchema?: string;
+  noIndex?: boolean;
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   ogImageAlt,
   ogType = "website",
   articleSchema,
+  noIndex = false,
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
@@ -53,7 +55,7 @@ defaultRelativePath = cleanPath ? '/' + cleanPath : '';
 ---
 
 <!DOCTYPE html>
-<html lang={lang}>
+<html lang={lang} data-pagefind-ignore={noIndex ? "all" : undefined}>
   <head>
     <meta charset="utf-8" />
     <link
@@ -186,7 +188,7 @@ defaultRelativePath = cleanPath ? '/' + cleanPath : '';
       class="min-h-screen bg-background dark:bg-background"
     >
       <Header alternates={alternates} />
-      <div class="">
+      <div data-pagefind-body>
         <slot />
       </div>
       <Footer />
