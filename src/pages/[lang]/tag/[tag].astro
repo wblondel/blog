@@ -151,6 +151,8 @@ const seoTagTitle = fullTitle.length > 61 ? `${t('tag.title.prefix' as any)} #${
     title={fullTitle}
     seoTitle={seoTagTitle}
     description={tagDescription}
+    alternates={alternates}
+    ogImage={ogImageURL}
     ogImageAlt={`#${originalTag}`}
     noIndex={true}
 >
