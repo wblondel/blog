@@ -94,8 +94,8 @@ const t = useTranslations(lang as any);
     ) : (
         <div class="bg-card border border-border border-dashed rounded-xl p-12 flex flex-col items-center justify-center text-center max-w-2xl mx-auto">
             <Icon name="fa6-solid:folder-open" class="w-16 h-16 text-muted-foreground/30 mb-4" />
-            <h3 class="text-xl font-medium text-foreground mb-2">No projects yet</h3>
-            <p class="text-muted-foreground">Projects will appear here once they are added to the content collection.</p>
+            <h3 class="text-xl font-medium text-foreground mb-2">{t('portfolio.noProjectsYet')}</h3>
+            <p class="text-muted-foreground">{t('portfolio.noProjectsYetDescription')}</p>
         </div>
     )}
 </section>

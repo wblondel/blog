@@ -1,0 +1,67 @@
+{
+    "about": {
+        "title": "",
+        "bio": "",
+        "qualities": [],
+        "age": 31,
+        "contact": {
+            "email": "",
+            "linkedin": "",
+            "github": ""
+        },
+        "cv_link": ""
+    },
+    "professional_project": {
+        "title": "",
+        "target_job": "",
+        "specialty": ""
+    },
+    "experience": [
+        {
+            "id": "exp-1",
+            "role": "",
+            "company": "",
+            "location": "",
+            "startDate": "",
+            "endDate": "",
+            "current": true,
+            "description": ""
+        }
+    ],
+    "skills": {
+        "technical": [],
+        "soft": []
+    },
+    "education": [
+        {
+            "id": "edu-2",
+            "degree": "",
+            "institution": "",
+            "location": "",
+            "startDate": "",
+            "endDate": "",
+            "current": true,
+            "description": ""
+        }
+    ],
+    "certifications": [
+        {
+            "id": "cert-1",
+            "name": "",
+            "issuer": "",
+            "date": ""
+        }
+    ],
+    "interests": [],
+    "recommendations": [
+        {
+            "id": "rec-1",
+            "text": "",
+            "author": "",
+            "role": "",
+            "company": "",
+            "avatar": "",
+            "linkedin": ""
+        }
+    ]
+}

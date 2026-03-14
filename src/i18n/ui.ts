@@ -79,6 +79,8 @@ export const ui = {
         'portfolio.age': 'Age',
         'portfolio.years': 'years old',
         'portfolio.qualities': 'Qualities',
+        'portfolio.noProjectsYet': 'No projects yet',
+        'portfolio.noProjectsYetDescription': 'Projects will appear here once they are added to the content collection.',
     },
     fr: {
         'nav.home': 'Accueil',
@@ -153,5 +155,7 @@ export const ui = {
         'portfolio.age': 'Âge',
         'portfolio.years': 'ans',
         'portfolio.qualities': 'Qualités',
+        'portfolio.noProjectsYet': 'Aucun projet pour l\'instant',
+        'portfolio.noProjectsYetDescription': 'Les projets apparaîtront ici une fois ajoutés à la collection de contenu.',
     },
 } as const;

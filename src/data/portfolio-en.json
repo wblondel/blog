@@ -22,23 +22,12 @@
         "specialty": "Web application security and DevSecOps integration."
     },
     "experience": [
-        {
-            "id": "exp-1",
-            "role": "Senior Full-Stack Developer",
-            "company": "Tech Company",
-            "location": "Paris, France",
-            "startDate": "2021-01",
-            "endDate": "Present",
-            "current": true,
-            "description": "Leading the development of secure web applications using Laravel and Vue.js. Implementing DevSecOps practices."
-        }
     ],
     "skills": {
         "technical": [
             "PHP",
             "Laravel",
             "Javascript",
-            "TypeScript",
             "Astro",
             "TailwindCSS",
             "SQL",
@@ -51,39 +40,10 @@
         ]
     },
     "education": [
-        {
-            "id": "edu-2",
-            "degree": "BTS SIO (Services Informatiques aux Organisations) - Option SLAM",
-            "institution": "CNED",
-            "location": "Remote",
-            "startDate": "2024-09",
-            "endDate": "2026-06",
-            "current": true,
-            "description": "Focus on software solutions and business applications."
-        },
-        {
-            "id": "edu-1",
-            "degree": "Bachelor in Computer Science",
-            "institution": "University of Technology",
-            "location": "City, Country",
-            "startDate": "2015-09",
-            "endDate": "2018-06",
-            "current": false,
-            "description": "General computer science degree."
-        }
     ],
     "certifications": [
-        {
-            "id": "cert-1",
-            "name": "AWS Certified Developer - Associate",
-            "issuer": "Amazon Web Services",
-            "date": "2023-05"
-        }
     ],
     "interests": [
-        "Genealogy",
-        "Retro-gaming (Amstrad CPC 6128)",
-        "Cybersecurity research"
     ],
     "recommendations": [
         {

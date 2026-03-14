@@ -22,43 +22,12 @@
         "specialty": "Sécurité des applications web et intégration DevSecOps."
     },
     "experience": [
-        {
-            "id": "exp-1",
-            "role": "Développeur Full-Stack Senior",
-            "company": "Tech Company",
-            "location": "Paris, France",
-            "startDate": "2021-01",
-            "endDate": "Present",
-            "current": true,
-            "description": "Direction du développement d'applications web sécurisées utilisant Laravel et Vue.js. Implémentation des pratiques DevSecOps."
-        },
-        {
-            "id": "exp-2",
-            "role": "Développeur Full-Stack Senior",
-            "company": "Tech Company",
-            "location": "Paris, France",
-            "startDate": "2019-01",
-            "endDate": "2020-12",
-            "current": false,
-            "description": "Direction du développement d'applications web sécurisées utilisant Laravel et Vue.js. Implémentation des pratiques DevSecOps."
-        },
-        {
-            "id": "exp-3",
-            "role": "Développeur Full-Stack Senior",
-            "company": "Tech Company",
-            "location": "Paris, France",
-            "startDate": "2012-01",
-            "endDate": "2020-11",
-            "current": false,
-            "description": "Direction du développement d'applications web sécurisées utilisant Laravel et Vue.js. Implémentation des pratiques DevSecOps."
-        }
     ],
     "skills": {
         "technical": [
             "PHP",
             "Laravel",
             "Javascript",
-            "TypeScript",
             "Astro",
             "TailwindCSS",
             "SQL",
@@ -71,51 +40,10 @@
         ]
     },
     "education": [
-        {
-            "id": "edu-2",
-            "degree": "BTS SIO (Services Informatiques aux Organisations) - Option SLAM",
-            "institution": "CNED",
-            "location": "À distance",
-            "startDate": "2024-09",
-            "endDate": "2026-06",
-            "current": true,
-            "description": "Spécialisation dans les solutions logicielles et les applications métiers."
-        },
-        {
-            "id": "edu-1",
-            "degree": "Licence en Informatique",
-            "institution": "Université de Technologie",
-            "location": "Ville, Pays",
-            "startDate": "2015-09",
-            "endDate": "2018-06",
-            "current": false,
-            "description": "Diplôme général en informatique."
-        }
     ],
     "certifications": [
-        {
-            "id": "cert-1",
-            "name": "Développeur certifié AWS - Associé",
-            "issuer": "Amazon Web Services",
-            "date": "2023-05"
-        },
-        {
-            "id": "cert-2",
-            "name": "Dummy Certification",
-            "issuer": "Google",
-            "date": "2022-05"
-        },
-        {
-            "id": "cert-3",
-            "name": "Dummy Certification",
-            "issuer": "Microsoft",
-            "date": "2021-05"
-        }
     ],
     "interests": [
-        "Généalogie",
-        "Rétro-gaming (Amstrad CPC 6128)",
-        "Recherche en cybersécurité"
     ],
     "recommendations": [
         {
