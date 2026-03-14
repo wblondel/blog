@@ -31,7 +31,7 @@ L'IA excelle dans la reconnaissance de schémas, y compris les schémas linguist
 
 * **Stylométrie :** chaque personne possède une « empreinte d'écriture » unique (vocabulaire, longueur des phrases, habitudes de ponctuation). Les modèles d'IA peuvent analyser les écrits connus d'une cible (ex. des billets de blog d'entreprise) et rechercher ce même style sur des forums anonymes (Reddit, 4chan) ou des marketplaces du Dark Web.
 
-* **Désanonymisation :** cela permet aux attaquants de relier une identité professionnelle à une persona en ligne privée, potentiellement compromettante. Ces informations sont de l'« or » pour le chantage ou des attaques d'[ingénierie sociale hautement ciblées](/fr/spear-phishing-automatise-comment-les-llm-industrialisent-lingenierie-sociale).
+* **Désanonymisation :** cela permet aux attaquants de relier une identité professionnelle à une persona en ligne privée, potentiellement compromettante. Ces informations sont de l'« or » pour le chantage ou des attaques d'[ingénierie sociale hautement ciblées](/fr/spear-phishing-automatise-comment-les-llm-industrialisent-lingenierie-sociale/).
 
 
 ## Le graphe de connaissances : relier les points
@@ -40,7 +40,7 @@ Le véritable pouvoir de l'IA dans l'OSINT est la **corrélation**.
 
 * **L'humain :** voit la photo d'un chien sur Instagram (« Mon adorable Médor ! ») et une date de naissance sur Facebook.
 
-* **L'IA :** ajoute instantanément « Médor » et « Année de naissance » à un [dictionnaire de devinettes de mots de passe (PassGAN)](/fr/crackage-de-mots-de-passe-par-ia-la-fin-des-mots-de-passe-a-8-caracteres). Elle corrèle cela avec une base de données compromise montrant que la cible utilise « Medor1985 » comme mot de passe sur LinkedIn.
+* **L'IA :** ajoute instantanément « Médor » et « Année de naissance » à un [dictionnaire de devinettes de mots de passe (PassGAN)](/fr/crackage-de-mots-de-passe-par-ia-la-fin-des-mots-de-passe-a-8-caracteres/). Elle corrèle cela avec une base de données compromise montrant que la cible utilise « Medor1985 » comme mot de passe sur LinkedIn.
 
 * **L'inférence :** l'IA en déduit que la cible utilise probablement ce schéma de mot de passe sur le VPN d'entreprise. Elle automatise le « saut logique » qu'un analyste humain pourrait manquer.
 

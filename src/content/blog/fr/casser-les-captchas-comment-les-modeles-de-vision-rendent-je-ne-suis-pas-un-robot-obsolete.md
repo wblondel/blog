@@ -42,12 +42,12 @@ Avant 2024, pour contourner les CAPTCHAs à grande échelle, on utilisait des «
 
 * **Réduction des coûts :** Les solveurs IA automatisés (comme *CapSolver* ou *2Captcha* en mode IA) ont fait chuter le coût à quelques centimes.
 
-* **Vitesse :** Un humain met 10 à 30 secondes pour résoudre un puzzle. Une IA prend quelques millisecondes. Cette rapidité permet aux attaques de credential stuffing (test de [mots de passe volés](/fr/crackage-de-mots-de-passe-par-ia-la-fin-des-mots-de-passe-a-8-caracteres)) de se produire à une vélocité que la limitation de débit traditionnelle ne peut pas facilement gérer.
+* **Vitesse :** Un humain met 10 à 30 secondes pour résoudre un puzzle. Une IA prend quelques millisecondes. Cette rapidité permet aux attaques de credential stuffing (test de [mots de passe volés](/fr/crackage-de-mots-de-passe-par-ia-la-fin-des-mots-de-passe-a-8-caracteres/)) de se produire à une vélocité que la limitation de débit traditionnelle ne peut pas facilement gérer.
 
 
 ## Défense : le virage vers l'« invisible »
 
-Puisque les puzzles visuels sont dépassés, l'industrie migre vers l'**analyse comportementale** et la [gestion des bots](/fr/gestion-des-bots-distinguer-les-utilisateurs-humains-des-scrapers-ia) (reCAPTCHA v3, Cloudflare Turnstile).
+Puisque les puzzles visuels sont dépassés, l'industrie migre vers l'**analyse comportementale** et la [gestion des bots](/fr/gestion-des-bots-distinguer-les-utilisateurs-humains-des-scrapers-ia/) (reCAPTCHA v3, Cloudflare Turnstile).
 
 * **Fonctionnement :** Ces systèmes n'affichent pas de puzzle. Au lieu de cela, ils exécutent du JavaScript en arrière-plan pour analyser *comment* vous déplacez votre souris.
 

@@ -12,13 +12,13 @@ readTime: 5
 
 ## Introduction: The End of the Castle and Moat
 
-For decades, enterprise security relied on the "Castle and Moat" perimeter model. You built a strong firewall (the moat), and if a user authenticated via VPN, they were inside the castle and implicitly trusted. The reality of modern cyberattacks—specifically credential theft via [automated spear phishing](/en/automated-spear-phishing-how-llms-scale-social-engineering) and automated lateral movement—has proven this model fatally flawed. Once an attacker breaches the perimeter, they have free rein to destroy the network.
+For decades, enterprise security relied on the "Castle and Moat" perimeter model. You built a strong firewall (the moat), and if a user authenticated via VPN, they were inside the castle and implicitly trusted. The reality of modern cyberattacks—specifically credential theft via [automated spear phishing](/en/automated-spear-phishing-how-llms-scale-social-engineering/) and automated lateral movement—has proven this model fatally flawed. Once an attacker breaches the perimeter, they have free rein to destroy the network.
 
 The industry response is **Zero Trust Architecture (ZTA)**, built on the mantra: *"Never trust, always verify."* Zero Trust assumes that the network is already hostile and that no user or device is trusted by default, regardless of their location. However, manually verifying every single request is impossible. This is where Artificial Intelligence becomes the essential engine of Zero Trust, transforming it from a theoretical concept into a scalable reality.
 
 ## 1. From Static Rules to Dynamic Risk Scoring
 
-Traditional access control relies on static rules: *If User A has the correct password and MFA token, grant access to Database B.* In an AI-driven Zero Trust model, trust is never static; it is a continuously fluctuating variable. AI ingests vast amounts of telemetry data—device health, geolocation, time of day, and the user's behavioral baseline (via [UEBA](/en/ueba-moving-beyond-signatures-with-ai-driven-behavioral-analytics), which we discussed in Week 14)—to calculate a **Dynamic Risk Score** in real-time.
+Traditional access control relies on static rules: *If User A has the correct password and MFA token, grant access to Database B.* In an AI-driven Zero Trust model, trust is never static; it is a continuously fluctuating variable. AI ingests vast amounts of telemetry data—device health, geolocation, time of day, and the user's behavioral baseline (via [UEBA](/en/ueba-moving-beyond-signatures-with-ai-driven-behavioral-analytics/), which we discussed in Week 14)—to calculate a **Dynamic Risk Score** in real-time.
 
 If an executive logs in from their managed corporate laptop in Paris at 9:00 AM, their risk score is low, and access is seamless. If that same executive's account requests access to a sensitive HR database from an unmanaged tablet in a new country at 3:00 AM, the AI dynamically raises the risk score.
 
@@ -39,7 +39,7 @@ When the AI lowers a user's trust score, the Zero Trust Policy Engine automatica
 
 * **Step-Up Authentication:** The system might temporarily pause the user's access and push a new MFA request to their phone, or require a FIDO2 hardware key touch to re-verify their identity.
 * **Granular Restriction:** Instead of kicking the user off the network entirely, the AI might downgrade their permissions from "Read/Write" to "Read-Only" for specific applications.
-* **Instant Revocation:** If the behavior matches a known ransomware execution pattern (like rapid file encryption), the AI severs the network connection and isolates the endpoint entirely via the [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint).
+* **Instant Revocation:** If the behavior matches a known ransomware execution pattern (like rapid file encryption), the AI severs the network connection and isolates the endpoint entirely via the [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint/).
 
 ## 4. AI-Driven Microsegmentation
 

@@ -11,7 +11,7 @@ readTime: 5
 
 ## Introduction: The Trust Crisis in Digital Identity
 
-In Series 1 (Week 5), we explored how attackers use [real-time deepfake injection to bypass "Know Your Customer" (KYC) video selfies](/en/deepfake-video-in-kyc-bypassing-biometric-verification). This offensive capability created a profound crisis for digital identity: if an AI can perfectly mimic a human face and voice, how does a system prove the user on the other side of the screen is actually real?
+In Series 1 (Week 5), we explored how attackers use [real-time deepfake injection to bypass "Know Your Customer" (KYC) video selfies](/en/deepfake-video-in-kyc-bypassing-biometric-verification/). This offensive capability created a profound crisis for digital identity: if an AI can perfectly mimic a human face and voice, how does a system prove the user on the other side of the screen is actually real?
 
 The answer lies in **Biometric Liveness Detection**. Facial recognition alone is no longer authentication; it merely identifies *who* the person claims to be (like a username). Liveness detection is the true authenticator (the password), proving that the biometric data is being captured from a live, physically present human being, rather than a synthetic digital construct or a printed mask.
 
@@ -19,7 +19,7 @@ The answer lies in **Biometric Liveness Detection**. Facial recognition alone is
 
 Early defenses relied on **Active Liveness**. The system would prompt the user to perform a specific action: *"Turn your head to the right," "Blink twice,"* or *"Read these numbers aloud."* As we discussed in the Red Team series, generative AI rendered this obsolete. Attackers now use "puppetry" software that maps the attacker's real-time head movements onto the deepfake face, effortlessly passing active challenges.
 
-The industry has therefore pivoted to **Passive Liveness**. This approach requires zero effort from the user. Instead of asking for a deliberate action, defensive AI analyzes the video feed in the background for involuntary human physiological traits and microscopic digital artifacts that generative models fail to render correctly—weaknesses that can also be exploited through [adversarial examples](/en/adversarial-examples-fooling-image-recognition-systems).
+The industry has therefore pivoted to **Passive Liveness**. This approach requires zero effort from the user. Instead of asking for a deliberate action, defensive AI analyzes the video feed in the background for involuntary human physiological traits and microscopic digital artifacts that generative models fail to render correctly—weaknesses that can also be exploited through [adversarial examples](/en/adversarial-examples-fooling-image-recognition-systems/).
 
 ## 2. How Defensive AI Spots the Fake
 
@@ -39,7 +39,7 @@ These hardware modules project thousands of invisible infrared dots onto the use
 
 ## 4. Defending Against Audio Deepfakes (Anti-Vishing)
 
-Liveness isn't restricted to video. To counter the [voice cloning (Vishing)](/en/voice-cloning-vishing-the-new-frontier-of-ceo-fraud) threats discussed in Week 4, telecom providers and enterprise security teams are deploying **Audio Liveness Detection**.
+Liveness isn't restricted to video. To counter the [voice cloning (Vishing)](/en/voice-cloning-vishing-the-new-frontier-of-ceo-fraud/) threats discussed in Week 4, telecom providers and enterprise security teams are deploying **Audio Liveness Detection**.
 
 These models do not listen to *what* is being said, nor do they try to match the voice to a specific person. Instead, they analyze the acoustic environment. They look for the absence of natural breathing, unnatural vocal tract resonances, or the subtle digital "vocoder" artifacts that AI text-to-speech engines leave behind. 
 

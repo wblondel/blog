@@ -11,7 +11,7 @@ readTime: 6
 
 ## Introduction : L'Endpoint comme Nouveau Périmètre
 
-Avec l'essor du télétravail, du cloud computing et des architectures [Zero Trust](/fr/architecture-zero-trust-a-lere-de-lia-verification-continue), le périmètre réseau traditionnel de l'entreprise s'est dissous. Aujourd'hui, le vrai périmètre est l'**Endpoint** — le laptop de l'employé, l'appareil mobile ou le serveur cloud.
+Avec l'essor du télétravail, du cloud computing et des architectures [Zero Trust](/fr/architecture-zero-trust-a-lere-de-lia-verification-continue/), le périmètre réseau traditionnel de l'entreprise s'est dissous. Aujourd'hui, le vrai périmètre est l'**Endpoint** — le laptop de l'employé, l'appareil mobile ou le serveur cloud.
 
 Pendant des années, nous avons protégé les endpoints avec des logiciels antivirus (AV) traditionnels. Mais les AV legacy sont fondamentalement inadaptés face aux tactiques offensives modernes pilotées par l'IA. Pour survivre, les organisations se sont tournées vers l'**Endpoint Detection and Response (EDR)**. Au cœur d'une plateforme EDR moderne ne se trouve pas une base de données statique de fichiers malveillants connus, mais un agent de Machine Learning (ML) dynamique, embarqué sur le dispositif, capable de prendre des décisions défensives en une fraction de seconde.
 
@@ -20,7 +20,7 @@ Pendant des années, nous avons protégé les endpoints avec des logiciels antiv
 Les AV traditionnels fonctionnent comme un videur numérique armé d'une liste noire (signatures et hachages de fichiers). Si un fichier correspond à la liste noire, il est bloqué.
 
 Les attaquants contournent facilement ce mécanisme à l'aide de deux méthodes :
-* **[Malware Polymorphique](/fr/le-code-cameleon-malware-polymorphique-pilote-par-ia) :** Les attaquants utilisent l'IA pour réécrire automatiquement le code de leur malware pour chaque cible. Le hachage change, la signature devient inutile et l'AV laisse passer.
+* **[Malware Polymorphique](/fr/le-code-cameleon-malware-polymorphique-pilote-par-ia/) :** Les attaquants utilisent l'IA pour réécrire automatiquement le code de leur malware pour chaque cible. Le hachage change, la signature devient inutile et l'AV laisse passer.
 * **Malware Fileless et Living off the Land (LotL) :** Les hackers sophistiqués ne déposent plus de fichiers `.exe` malveillants sur le disque dur. Ils détournent plutôt des outils d'administration légitimes intégrés comme PowerShell ou Windows Management Instrumentation (WMI) pour injecter du code malveillant directement dans la mémoire volatile (RAM) de l'ordinateur. Comme il n'y a aucun « fichier » à analyser, l'AV legacy ne voit rien.
 
 ## 2. Agents ML Locaux : La Défense à la Périphérie
@@ -54,4 +54,4 @@ La détection est inutile sans réponse immédiate. Lorsque l'agent ML local dé
 
 L'agent ML local est l'ultime dernier rempart. Lorsque le firewall échoue, lorsque la passerelle de messagerie sécurisée est contournée et que l'utilisateur clique sur le lien malveillant, l'agent EDR se dresse entre l'attaquant et la compromission totale de la machine.
 
-Cependant, l'EDR ne voit que ce qui se passe sur un seul appareil. Dans quelques semaines, nous élargirons notre perspective pour explorer comment l'IA assemble la télémétrie de l'endpoint, du réseau et du cloud en une stratégie de défense unifiée connue sous le nom de **[XDR (Extended Detection and Response) et AI Threat Hunting](/fr/xdr-et-ia-threat-hunting-unifier-la-stack-de-securite)**.
+Cependant, l'EDR ne voit que ce qui se passe sur un seul appareil. Dans quelques semaines, nous élargirons notre perspective pour explorer comment l'IA assemble la télémétrie de l'endpoint, du réseau et du cloud en une stratégie de défense unifiée connue sous le nom de **[XDR (Extended Detection and Response) et AI Threat Hunting](/fr/xdr-et-ia-threat-hunting-unifier-la-stack-de-securite/)**.

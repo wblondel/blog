@@ -13,7 +13,7 @@ readTime: 5
 
 To a human, a picture of a panda is undeniably a panda, even if the image is slightly blurry or grainy. Neural networks, however, do not "see" the world as we do; they process high-dimensional matrices of pixel values. This fundamental difference in perception gives rise to one of the most fascinating and dangerous vulnerabilities in AI: **Adversarial Examples**.
 
-Unlike the *[Data Poisoning](/en/data-poisoning-sabotaging-ai-training-datasets)* discussed in Week 12 (which happens during the training phase), Adversarial Examples are **Evasion Attacks** that happen during *inference*. The model is already perfectly trained and deployed, but an attacker feeds it a carefully crafted, manipulated input that forces the AI to make a highly confident, catastrophic misclassification.
+Unlike the *[Data Poisoning](/en/data-poisoning-sabotaging-ai-training-datasets/)* discussed in Week 12 (which happens during the training phase), Adversarial Examples are **Evasion Attacks** that happen during *inference*. The model is already perfectly trained and deployed, but an attacker feeds it a carefully crafted, manipulated input that forces the AI to make a highly confident, catastrophic misclassification.
 
 ## 1. The Math of Deception: Invisible Noise
 
@@ -36,7 +36,7 @@ If adversarial attacks only worked on digital files, the threat would be limited
 
 ## 3. The Threat to Facial Recognition
 
-This technology poses a severe threat to [biometric security](/en/biometric-liveness-detection-countering-deepfakes). Researchers have developed 3D-printed adversarial glasses. When an attacker wears these brightly colored frames, they do not just hide their identity—they actively impersonate someone else. 
+This technology poses a severe threat to [biometric security](/en/biometric-liveness-detection-countering-deepfakes/). Researchers have developed 3D-printed adversarial glasses. When an attacker wears these brightly colored frames, they do not just hide their identity—they actively impersonate someone else. 
 
 The frames add specific pixel vectors to the area around the eyes. A low-level employee wearing these glasses could walk up to an AI-powered facial recognition turnstile and be incorrectly identified as the CEO, granting them unauthorized physical access to secure server rooms or restricted areas.
 
@@ -45,7 +45,7 @@ The frames add specific pixel vectors to the area around the eyes. A low-level e
 Defending against these attacks is incredibly complex because the "noise" is often imperceptible to traditional security scanners.
 
 * **Adversarial Training:** The most robust defense is to proactively generate thousands of adversarial examples during the development phase and include them in the training dataset. You explicitly teach the AI: *"This is a panda. This is also a panda, even with this specific mathematical noise."*
-* **Gradient Masking:** Developers attempt to hide the gradient information of the model so attackers cannot calculate the necessary perturbations. However, attackers often bypass this by training a "Substitute Model" (similar to the [Model Extraction](/en/model-stealing-extraction-reverse-engineering-ai) we covered in Week 11), calculating the noise on the substitute, and applying it to the victim model.
+* **Gradient Masking:** Developers attempt to hide the gradient information of the model so attackers cannot calculate the necessary perturbations. However, attackers often bypass this by training a "Substitute Model" (similar to the [Model Extraction](/en/model-stealing-extraction-reverse-engineering-ai/) we covered in Week 11), calculating the noise on the substitute, and applying it to the victim model.
 * **Input Sanitization:** Applying standard image compression (like JPEG compression) or slight blurring to incoming images *before* they hit the AI model can sometimes disrupt the delicate mathematical perturbations of an adversarial attack.
 
 ## Conclusion of Series 1

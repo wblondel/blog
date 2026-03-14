@@ -11,7 +11,7 @@ readTime: 5
 
 ## Introduction: The Crisis in the SOC
 
-In the previous article, we discussed how [UEBA](/en/ueba-moving-beyond-signatures-with-ai-driven-behavioral-analytics) helps identify anomalous human and machine behavior. However, UEBA is just one feed of information. In a modern enterprise, firewalls, endpoints, identity providers, and cloud infrastructure generate billions of logs every day. 
+In the previous article, we discussed how [UEBA](/en/ueba-moving-beyond-signatures-with-ai-driven-behavioral-analytics/) helps identify anomalous human and machine behavior. However, UEBA is just one feed of information. In a modern enterprise, firewalls, endpoints, identity providers, and cloud infrastructure generate billions of logs every day. 
 
 These logs are centralized in a **Security Information and Event Management (SIEM)** system. For years, the SIEM has been the beating heart of the Security Operations Center (SOC). But it has also become a source of immense stress. Legacy SIEMs rely on static correlation rules that generate thousands of low-fidelity alerts daily. This creates **Alert Fatigue**—a dangerous psychological phenomenon where overwhelmed analysts begin ignoring alerts, inevitably missing the real attack hidden in the noise. AI-powered SIEMs are emerging as the critical solution to this data crisis.
 
@@ -20,7 +20,7 @@ These logs are centralized in a **Security Information and Event Management (SIE
 Traditional SIEMs are essentially massive search engines for logs. If an administrator sets a rule like "Alert on 5 failed logins," the SIEM will blindly fire an alert every time that condition is met, regardless of context.
 
 * **False Positives:** A misconfigured service account with an expired password might trigger 500 alerts in an hour. An analyst has to manually review and close each one.
-* **Burnout:** The industry average time to investigate a single alert is 10 to 15 minutes. When a SOC receives 10,000 alerts a day, it is mathematically impossible for the human team to investigate them all, a problem compounded by [the cybersecurity skills gap](/en/the-skills-gap-will-ai-replace-the-junior-cybersecurity-analyst). Attackers know this and often generate "noise" (decoy attacks) to hide their actual exfiltration activities.
+* **Burnout:** The industry average time to investigate a single alert is 10 to 15 minutes. When a SOC receives 10,000 alerts a day, it is mathematically impossible for the human team to investigate them all, a problem compounded by [the cybersecurity skills gap](/en/the-skills-gap-will-ai-replace-the-junior-cybersecurity-analyst/). Attackers know this and often generate "noise" (decoy attacks) to hide their actual exfiltration activities.
 
 ## 2. Contextualization: How Machine Learning Connects the Dots
 
@@ -50,4 +50,4 @@ Historically, Threat Hunting required deep knowledge of complex query languages 
 
 AI is not replacing the SOC analyst; it is replacing the tedious, repetitive data-gathering tasks that lead to burnout. By automating correlation, triage, and query generation, AI-powered SIEMs allow analysts to focus on what humans still do best: critical thinking, complex problem-solving, and strategic incident response. 
 
-Next week, we will look at the logical next step: once the SIEM identifies the threat, how do we use AI to automatically stop it in real-time? We will dive into the world of **[SOAR (Security Orchestration, Automation, and Response)](/en/automated-incident-response-soar-defending-at-machine-speed)**.
+Next week, we will look at the logical next step: once the SIEM identifies the threat, how do we use AI to automatically stop it in real-time? We will dive into the world of **[SOAR (Security Orchestration, Automation, and Response)](/en/automated-incident-response-soar-defending-at-machine-speed/)**.

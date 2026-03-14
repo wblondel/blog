@@ -14,11 +14,11 @@ readTime: 5
 
 Today, over 80% of all internet traffic is encrypted using protocols like TLS and HTTPS. From a user privacy perspective, this is a massive victory. However, from a Blue Team perspective, it is a nightmare. 
 
-Malware authors, ransomware operators, and [insider threats](/en/insider-threat-detection-identifying-disgruntled-employees-via) now routinely use the exact same encryption protocols as legitimate banking websites to hide their communications. Traditional security tools are effectively blind to this traffic. **Network Traffic Analysis (NTA)** powered by Machine Learning is the industry's answer: a way to detect the malicious intent *inside* the tunnel without ever breaking the encryption.
+Malware authors, ransomware operators, and [insider threats](/en/insider-threat-detection-identifying-disgruntled-employees-via/) now routinely use the exact same encryption protocols as legitimate banking websites to hide their communications. Traditional security tools are effectively blind to this traffic. **Network Traffic Analysis (NTA)** powered by Machine Learning is the industry's answer: a way to detect the malicious intent *inside* the tunnel without ever breaking the encryption.
 
 ## 1. The Death of Deep Packet Inspection (DPI)
 
-Historically, [firewalls](/en/the-future-of-firewalls-next-gen-firewalls-ngfw-with-deep-learning) and Intrusion Detection Systems (IDS) relied on Deep Packet Inspection (DPI). They would open up the network packet, read the payload, and look for malicious signatures. 
+Historically, [firewalls](/en/the-future-of-firewalls-next-gen-firewalls-ngfw-with-deep-learning/) and Intrusion Detection Systems (IDS) relied on Deep Packet Inspection (DPI). They would open up the network packet, read the payload, and look for malicious signatures. 
 
 With the rise of TLS 1.3, reading the payload is mathematically impossible without the decryption keys. For a while, enterprises bypassed this using "SSL Decryption" (acting as a sanctioned Man-in-the-Middle by intercepting traffic, decrypting it, inspecting it, and re-encrypting it). However, this approach is highly resource-intensive, raises massive data privacy concerns, and frequently breaks modern applications that use certificate pinning. A new approach was needed: one that analyzes the *behavior* of the traffic rather than its *content*.
 

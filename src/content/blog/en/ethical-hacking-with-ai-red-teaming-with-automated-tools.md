@@ -24,10 +24,10 @@ The traditional Cyber Kill Chain begins with reconnaissance—a highly tedious p
 
 ## 2. Dynamic Exploit Generation and Evasion
 
-Once a vulnerability is found, the attacker must exploit it. Historically, ethical hackers relied on static exploit databases (like Exploit-DB or Metasploit). If a target system had a slightly different operating system version or a custom Web Application Firewall (WAF), the static exploit would fail, requiring the hacker to manually rewrite the payload. Techniques like [adversarial examples](/en/adversarial-examples-fooling-image-recognition-systems) are also being repurposed for offensive red team exercises.
+Once a vulnerability is found, the attacker must exploit it. Historically, ethical hackers relied on static exploit databases (like Exploit-DB or Metasploit). If a target system had a slightly different operating system version or a custom Web Application Firewall (WAF), the static exploit would fail, requiring the hacker to manually rewrite the payload. Techniques like [adversarial examples](/en/adversarial-examples-fooling-image-recognition-systems/) are also being repurposed for offensive red team exercises.
 
 Generative AI fundamentally changes this dynamic. 
-* **Payload Mutation:** Red teams use LLMs to automatically generate and mutate exploit code on the fly. If a defensive system blocks an initial [prompt injection](/en/prompt-injection-attacks-hacking-the-logic-of-chatbots) or SQL injection payload, the AI can instantly generate fifty obfuscated variations—using different encodings, polyglots, and syntax structures—until one successfully bypasses the WAF.
+* **Payload Mutation:** Red teams use LLMs to automatically generate and mutate exploit code on the fly. If a defensive system blocks an initial [prompt injection](/en/prompt-injection-attacks-hacking-the-logic-of-chatbots/) or SQL injection payload, the AI can instantly generate fifty obfuscated variations—using different encodings, polyglots, and syntax structures—until one successfully bypasses the WAF.
 * **Bypassing EDR:** AI is also being used to automate the evasion of Endpoint Detection and Response (EDR) systems. Machine learning models analyze the behavioral signatures that EDRs look for and automatically rewrite malware wrappers to randomize memory allocation and API calls, ensuring the red team's payload remains completely undetected during the exercise.
 
 ## 3. The Rise of CART (Continuous Automated Red Teaming)
@@ -37,7 +37,7 @@ The ultimate strategic goal of integrating AI into ethical hacking is the realiz
 
 
 CART platforms utilize autonomous AI agents that operate 24/7 inside the corporate network. 
-* **Adversarial Emulation:** These agents are programmed to safely emulate the behavior of known ransomware groups or nation-state actors. Leveraging [fuzzing at scale](/en/fuzzing-at-scale-using-ai-to-generate-edge-case-test-inputs), they constantly attempt to move laterally, escalate privileges, and exfiltrate dummy data. 
+* **Adversarial Emulation:** These agents are programmed to safely emulate the behavior of known ransomware groups or nation-state actors. Leveraging [fuzzing at scale](/en/fuzzing-at-scale-using-ai-to-generate-edge-case-test-inputs/), they constantly attempt to move laterally, escalate privileges, and exfiltrate dummy data. 
 * **Validating the Blue Team:** For the Chief Information Security Officer (CISO), CART provides empirical evidence of the organization's defensive readiness. If an IT engineer accidentally misconfigures a Kubernetes cluster on a Tuesday, the CART agent will autonomously discover and exploit it on Wednesday, triggering an alert to the Security Operations Center (SOC) before a real attacker can find it.
 
 ## 4. Governance and the Risks of Autonomous Hacking

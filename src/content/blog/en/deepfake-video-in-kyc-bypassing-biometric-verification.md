@@ -13,7 +13,7 @@ readTime: 3
 
 In the digital banking era, opening an account rarely involves visiting a branch. Instead, users undergo a "Know Your Customer" (KYC) process via a smartphone app: they scan their ID card and then record a short video selfie, often following instructions like "turn your head left" or "blink."
 
-This process relies on "[Liveness Detection](/en/biometric-liveness-detection-countering-deepfakes)"—the assumption that a video feed represents a live human present at that moment. Generative AI has shattered this assumption. We are now seeing "Deepfake Injection Attacks" where criminals use real-time face-swapping technology to pass these biometric checks, opening mule accounts to launder money or access credit in someone else's name.
+This process relies on "[Liveness Detection](/en/biometric-liveness-detection-countering-deepfakes/)"—the assumption that a video feed represents a live human present at that moment. Generative AI has shattered this assumption. We are now seeing "Deepfake Injection Attacks" where criminals use real-time face-swapping technology to pass these biometric checks, opening mule accounts to launder money or access credit in someone else's name.
 
 ## 1. The Attack Vector: Camera Injection
 
@@ -31,7 +31,7 @@ However, modern Generative AI models can animate a static photo in real-time.
 
 ## 3. The Scale of the Threat
 
-This is not a theoretical risk. In early 2024, a sophisticated group used deepfakes to bypass the KYC checks of a major crypto exchange, creating thousands of verified accounts. These accounts were then sold on the Dark Web as "Fully Verified" identities for up to $200 each. This "Identity-as-a-Service" market fuels ransomware cash-outs and terrorism financing, complementing [voice cloning attacks](/en/voice-cloning-vishing-the-new-frontier-of-ceo-fraud) in the broader deepfake threat landscape.
+This is not a theoretical risk. In early 2024, a sophisticated group used deepfakes to bypass the KYC checks of a major crypto exchange, creating thousands of verified accounts. These accounts were then sold on the Dark Web as "Fully Verified" identities for up to $200 each. This "Identity-as-a-Service" market fuels ransomware cash-outs and terrorism financing, complementing [voice cloning attacks](/en/voice-cloning-vishing-the-new-frontier-of-ceo-fraud/) in the broader deepfake threat landscape.
 
 ## 4. Defense: Passive Liveness & Hardware Attestation
 

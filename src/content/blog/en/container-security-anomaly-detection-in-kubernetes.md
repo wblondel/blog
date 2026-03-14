@@ -17,12 +17,12 @@ Traditional security tools designed for static virtual machines are completely b
 
 ## 1. The Illusion of Static Image Security
 
-The foundation of container security has traditionally been "Shift Left" image scanning. Before a Docker image is deployed to the Kubernetes cluster, a CI/CD pipeline scanner checks it against a database of known Common Vulnerabilities and Exposures (CVEs) — a process closely tied to maintaining an accurate [Software Bill of Materials (SBOM)](/en/software-bill-of-materials-sbom-tracking-ai-components). 
+The foundation of container security has traditionally been "Shift Left" image scanning. Before a Docker image is deployed to the Kubernetes cluster, a CI/CD pipeline scanner checks it against a database of known Common Vulnerabilities and Exposures (CVEs) — a process closely tied to maintaining an accurate [Software Bill of Materials (SBOM)](/en/software-bill-of-materials-sbom-tracking-ai-components/). 
 
 While crucial, image scanning only tells you if the container *starts* in a vulnerable state. It provides zero protection once the container is actually running. 
 * **Zero-Day Exploits:** If an attacker uses a novel zero-day exploit to compromise a running Nginx container, the static image scanner won't know because the vulnerability wasn't in its CVE database.
 * **Fileless Malware:** Attackers frequently execute malicious code directly in the container's volatile memory (RAM) without ever writing a file to the disk. Static scanners looking for malicious binaries are bypassed entirely.
-* **Configuration Drift:** A container might be deployed securely, but a misconfigured K8s Role-Based Access Control (RBAC) policy — the kind of drift that [Cloud Security Posture Management (CSPM)](/en/cloud-security-posture-management-cspm-ai-for-config-monitoring) tools are designed to catch — might allow an attacker to attach to the pod post-deployment and escalate privileges.
+* **Configuration Drift:** A container might be deployed securely, but a misconfigured K8s Role-Based Access Control (RBAC) policy — the kind of drift that [Cloud Security Posture Management (CSPM)](/en/cloud-security-posture-management-cspm-ai-for-config-monitoring/) tools are designed to catch — might allow an attacker to attach to the pod post-deployment and escalate privileges.
 
 ## 2. Deep Observability with eBPF and Machine Learning
 
@@ -39,7 +39,7 @@ However, eBPF generates an overwhelming avalanche of telemetry data. This is whe
 Once the ML model has baselined the container's behavior, it acts as an incredibly sensitive drift detector. It understands the specific DNA of how a microservice is supposed to operate.
 
 * **Process Anomalies:** The AI knows that the `payment-processing` container only ever runs the `node` process. If eBPF suddenly detects that container spawning a `/bin/bash` shell or executing `curl` to download a script from an external IP, the AI instantly flags it as a high-confidence anomaly, even if no known malware signature is present.
-* **Network Lateral Movement:** In Kubernetes, containers frequently talk to each other. The ML model maps these standard communication pathways. If a frontend web container that normally only speaks to the [backend API](/en/api-security-detecting-anomaly-usage-patterns-in-microservices) suddenly attempts to open an SSH connection to a database pod in a different namespace, the AI recognizes the behavioral signature of lateral movement and data exfiltration.
+* **Network Lateral Movement:** In Kubernetes, containers frequently talk to each other. The ML model maps these standard communication pathways. If a frontend web container that normally only speaks to the [backend API](/en/api-security-detecting-anomaly-usage-patterns-in-microservices/) suddenly attempts to open an SSH connection to a database pod in a different namespace, the AI recognizes the behavioral signature of lateral movement and data exfiltration.
 
 ## 4. Automated Response at Machine Speed
 

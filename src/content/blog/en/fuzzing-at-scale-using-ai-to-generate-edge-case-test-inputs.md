@@ -24,7 +24,7 @@ Traditional mutational fuzzing takes a valid input (like a JSON file) and random
 
 
 AI-driven fuzzing fundamentally changes this dynamic by understanding the "grammar" of the input.
-* **Context-Aware Payloads:** Instead of random bit-flipping, an LLM analyzes the [API documentation and usage patterns](/en/api-security-detecting-anomaly-usage-patterns-in-microservices), network protocol, or file format. If the target is a complex enterprise PDF reader, the AI learns the exact structure of a valid PDF. It then generates thousands of subtly malformed, deeply nested, but *structurally plausible* PDFs.
+* **Context-Aware Payloads:** Instead of random bit-flipping, an LLM analyzes the [API documentation and usage patterns](/en/api-security-detecting-anomaly-usage-patterns-in-microservices/), network protocol, or file format. If the target is a complex enterprise PDF reader, the AI learns the exact structure of a valid PDF. It then generates thousands of subtly malformed, deeply nested, but *structurally plausible* PDFs.
 * **Bypassing the Bouncer:** Because the AI's generated inputs are syntactically valid, they easily bypass the initial layer of input validation. The malformed payloads penetrate deep into the application's core execution paths, triggering edge cases and race conditions that a traditional fuzzer would take years of CPU time to stumble upon.
 
 ## 2. Automating the Fuzz Harness (The OSS-Fuzz Revolution)
@@ -50,4 +50,4 @@ Tools are emerging specifically for **Prompt Injection Fuzzing**. These AI-on-AI
 
 ## Conclusion
 
-Fuzzing is no longer a dark art reserved for elite security researchers with unlimited compute budgets. By using AI to understand input grammar, automatically write harnesses, and triage crashes, organizations can integrate continuous, high-fidelity fuzz testing directly into their CI/CD pipelines — complementing [SAST and DAST scanning enhanced by ML](/en/sast-vs-dast-enhancing-code-scanning-with-machine-learning). In the arms race of software security, AI-driven fuzzing ensures that you are finding the deepest flaws in your code before the adversaries do.
+Fuzzing is no longer a dark art reserved for elite security researchers with unlimited compute budgets. By using AI to understand input grammar, automatically write harnesses, and triage crashes, organizations can integrate continuous, high-fidelity fuzz testing directly into their CI/CD pipelines — complementing [SAST and DAST scanning enhanced by ML](/en/sast-vs-dast-enhancing-code-scanning-with-machine-learning/). In the arms race of software security, AI-driven fuzzing ensures that you are finding the deepest flaws in your code before the adversaries do.

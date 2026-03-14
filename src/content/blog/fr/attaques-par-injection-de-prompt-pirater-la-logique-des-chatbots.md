@@ -13,7 +13,7 @@ readTime: 3
 
 Pendant vingt ans, l'injection SQL (SQLi) a été la principale vulnérabilité web. Elle fonctionnait parce que les systèmes ne pouvaient pas distinguer les *données* (le nom de l'utilisateur) des *instructions* (la commande SQL).
 
-Les Large Language Models (LLMs) souffrent exactement du même défaut, mais à une échelle bien plus grande. On l'appelle l'**injection de prompt**. Étroitement lié au [jailbreaking des LLM](/fr/jailbreaking-des-llm-le-phenomene-dan-do-anything-now), ce défaut existe parce que les LLMs acceptent des instructions en langage naturel, un utilisateur malveillant peut formuler une phrase qui annule la programmation originale du développeur. Cela permet aux attaquants de détourner des chatbots de service client, d'exfiltrer des informations privées de bases de données, ou de forcer l'IA à effectuer des actions non autorisées.
+Les Large Language Models (LLMs) souffrent exactement du même défaut, mais à une échelle bien plus grande. On l'appelle l'**injection de prompt**. Étroitement lié au [jailbreaking des LLM](/fr/jailbreaking-des-llm-le-phenomene-dan-do-anything-now/), ce défaut existe parce que les LLMs acceptent des instructions en langage naturel, un utilisateur malveillant peut formuler une phrase qui annule la programmation originale du développeur. Cela permet aux attaquants de détourner des chatbots de service client, d'exfiltrer des informations privées de bases de données, ou de forcer l'IA à effectuer des actions non autorisées.
 
 ## Injection directe : « ignore les instructions précédentes »
 
@@ -53,7 +53,7 @@ Se défendre contre l'injection de prompt est mathématiquement difficile car le
 
 * **Architecture double-LLM :** Utiliser un second LLM plus petit uniquement pour « surveiller » la sortie du LLM principal. Si le LLM principal tente d'exécuter une action sensible (comme « Transférer de l'argent »), le LLM de surveillance le bloque s'il détecte une ambiguïté.
 
-* **L'OWASP Top 10 pour LLM :** Adhérer à ce nouveau standard est désormais incontournable pour tout déploiement d'IA sécurisé, souvent complété par des [WAF nouvelle génération](/fr/waf-sadapter-aux-nouveaux-vecteurs-dinjection) conçus pour détecter les vecteurs d'injection.
+* **L'OWASP Top 10 pour LLM :** Adhérer à ce nouveau standard est désormais incontournable pour tout déploiement d'IA sécurisé, souvent complété par des [WAF nouvelle génération](/fr/waf-sadapter-aux-nouveaux-vecteurs-dinjection/) conçus pour détecter les vecteurs d'injection.
 
 ## Conclusion
 

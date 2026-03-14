@@ -11,7 +11,7 @@ readTime: 5
 
 ## Introduction: The Blind Spots of Siloed Security
 
-Over the past few weeks, we explored powerful defensive technologies: [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint) protecting the laptop, [NGFWs](/en/the-future-of-firewalls-next-gen-firewalls-ngfw-with-deep-learning) securing the perimeter, and [NTA](/en/network-traffic-analysis-nta-detecting-encrypted-malicious-traffic) analyzing the network traffic. However, a fundamental problem remains: **Silos**. 
+Over the past few weeks, we explored powerful defensive technologies: [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint/) protecting the laptop, [NGFWs](/en/the-future-of-firewalls-next-gen-firewalls-ngfw-with-deep-learning/) securing the perimeter, and [NTA](/en/network-traffic-analysis-nta-detecting-encrypted-malicious-traffic/) analyzing the network traffic. However, a fundamental problem remains: **Silos**. 
 
 Modern cyberattacks do not exist in a single domain. An Advanced Persistent Threat (APT) might start with a phishing email (Email domain), compromise a laptop (Endpoint domain), pivot laterally across the office switches (Network domain), and finally exfiltrate a database to a hijacked AWS instance (Cloud domain). 
 
@@ -21,7 +21,7 @@ If a Security Operations Center (SOC) uses disconnected tools to monitor each of
 
 Historically, a SOC looked like a trading floor, with analysts staring at a dozen different monitors. XDR replaces this fragmented approach by acting as a massive, centralized data lake that natively integrates telemetry from every layer of the IT infrastructure. 
 
-Simply dumping all this data into one place would create an overwhelming amount of noise. This is where Artificial Intelligence becomes the core engine of XDR: it cleans, normalizes, and contextualizes the data at a scale impossible for human analysts. Unlike traditional [SIEMs](/en/ai-powered-siem-reducing-alert-fatigue-for-soc-analysts) that rely heavily on manual rule creation, XDR comes with pre-tuned machine learning models designed to understand the relationships between different telemetry sources out-of-the-box.
+Simply dumping all this data into one place would create an overwhelming amount of noise. This is where Artificial Intelligence becomes the core engine of XDR: it cleans, normalizes, and contextualizes the data at a scale impossible for human analysts. Unlike traditional [SIEMs](/en/ai-powered-siem-reducing-alert-fatigue-for-soc-analysts/) that rely heavily on manual rule creation, XDR comes with pre-tuned machine learning models designed to understand the relationships between different telemetry sources out-of-the-box.
 
 ## 2. The AI Correlation Engine: Stitching the Kill Chain
 
@@ -31,7 +31,7 @@ Consider this scenario:
 1.  **The Email Gateway** logs an email with a slightly suspicious, but not explicitly malicious, link. *(Risk Score: Low)*
 2.  **The Identity Provider (IAM)** logs a successful login from that user, but from an IP address they haven't used in three months. *(Risk Score: Low)*
 3.  **The EDR** logs a PowerShell script executing a standard administrative command. *(Risk Score: Low)*
-4.  **The [Cloud Security Posture Management (CSPM)](/en/cloud-security-posture-management-cspm-ai-for-config-monitoring)** tool notes a minor configuration change in an S3 bucket. *(Risk Score: Low)*
+4.  **The [Cloud Security Posture Management (CSPM)](/en/cloud-security-posture-management-cspm-ai-for-config-monitoring/)** tool notes a minor configuration change in an S3 bucket. *(Risk Score: Low)*
 
 In a legacy environment, these four low-level alerts would be ignored or buried under thousands of others. An AI-driven XDR platform, however, recognizes the *relationship* between these events. It stitches them together, identifies the behavioral pattern of a coordinated data exfiltration attack, and elevates it to a single, critical "Priority 1" incident containing the entire narrative.
 

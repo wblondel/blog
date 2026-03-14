@@ -14,7 +14,7 @@ readTime: 5
 
 AI coding assistants like GitHub Copilot, Cursor, and Tabnine have fundamentally altered software development. By acting as an advanced autocomplete engine on steroids, they allow engineers to write boilerplate, generate test cases, and translate logic across languages in seconds. 
 
-However, embracing these tools requires a mental shift. An AI assistant is essentially an infinitely fast, highly confident junior developer who has memorized all of GitHub—including the millions of repositories that contain deprecated libraries, hardcoded secrets, and critical security flaws. If you blindly accept its suggestions, you inherit its training data's vulnerabilities — and accumulate [technical debt that undermines maintainability](/en/technical-debt-how-ai-generated-code-impacts-maintainability). To harness the speed of AI without compromising the integrity of your application, engineering teams must adopt strict, security-focused best practices for AI-assisted development.
+However, embracing these tools requires a mental shift. An AI assistant is essentially an infinitely fast, highly confident junior developer who has memorized all of GitHub—including the millions of repositories that contain deprecated libraries, hardcoded secrets, and critical security flaws. If you blindly accept its suggestions, you inherit its training data's vulnerabilities — and accumulate [technical debt that undermines maintainability](/en/technical-debt-how-ai-generated-code-impacts-maintainability/). To harness the speed of AI without compromising the integrity of your application, engineering teams must adopt strict, security-focused best practices for AI-assisted development.
 
 ## 1. The "Zero-Trust" Code Acceptance Policy
 
@@ -41,14 +41,14 @@ AI coding assistants generate highly accurate suggestions by continuously readin
 
 This context-gathering mechanism creates a massive risk for secret exposure.
 * **The `.env` Danger:** If you have a `.env` file or a configuration script open in a background tab containing live AWS keys or production database passwords, the AI assistant's telemetry may transmit those secrets to the vendor's API to help generate code context.
-* **Best Practice:** Never leave files containing hardcoded secrets, PII, or highly sensitive proprietary algorithms open alongside files where you are actively using an AI assistant. Utilize strict `.copilotignore` files (or your tool's equivalent) to explicitly block the AI agent from reading or indexing sensitive directories within your workspace. For a deeper dive, see our guide on [secrets management and preventing AI from hardcoding keys](/en/secrets-management-preventing-ai-from-hardcoding-keys).
+* **Best Practice:** Never leave files containing hardcoded secrets, PII, or highly sensitive proprietary algorithms open alongside files where you are actively using an AI assistant. Utilize strict `.copilotignore` files (or your tool's equivalent) to explicitly block the AI agent from reading or indexing sensitive directories within your workspace. For a deeper dive, see our guide on [secrets management and preventing AI from hardcoding keys](/en/secrets-management-preventing-ai-from-hardcoding-keys/).
 
 ## 4. Implementing Automated IDE Guardrails
 
 You cannot rely solely on human vigilance to catch AI-generated vulnerabilities. The speed of generation requires automated defense mechanisms shifted entirely to the left—running directly inside the developer's Integrated Development Environment (IDE).
 
 * **Real-Time SAST:** Modern DevSecOps requires deploying lightweight Static Application Security Testing (SAST) plugins directly into VS Code or IntelliJ. When Copilot suggests an insecure default (like an outdated TLS version), the SAST plugin should instantly highlight the generated code with a red squiggly line, blocking the developer from moving forward until the flaw is remediated.
-* **Dependency Checkers:** Because AI assistants are prone to "hallucinating" non-existent packages or suggesting deprecated versions (a problem explored in depth in [the risk of hallucinated vulnerabilities](/en/the-risk-of-hallucinated-vulnerabilities-false-positives-in-audits)), Software Composition Analysis (SCA) tools must run locally in the IDE to verify that any `npm install` or `pip install` command suggested by the AI corresponds to a legitimate, safe, and updated library.
+* **Dependency Checkers:** Because AI assistants are prone to "hallucinating" non-existent packages or suggesting deprecated versions (a problem explored in depth in [the risk of hallucinated vulnerabilities](/en/the-risk-of-hallucinated-vulnerabilities-false-positives-in-audits/)), Software Composition Analysis (SCA) tools must run locally in the IDE to verify that any `npm install` or `pip install` command suggested by the AI corresponds to a legitimate, safe, and updated library.
 
 ## Conclusion
 

@@ -17,7 +17,7 @@ The arrival of Large Language Models (LLMs) has collapsed this distinction. We h
 
 ## The mechanism: from OSINT to injection
 
-The traditional spear-phishing lifecycle required a human operator to manually gather [Open Source Intelligence (OSINT)](/en/ai-in-osint-automating-the-gathering-of-target-intelligence) on a target. Today, this process is automated via Python scripts chaining scraping tools with LLM APIs.
+The traditional spear-phishing lifecycle required a human operator to manually gather [Open Source Intelligence (OSINT)](/en/ai-in-osint-automating-the-gathering-of-target-intelligence/) on a target. Today, this process is automated via Python scripts chaining scraping tools with LLM APIs.
 
 The workflow typically follows this pattern:
 
@@ -32,7 +32,7 @@ Unlike simple templates, the LLM can infer relationships. If a target recently p
 
 ## The tooling: beyond ChatGPT
 
-While public models like GPT-4 or Claude have safety guardrails (RLHF) preventing the generation of malicious content, cybercriminals utilize specialized "Uncensored" models, often by [jailbreaking existing LLMs](/en/jailbreaking-llms-the-dan-do-anything-now-phenomenon).
+While public models like GPT-4 or Claude have safety guardrails (RLHF) preventing the generation of malicious content, cybercriminals utilize specialized "Uncensored" models, often by [jailbreaking existing LLMs](/en/jailbreaking-llms-the-dan-do-anything-now-phenomenon/).
 
 * **WormGPT & FraudGPT:** These are LLMs fine-tuned on malware data and phishing logs. They have no ethical boundaries and are specifically optimized to write persuasive, urgent, and manipulative text.
     
@@ -51,7 +51,7 @@ In a world where content is indistinguishable from legitimate communication, def
 
 * **Strict Identity Protocols:** The implementation of **DMARC** (Domain-based Message Authentication, Reporting, and Conformance) with a "Reject" policy is the baseline requirement to prevent direct domain spoofing.
     
-* **Natural Language Understanding (NLU):** Modern [Secure Email Gateways (SEGs)](/en/email-security-gateways-nlp-for-detecting-semantic-phishing) are now deploying defensive AI. These systems analyze the *intent* rather than just signatures. They look for semantic patterns associated with financial requests or credential harvesting, even if the language is perfect.
+* **Natural Language Understanding (NLU):** Modern [Secure Email Gateways (SEGs)](/en/email-security-gateways-nlp-for-detecting-semantic-phishing/) are now deploying defensive AI. These systems analyze the *intent* rather than just signatures. They look for semantic patterns associated with financial requests or credential harvesting, even if the language is perfect.
     
 * **FIDO2 & Hardware MFA:** Since users *will* eventually be tricked by high-quality AI phishing, the only failsafe is an authentication method that cannot be phished. FIDO2 hardware keys (like YubiKeys) do not rely on the user inputting a code; they cryptographically bind the login attempt to the specific domain. Even if a user clicks a link and visits a perfect clone of the login page, the hardware key will refuse to sign the request.
     

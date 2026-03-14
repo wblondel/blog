@@ -61,7 +61,7 @@ If AI can guess the password, the password must not be the only key.
 
 * **MFA (Multi-Factor Authentication):** Even if PassGAN guesses the correct string, it cannot guess the Time-based One-Time Password (TOTP) on the user's phone.
     
-* **Passkeys (FIDO2):** The industry is moving towards passwordless standards, in line with a broader [Zero Trust architecture](/en/zero-trust-architecture-in-the-age-of-ai-continuous-verification). Passkeys use public-key cryptography stored on the device. There is no "shared secret" (password) to be guessed or stolen from a server database—a crucial complement to [secrets management](/en/secrets-management-preventing-ai-from-hardcoding-keys) practices.
+* **Passkeys (FIDO2):** The industry is moving towards passwordless standards, in line with a broader [Zero Trust architecture](/en/zero-trust-architecture-in-the-age-of-ai-continuous-verification/). Passkeys use public-key cryptography stored on the device. There is no "shared secret" (password) to be guessed or stolen from a server database—a crucial complement to [secrets management](/en/secrets-management-preventing-ai-from-hardcoding-keys/) practices.
     
 
 ## Conclusion

@@ -12,7 +12,7 @@ readTime: 5
 
 ## Introduction: Who is the AI Protecting, and Who is it Punishing?
 
-Over the past 13 weeks, we have built a formidable, AI-driven Blue Team architecture. We deployed [UEBA](/en/ueba-moving-beyond-signatures-with-ai-driven-behavioral-analytics) to baseline behavior, [NLP to scan emails](/en/email-security-gateways-nlp-for-detecting-semantic-phishing), and [XDR](/en/xdr-and-ai-threat-hunting-unifying-the-security-stack) to automatically isolate compromised assets. But as we hand over the keys to the kingdom to these algorithms, a critical governance question arises: **What happens when the defensive AI is biased?**
+Over the past 13 weeks, we have built a formidable, AI-driven Blue Team architecture. We deployed [UEBA](/en/ueba-moving-beyond-signatures-with-ai-driven-behavioral-analytics/) to baseline behavior, [NLP to scan emails](/en/email-security-gateways-nlp-for-detecting-semantic-phishing/), and [XDR](/en/xdr-and-ai-threat-hunting-unifying-the-security-stack/) to automatically isolate compromised assets. But as we hand over the keys to the kingdom to these algorithms, a critical governance question arises: **What happens when the defensive AI is biased?**
 
 AI models are not inherently objective; they are mathematical reflections of their training data. If a defensive model is trained on skewed data, it won't just miss attacks—it will actively discriminate against legitimate employees, causing severe operational disruption and potential legal liability. Governance of AI defense is no longer just a theoretical ethics debate; it is a core operational requirement for the modern SOC.
 
@@ -26,7 +26,7 @@ Bias in cybersecurity AI usually stems from sampling errors or historical inequi
 
 ## 2. The Solution: Explainable AI (XAI)
 
-The biggest enemy of governance is the "Black Box." If a Deep Learning [NGFW](/en/the-future-of-firewalls-next-gen-firewalls-ngfw-with-deep-learning) drops a crucial database connection and the SOC analyst asks *why*, "Because the neural network said so" is an unacceptable answer for the CIO.
+The biggest enemy of governance is the "Black Box." If a Deep Learning [NGFW](/en/the-future-of-firewalls-next-gen-firewalls-ngfw-with-deep-learning/) drops a crucial database connection and the SOC analyst asks *why*, "Because the neural network said so" is an unacceptable answer for the CIO.
 
 To govern AI, organizations must demand **Explainable AI (XAI)** from their vendors. XAI techniques (like SHAP values or LIME) force the model to output a human-readable rationale alongside its decision. 
 Instead of a binary alert saying `User X Blocked: Risk 95`, an XAI system outputs: `User X Blocked. Primary contributing factors: 1) Geolocation deviation (40% weight). 2) Unusual PowerShell execution (50% weight). 3) Time of day (10% weight).` 
@@ -43,12 +43,12 @@ AI models are not software you can "set and forget." They suffer from **Concept 
 
 Finally, strong AI governance requires a strict delineation between actions an AI can take autonomously and actions that require a human.
 
-* **Machine-Speed for Machine Threats:** If an [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint) agent detects a known ransomware hash beginning to encrypt the hard drive, the AI should have the autonomy to isolate the machine instantly.
-* **Human-in-the-Loop for Human Context:** If a UEBA system flags an employee as a potential "[Insider Threat](/en/insider-threat-detection-identifying-disgruntled-employees-via)" because they are downloading massive amounts of data, the AI should *alert* the SOC, but it should not automatically terminate the employee's VPN and notify HR. There might be a legitimate business context (e.g., a massive legal discovery project) that the AI cannot understand. Human oversight ensures that automated decisions remain fair and contextualized.
+* **Machine-Speed for Machine Threats:** If an [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint/) agent detects a known ransomware hash beginning to encrypt the hard drive, the AI should have the autonomy to isolate the machine instantly.
+* **Human-in-the-Loop for Human Context:** If a UEBA system flags an employee as a potential "[Insider Threat](/en/insider-threat-detection-identifying-disgruntled-employees-via/)" because they are downloading massive amounts of data, the AI should *alert* the SOC, but it should not automatically terminate the employee's VPN and notify HR. There might be a legitimate business context (e.g., a massive legal discovery project) that the AI cannot understand. Human oversight ensures that automated decisions remain fair and contextualized.
 
 ## Conclusion of Series 2
 
-Deploying AI in cybersecurity is like putting a high-performance engine in a car. Firewalls, [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint), and [XDR](/en/xdr-and-ai-threat-hunting-unifying-the-security-stack) provide the horsepower, but **Governance** is the steering wheel and the brakes. Without it, you are just crashing faster.
+Deploying AI in cybersecurity is like putting a high-performance engine in a car. Firewalls, [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint/), and [XDR](/en/xdr-and-ai-threat-hunting-unifying-the-security-stack/) provide the horsepower, but **Governance** is the steering wheel and the brakes. Without it, you are just crashing faster.
 
 This article officially concludes our second series, **AI-Driven Defense Architectures**. We have mapped the battlefield between offensive generation and defensive correlation. 
 

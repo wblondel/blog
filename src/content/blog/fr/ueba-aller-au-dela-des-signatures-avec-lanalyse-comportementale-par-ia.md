@@ -18,7 +18,7 @@ La réponse réside dans l'abandon de la recherche de fichiers « connus comme m
 
 ## 1. Les limites de la sécurité basée sur des règles
 
-Historiquement, les systèmes de [Security Information and Event Management (SIEM)](/fr/siem-alimente-par-ia-reduire-la-fatigue-des-alertes-pour-les-analystes-soc) reposaient sur des règles de corrélation rigides. Un administrateur configurait une règle : *Si l'utilisateur X échoue à se connecter 5 fois en 1 minute, déclencher une alerte.*
+Historiquement, les systèmes de [Security Information and Event Management (SIEM)](/fr/siem-alimente-par-ia-reduire-la-fatigue-des-alertes-pour-les-analystes-soc/) reposaient sur des règles de corrélation rigides. Un administrateur configurait une règle : *Si l'utilisateur X échoue à se connecter 5 fois en 1 minute, déclencher une alerte.*
 
 Les attaquants se sont adaptés immédiatement. Ils exécutent des attaques de type « Living off the Land » (LotL), utilisant des outils d'administration légitimes (comme PowerShell ou WMI) avec des identifiants volés. Ils limitent également leurs tentatives de force brute à 4 fois par minute, restant parfaitement sous le radar. Lorsqu'un attaquant se connecte avec un mot de passe valide volé, un système basé sur des règles ne voit absolument rien d'anormal. L'authentification était techniquement réussie.
 
@@ -35,8 +35,8 @@ Au lieu de règles statiques, l'IA pose des questions dynamiques :
 
 L'UEBA est particulièrement efficace contre deux des menaces les plus difficiles à gérer en cybersécurité :
 
-* **La [menace interne](/fr/detection-des-menaces-internes-identifier-les-employes-mecontents) :** Un employé mécontent décide de voler de la propriété intellectuelle avant de partir chez un concurrent. Il dispose d'un accès légitime aux fichiers, donc aucun antivirus ne l'arrêtera. Cependant, le système UEBA remarque que son volume d'exfiltration de données est 400 % supérieur à sa référence historique sur 90 jours et déclenche une alerte immédiate.
-* **Les identifiants compromis :** Un attaquant réussit à [phisher](/fr/spear-phishing-automatise-comment-les-llm-industrialisent-lingenierie-sociale) un responsable RH et utilise ses identifiants pour se connecter au VPN d'entreprise. L'attaquant tente ensuite d'utiliser `cmd.exe` pour mapper des lecteurs réseau. Le système UEBA le signale instantanément : bien que les identifiants soient valides, le *comportement* (exécution d'un mappage réseau en ligne de commande) n'a jamais été observé depuis ce profil RH auparavant.
+* **La [menace interne](/fr/detection-des-menaces-internes-identifier-les-employes-mecontents/) :** Un employé mécontent décide de voler de la propriété intellectuelle avant de partir chez un concurrent. Il dispose d'un accès légitime aux fichiers, donc aucun antivirus ne l'arrêtera. Cependant, le système UEBA remarque que son volume d'exfiltration de données est 400 % supérieur à sa référence historique sur 90 jours et déclenche une alerte immédiate.
+* **Les identifiants compromis :** Un attaquant réussit à [phisher](/fr/spear-phishing-automatise-comment-les-llm-industrialisent-lingenierie-sociale/) un responsable RH et utilise ses identifiants pour se connecter au VPN d'entreprise. L'attaquant tente ensuite d'utiliser `cmd.exe` pour mapper des lecteurs réseau. Le système UEBA le signale instantanément : bien que les identifiants soient valides, le *comportement* (exécution d'un mappage réseau en ligne de commande) n'a jamais été observé depuis ce profil RH auparavant.
 
 ## 4. Score de risque et réponse automatisée
 

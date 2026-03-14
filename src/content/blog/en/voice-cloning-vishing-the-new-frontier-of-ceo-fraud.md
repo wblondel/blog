@@ -28,11 +28,11 @@ The technology behind voice cloning has evolved rapidly from "Text-to-Speech" (T
 
 The most common application is financial fraud. An employee in the finance department receives a call from the "CFO." The voice is perfect—the tone is urgent, perhaps slightly stressed. The "CFO" claims a confidential acquisition is happening and requests an immediate transfer to a solicitor's account.
 
-Because the auditory cues match reality, the employee's brain bypasses critical thinking. In 2024, a Hong Kong multinational lost **$25 million** in a single scam where attackers used [deepfake video](/en/deepfake-video-in-kyc-bypassing-biometric-verification) and audio to impersonate *multiple* executives during a conference call. This proves that voice cloning is no longer theoretical; it is an active enterprise threat.
+Because the auditory cues match reality, the employee's brain bypasses critical thinking. In 2024, a Hong Kong multinational lost **$25 million** in a single scam where attackers used [deepfake video](/en/deepfake-video-in-kyc-bypassing-biometric-verification/) and audio to impersonate *multiple* executives during a conference call. This proves that voice cloning is no longer theoretical; it is an active enterprise threat.
 
 ## Defeating biometric authentication
 
-Beyond social engineering, voice cloning poses a direct threat to technical security controls. Many banks and service providers use "Voice ID" as a password for telephone banking or password resets. AI-generated audio can now bypass these biometric checks. By feeding the cloned audio into a virtual audio cable, attackers can inject the fake voice directly into the phone line, avoiding the degradation of playing it over a speaker. This renders voice biometrics an insecure factor for high-value authentication, underscoring the need for [biometric liveness detection](/en/biometric-liveness-detection-countering-deepfakes).
+Beyond social engineering, voice cloning poses a direct threat to technical security controls. Many banks and service providers use "Voice ID" as a password for telephone banking or password resets. AI-generated audio can now bypass these biometric checks. By feeding the cloned audio into a virtual audio cable, attackers can inject the fake voice directly into the phone line, avoiding the degradation of playing it over a speaker. This renders voice biometrics an insecure factor for high-value authentication, underscoring the need for [biometric liveness detection](/en/biometric-liveness-detection-countering-deepfakes/).
 
 ## Defense: the return of the "challenge-response"
 
@@ -47,4 +47,4 @@ Technical defenses against AI audio are still immature. "Deepfake detectors" exi
 
 ## Conclusion
 
-Voice cloning creates a "[zero-trust](/en/zero-trust-architecture-in-the-age-of-ai-continuous-verification)" environment for human communication. We can no longer trust our ears. As these tools become standard in the cybercriminal toolkit, the only robust defense is a rigid adherence to verification protocols that do not rely on biometric recognition.
+Voice cloning creates a "[zero-trust](/en/zero-trust-architecture-in-the-age-of-ai-continuous-verification/)" environment for human communication. We can no longer trust our ears. As these tools become standard in the cybercriminal toolkit, the only robust defense is a rigid adherence to verification protocols that do not rely on biometric recognition.

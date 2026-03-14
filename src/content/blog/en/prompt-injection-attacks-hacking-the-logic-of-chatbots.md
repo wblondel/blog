@@ -13,7 +13,7 @@ readTime: 3
 
 For twenty years, SQL Injection (SQLi) was the number one web vulnerability. It worked because systems couldn't distinguish between *data* (the user's name) and *instructions* (the SQL command).
 
-Large Language Models (LLMs) suffer from this exact same flaw, but on a massive scale. We call it **Prompt Injection**. Closely related to [jailbreaking LLMs](/en/jailbreaking-llms-the-dan-do-anything-now-phenomenon), this flaw exists because LLMs accept instructions in natural language, a malicious user can craft a sentence that overrides the developer's original programming. This allows attackers to hijack customer service bots, exfiltrate private database information, or force the AI to perform unauthorized actions.
+Large Language Models (LLMs) suffer from this exact same flaw, but on a massive scale. We call it **Prompt Injection**. Closely related to [jailbreaking LLMs](/en/jailbreaking-llms-the-dan-do-anything-now-phenomenon/), this flaw exists because LLMs accept instructions in natural language, a malicious user can craft a sentence that overrides the developer's original programming. This allows attackers to hijack customer service bots, exfiltrate private database information, or force the AI to perform unauthorized actions.
 
 ## Direct injection: "ignore previous instructions"
 
@@ -56,7 +56,7 @@ Defending against prompt injection is mathematically difficult because natural l
         
 * **Dual-LLM Architecture:** Use a second, smaller LLM solely to "police" the output of the main LLM. If the main LLM tries to execute a sensitive action (like "Transfer Money"), the police LLM blocks it if it detects ambiguity.
     
-* **The OWASP Top 10 for LLM:** Adhering to this new standard is now mandatory for any secure AI deployment, often complemented by [next-generation WAFs](/en/web-application-firewalls-waf-adapting-to-new-injection-vectors) designed to detect injection vectors.
+* **The OWASP Top 10 for LLM:** Adhering to this new standard is now mandatory for any secure AI deployment, often complemented by [next-generation WAFs](/en/web-application-firewalls-waf-adapting-to-new-injection-vectors/) designed to detect injection vectors.
     
 
 ## Conclusion

@@ -28,7 +28,7 @@ Comme les sorties du modèle victime sont de « haute qualité » (propres, rais
 ## 2. Pourquoi voler un modèle ?
 
 * **Gain financier :** Pourquoi payer OpenAI ou Google pour chaque appel API quand on peut exécuter gratuitement un clone volé en local ? Ce « contournement d'API » détruit le modèle économique de la victime.
-* **Attaques en boîte blanche :** Une fois que l'attaquant possède une copie locale, il dispose d'un accès « boîte blanche ». Il peut analyser les gradients et les poids pour trouver des **[exemples adversariaux](/fr/exemples-adversariaux-tromper-les-systemes-de-reconnaissance-dimages)** (entrées qui font planter le modèle) hors ligne, puis lancer ces attaques contre le vrai serveur sécurisé avec un taux de succès de 100 %.
+* **Attaques en boîte blanche :** Une fois que l'attaquant possède une copie locale, il dispose d'un accès « boîte blanche ». Il peut analyser les gradients et les poids pour trouver des **[exemples adversariaux](/fr/exemples-adversariaux-tromper-les-systemes-de-reconnaissance-dimages/)** (entrées qui font planter le modèle) hors ligne, puis lancer ces attaques contre le vrai serveur sécurisé avec un taux de succès de 100 %.
 
 ## 3. Extraction fonctionnellement équivalente
 
@@ -47,4 +47,4 @@ Se défendre contre l'extraction est difficile car les utilisateurs légitimes *
 
 ## Conclusion
 
-L'extraction de modèle transforme l'IA d'un SaaS (Software as a Service) en un actif téléchargeable, souvent sans le consentement du propriétaire. Pour les entreprises qui déploient de l'IA, cela signifie que l'**[API Gateway](/fr/securite-api-detection-de-patterns-anormaux-dans-les-microservices)** est le nouveau firewall. La limitation de débit n'est plus seulement une question de performance ; c'est un contrôle de sécurité critique pour prévenir l'exfiltration au ralenti de l'intelligence de l'entreprise.
+L'extraction de modèle transforme l'IA d'un SaaS (Software as a Service) en un actif téléchargeable, souvent sans le consentement du propriétaire. Pour les entreprises qui déploient de l'IA, cela signifie que l'**[API Gateway](/fr/securite-api-detection-de-patterns-anormaux-dans-les-microservices/)** est le nouveau firewall. La limitation de débit n'est plus seulement une question de performance ; c'est un contrôle de sécurité critique pour prévenir l'exfiltration au ralenti de l'intelligence de l'entreprise.

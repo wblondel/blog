@@ -18,7 +18,7 @@ The answer lies in abandoning the search for "known bad" files and focusing inst
 
 ## 1. The Limitation of Rules-Based Security
 
-Historically, [Security Information and Event Management (SIEM)](/en/ai-powered-siem-reducing-alert-fatigue-for-soc-analysts) systems relied on rigid correlation rules. An administrator would configure a rule: *If User X fails to log in 5 times in 1 minute, trigger an alert.*
+Historically, [Security Information and Event Management (SIEM)](/en/ai-powered-siem-reducing-alert-fatigue-for-soc-analysts/) systems relied on rigid correlation rules. An administrator would configure a rule: *If User X fails to log in 5 times in 1 minute, trigger an alert.*
 
 Attackers adapted immediately. They execute "Living off the Land" (LotL) attacks, using legitimate administrative tools (like PowerShell or WMI) with stolen credentials. They also throttle their brute-force attempts to 4 times per minute, staying perfectly under the radar. When an attacker logs in with a stolen, valid password, a rules-based system sees absolutely nothing wrong. The authentication was technically successful.
 
@@ -35,8 +35,8 @@ Instead of static rules, the AI asks dynamic questions:
 
 UEBA is particularly effective against two of the most difficult threats in cybersecurity:
 
-* **The [Insider Threat](/en/insider-threat-detection-identifying-disgruntled-employees-via):** A disgruntled employee decides to steal intellectual property before leaving for a competitor. They have legitimate access to the files, so no antivirus will stop them. However, the UEBA system notices that their data exfiltration volume is 400% higher than their historical 90-day baseline and triggers an immediate alert.
-* **Compromised Credentials:** An attacker successfully [phishes](/en/automated-spear-phishing-how-llms-scale-social-engineering) an HR manager and uses their credentials to log into the corporate VPN. The attacker then attempts to use `cmd.exe` to map network drives. The UEBA system flags this instantly: while the credentials are valid, the *behavior* (running command-line network mapping) has never been seen from this HR profile before.
+* **The [Insider Threat](/en/insider-threat-detection-identifying-disgruntled-employees-via/):** A disgruntled employee decides to steal intellectual property before leaving for a competitor. They have legitimate access to the files, so no antivirus will stop them. However, the UEBA system notices that their data exfiltration volume is 400% higher than their historical 90-day baseline and triggers an immediate alert.
+* **Compromised Credentials:** An attacker successfully [phishes](/en/automated-spear-phishing-how-llms-scale-social-engineering/) an HR manager and uses their credentials to log into the corporate VPN. The attacker then attempts to use `cmd.exe` to map network drives. The UEBA system flags this instantly: while the credentials are valid, the *behavior* (running command-line network mapping) has never been seen from this HR profile before.
 
 ## 4. Risk Scoring and Automated Response
 

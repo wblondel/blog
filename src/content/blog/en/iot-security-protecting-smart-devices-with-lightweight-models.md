@@ -13,7 +13,7 @@ readTime: 5
 
 The Internet of Things (IoT) has fundamentally transformed enterprise architecture. From industrial sensors monitoring factory floor vibrations to smart medical wearables tracking patient vitals, IoT devices bridge the physical and digital worlds. However, this massive proliferation of connected devices has created an infinitely expanding attack surface. 
 
-The fundamental problem with IoT security is hardware capability. Traditional cybersecurity relies on heavy software agents — [Endpoint Detection and Response (EDR)](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint) tools, continuous cloud telemetry, and complex encryption protocols. You simply cannot run a traditional EDR agent on a smart thermostat that operates on a few kilobytes of RAM and a watch battery. Attackers exploit this vulnerability daily, recruiting unsecured IoT devices into massive botnets or using them as unmonitored entry points for lateral movement into corporate networks. To secure the edge, IT leaders are pivoting to a new paradigm: **TinyML and Lightweight Machine Learning Models**.
+The fundamental problem with IoT security is hardware capability. Traditional cybersecurity relies on heavy software agents — [Endpoint Detection and Response (EDR)](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint/) tools, continuous cloud telemetry, and complex encryption protocols. You simply cannot run a traditional EDR agent on a smart thermostat that operates on a few kilobytes of RAM and a watch battery. Attackers exploit this vulnerability daily, recruiting unsecured IoT devices into massive botnets or using them as unmonitored entry points for lateral movement into corporate networks. To secure the edge, IT leaders are pivoting to a new paradigm: **TinyML and Lightweight Machine Learning Models**.
 
 ## 1. The Resource-Constraint Paradox
 
@@ -21,7 +21,7 @@ To understand the strategic shift toward lightweight models, IT architects must 
 
 * **Compute and Memory Limits:** A typical microcontroller (MCU) running an IoT device possesses tens to hundreds of kilobytes (KB) of RAM and relies on processors operating in the megahertz (MHz) range. They lack the Graphical Processing Units (GPUs) required for traditional AI.
 * **Power Budgets:** Many IoT devices are deployed in remote or industrial environments where they must run for years on a single battery or via energy harvesting. Sending constant streams of telemetry data to a cloud SIEM (Security Information and Event Management) system consumes catastrophic amounts of power via the radio transmitter.
-* **The Security Gap:** Because IoT devices cannot support heavy security agents or continuous cloud communication, they are effectively "blind" to sophisticated attacks like zero-day exploits or stealthy data exfiltration until the compromise is detected at the [network traffic analysis](/en/network-traffic-analysis-nta-detecting-encrypted-malicious-traffic) level — which is often too late.
+* **The Security Gap:** Because IoT devices cannot support heavy security agents or continuous cloud communication, they are effectively "blind" to sophisticated attacks like zero-day exploits or stealthy data exfiltration until the compromise is detected at the [network traffic analysis](/en/network-traffic-analysis-nta-detecting-encrypted-malicious-traffic/) level — which is often too late.
 
 ## 2. TinyML: Security at the Silicon Level
 

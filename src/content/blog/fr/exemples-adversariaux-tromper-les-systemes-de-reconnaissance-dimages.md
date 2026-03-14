@@ -14,7 +14,7 @@ readTime: 6
 
 Pour un humain, la photo d'un panda est indéniablement un panda, même si l'image est légèrement floue ou granuleuse. Les réseaux de neurones, en revanche, ne « voient » pas le monde comme nous : ils traitent des matrices de valeurs de pixels à haute dimensionnalité. Cette différence fondamentale de perception donne naissance à l'une des vulnérabilités les plus fascinantes et dangereuses de l'IA : les **exemples adversariaux**.
 
-Contrairement à l'*[empoisonnement de données](/fr/empoisonnement-de-donnees-saboter-les-datasets-dentrainement-ia)* évoqué dans la semaine 12 (qui survient lors de la phase d'entraînement), les exemples adversariaux sont des **attaques d'évasion** qui se produisent lors de l'*inférence*. Le modèle est déjà parfaitement entraîné et déployé, mais un attaquant lui soumet une entrée soigneusement manipulée qui force l'IA à effectuer une classification erronée, très confiante et catastrophique.
+Contrairement à l'*[empoisonnement de données](/fr/empoisonnement-de-donnees-saboter-les-datasets-dentrainement-ia/)* évoqué dans la semaine 12 (qui survient lors de la phase d'entraînement), les exemples adversariaux sont des **attaques d'évasion** qui se produisent lors de l'*inférence*. Le modèle est déjà parfaitement entraîné et déployé, mais un attaquant lui soumet une entrée soigneusement manipulée qui force l'IA à effectuer une classification erronée, très confiante et catastrophique.
 
 ## 1. Les mathématiques de la tromperie : le bruit invisible
 
@@ -35,7 +35,7 @@ Si les attaques adversariales ne fonctionnaient que sur des fichiers numériques
 
 ## 3. La menace pour la reconnaissance faciale
 
-Cette technologie représente une menace sérieuse pour la [sécurité biométrique](/fr/detection-de-vivacite-biometrique-contrer-les-deepfakes). Des chercheurs ont développé des lunettes adversariales imprimées en 3D. Lorsqu'un attaquant porte ces montures aux couleurs vives, elles ne cachent pas seulement son identité — elles usurpent activement celle d'une autre personne.
+Cette technologie représente une menace sérieuse pour la [sécurité biométrique](/fr/detection-de-vivacite-biometrique-contrer-les-deepfakes/). Des chercheurs ont développé des lunettes adversariales imprimées en 3D. Lorsqu'un attaquant porte ces montures aux couleurs vives, elles ne cachent pas seulement son identité — elles usurpent activement celle d'une autre personne.
 
 Les montures ajoutent des vecteurs de pixels spécifiques autour des yeux. Un employé de bas niveau portant ces lunettes pourrait s'approcher d'un portique de reconnaissance faciale alimenté par l'IA et être incorrectement identifié comme le PDG, lui accordant un accès physique non autorisé à des salles de serveurs sécurisées ou à des zones restreintes.
 
@@ -44,7 +44,7 @@ Les montures ajoutent des vecteurs de pixels spécifiques autour des yeux. Un em
 Se défendre contre ces attaques est extrêmement complexe car le « bruit » est souvent imperceptible aux scanners de sécurité traditionnels.
 
 * **Entraînement adversarial :** la défense la plus robuste consiste à générer proactivement des milliers d'exemples adversariaux lors de la phase de développement et à les inclure dans le jeu de données d'entraînement. On enseigne explicitement à l'IA : *« Ceci est un panda. Ceci est aussi un panda, même avec ce bruit mathématique spécifique. »*
-* **Masquage du gradient :** les développeurs tentent de cacher les informations de gradient du modèle pour empêcher les attaquants de calculer les perturbations nécessaires. Cependant, les attaquants contournent souvent cela en entraînant un « modèle substitut » (similaire à l'[extraction de modèle](/fr/vol-de-modele-extraction-et-retroingenierie-de-lia) abordée en semaine 11), en calculant le bruit sur le substitut, puis en l'appliquant au modèle cible.
+* **Masquage du gradient :** les développeurs tentent de cacher les informations de gradient du modèle pour empêcher les attaquants de calculer les perturbations nécessaires. Cependant, les attaquants contournent souvent cela en entraînant un « modèle substitut » (similaire à l'[extraction de modèle](/fr/vol-de-modele-extraction-et-retroingenierie-de-lia/) abordée en semaine 11), en calculant le bruit sur le substitut, puis en l'appliquant au modèle cible.
 * **Assainissement des entrées :** appliquer une compression d'image standard (comme la compression JPEG) ou un léger flou aux images entrantes *avant* qu'elles n'atteignent le modèle IA peut parfois perturber les délicates perturbations mathématiques d'une attaque adversariale.
 
 ## Conclusion de la série 1

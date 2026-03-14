@@ -39,7 +39,7 @@ Le vrai pouvoir d'un honeypot IA est le **Reinforcement Learning (RL)** et l'eng
 
 Lorsqu'un attaquant interagit avec un leurre piloté par IA, le système profile son comportement, son niveau de compétence et ses outils en temps réel. Si l'IA détecte un script automatisé (comme un bot scannant les vulnérabilités), elle peut rapidement couper la connexion. Mais si elle détecte un attaquant humain en mode « hands-on-keyboard », l'IA ajuste dynamiquement l'environnement pour le maintenir engagé.
 
-Elle peut simuler une réponse lente d'une base de données ou présenter une fausse vulnérabilité d'« élévation de privilèges » qui prend du temps à exploiter. L'objectif est de maximiser le « temps de présence » de l'attaquant dans l'environnement factice. Chaque minute passée à attaquer un serveur fantôme est une minute durant laquelle il n'attaque pas le vrai réseau, tandis que la Blue Team enregistre silencieusement ses tactiques, techniques et procédures (TTPs) grâce à l'[UEBA](/fr/ueba-aller-au-dela-des-signatures-avec-lanalyse-comportementale-par-ia).
+Elle peut simuler une réponse lente d'une base de données ou présenter une fausse vulnérabilité d'« élévation de privilèges » qui prend du temps à exploiter. L'objectif est de maximiser le « temps de présence » de l'attaquant dans l'environnement factice. Chaque minute passée à attaquer un serveur fantôme est une minute durant laquelle il n'attaque pas le vrai réseau, tandis que la Blue Team enregistre silencieusement ses tactiques, techniques et procédures (TTPs) grâce à l'[UEBA](/fr/ueba-aller-au-dela-des-signatures-avec-lanalyse-comportementale-par-ia/).
 
 ## 4. Le bénéfice ultime : des alertes haute fidélité
 

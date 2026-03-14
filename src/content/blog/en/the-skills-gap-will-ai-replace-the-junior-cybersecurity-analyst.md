@@ -17,7 +17,7 @@ Enter Artificial Intelligence. Vendors are aggressively marketing AI-driven Secu
 
 ## 1. The Death of the "Swivel-Chair" Analyst
 
-To answer the question, we must first look at what a traditional Tier 1 SOC Analyst actually does. Historically, the entry-level cybersecurity job involved staring at a [SIEM](/en/ai-powered-siem-reducing-alert-fatigue-for-soc-analysts) (Security Information and Event Management) dashboard, waiting for an alert to turn red. The analyst would then copy an IP address, pivot to a second monitor to paste it into VirusTotal or a threat intelligence feed, and write a brief ticket summarizing the findings. This highly repetitive, manual process is known as "swivel-chair" analysis.
+To answer the question, we must first look at what a traditional Tier 1 SOC Analyst actually does. Historically, the entry-level cybersecurity job involved staring at a [SIEM](/en/ai-powered-siem-reducing-alert-fatigue-for-soc-analysts/) (Security Information and Event Management) dashboard, waiting for an alert to turn red. The analyst would then copy an IP address, pivot to a second monitor to paste it into VirusTotal or a threat intelligence feed, and write a brief ticket summarizing the findings. This highly repetitive, manual process is known as "swivel-chair" analysis.
 
 This specific iteration of the junior role is absolutely being automated out of existence. 
 * **Machine-Speed Triage:** AI agents do not suffer from alert fatigue. Large Language Models (LLMs) integrated into the SOC can ingest 10,000 alerts, query threat intelligence databases via API, parse the resulting JSON, and generate a natural-language summary of the incident in milliseconds. 

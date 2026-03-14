@@ -11,7 +11,7 @@ readTime: 5
 
 ## Introduction: The Endpoint as the New Perimeter
 
-With the rise of remote work, cloud computing, and [Zero Trust architectures](/en/zero-trust-architecture-in-the-age-of-ai-continuous-verification), the traditional corporate network perimeter has dissolved. Today, the true perimeter is the **Endpoint**—the employee's laptop, the mobile device, or the cloud server. 
+With the rise of remote work, cloud computing, and [Zero Trust architectures](/en/zero-trust-architecture-in-the-age-of-ai-continuous-verification/), the traditional corporate network perimeter has dissolved. Today, the true perimeter is the **Endpoint**—the employee's laptop, the mobile device, or the cloud server. 
 
 For years, we protected endpoints with traditional Antivirus (AV) software. But legacy AV is fundamentally broken in the face of modern, AI-driven offensive tactics. To survive, organizations have shifted to **Endpoint Detection and Response (EDR)**. At the heart of a modern EDR platform is not a static database of known bad files, but a dynamic, on-device Machine Learning (ML) agent capable of making split-second defensive decisions.
 
@@ -20,7 +20,7 @@ For years, we protected endpoints with traditional Antivirus (AV) software. But 
 Traditional AV operates like a digital bouncer holding a blacklist (signatures and file hashes). If a file matches the blacklist, it gets blocked. 
 
 Attackers easily bypass this using two methods:
-* **[Polymorphic Malware](/en/the-chameleon-code-ai-driven-polymorphic-malware):** Attackers use AI to automatically rewrite the code of their malware for every single target. The hash changes, the signature becomes useless, and the AV lets it through.
+* **[Polymorphic Malware](/en/the-chameleon-code-ai-driven-polymorphic-malware/):** Attackers use AI to automatically rewrite the code of their malware for every single target. The hash changes, the signature becomes useless, and the AV lets it through.
 * **Fileless Malware & Living off the Land (LotL):** Sophisticated hackers don't drop malicious `.exe` files onto the hard drive anymore. Instead, they hijack legitimate, built-in administrative tools like PowerShell or Windows Management Instrumentation (WMI) to inject malicious code directly into the computer's volatile memory (RAM). Because there is no "file" to scan, legacy AV sees nothing.
 
 ## 2. Local ML Agents: Defense at the Edge
@@ -54,4 +54,4 @@ Detection is useless without immediate response. When the local ML agent determi
 
 The local ML agent is the ultimate last line of defense. When the firewall fails, when the Secure Email Gateway is bypassed, and when the user clicks the malicious link, the EDR agent stands between the attacker and the total compromise of the machine. 
 
-However, EDR only sees what happens on a single device. In a few weeks, we will zoom out and explore how AI stitches together telemetry from the endpoint, the network, and the cloud into a unified defense strategy known as **[XDR (Extended Detection and Response) and AI Threat Hunting](/en/xdr-and-ai-threat-hunting-unifying-the-security-stack)**.
+However, EDR only sees what happens on a single device. In a few weeks, we will zoom out and explore how AI stitches together telemetry from the endpoint, the network, and the cloud into a unified defense strategy known as **[XDR (Extended Detection and Response) and AI Threat Hunting](/en/xdr-and-ai-threat-hunting-unifying-the-security-stack/)**.

@@ -33,7 +33,7 @@ To properly secure an AI-integrated application, the AI-BOM must track:
 
 Why do we need to track training data and model weights so meticulously? Because AI introduces a unique supply chain attack vector: **Data Poisoning**.
 
-Unlike traditional software vulnerabilities where a hacker exploits a bug in the code, [data poisoning](/en/data-poisoning-sabotaging-ai-training-datasets) involves an attacker corrupting the dataset *before* the model is even trained. If an attacker injects thousands of malicious, mislabeled examples into a public, open-source dataset, any model trained on that data will inherit a hidden backdoor. 
+Unlike traditional software vulnerabilities where a hacker exploits a bug in the code, [data poisoning](/en/data-poisoning-sabotaging-ai-training-datasets/) involves an attacker corrupting the dataset *before* the model is even trained. If an attacker injects thousands of malicious, mislabeled examples into a public, open-source dataset, any model trained on that data will inherit a hidden backdoor. 
 For example, a poisoned code-generation model might be secretly trained to always output a vulnerable encryption algorithm whenever a specific variable name is used. If your DevSecOps team does not have an AI-BOM tracking the exact dataset your open-source model was trained on, you are completely blind to this inherited vulnerability.
 
 ## 3. Regulatory Pressure and Compliance
@@ -41,14 +41,14 @@ For example, a poisoned code-generation model might be secretly trained to alway
 Tracking AI components is rapidly shifting from a DevSecOps "best practice" to a strict legal requirement. 
 
 Governments worldwide are recognizing the systemic risks of unsecured software supply chains. In the United States, Executive Orders now mandate that any software vendor selling to the federal government must provide a comprehensive SBOM. In Europe, the **EU AI Act** imposes strict transparency and risk management requirements on high-risk AI systems, implicitly requiring deep documentation of model provenance and training data. 
-If an organization integrates a third-party AI model via an API, or hosts an open-source model internally (a phenomenon closely related to [Shadow AI in the supply chain](/en/shadow-ai-the-silent-threat-to-your-software-supply-chain)), the lack of an AI-BOM could soon disqualify them from major enterprise contracts and subject them to severe regulatory penalties. 
+If an organization integrates a third-party AI model via an API, or hosts an open-source model internally (a phenomenon closely related to [Shadow AI in the supply chain](/en/shadow-ai-the-silent-threat-to-your-software-supply-chain/)), the lack of an AI-BOM could soon disqualify them from major enterprise contracts and subject them to severe regulatory penalties. 
 
 ## 4. Automating AI-BOM Generation in CI/CD
 
 Just like traditional SBOMs, an AI-BOM is entirely useless if it is a static PDF generated once a year. It must be a dynamic, machine-readable artifact that updates with every single deployment.
 
 DevSecOps teams must integrate specialized tooling directly into their MLOps (Machine Learning Operations) and CI/CD pipelines.
-* **Continuous Scanning:** Tools like Syft, Trivy, and emerging AI-specific scanners — commonly used in [container security and Kubernetes environments](/en/container-security-anomaly-detection-in-kubernetes) — must run automatically on every commit. If a data scientist updates the project to use a newer version of a Hugging Face model, the pipeline must automatically detect the change and regenerate the CycloneDX/SPDX file.
+* **Continuous Scanning:** Tools like Syft, Trivy, and emerging AI-specific scanners — commonly used in [container security and Kubernetes environments](/en/container-security-anomaly-detection-in-kubernetes/) — must run automatically on every commit. If a data scientist updates the project to use a newer version of a Hugging Face model, the pipeline must automatically detect the change and regenerate the CycloneDX/SPDX file.
 * **Policy Enforcement:** Once the AI-BOM is generated in the pipeline, it should be evaluated against an automated security policy. If the AI-BOM detects that a developer is trying to deploy a model version known to be vulnerable to prompt injection, the CI/CD pipeline should instantly break the build, preventing the risky AI component from reaching production.
 
 ## Conclusion

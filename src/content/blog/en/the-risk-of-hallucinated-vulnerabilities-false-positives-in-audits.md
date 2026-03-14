@@ -12,7 +12,7 @@ readTime: 5
 
 ## Introduction: When the Oracle Lies
 
-The cybersecurity industry is aggressively integrating Large Language Models (LLMs) into code auditing and penetration testing tools. The pitch is compelling: point an AI at your repository, and it will instantly read millions of lines of code, identifying complex logic flaws that [traditional SAST and DAST](/en/sast-vs-dast-enhancing-code-scanning-with-machine-learning) misses. 
+The cybersecurity industry is aggressively integrating Large Language Models (LLMs) into code auditing and penetration testing tools. The pitch is compelling: point an AI at your repository, and it will instantly read millions of lines of code, identifying complex logic flaws that [traditional SAST and DAST](/en/sast-vs-dast-enhancing-code-scanning-with-machine-learning/) misses. 
 
 While AI excels at finding deeply buried contextual bugs, it introduces a dangerous new phenomenon into the DevSecOps pipeline: the **Hallucinated Vulnerability**. Because LLMs are probabilistic pattern-matchers rather than deterministic compilers, they frequently invent security flaws that do not actually exist. If security teams treat AI-generated audit reports as absolute truth, they risk overwhelming their developers with phantom bugs, destroying trust in the security program, and paralyzing the release cycle.
 
@@ -43,7 +43,7 @@ Reachability analysis uses deterministic parsing to build a Call Graph of the ap
 
 Relying entirely on autonomous AI agents to gate your CI/CD pipeline is currently a recipe for disaster. Effective AI code auditing requires strict Human-in-the-Loop (HITL) guardrails.
 
-* **AI as a Pointer, Not a Judge:** Security architects must treat LLMs like highly eager, slightly unreliable junior analysts — similar to the mindset required when [using AI coding assistants like Copilot securely](/en/secure-coding-with-copilot-best-practices-for-ai-assisted-dev). The AI's job is to point out *areas of interest* and highlight complex logic that warrants human review, not to make the final "pass/fail" decision on a build.
+* **AI as a Pointer, Not a Judge:** Security architects must treat LLMs like highly eager, slightly unreliable junior analysts — similar to the mindset required when [using AI coding assistants like Copilot securely](/en/secure-coding-with-copilot-best-practices-for-ai-assisted-dev/). The AI's job is to point out *areas of interest* and highlight complex logic that warrants human review, not to make the final "pass/fail" decision on a build.
 * **Prompting for Evidence:** When integrating LLMs into custom DevSecOps workflows, security teams must engineer their prompts to demand proof. Instead of asking, *"Are there any vulnerabilities?"* the prompt should be: *"Identify potential data flow vulnerabilities. For every vulnerability found, you must output the exact file path, line numbers, and trace the execution flow from source to sink. If you cannot trace the flow, do not report the vulnerability."* Forcing the LLM to show its work drastically reduces its tendency to invent flaws.
 
 ## Conclusion
