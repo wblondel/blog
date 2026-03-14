@@ -41,7 +41,7 @@ On ne peut gérer que ce que l'on comprend. La fonction **Cartographier** oblige
 
 Une fois le terrain cartographié, la fonction **Mesurer** applique des tests rigoureux et objectifs. Le NIST définit plusieurs caractéristiques d'une « IA de confiance » qui doivent être mesurées :
 * **Validité et fiabilité :** Le modèle fait-il vraiment ce qu'il prétend faire sous pression ?
-* **Sécurité et sûreté :** Le modèle est-il résilient face aux attaques adversariales, aux injections de prompt et à l'empoisonnement des données ? Des outils comme les plateformes de [SIEM alimenté par IA](/fr/siem-alimente-par-ia) peuvent aider à surveiller ces menaces en continu en production.
+* **Sécurité et sûreté :** Le modèle est-il résilient face aux attaques adversariales, aux injections de prompt et à l'empoisonnement des données ? Des outils comme les plateformes de [SIEM alimenté par IA](/fr/siem-alimente-par-ia-reduire-la-fatigue-des-alertes-pour-les-analystes-soc) peuvent aider à surveiller ces menaces en continu en production.
 * **Équité et biais :** Y a-t-il des impacts disproportionnés sur des groupes démographiques protégés ?
 * **Explicabilité et transparence :** La sortie du système peut-elle être comprise et interprétée par un opérateur humain ?
 
@@ -55,4 +55,4 @@ Les systèmes d'IA étant dynamiques, la fonction Gérer met fortement l'accent 
 
 ## Conclusion
 
-Le NIST AI RMF comble le fossé entre les principes éthiques de haut niveau et l'ingénierie pratique sur le terrain. Pour les professionnels IT et les responsables techniques, adopter ce framework n'est plus un simple exercice théorique ; c'est un impératif stratégique. En mettant en œuvre les fonctions Gouverner, Cartographier, Mesurer et Gérer, les organisations peuvent déployer en toute confiance des solutions IA innovantes tout en démontrant aux auditeurs, aux régulateurs et aux clients qu'elles sécurisent activement l'avenir de leur chaîne d'approvisionnement logicielle. Pour des conseils pratiques sur la mise en application de ces principes, consultez notre article sur la [gouvernance de l'IA défensive](/fr/gouvernance-de-lia-defensive).
+Le NIST AI RMF comble le fossé entre les principes éthiques de haut niveau et l'ingénierie pratique sur le terrain. Pour les professionnels IT et les responsables techniques, adopter ce framework n'est plus un simple exercice théorique ; c'est un impératif stratégique. En mettant en œuvre les fonctions Gouverner, Cartographier, Mesurer et Gérer, les organisations peuvent déployer en toute confiance des solutions IA innovantes tout en démontrant aux auditeurs, aux régulateurs et aux clients qu'elles sécurisent activement l'avenir de leur chaîne d'approvisionnement logicielle. Pour des conseils pratiques sur la mise en application de ces principes, consultez l'article sur la [gouvernance de l'IA défensive](/fr/gouvernance-de-lia-defensive-garantir-que-votre-ia-defensive-nest-pas-biaisee).

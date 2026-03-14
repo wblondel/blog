@@ -48,7 +48,7 @@ The legislation explicitly calls out AI-specific threat vectors. Organizations m
 * **Adversarial Examples:** Inputs designed to trick the model into making a false classification (e.g., bypassing biometric security).
 * **Model Flaws:** Inconsistencies or faults within the operating environment. 
 
-For the cybersecurity team, this means traditional vulnerability scanning is no longer enough. You must implement AI-specific red-teaming and adversarial robustness testing to legally certify the system. For a deeper look at how to structure this within your organization, see our article on the [governance of AI-powered defense](/en/governance-of-ai-defense).
+For the cybersecurity team, this means traditional vulnerability scanning is no longer enough. You must implement AI-specific red-teaming and adversarial robustness testing to legally certify the system. For a deeper look at how to structure this within your organization, see my article on the [governance of AI-powered defense](/en/governance-of-ai-defense-ensuring-your-defensive-ai-isn-t-biased).
 
 ## 4. The Cost of Non-Compliance
 

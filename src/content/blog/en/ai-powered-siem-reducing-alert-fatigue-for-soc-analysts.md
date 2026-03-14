@@ -20,7 +20,7 @@ These logs are centralized in a **Security Information and Event Management (SIE
 Traditional SIEMs are essentially massive search engines for logs. If an administrator sets a rule like "Alert on 5 failed logins," the SIEM will blindly fire an alert every time that condition is met, regardless of context.
 
 * **False Positives:** A misconfigured service account with an expired password might trigger 500 alerts in an hour. An analyst has to manually review and close each one.
-* **Burnout:** The industry average time to investigate a single alert is 10 to 15 minutes. When a SOC receives 10,000 alerts a day, it is mathematically impossible for the human team to investigate them all, a problem compounded by [the cybersecurity skills gap](/en/the-skills-gap-why-ai-both-widens-and-bridges-the-cybersecurity-talent-crisis). Attackers know this and often generate "noise" (decoy attacks) to hide their actual exfiltration activities.
+* **Burnout:** The industry average time to investigate a single alert is 10 to 15 minutes. When a SOC receives 10,000 alerts a day, it is mathematically impossible for the human team to investigate them all, a problem compounded by [the cybersecurity skills gap](/en/the-skills-gap-will-ai-replace-the-junior-cybersecurity-analyst). Attackers know this and often generate "noise" (decoy attacks) to hide their actual exfiltration activities.
 
 ## 2. Contextualization: How Machine Learning Connects the Dots
 

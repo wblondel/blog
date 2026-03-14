@@ -21,7 +21,7 @@ Ces logs sont centralisés dans un système **SIEM (Security Information and Eve
 Les SIEM traditionnels sont essentiellement des moteurs de recherche massifs pour les logs. Si un administrateur définit une règle comme « Alerter sur 5 tentatives de connexion échouées », le SIEM déclenchera aveuglément une alerte chaque fois que cette condition est remplie, quel que soit le contexte.
 
 * **Faux positifs :** un compte de service mal configuré avec un mot de passe expiré peut déclencher 500 alertes en une heure. Un analyste doit les examiner et les fermer manuellement une par une.
-* **Épuisement professionnel :** le temps moyen du secteur pour investiguer une seule alerte est de 10 à 15 minutes. Lorsqu'un SOC reçoit 10 000 alertes par jour, il est mathématiquement impossible pour l'équipe humaine de toutes les investiguer, un problème aggravé par [le déficit de compétences en cybersécurité](/fr/le-deficit-de-competences-pourquoi-lia-creuse-et-comble-a-la-fois-la-crise-des-talents-en-cybersecurite). Les attaquants le savent et génèrent souvent du « bruit » (attaques leurres) pour dissimuler leurs véritables activités d'exfiltration.
+* **Épuisement professionnel :** le temps moyen du secteur pour investiguer une seule alerte est de 10 à 15 minutes. Lorsqu'un SOC reçoit 10 000 alertes par jour, il est mathématiquement impossible pour l'équipe humaine de toutes les investiguer, un problème aggravé par [le déficit de compétences en cybersécurité](/fr/le-deficit-de-competences-lia-va-t-elle-remplacer-lanalyste-junior). Les attaquants le savent et génèrent souvent du « bruit » (attaques leurres) pour dissimuler leurs véritables activités d'exfiltration.
 
 ## 2. La contextualisation : comment le machine learning relie les points
 

@@ -11,7 +11,7 @@ readTime: 5
 
 ## Introduction: The New Perimeter is the Prompt
 
-For the modern IT architect, the push to integrate Generative AI into enterprise workflows represents a massive architectural dilemma. On one hand, utilizing Public Cloud APIs (such as OpenAI's GPT-4 or Anthropic's Claude) offers immediate access to state-of-the-art intelligence with zero infrastructure overhead. On the other hand, feeding proprietary corporate data, customer PII, and trade secrets into a third-party API fundamentally breaks the traditional security perimeter — a phenomenon often exacerbated by [Shadow AI](/en/shadow-ai) adoption across departments. 
+For the modern IT architect, the push to integrate Generative AI into enterprise workflows represents a massive architectural dilemma. On one hand, utilizing Public Cloud APIs (such as OpenAI's GPT-4 or Anthropic's Claude) offers immediate access to state-of-the-art intelligence with zero infrastructure overhead. On the other hand, feeding proprietary corporate data, customer PII, and trade secrets into a third-party API fundamentally breaks the traditional security perimeter — a phenomenon often exacerbated by [Shadow AI](/en/shadow-ai-the-silent-threat-to-your-software-supply-chain) adoption across departments. 
 
 This conflict lies at the heart of **Data Sovereignty**—the concept that data is subject to the laws and governance structures of the nation or region in which it is collected and processed. As global privacy regulations tighten, organizations are increasingly forced to choose between the raw power of public AI and the strict compliance of Private LLMs hosted within their own infrastructure.
 

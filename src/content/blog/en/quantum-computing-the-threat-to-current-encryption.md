@@ -30,7 +30,7 @@ However, in 1994, mathematician Peter Shor developed **Shor's Algorithm**.
 A common managerial pushback is: *"If quantum computers capable of breaking RSA won't exist for another 5 to 10 years, why should we invest in mitigating the threat today?"*
 
 The answer lies in a highly aggressive, ongoing intelligence strategy known as **Harvest Now, Decrypt Later (HNDL)** or *Store Now, Decrypt Later (SNDL)*.
-Nation-state threat actors are currently intercepting and exfiltrating massive volumes of encrypted enterprise and government data through sophisticated [network traffic analysis](/en/network-traffic-analysis-nta) and interception techniques. They know they cannot read the AES keys wrapped in RSA today. However, they are storing these petabytes of encrypted data in massive data centers. As soon as they achieve quantum capability, they will retrospectively decrypt the stored data. 
+Nation-state threat actors are currently intercepting and exfiltrating massive volumes of encrypted enterprise and government data through sophisticated [network traffic analysis](/en/network-traffic-analysis-nta-detecting-encrypted-malicious-traffic) and interception techniques. They know they cannot read the AES keys wrapped in RSA today. However, they are storing these petabytes of encrypted data in massive data centers. As soon as they achieve quantum capability, they will retrospectively decrypt the stored data. 
 
 If your organization handles data with a long-term secrecy requirement—such as healthcare records, proprietary source code, national security intelligence, or long-term financial strategies—your data is already actively compromised by the HNDL threat vector.
 
@@ -50,7 +50,7 @@ Transitioning an entire enterprise architecture from RSA to PQC will be the larg
 
 Organizations must adopt a governance framework to manage this migration:
 * **Create a Cryptographic Bill of Materials (CBOM):** You cannot upgrade what you cannot see. IT teams must audit their entire software supply chain to discover exactly where and how cryptography is being used. Which microservices hardcode RSA? Which legacy applications rely on outdated TLS versions?
-* **Eliminate Hardcoded Cryptography:** Developers must stop hardcoding specific cryptographic algorithms into application logic. Security architectures should abstract cryptography into centralized [key management systems](/en/secrets-management) or sidecars, allowing the organization to swap an RSA certificate for a PQC certificate with a simple configuration change, rather than a massive codebase rewrite.
+* **Eliminate Hardcoded Cryptography:** Developers must stop hardcoding specific cryptographic algorithms into application logic. Security architectures should abstract cryptography into centralized [key management systems](/en/secrets-management-preventing-ai-from-hardcoding-keys) or sidecars, allowing the organization to swap an RSA certificate for a PQC certificate with a simple configuration change, rather than a massive codebase rewrite.
 * **Hybrid Implementations:** In the short term, security architects should adopt hybrid cryptographic models. This involves wrapping data in both a traditional algorithm (like ECC) and a new PQC algorithm simultaneously. This guarantees compliance with current FIPS standards while providing early protection against the HNDL threat.
 
 ## Conclusion

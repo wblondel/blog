@@ -12,7 +12,7 @@ readTime: 5
 
 ## Introduction: The End of the Castle and Moat
 
-For decades, enterprise security relied on the "Castle and Moat" perimeter model. You built a strong firewall (the moat), and if a user authenticated via VPN, they were inside the castle and implicitly trusted. The reality of modern cyberattacks—specifically credential theft via [automated spear phishing](/en/automated-spear-phishing-when-gpt-models-craft-the-perfect-lure) and automated lateral movement—has proven this model fatally flawed. Once an attacker breaches the perimeter, they have free rein to destroy the network.
+For decades, enterprise security relied on the "Castle and Moat" perimeter model. You built a strong firewall (the moat), and if a user authenticated via VPN, they were inside the castle and implicitly trusted. The reality of modern cyberattacks—specifically credential theft via [automated spear phishing](/en/automated-spear-phishing-how-llms-scale-social-engineering) and automated lateral movement—has proven this model fatally flawed. Once an attacker breaches the perimeter, they have free rein to destroy the network.
 
 The industry response is **Zero Trust Architecture (ZTA)**, built on the mantra: *"Never trust, always verify."* Zero Trust assumes that the network is already hostile and that no user or device is trusted by default, regardless of their location. However, manually verifying every single request is impossible. This is where Artificial Intelligence becomes the essential engine of Zero Trust, transforming it from a theoretical concept into a scalable reality.
 

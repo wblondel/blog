@@ -11,7 +11,7 @@ readTime: 6
 
 ## Introduction : la crise de confiance dans l'identité numérique
 
-Dans la Série 1 (Semaine 5), nous avons exploré comment les attaquants utilisent [l'injection de deepfakes en temps réel pour contourner les selfies vidéo de type "Connaissez votre client" (KYC)](/fr/deepfake-video-dans-le-kyc-comment-les-visages-generes-par-ia-contournent-la-verification-didentite). Cette capacité offensive a engendré une profonde crise pour l'identité numérique : si une IA peut parfaitement imiter un visage et une voix humains, comment un système peut-il prouver que l'utilisateur de l'autre côté de l'écran est réellement en chair et en os ?
+Dans la Série 1 (Semaine 5), nous avons exploré comment les attaquants utilisent [l'injection de deepfakes en temps réel pour contourner les selfies vidéo de type "Connaissez votre client" (KYC)](/fr/deepfake-video-dans-le-kyc-contourner-la-verification-biometrique). Cette capacité offensive a engendré une profonde crise pour l'identité numérique : si une IA peut parfaitement imiter un visage et une voix humains, comment un système peut-il prouver que l'utilisateur de l'autre côté de l'écran est réellement en chair et en os ?
 
 La réponse réside dans la **détection de vivacité biométrique**. La reconnaissance faciale seule ne constitue plus une authentification ; elle identifie simplement *qui* la personne prétend être (à l'instar d'un nom d'utilisateur). La détection de vivacité est le véritable authentificateur (le mot de passe), prouvant que les données biométriques sont capturées à partir d'un être humain vivant et physiquement présent, et non d'une construction numérique synthétique ou d'un masque imprimé.
 
@@ -19,7 +19,7 @@ La réponse réside dans la **détection de vivacité biométrique**. La reconna
 
 Les premières défenses reposaient sur la **vivacité active**. Le système demandait à l'utilisateur d'effectuer une action spécifique : *« Tournez la tête à droite », « Clignez des yeux deux fois »* ou *« Lisez ces chiffres à voix haute. »* Comme nous l'avons vu dans la série Red Team, l'IA générative a rendu cette approche obsolète. Les attaquants utilisent désormais des logiciels de "marionnettisme" qui mappent les mouvements de tête en temps réel de l'attaquant sur le visage deepfake, passant sans effort les défis actifs.
 
-L'industrie a donc pivoté vers la **vivacité passive**. Cette approche ne demande aucun effort à l'utilisateur. Au lieu d'exiger une action délibérée, l'IA défensive analyse le flux vidéo en arrière-plan pour détecter les traits physiologiques humains involontaires et les artefacts numériques microscopiques que les modèles génératifs ne parviennent pas à restituer correctement — des faiblesses qui peuvent aussi être exploitées via des [exemples adversariaux](/fr/exemples-adversariaux-comment-de-subtiles-modifications-de-pixels-trompent-lia-defensive).
+L'industrie a donc pivoté vers la **vivacité passive**. Cette approche ne demande aucun effort à l'utilisateur. Au lieu d'exiger une action délibérée, l'IA défensive analyse le flux vidéo en arrière-plan pour détecter les traits physiologiques humains involontaires et les artefacts numériques microscopiques que les modèles génératifs ne parviennent pas à restituer correctement — des faiblesses qui peuvent aussi être exploitées via des [exemples adversariaux](/fr/exemples-adversariaux-tromper-les-systemes-de-reconnaissance-dimages).
 
 ## 2. Comment l'IA défensive détecte le faux
 
@@ -39,7 +39,7 @@ Ces modules matériels projettent des milliers de points infrarouges invisibles 
 
 ## 4. Défense contre les deepfakes audio (anti-vishing)
 
-La vivacité ne se limite pas à la vidéo. Pour contrer les menaces de [clonage vocal (vishing)](/fr/clonage-vocal-vishing-quand-la-voix-de-votre-pdg-devient-le-vecteur-dattaque) abordées en Semaine 4, les opérateurs télécoms et les équipes de sécurité d'entreprise déploient la **détection de vivacité audio**.
+La vivacité ne se limite pas à la vidéo. Pour contrer les menaces de [clonage vocal (vishing)](/fr/clonage-vocal-vishing-la-nouvelle-frontiere-de-la-fraude-au-president) abordées en Semaine 4, les opérateurs télécoms et les équipes de sécurité d'entreprise déploient la **détection de vivacité audio**.
 
 Ces modèles n'écoutent pas *ce qui est dit*, ni ne tentent de faire correspondre la voix à une personne spécifique. Ils analysent l'environnement acoustique. Ils recherchent l'absence de respiration naturelle, des résonances du conduit vocal non naturelles, ou les subtils artefacts numériques de type "vocoder" laissés par les moteurs IA de synthèse vocale.
 

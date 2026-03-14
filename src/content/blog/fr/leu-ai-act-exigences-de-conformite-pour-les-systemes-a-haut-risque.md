@@ -47,7 +47,7 @@ Le texte cible explicitement les vecteurs de menace spécifiques à l'IA. Les or
 * **Les exemples adversariaux :** Des entrées conçues pour tromper le modèle et lui faire effectuer une fausse classification (par exemple, contourner la sécurité biométrique).
 * **Les défauts du modèle :** Des incohérences ou des failles dans l'environnement d'exploitation.
 
-Pour l'équipe de cybersécurité, cela signifie que le scan de vulnérabilités traditionnel n'est plus suffisant. Vous devez mettre en place un red team et des tests de robustesse adversariale spécifiques à l'IA pour certifier légalement le système. Pour approfondir la structuration de cette démarche au sein de votre organisation, consultez notre article sur la [gouvernance de l'IA défensive](/fr/gouvernance-de-lia-defensive).
+Pour l'équipe de cybersécurité, cela signifie que le scan de vulnérabilités traditionnel n'est plus suffisant. Vous devez mettre en place un red team et des tests de robustesse adversariale spécifiques à l'IA pour certifier légalement le système. Pour approfondir la structuration de cette démarche au sein de votre organisation, consultez notre article sur la [gouvernance de l'IA défensive](/fr/gouvernance-de-lia-defensive-garantir-que-votre-ia-defensive-nest-pas-biaisee).
 
 ## 4. Le coût de la non-conformité
 
