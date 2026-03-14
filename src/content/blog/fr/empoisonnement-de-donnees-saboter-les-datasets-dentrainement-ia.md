@@ -13,7 +13,7 @@ readTime: 3
 
 Nous supposons souvent que les modèles d'IA sont objectifs. Ils ne le sont pas ; ils sont le reflet direct de leurs données d'entraînement. **L'empoisonnement de données** est une attaque où un acteur malveillant injecte de « mauvaises » données dans le dataset d'entraînement *avant* que le modèle soit construit.
 
-L'objectif n'est pas de casser immédiatement le modèle (ce qui serait remarqué), mais de créer une vulnérabilité spécifique et cachée — un **backdoor**. Le modèle fonctionnera parfaitement pour 99,9 % des entrées, mais lorsqu'il voit un « trigger » spécifique (comme un petit autocollant jaune sur un panneau stop), il échouera de manière catastrophique (en classifiant le panneau stop comme un panneau de limitation de vitesse).
+L'objectif n'est pas de casser immédiatement le modèle (ce qui serait remarqué), mais de créer une vulnérabilité spécifique et cachée — un **backdoor**. Le modèle fonctionnera parfaitement pour 99,9 % des entrées, mais lorsqu'il voit un « trigger » spécifique (comme un petit autocollant jaune sur un panneau stop), il échouera de manière catastrophique (en classifiant le panneau stop comme un panneau de limitation de vitesse), une vulnérabilité étroitement liée aux [exemples adversariaux](/fr/exemples-adversariaux-tromper-les-systemes-de-reconnaissance-dimages).
 
 ## Fonctionnement d'une attaque par backdoor
 
@@ -57,4 +57,4 @@ Détecter un empoisonnement est notoirement difficile une fois le modèle entra�
 
 ## Conclusion
 
-L'empoisonnement de données transforme la force du deep learning (la reconnaissance de motifs) en faiblesse. À mesure que les modèles d'IA deviennent une infrastructure critique, la sécurité du **dataset** est tout aussi importante que la sécurité du **code**. Nous nous dirigeons vers un futur où les datasets devront être « signés numériquement » et audités comme des registres financiers.
+L'empoisonnement de données transforme la force du deep learning (la reconnaissance de motifs) en faiblesse. À mesure que les modèles d'IA deviennent une infrastructure critique, la sécurité du **dataset** est tout aussi importante que la sécurité du **code**, tout comme le suivi des composants via un [SBOM (Software Bill of Materials)](/fr/sbom-suivre-les-composants-ia-dans-votre-chaine-logicielle). Nous nous dirigeons vers un futur où les datasets devront être « signés numériquement » et audités comme des registres financiers.

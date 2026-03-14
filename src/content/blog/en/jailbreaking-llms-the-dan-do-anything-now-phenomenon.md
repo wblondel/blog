@@ -13,7 +13,7 @@ readTime: 3
 
 When OpenAI released ChatGPT, they implemented a safety technique called **RLHF (Reinforcement Learning from Human Feedback)**. This alignment process prevents the AI from answering harmful questions like "How do I build a bomb?" or "Write me a ransomware script."
 
-However, almost immediately, users discovered they could bypass these filters through clever psychological tricks known as **Jailbreaks**. The most famous of these was the "DAN" (Do Anything Now) prompt, which forced the AI to adopt a rebellious persona. This cat-and-mouse game between developers and users has exposed a fundamental weakness in current AI architecture: safety is a wrapper, not a core function.
+However, almost immediately, users discovered they could bypass these filters through clever psychological tricks known as **Jailbreaks**. The most famous of these was the "DAN" (Do Anything Now) prompt, which forced the AI to adopt a rebellious persona. This cat-and-mouse game, closely related to [prompt injection attacks](/en/prompt-injection-attacks-hacking-the-logic-of-chatbots), has exposed a fundamental weakness in current AI architecture: safety is a wrapper, not a core function.
 
 ## The psychology of a jailbreak
 
@@ -53,4 +53,4 @@ For a company deploying an internal AI (e.g., a customer support bot), jailbreak
 
 ## Conclusion
 
-Jailbreaking proves that we cannot yet rely on LLMs to police themselves. "Safety alignment" is currently a game of whack-a-mole. Until we develop models that are *intrinsically* safe (where the concept of harm is embedded in the weights, not just the filter), enterprise deployment of GenAI requires strict output monitoring and the assumption that the model *can* and *will* be broken.
+Jailbreaking proves that we cannot yet rely on LLMs to police themselves. "Safety alignment" is currently a game of whack-a-mole. Until we develop models that are *intrinsically* safe (where the concept of harm is embedded in the weights, not just the filter), enterprise deployment of GenAI requires strict output monitoring, [AI governance](/en/governance-of-ai-defense-ensuring-your-defensive-ai-isn-t-biased), and the assumption that the model *can* and *will* be broken.

@@ -12,13 +12,13 @@ readTime: 6
 
 ## Introduction : la fin du château fort et des douves
 
-Pendant des décennies, la sécurité d'entreprise reposait sur le modèle périmétrique du « château fort et des douves ». On construisait un firewall solide (les douves), et si un utilisateur s'authentifiait via VPN, il était à l'intérieur du château et implicitement digne de confiance. La réalité des cyberattaques modernes—notamment le vol d'identifiants et le mouvement latéral automatisé—a prouvé que ce modèle est fatalement défaillant. Dès qu'un attaquant pénètre le périmètre, il a toute liberté pour détruire le réseau.
+Pendant des décennies, la sécurité d'entreprise reposait sur le modèle périmétrique du « château fort et des douves ». On construisait un firewall solide (les douves), et si un utilisateur s'authentifiait via VPN, il était à l'intérieur du château et implicitement digne de confiance. La réalité des cyberattaques modernes—notamment le vol d'identifiants via le [spear phishing automatisé](/fr/spear-phishing-automatise-quand-les-modeles-gpt-creent-le-leurre-parfait) et le mouvement latéral automatisé—a prouvé que ce modèle est fatalement défaillant. Dès qu'un attaquant pénètre le périmètre, il a toute liberté pour détruire le réseau.
 
 La réponse de l'industrie est l'**architecture Zero Trust (ZTA)**, construite sur le mantra : *« Ne jamais faire confiance, toujours vérifier. »* Le Zero Trust part du principe que le réseau est déjà hostile et qu'aucun utilisateur ou dispositif n'est digne de confiance par défaut, quelle que soit sa localisation. Cependant, vérifier manuellement chaque requête est impossible. C'est là que l'intelligence artificielle devient le moteur essentiel du Zero Trust, le transformant d'un concept théorique en réalité scalable.
 
 ## 1. Des règles statiques au score de risque dynamique
 
-Le contrôle d'accès traditionnel repose sur des règles statiques : *Si l'utilisateur A possède le bon mot de passe et le bon jeton MFA, accorder l'accès à la base de données B.* Dans un modèle Zero Trust piloté par IA, la confiance n'est jamais statique ; c'est une variable en fluctuation permanente. L'IA ingère de vastes quantités de données de télémétrie—santé du dispositif, géolocalisation, heure de la journée et référence comportementale de l'utilisateur (via UEBA)—pour calculer un **score de risque dynamique** en temps réel.
+Le contrôle d'accès traditionnel repose sur des règles statiques : *Si l'utilisateur A possède le bon mot de passe et le bon jeton MFA, accorder l'accès à la base de données B.* Dans un modèle Zero Trust piloté par IA, la confiance n'est jamais statique ; c'est une variable en fluctuation permanente. L'IA ingère de vastes quantités de données de télémétrie—santé du dispositif, géolocalisation, heure de la journée et référence comportementale de l'utilisateur (via [UEBA](/fr/ueba-aller-au-dela-des-signatures-avec-lanalyse-comportementale-par-ia))—pour calculer un **score de risque dynamique** en temps réel.
 
 Si un cadre se connecte depuis son ordinateur portable d'entreprise géré à Paris à 9h00, son score de risque est faible et l'accès est transparent. Si ce même compte de cadre demande l'accès à une base de données RH sensible depuis une tablette non gérée dans un nouveau pays à 3h00 du matin, l'IA élève dynamiquement le score de risque.
 
@@ -39,7 +39,7 @@ Lorsque l'IA abaisse le score de confiance d'un utilisateur, le moteur de politi
 
 * **Authentification renforcée (Step-Up Authentication) :** Le système peut temporairement suspendre l'accès de l'utilisateur et pousser une nouvelle demande MFA vers son téléphone, ou exiger une confirmation par clé matérielle FIDO2 pour reverifier son identité.
 * **Restriction granulaire :** Au lieu d'expulser complètement l'utilisateur du réseau, l'IA peut rétrograder ses permissions de « lecture/écriture » à « lecture seule » pour des applications spécifiques.
-* **Révocation instantanée :** Si le comportement correspond à un pattern d'exécution de ransomware connu (comme le chiffrement rapide de fichiers), l'IA coupe la connexion réseau et isole entièrement l'endpoint.
+* **Révocation instantanée :** Si le comportement correspond à un pattern d'exécution de ransomware connu (comme le chiffrement rapide de fichiers), l'IA coupe la connexion réseau et isole entièrement l'endpoint via l'[EDR](/fr/edr-et-le-role-des-agents-ml-securiser-lendpoint).
 
 ## 4. La microsegmentation pilotée par IA
 

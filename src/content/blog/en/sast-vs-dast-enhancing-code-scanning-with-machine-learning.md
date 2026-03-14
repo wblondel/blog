@@ -28,7 +28,7 @@ Machine Learning fundamentally changes how SAST operates. Instead of just matchi
 
 
 * **False Positive Reduction:** When an ML-enhanced SAST finds a potential vulnerability, it traces the execution path. It recognizes custom sanitization functions and contextual safety measures that a rigid regex rule would miss. By mathematically calculating the probability of a finding being a true positive, it automatically suppresses the noise, presenting only high-confidence alerts to the developer.
-* **Auto-Remediation:** Advanced ML models don't just point out the broken code; they generate the exact block of code needed to fix it. If the scanner detects an insecure cryptographic cipher, the ML engine will suggest a pull request replacing it with an AES-GCM implementation that seamlessly integrates into the surrounding logic.
+* **Auto-Remediation:** Advanced ML models don't just point out the broken code; they generate the exact block of code needed to fix it. If the scanner detects an insecure cryptographic cipher, the ML engine will suggest a pull request replacing it with an AES-GCM implementation that seamlessly integrates into the surrounding logic. This kind of intelligent remediation pairs well with [secure coding practices in AI-assisted development](/en/secure-coding-with-copilot-best-practices-for-ai-assisted-dev).
 
 ## 3. The Legacy DAST Problem: Crawling Modern Web Apps
 
@@ -41,7 +41,7 @@ This approach fails completely on modern Single Page Applications (SPAs) built w
 To audit modern architectures, DAST must act more like a cognitive entity than a simple web scraper. Artificial Intelligence bridges this gap by enabling intelligent navigation and dynamic payload generation.
 
 * **Cognitive Crawling:** Machine Learning models equipped with computer vision and natural language processing can "see" the application like a human. They understand that a visually rendered button labeled "Submit" is an actionable element, even if it lacks traditional HTML form tags. The AI maps the complex state changes of the SPA, uncovering hidden API endpoints that standard crawlers miss.
-* **Smart Payload Generation:** Instead of blindly throwing a static dictionary of SQL injection payloads at an input field, ML-driven DAST analyzes the API's response behavior. If the server responds with a specific database error, the AI dynamically adapts its next set of payloads (similar to automated fuzzing) to actively exploit the specific backend technology it has inferred, discovering complex, multi-step vulnerabilities that static lists cannot reach.
+* **Smart Payload Generation:** Instead of blindly throwing a static dictionary of SQL injection payloads at an input field, ML-driven DAST analyzes the API's response behavior. If the server responds with a specific database error, the AI dynamically adapts its next set of payloads (similar to [automated fuzzing at scale](/en/fuzzing-at-scale-using-ai-to-generate-edge-case-test-inputs)) to actively exploit the specific backend technology it has inferred, discovering complex, multi-step vulnerabilities that static lists cannot reach.
 
 ## Conclusion
 

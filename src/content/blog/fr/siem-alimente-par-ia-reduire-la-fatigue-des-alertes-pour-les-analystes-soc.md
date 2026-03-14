@@ -12,7 +12,7 @@ readTime: 6
 
 ## Introduction : la crise dans le SOC
 
-Dans l'article précédent, nous avons évoqué comment l'UEBA aide à identifier les comportements anormaux des humains et des machines. Cependant, l'UEBA n'est qu'une source d'information parmi d'autres. Dans une entreprise moderne, les firewalls, les endpoints, les fournisseurs d'identité et l'infrastructure cloud génèrent des milliards de logs chaque jour.
+Dans l'article précédent, nous avons évoqué comment l'[UEBA](/fr/ueba-aller-au-dela-des-signatures-avec-lanalyse-comportementale-par-ia) aide à identifier les comportements anormaux des humains et des machines. Cependant, l'UEBA n'est qu'une source d'information parmi d'autres. Dans une entreprise moderne, les firewalls, les endpoints, les fournisseurs d'identité et l'infrastructure cloud génèrent des milliards de logs chaque jour.
 
 Ces logs sont centralisés dans un système **SIEM (Security Information and Event Management)**. Pendant des années, le SIEM a été le cœur battant du SOC (Security Operations Center). Mais il est aussi devenu une source de stress immense. Les SIEM traditionnels reposent sur des règles de corrélation statiques qui génèrent des milliers d'alertes de faible qualité chaque jour. Cela crée une **fatigue des alertes** — un dangereux phénomène psychologique où des analystes submergés commencent à ignorer les alertes, manquant inévitablement la vraie attaque cachée dans le bruit. Les SIEM alimentés par IA émergent comme la solution critique à cette crise des données.
 
@@ -21,7 +21,7 @@ Ces logs sont centralisés dans un système **SIEM (Security Information and Eve
 Les SIEM traditionnels sont essentiellement des moteurs de recherche massifs pour les logs. Si un administrateur définit une règle comme « Alerter sur 5 tentatives de connexion échouées », le SIEM déclenchera aveuglément une alerte chaque fois que cette condition est remplie, quel que soit le contexte.
 
 * **Faux positifs :** un compte de service mal configuré avec un mot de passe expiré peut déclencher 500 alertes en une heure. Un analyste doit les examiner et les fermer manuellement une par une.
-* **Épuisement professionnel :** le temps moyen du secteur pour investiguer une seule alerte est de 10 à 15 minutes. Lorsqu'un SOC reçoit 10 000 alertes par jour, il est mathématiquement impossible pour l'équipe humaine de toutes les investiguer. Les attaquants le savent et génèrent souvent du « bruit » (attaques leurres) pour dissimuler leurs véritables activités d'exfiltration.
+* **Épuisement professionnel :** le temps moyen du secteur pour investiguer une seule alerte est de 10 à 15 minutes. Lorsqu'un SOC reçoit 10 000 alertes par jour, il est mathématiquement impossible pour l'équipe humaine de toutes les investiguer, un problème aggravé par [le déficit de compétences en cybersécurité](/fr/le-deficit-de-competences-pourquoi-lia-creuse-et-comble-a-la-fois-la-crise-des-talents-en-cybersecurite). Les attaquants le savent et génèrent souvent du « bruit » (attaques leurres) pour dissimuler leurs véritables activités d'exfiltration.
 
 ## 2. La contextualisation : comment le machine learning relie les points
 
@@ -51,4 +51,4 @@ Historiquement, le threat hunting nécessitait une connaissance approfondie de l
 
 L'IA ne remplace pas l'analyste SOC ; elle remplace les tâches fastidieuses et répétitives de collecte de données qui mènent à l'épuisement professionnel. En automatisant la corrélation, le triage et la génération de requêtes, les SIEM alimentés par IA permettent aux analystes de se concentrer sur ce que les humains font encore le mieux : la réflexion critique, la résolution de problèmes complexes et la réponse stratégique aux incidents.
 
-La semaine prochaine, nous examinerons l'étape logique suivante : une fois que le SIEM identifie la menace, comment utiliser l'IA pour l'arrêter automatiquement en temps réel ? Nous plongerons dans le monde des **SOAR (Security Orchestration, Automation, and Response)**.
+La semaine prochaine, nous examinerons l'étape logique suivante : une fois que le SIEM identifie la menace, comment utiliser l'IA pour l'arrêter automatiquement en temps réel ? Nous plongerons dans le monde des **[SOAR (Security Orchestration, Automation, and Response)](/fr/reponse-automatisee-aux-incidents-soar-defendre-a-la-vitesse-des-machines)**.

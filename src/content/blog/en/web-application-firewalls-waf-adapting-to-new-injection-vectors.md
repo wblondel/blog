@@ -14,7 +14,7 @@ readTime: 5
 
 For over two decades, the Web Application Firewall (WAF) has been the cornerstone of application security. Placed in front of web servers, traditional WAFs operate primarily on regular expressions (regex) to block known bad inputs defined by the OWASP Top 10—specifically, SQL Injection (SQLi) and Cross-Site Scripting (XSS). 
 
-But the landscape of application architecture has shifted dramatically. First, applications evolved into complex API-driven microservices. Now, they are rapidly integrating Large Language Models (LLMs) directly into their core functionality. This evolution has introduced entirely new classes of injection attacks that traditional, syntax-based WAFs are fundamentally unequipped to handle. To protect the next generation of software, the WAF must evolve into an intelligent, context-aware shield.
+But the landscape of application architecture has shifted dramatically. First, applications evolved into complex [API-driven microservices](/en/api-security-detecting-anomaly-usage-patterns-in-microservices). Now, they are rapidly integrating Large Language Models (LLMs) directly into their core functionality. This evolution has introduced entirely new classes of injection attacks that traditional, syntax-based WAFs are fundamentally unequipped to handle. To protect the next generation of software, the WAF must evolve into an intelligent, context-aware shield.
 
 ## 1. The Threat of AI-Generated Obfuscation
 
@@ -26,7 +26,7 @@ Today, an attacker can simply ask an uncensored LLM: *"Generate 50 highly obfusc
 
 ## 2. Prompt Injection: The New SQLi
 
-The most significant paradigm shift in AppSec is the rise of **Prompt Injection**. As developers embed AI chatbots, summarization tools, and data-retrieval agents (RAG) into their applications, the user input field is no longer just querying a database; it is talking to a neural network.
+The most significant paradigm shift in AppSec is the rise of **[Prompt Injection](/en/prompt-injection-attacks-hacking-the-logic-of-chatbots)**. As developers embed AI chatbots, summarization tools, and data-retrieval agents (RAG) into their applications, the user input field is no longer just querying a database; it is talking to a neural network.
 
 
 
@@ -52,4 +52,4 @@ These specialized gateways employ dual-layer ML filtering:
 
 ## Conclusion
 
-The introduction of LLMs into the application stack has blurred the line between code and conversation. You can no longer secure a web application simply by blocking `<` and `>` characters. DevSecOps teams must deploy ML-driven WAAPs and specialized AI gateways that understand context, intent, and semantics. If your application processes natural language, your firewall must be able to understand it too.
+The introduction of LLMs into the application stack has blurred the line between code and conversation. You can no longer secure a web application simply by blocking `<` and `>` characters. DevSecOps teams must deploy ML-driven WAAPs and specialized AI gateways that understand context, intent, and semantics. If your application processes natural language, your firewall must be able to understand it too. Combined with robust [bot management strategies](/en/bot-management-distinguishing-human-users-from-ai-scrapers), these tools form a comprehensive defense-in-depth posture.

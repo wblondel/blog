@@ -22,11 +22,11 @@ This is the promise of **Predictive Threat Intelligence**. By applying Machine L
 
 Traditional Cyber Threat Intelligence (CTI) relies heavily on **Indicators of Compromise (IOCs)**—things like malicious IP addresses, known bad file hashes, and compromised domains. 
 
-The fundamental flaw with IOCs is that they are inherently historical. By the time a malicious IP is added to a global blacklist and downloaded to your firewall, that IP has already been used to attack someone else. Furthermore, with the rise of AI-driven polymorphic malware and disposable cloud infrastructure, attackers change their IPs and file hashes for every single victim. A blacklist is essentially a list of bullets that have already been fired.
+The fundamental flaw with IOCs is that they are inherently historical. By the time a malicious IP is added to a global blacklist and downloaded to your firewall, that IP has already been used to attack someone else. Furthermore, with the rise of [AI-driven polymorphic malware](/en/ai-weaponization-the-industrialization-of-cyber-threats) and disposable cloud infrastructure, attackers change their IPs and file hashes for every single victim. A blacklist is essentially a list of bullets that have already been fired.
 
 ## 2. How Predictive AI Analyzes the "Pre-Attack" Phase
 
-Predictive AI shifts the focus from Indicators of Compromise to **Indicators of Attack (IOAs)** and behavioral forecasting. It achieves this by ingesting and analyzing colossal amounts of unstructured data from the deep and dark web using Natural Language Processing (NLP).
+Predictive AI shifts the focus from Indicators of Compromise to **Indicators of Attack (IOAs)** and behavioral forecasting. It achieves this by ingesting and analyzing colossal amounts of unstructured data from the deep and dark web using [Natural Language Processing (NLP) and OSINT techniques](/en/ai-in-osint-automating-open-source-intelligence-for-threat-discovery).
 
 * **Dark Web Chatter Analysis:** AI models continuously scrape hacker forums, Telegram channels, and illicit marketplaces. If the NLP detects a sudden 400% spike in conversations about a specific, unpatched VPN vulnerability (even if an exploit script isn't public yet), the AI flags this as an impending wave of attacks.
 * **Infrastructure Tracking:** Attackers have to build infrastructure before launching a campaign. Machine Learning algorithms monitor global DNS registrations and server provisioning. If an AI detects that a known threat actor group (like APT29) is suddenly registering hundreds of domains that look vaguely like Microsoft login pages, it predicts a massive phishing campaign is imminent.
@@ -42,7 +42,7 @@ How does a SOC actually use this predictive capability?
 
 Predictive Threat Intelligence is not a standalone tool; it is the "fuel" that powers the rest of the defense architecture. 
 
-When a predictive model forecasts that a specific IP range belonging to a bulletproof hosting provider is being prepped for a botnet attack, it automatically pushes those IPs via API to the enterprise's Next-Generation Firewalls (NGFW) and Web Application Firewalls (WAF). When the attack actually begins three days later, the enterprise's infrastructure drops the packets instantly, because the AI already updated the access control lists.
+When a predictive model forecasts that a specific IP range belonging to a bulletproof hosting provider is being prepped for a botnet attack, it automatically pushes those IPs via API to the enterprise's [SIEM](/en/ai-powered-siem-reducing-alert-fatigue-for-soc-analysts), Next-Generation Firewalls (NGFW) and Web Application Firewalls (WAF). When the attack actually begins three days later, the enterprise's infrastructure drops the packets instantly, because the AI already updated the access control lists.
 
 ## Conclusion
 

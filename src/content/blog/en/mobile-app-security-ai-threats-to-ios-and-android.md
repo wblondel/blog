@@ -19,7 +19,7 @@ Historically, securing iOS and Android apps meant defending against jailbreaking
 
 The industry has largely moved away from passwords in favor of biometric authentication—facial recognition and voiceprints. These methods rely on the assumption that a physical trait cannot be easily duplicated. Generative AI has shattered that assumption.
 
-* **Presentation Attacks:** Attackers use deepfake technology to bypass facial recognition. By scraping a few public photos of a victim from social media, an attacker can use AI to generate a highly realistic, animated 3D model of the victim's face. When presented to the device's camera, this deepfake can trick the app's "liveness detection" algorithms into thinking the actual user is blinking and moving in front of the screen.
+* **Presentation Attacks:** Attackers use [deepfake technology to bypass facial recognition](/en/deepfake-video-in-kyc-bypassing-biometric-verification). By scraping a few public photos of a victim from social media, an attacker can use AI to generate a highly realistic, animated 3D model of the victim's face. When presented to the device's camera, this deepfake can trick the app's "[liveness detection](/en/biometric-liveness-detection-countering-deepfakes)" algorithms into thinking the actual user is blinking and moving in front of the screen.
 * **Voice Cloning:** Similarly, AI-driven voice cloning requires only seconds of recorded audio to generate a synthetic voice capable of bypassing voice-based biometric locks used by banking and customer service applications. 
 
 

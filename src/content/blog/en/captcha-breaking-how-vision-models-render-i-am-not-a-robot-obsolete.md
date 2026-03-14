@@ -42,12 +42,12 @@ Before 2024, if you wanted to bypass CAPTCHAs at scale, you used "CAPTCHA Farms"
 
 * **Cost Reduction:** Automated AI solvers (like *CapSolver* or *2Captcha* with AI mode) have driven the cost down to pennies.
     
-* **Speed:** A human takes 10-30 seconds to solve a puzzle. An AI takes milliseconds. This speed allows for "Credential Stuffing" attacks (testing stolen passwords) to occur at a velocity that traditional rate-limiting cannot easily manage.
+* **Speed:** A human takes 10-30 seconds to solve a puzzle. An AI takes milliseconds. This speed allows for "Credential Stuffing" attacks (testing [stolen passwords](/en/ai-driven-password-cracking-the-end-of-complex-8-character-passwords)) to occur at a velocity that traditional rate-limiting cannot easily manage.
     
 
 ## Defense: the "invisible" shift
 
-Since visual puzzles are dead, the industry is migrating to **Behavioral Analysis** (reCAPTCHA v3, Cloudflare Turnstile).
+Since visual puzzles are dead, the industry is migrating to **Behavioral Analysis** and [bot management](/en/bot-management-distinguishing-human-users-from-ai-scrapers) (reCAPTCHA v3, Cloudflare Turnstile).
 
 * **How it works:** These systems do not show a puzzle. Instead, they run JavaScript in the background to analyze *how* you move your mouse.
     

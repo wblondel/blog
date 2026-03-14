@@ -28,7 +28,7 @@ Les NGFW modernes (initiés par des éditeurs comme Palo Alto Networks et Check 
 
 ## 2. Neutraliser les C2 grâce à la sécurité DNS neuronale
 
-Les attaquants utilisent une technique d'évasion majeure pour permettre aux malwares de communiquer avec leurs serveurs de Command and Control (C2) : l'**algorithme de génération de domaines (Domain Generation Algorithm, DGA)**.
+Les attaquants utilisent une technique d'évasion majeure pour permettre aux malwares de communiquer avec leurs serveurs de Command and Control (C2), que nous avons abordée dans notre analyse du [trafic chiffré](/fr/analyse-du-trafic-reseau-nta-detecter-le-trafic-malveillant-chiffre) : l'**algorithme de génération de domaines (Domain Generation Algorithm, DGA)**.
 
 Un DGA permet à un malware de générer mathématiquement des milliers de noms de domaine à apparence aléatoire chaque jour (par exemple `xeogrhxquuubt.com`). L'attaquant n'enregistre qu'un seul de ces domaines pour envoyer ses commandes. Comme les domaines changent constamment, les listes de blocage d'URL traditionnelles sont inutiles.
 
@@ -39,7 +39,7 @@ Les firewalls à deep learning s'attaquent à ce problème grâce aux réseaux d
 
 ## 3. Visibilité IoT et microsegmentation
 
-Le réseau d'entreprise moderne est inondé de dispositifs IoT (Internet des objets) non gérés : téléviseurs intelligents, caméras IP, capteurs médicaux et systèmes CVC connectés. Il est impossible d'installer un agent EDR sur une ampoule connectée, ce qui en fait des cibles de choix pour les botnets.
+Le réseau d'entreprise moderne est inondé de dispositifs IoT (Internet des objets) non gérés : téléviseurs intelligents, caméras IP, capteurs médicaux et systèmes CVC connectés. Il est impossible d'installer un agent [EDR](/fr/edr-et-le-role-des-agents-ml-securiser-lendpoint) sur une ampoule connectée, ce qui en fait des cibles de choix pour les botnets.
 
 Les NGFW dotés d'IA agissent comme le gardien ultime de ces dispositifs « sans tête ».
 * **Profilage comportemental :** Le firewall utilise le machine learning pour écouter passivement le trafic réseau et identifier automatiquement chaque dispositif connecté. Il reconnaît le fabricant, le système d'exploitation et la version du firmware sans aucune configuration manuelle.

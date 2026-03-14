@@ -12,7 +12,7 @@ readTime: 6
 
 ## Introduction : Qui l'IA Protège-t-elle, et Qui Punit-elle ?
 
-Au cours des 13 dernières semaines, nous avons construit une architecture Blue Team redoutable, pilotée par l'IA. Nous avons déployé l'UEBA pour établir des comportements de référence, le NLP pour analyser les emails, et le XDR pour isoler automatiquement les actifs compromis. Mais alors que nous confions les clés du royaume à ces algorithmes, une question de gouvernance critique se pose : **Que se passe-t-il lorsque l'IA défensive est biaisée ?**
+Au cours des 13 dernières semaines, nous avons construit une architecture Blue Team redoutable, pilotée par l'IA. Nous avons déployé l'[UEBA](/fr/ueba-aller-au-dela-des-signatures-avec-lanalyse-comportementale-par-ia) pour établir des comportements de référence, le [NLP pour analyser les emails](/fr/passerelles-de-securite-email-nlp-pour-detecter-le-phishing-semantique), et le [XDR](/fr/xdr-et-ia-threat-hunting-unifier-la-stack-de-securite) pour isoler automatiquement les actifs compromis. Mais alors que nous confions les clés du royaume à ces algorithmes, une question de gouvernance critique se pose : **Que se passe-t-il lorsque l'IA défensive est biaisée ?**
 
 Les modèles d'IA ne sont pas intrinsèquement objectifs ; ce sont des reflets mathématiques de leurs données d'entraînement. Si un modèle défensif est entraîné sur des données biaisées, il ne se contentera pas de manquer des attaques — il discriminera activement contre des employés légitimes, causant des perturbations opérationnelles graves et une responsabilité juridique potentielle. La gouvernance de l'IA défensive n'est plus un simple débat d'éthique théorique ; c'est une exigence opérationnelle fondamentale pour le SOC moderne.
 
@@ -26,7 +26,7 @@ Le biais dans l'IA de cybersécurité provient généralement d'erreurs d'échan
 
 ## 2. La Solution : l'IA Explicable (XAI)
 
-Le plus grand ennemi de la gouvernance est la « Boîte Noire ». Si un NGFW deep learning abandonne une connexion critique à la base de données et que l'analyste SOC demande *pourquoi*, « Parce que le réseau de neurones l'a dit » est une réponse inacceptable pour le DSI.
+Le plus grand ennemi de la gouvernance est la « Boîte Noire ». Si un [NGFW](/fr/lavenir-des-firewalls-ngfw-nouvelle-generation-avec-le-deep-learning) deep learning abandonne une connexion critique à la base de données et que l'analyste SOC demande *pourquoi*, « Parce que le réseau de neurones l'a dit » est une réponse inacceptable pour le DSI.
 
 Pour gouverner l'IA, les organisations doivent exiger de leurs éditeurs une **IA Explicable (XAI)**. Les techniques XAI (comme les valeurs SHAP ou LIME) obligent le modèle à produire une justification lisible par un humain à côté de sa décision.
 Au lieu d'une alerte binaire indiquant `Utilisateur X Bloqué : Risque 95`, un système XAI affiche : `Utilisateur X Bloqué. Facteurs contributifs principaux : 1) Déviation géographique (poids 40 %). 2) Exécution PowerShell inhabituelle (poids 50 %). 3) Heure de la journée (poids 10 %).`
@@ -43,12 +43,12 @@ Les modèles d'IA ne sont pas des logiciels que l'on peut « configurer et oubli
 
 Enfin, une gouvernance IA solide exige une délimitation stricte entre les actions qu'une IA peut prendre de manière autonome et celles qui nécessitent une intervention humaine.
 
-* **Vitesse Machine pour les Menaces Machine :** Si un agent EDR détecte un hachage de ransomware connu qui commence à chiffrer le disque dur, l'IA doit avoir l'autonomie d'isoler la machine instantanément.
-* **Human-in-the-Loop pour le Contexte Humain :** Si un système UEBA signale un employé comme une potentielle « Menace Interne » parce qu'il télécharge d'importantes quantités de données, l'IA doit *alerter* le SOC, mais elle ne doit pas automatiquement résilier le VPN de l'employé et notifier les RH. Il pourrait exister un contexte professionnel légitime (par exemple, un vaste projet de découverte juridique) que l'IA ne peut pas comprendre. La supervision humaine garantit que les décisions automatisées restent justes et contextualisées.
+* **Vitesse Machine pour les Menaces Machine :** Si un agent [EDR](/fr/edr-et-le-role-des-agents-ml-securiser-lendpoint) détecte un hachage de ransomware connu qui commence à chiffrer le disque dur, l'IA doit avoir l'autonomie d'isoler la machine instantanément.
+* **Human-in-the-Loop pour le Contexte Humain :** Si un système UEBA signale un employé comme une potentielle « [Menace Interne](/fr/detection-des-menaces-internes-identifier-les-employes-mecontents) » parce qu'il télécharge d'importantes quantités de données, l'IA doit *alerter* le SOC, mais elle ne doit pas automatiquement résilier le VPN de l'employé et notifier les RH. Il pourrait exister un contexte professionnel légitime (par exemple, un vaste projet de découverte juridique) que l'IA ne peut pas comprendre. La supervision humaine garantit que les décisions automatisées restent justes et contextualisées.
 
 ## Conclusion de la Série 2
 
-Déployer l'IA en cybersécurité, c'est comme mettre un moteur haute performance dans une voiture. Les firewalls, l'EDR et le XDR fournissent la puissance, mais la **Gouvernance** est le volant et les freins. Sans elle, vous vous crashez juste plus vite.
+Déployer l'IA en cybersécurité, c'est comme mettre un moteur haute performance dans une voiture. Les firewalls, l'[EDR](/fr/edr-et-le-role-des-agents-ml-securiser-lendpoint) et le [XDR](/fr/xdr-et-ia-threat-hunting-unifier-la-stack-de-securite) fournissent la puissance, mais la **Gouvernance** est le volant et les freins. Sans elle, vous vous crashez juste plus vite.
 
 Cet article conclut officiellement notre deuxième série, **Architectures de Défense Pilotées par l'IA**. Nous avons cartographié le champ de bataille entre la génération offensive et la corrélation défensive.
 

@@ -11,7 +11,7 @@ readTime: 5
 
 ## Introduction: When Perfect Grammar is the Threat
 
-In the first series of our Technology Watch (Week 2), we explored how attackers use Large Language Models (LLMs) like WormGPT to generate flawless, highly contextual spear-phishing emails at scale. This created a massive blind spot for traditional Blue Teams. 
+In the first series of our Technology Watch (Week 2), we explored how attackers use Large Language Models (LLMs) like WormGPT to generate flawless, highly contextual [spear-phishing emails at scale](/en/automated-spear-phishing-how-llms-scale-social-engineering). This created a massive blind spot for traditional Blue Teams. 
 
 Legacy Secure Email Gateways (SEGs) were built to catch "bad things"—malicious attachments with known signatures, links to blacklisted domains, or emails riddled with obvious typos. But what happens when an email contains no links, no attachments, and is grammatically perfect? This is the realm of **Business Email Compromise (BEC)**. To detect these payload-less, semantic attacks, modern SEGs have evolved. They no longer just read the *contents* of an email; using Natural Language Processing (NLP), they understand its *intent*.
 

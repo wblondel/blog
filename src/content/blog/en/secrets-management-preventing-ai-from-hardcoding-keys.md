@@ -11,7 +11,7 @@ readTime: 5
 
 ## Introduction: The Path of Least Resistance
 
-Hardcoding secrets—API keys, database passwords, and cryptographic certificates—directly into source code is one of the oldest and most dangerous sins in software development. Despite years of AppSec training, it remains the leading cause of massive data breaches. 
+Hardcoding secrets—API keys, database passwords, and cryptographic certificates (increasingly vulnerable to [AI-driven password cracking](/en/ai-driven-password-cracking-the-end-of-complex-8-character-passwords))—directly into source code is one of the oldest and most dangerous sins in software development. Despite years of AppSec training, it remains the leading cause of massive data breaches. 
 
 With the introduction of AI coding assistants, this problem has accelerated. Large Language Models (LLMs) are trained to provide the fastest, most functional solution to a developer's prompt. Often, the path of least resistance to make a script "just work" is to declare a global variable with a plaintext API key. If developers are not actively implementing robust secrets management architectures, AI assistants will gladly help them commit the digital keys to the kingdom straight to a public GitHub repository.
 
@@ -30,7 +30,7 @@ The traditional defense against hardcoded secrets is a regex-based scanner runni
 
 
 Modern DevSecOps relies on **Machine Learning-Enhanced Secret Scanning** to solve this. 
-* **Entropy and Context Analysis:** Instead of just looking for the string "password," ML models analyze the mathematical entropy (randomness) of the string and the surrounding syntactic context. They understand the difference between a high-entropy 64-character AWS Access Key and a similarly long, but benign, base64-encoded image placeholder.
+* **Entropy and Context Analysis:** Instead of just looking for the string "password," ML models analyze the mathematical entropy (randomness) of the string and the surrounding syntactic context — much like how [ML-enhanced SAST and DAST](/en/sast-vs-dast-enhancing-code-scanning-with-machine-learning) tools use context to reduce false positives. They understand the difference between a high-entropy 64-character AWS Access Key and a similarly long, but benign, base64-encoded image placeholder.
 * **Active Validation:** The most advanced secret scanners don't just flag the string; they autonomously ping the corresponding service provider's API (e.g., Stripe, Slack, or GitHub) in the background to check if the discovered token is actually active and valid before alerting the developer.
 
 ## 3. Shifting Left: IDE Guardrails and Pre-Commit Hooks
@@ -44,7 +44,7 @@ Finding a secret in a Git repository—even a private one—is often too late. O
 
 The most effective way to prevent AI from hardcoding secrets is to architect your application so that static secrets aren't required in the first place. DevSecOps teams must guide developers (and their AI assistants) toward using **Dynamic Secrets** and Vaults.
 
-* **Prompt Engineering for Vaults:** Developers should be trained to include secrets management instructions in their AI prompts. Instead of asking, *"Write a Python script to connect to the AWS S3 bucket,"* the prompt should be, *"Write a Python script to connect to the AWS S3 bucket, fetching the temporary IAM credentials dynamically from HashiCorp Vault."*
+* **Prompt Engineering for Vaults:** Developers should be trained to include secrets management instructions in their AI prompts. Instead of asking, *"Write a Python script to connect to the AWS S3 bucket,"* the prompt should be, *"Write a Python script to connect to the AWS S3 bucket, fetching the temporary IAM credentials dynamically from HashiCorp Vault."* This approach also supports [data sovereignty requirements](/en/data-sovereignty-private-llms-vs-public-cloud-apis) by keeping credentials within controlled environments.
 * **Short-Lived Tokens:** By integrating applications with dynamic secret managers, the application requests a database password that is generated on the fly and expires in 15 minutes. Even if an AI assistant somehow hallucinates or leaks this specific token during a debugging session, the blast radius is minimal because the credential self-destructs almost immediately.
 
 ## Conclusion

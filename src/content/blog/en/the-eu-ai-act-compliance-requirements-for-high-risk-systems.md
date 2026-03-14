@@ -13,7 +13,7 @@ readTime: 5
 
 Welcome to the fourth and final series of our technology watch: **Governance, Ethics & Future Trends**. Over the past nine months, we have explored the tactical realities of AI in cybersecurity—from offensive prompt injection to defensive machine learning and DevSecOps. However, technology does not exist in a vacuum. For IT leaders and architects, deploying AI is no longer just a technical challenge; it is a profound legal and strategic liability.
 
-The most significant regulatory shift in our industry since the GDPR is now underway: **The European Union Artificial Intelligence Act (EU AI Act)**. Having officially entered into force in August 2024, the legislation features a phased rollout. While prohibitions on "unacceptable risk" systems are already active, the most critical deadline for enterprise IT teams is rapidly approaching: **August 2, 2026**. By this date, all "High-Risk" AI systems must fully comply with strict governance, transparency, and cybersecurity mandates.
+The most significant regulatory shift in our industry since the [GDPR](/en/gdpr-llms-the-right-to-be-forgotten-in-a-neural-network) is now underway: **The European Union Artificial Intelligence Act (EU AI Act)**. Having officially entered into force in August 2024, the legislation features a phased rollout. While prohibitions on "unacceptable risk" systems are already active, the most critical deadline for enterprise IT teams is rapidly approaching: **August 2, 2026**. By this date, all "High-Risk" AI systems must fully comply with strict governance, transparency, and cybersecurity mandates.
 
 ## 1. The Risk-Based Approach and Classification
 
@@ -34,7 +34,7 @@ For enterprise organizations, the most crucial category to identify is **High-Ri
 
 If your system is classified as High-Risk, "moving fast and breaking things" is no longer legally permissible. Providers and deployers must implement a comprehensive compliance framework before the system can receive a CE marking and enter the EU market.
 
-* **Risk and Quality Management Systems:** Organizations must establish a continuous, iterative risk management process throughout the entire lifecycle of the AI. This cannot be a one-time audit; it requires a permanent Quality Management System (QMS) to document how risks are identified and mitigated.
+* **Risk and Quality Management Systems:** Organizations must establish a continuous, iterative [risk management process](/en/nist-ai-risk-management-framework-a-guide-for-organizations) throughout the entire lifecycle of the AI. This cannot be a one-time audit; it requires a permanent Quality Management System (QMS) to document how risks are identified and mitigated.
 * **Data Governance and Bias Mitigation:** The Act explicitly mandates that the data sets used for training, validating, and testing must be relevant, representative, and, to the best extent possible, free of errors. You must prove that you have actively searched for and mitigated discriminatory biases in your training data.
 * **Technical Documentation and Record-Keeping:** Black-box deployments are illegal for High-Risk systems. Providers must maintain exhaustive technical documentation detailing the model's architecture, capabilities, and limitations. Furthermore, the system must automatically log events (traceability) so that authorities can investigate incidents if the AI makes a harmful decision.
 * **Human Oversight (Human-in-the-Loop):** High-Risk systems must be designed in a way that allows natural persons to effectively oversee them. A human must be able to intervene, override the AI's decision, or hit a "kill switch" if the system behaves unexpectedly.
@@ -48,7 +48,7 @@ The legislation explicitly calls out AI-specific threat vectors. Organizations m
 * **Adversarial Examples:** Inputs designed to trick the model into making a false classification (e.g., bypassing biometric security).
 * **Model Flaws:** Inconsistencies or faults within the operating environment. 
 
-For the cybersecurity team, this means traditional vulnerability scanning is no longer enough. You must implement AI-specific red-teaming and adversarial robustness testing to legally certify the system.
+For the cybersecurity team, this means traditional vulnerability scanning is no longer enough. You must implement AI-specific red-teaming and adversarial robustness testing to legally certify the system. For a deeper look at how to structure this within your organization, see our article on the [governance of AI-powered defense](/en/governance-of-ai-defense).
 
 ## 4. The Cost of Non-Compliance
 

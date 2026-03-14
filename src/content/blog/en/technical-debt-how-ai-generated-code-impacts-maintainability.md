@@ -12,7 +12,7 @@ readTime: 5
 
 ## Introduction: The Hidden Cost of Speed
 
-Over the past 12 weeks, we have explored the tactical security challenges of the AI era—from Prompt Injection and BOLA attacks to deepfake biometrics and hallucinated vulnerabilities. But as we conclude this DevSecOps series, we must address a silent, creeping threat that doesn't trigger a firewall alert or fail a vulnerability scan: **Technical Debt**.
+Over the past 12 weeks, we have explored the tactical security challenges of the AI era—from [Prompt Injection](/en/prompt-injection-attacks-hacking-the-logic-of-chatbots) and BOLA attacks to [deepfake biometrics](/en/deepfake-video-in-kyc-bypassing-biometric-verification) and [hallucinated vulnerabilities](/en/the-risk-of-hallucinated-vulnerabilities-false-positives-in-audits). But as we conclude this DevSecOps series, we must address a silent, creeping threat that doesn't trigger a firewall alert or fail a vulnerability scan: **Technical Debt**.
 
 Technical debt is the implied cost of future refactoring caused by choosing an easy, limited solution now instead of a better approach that would take longer. AI coding assistants like GitHub Copilot and Cursor are incredible accelerators, but they optimize strictly for the *now*. They generate functional code instantly, but without strict architectural governance, they act as high-speed technical debt factories, creating codebases that are impossible to maintain, audit, or secure in the long run.
 

@@ -30,7 +30,7 @@ AI is exceptionally good at pattern recognition, including linguistic patterns.
 
 * **Stylometry:** Every person has a unique "writeprint" (vocabulary, sentence length, punctuation habits). AI models can analyze a target's known writing (e.g., corporate blog posts) and search for that same style on anonymous forums (Reddit, 4chan) or Dark Web marketplaces.
     
-* **Deanonymization:** This allows attackers to link a professional identity to a private, potentially embarrassing online persona. This information is "Gold" for blackmail or highly leveraged social engineering attacks.
+* **Deanonymization:** This allows attackers to link a professional identity to a private, potentially embarrassing online persona. This information is "Gold" for blackmail or highly leveraged [social engineering attacks](/en/automated-spear-phishing-how-llms-scale-social-engineering).
     
 
 ## The knowledge graph: connecting the dots
@@ -39,7 +39,7 @@ The true power of AI in OSINT is **Correlation**.
 
 * **Human:** Sees a photo of a dog on Instagram ("My cute Rover!") and a date of birth on Facebook.
     
-* **AI:** Instantly adds "Rover" and "Year of Birth" to a password-guessing dictionary (PassGAN). It correlates this with a leaked database showing the target uses "Rover1985" as a password on LinkedIn.
+* **AI:** Instantly adds "Rover" and "Year of Birth" to a [password-guessing dictionary (PassGAN)](/en/ai-driven-password-cracking-the-end-of-complex-8-character-passwords). It correlates this with a leaked database showing the target uses "Rover1985" as a password on LinkedIn.
     
 * **Inference:** The AI infers that the target likely uses this password schema on the corporate VPN. It automates the "logic jump" that a human analyst might miss.
     

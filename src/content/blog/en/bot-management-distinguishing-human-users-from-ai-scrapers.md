@@ -20,7 +20,7 @@ In the past, distinguishing a bot from a human was relatively straightforward. B
 For over a decade, the primary defense against bots was the CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart). We trained users to click on traffic lights and decipher distorted text. 
 
 Today, the CAPTCHA is effectively obsolete against sophisticated adversaries. 
-* **AI Computer Vision:** Modern machine learning models, specifically convolutional neural networks (CNNs), can solve visual CAPTCHAs with higher accuracy and speed than human beings.
+* **AI Computer Vision:** Modern machine learning models, specifically convolutional neural networks (CNNs), can [solve visual CAPTCHAs](/en/captcha-breaking-how-vision-models-render-i-am-not-a-robot-obsolete) with higher accuracy and speed than human beings.
 * **Headless Browsers:** Attackers no longer use simple Python `requests` scripts. They use orchestrated fleets of headless browsers (like Puppeteer or Playwright) that execute JavaScript perfectly, load cookies, and mimic legitimate browser fingerprints. 
 * **Residential Proxies:** Blocking IP addresses from AWS or DigitalOcean no longer works. Bot operators route their traffic through compromised IoT devices or residential proxy networks, making their requests look exactly like they are coming from a legitimate user's home Wi-Fi.
 
@@ -54,4 +54,4 @@ By training ML models on the "normal" navigational graphs of human buyers, secur
 
 ## Conclusion
 
-The battle between DevSecOps and bot operators is an arms race of artificial intelligence. Relying on static IP blocklists and visual CAPTCHAs only introduces friction for legitimate customers while completely failing to stop modern scrapers. By integrating ML-driven behavioral biometrics and invisible cryptographic challenges into the application architecture, organizations can accurately distinguish the human from the machine, securing both their infrastructure and their data.
+The battle between DevSecOps and bot operators is an arms race of artificial intelligence. Relying on static IP blocklists and visual CAPTCHAs only introduces friction for legitimate customers while completely failing to stop modern scrapers. These bot management strategies should be deployed alongside [Web Application Firewalls adapted to new injection vectors](/en/web-application-firewalls-waf-adapting-to-new-injection-vectors) for defense in depth. By integrating ML-driven behavioral biometrics and invisible cryptographic challenges into the application architecture, organizations can accurately distinguish the human from the machine, securing both their infrastructure and their data.

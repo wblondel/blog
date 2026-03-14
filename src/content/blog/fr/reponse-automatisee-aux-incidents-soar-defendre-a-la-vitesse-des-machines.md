@@ -12,7 +12,7 @@ readTime: 6
 
 ## Introduction : le besoin d'une défense à la vitesse des machines
 
-Dans notre article précédent, nous avons vu comment un SIEM alimenté par IA corrèle des millions de logs pour détecter une attaque complexe. Mais la détection n'est que la moitié de la bataille. Si un SIEM déclenche une alerte critique de ransomware à 2h00 du matin un dimanche, et qu'un analyste humain met 45 minutes à se réveiller, se connecter et isoler le serveur infecté, la bataille est déjà perdue. Les malwares modernes chiffrent des réseaux entiers en quelques minutes.
+Dans notre article précédent, nous avons vu comment un [SIEM alimenté par IA](/fr/siem-alimente-par-ia-reduire-la-fatigue-des-alertes-pour-les-analystes-soc) corrèle des millions de logs pour détecter une attaque complexe. Mais la détection n'est que la moitié de la bataille. Si un SIEM déclenche une alerte critique de ransomware à 2h00 du matin un dimanche, et qu'un analyste humain met 45 minutes à se réveiller, se connecter et isoler le serveur infecté, la bataille est déjà perdue. Les malwares modernes chiffrent des réseaux entiers en quelques minutes.
 
 Pour combattre les attaques à la vitesse des machines, nous avons besoin d'une défense à la vitesse des machines. C'est là qu'intervient le **SOAR (Security Orchestration, Automation, and Response)**. Alors que le SIEM est le « cerveau » qui détecte la menace, la plateforme SOAR est les « mains » qui la neutralisent, en exécutant automatiquement des étapes de remédiation complexes sur des dizaines d'outils de sécurité différents sans nécessiter d'intervention humaine.
 
@@ -20,7 +20,7 @@ Pour combattre les attaques à la vitesse des machines, nous avons besoin d'une 
 
 Pour comprendre le SOAR, nous devons décomposer ses deux fonctions principales :
 
-* **Orchestration (la colle API) :** historiquement, un analyste SOC devait jongler entre différents écrans — se connecter au firewall pour bloquer une IP, puis à Active Directory pour désactiver un utilisateur, puis à l'EDR pour mettre en quarantaine un ordinateur portable. L'orchestration résout ce problème en connectant tous ces outils disparates via des API. La plateforme SOAR agit comme un centre de commandement centralisé qui peut « parler » simultanément à votre firewall Cisco, votre EDR CrowdStrike et votre Microsoft Azure AD.
+* **Orchestration (la colle API) :** historiquement, un analyste SOC devait jongler entre différents écrans — se connecter au firewall pour bloquer une IP, puis à Active Directory pour désactiver un utilisateur, puis à l'[EDR](/fr/edr-et-le-role-des-agents-ml-securiser-lendpoint) pour mettre en quarantaine un ordinateur portable. L'orchestration résout ce problème en connectant tous ces outils disparates via des API. La plateforme SOAR agit comme un centre de commandement centralisé qui peut « parler » simultanément à votre firewall Cisco, votre EDR CrowdStrike et votre Microsoft Azure AD.
 * **Automatisation (l'exécution) :** une fois les outils connectés, l'automatisation prend le relais. Au lieu d'un humain qui clique sur les boutons, la plateforme SOAR exécute des scripts prédéfinis pour effectuer des actions sur les outils orchestrés instantanément.
 
 ## 2. La puissance des playbooks automatisés
@@ -55,4 +55,4 @@ En automatisant le triage et le confinement de niveau 1, les plateformes SOAR r�
 
 ## Conclusion
 
-Un SOC moderne ne peut pas fonctionner sur les seuls réflexes humains. Le SOAR transforme la réponse aux incidents d'une urgence manuelle et stressante en une opération standardisée, automatisée et mathématiquement précise. À mesure que les attaques pilotées par IA deviennent plus rapides et plus autonomes, déployer une architecture SOAR n'est plus un luxe ; c'est une nécessité absolue pour la survie des entreprises.
+Un SOC moderne ne peut pas fonctionner sur les seuls réflexes humains. Le SOAR transforme la réponse aux incidents d'une urgence manuelle et stressante en une opération standardisée, automatisée et mathématiquement précise. À mesure que les attaques pilotées par IA deviennent plus rapides et plus autonomes, déployer une architecture SOAR aux côtés d'un [cadre Zero Trust](/fr/architecture-zero-trust-a-lere-de-lia-verification-continue) robuste n'est plus un luxe ; c'est une nécessité absolue pour la survie des entreprises.

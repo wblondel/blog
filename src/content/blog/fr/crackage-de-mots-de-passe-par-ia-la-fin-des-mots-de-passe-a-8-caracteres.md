@@ -61,7 +61,7 @@ Si l'IA peut deviner le mot de passe, le mot de passe ne doit pas être la seule
 
 * **MFA (authentification multi-facteurs) :** même si PassGAN devine la bonne chaîne de caractères, il ne peut pas deviner le mot de passe à usage unique basé sur le temps (TOTP) présent sur le téléphone de l'utilisateur.
 
-* **Passkeys (FIDO2) :** le secteur évolue vers des standards sans mot de passe. Les passkeys utilisent la cryptographie à clé publique stockée sur l'appareil. Il n'existe pas de « secret partagé » (mot de passe) à deviner ou à voler depuis une base de données serveur.
+* **Passkeys (FIDO2) :** le secteur évolue vers des standards sans mot de passe, en ligne avec une [architecture Zero Trust](/fr/architecture-zero-trust-a-lere-de-lia-verification-continue) plus large. Les passkeys utilisent la cryptographie à clé publique stockée sur l'appareil. Il n'existe pas de « secret partagé » (mot de passe) à deviner ou à voler depuis une base de données serveur — un complément crucial à la [gestion des secrets](/fr/gestion-des-secrets-empecher-lia-de-hardcoder-des-cles).
 
 
 ## Conclusion

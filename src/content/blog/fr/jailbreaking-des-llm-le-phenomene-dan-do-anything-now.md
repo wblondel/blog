@@ -13,7 +13,7 @@ readTime: 3
 
 Lorsqu'OpenAI a lancé ChatGPT, ils ont mis en œuvre une technique de sécurité appelée **RLHF (Reinforcement Learning from Human Feedback)**. Ce processus d'alignement empêche l'IA de répondre à des questions nuisibles comme « Comment fabriquer une bombe ? » ou « Écris-moi un script de ransomware. »
 
-Cependant, presque immédiatement, des utilisateurs ont découvert qu'ils pouvaient contourner ces filtres grâce à des astuces psychologiques habiles, connues sous le nom de **jailbreaks**. Le plus célèbre d'entre eux fut le prompt « DAN » (Do Anything Now), qui forçait l'IA à adopter un personnage rebelle. Ce jeu du chat et de la souris entre développeurs et utilisateurs a mis en évidence une faiblesse fondamentale dans l'architecture actuelle de l'IA : la sécurité est une couche externe, pas une fonction centrale.
+Cependant, presque immédiatement, des utilisateurs ont découvert qu'ils pouvaient contourner ces filtres grâce à des astuces psychologiques habiles, connues sous le nom de **jailbreaks**. Le plus célèbre d'entre eux fut le prompt « DAN » (Do Anything Now), qui forçait l'IA à adopter un personnage rebelle. Ce jeu du chat et de la souris, étroitement lié aux [attaques par injection de prompt](/fr/attaques-par-injection-de-prompt-pirater-la-logique-des-chatbots), a mis en évidence une faiblesse fondamentale dans l'architecture actuelle de l'IA : la sécurité est une couche externe, pas une fonction centrale.
 
 ## La psychologie d'un jailbreak
 
@@ -49,4 +49,4 @@ Pour une entreprise qui déploie une IA interne (par exemple, un chatbot de supp
 
 ## Conclusion
 
-Le jailbreaking prouve que nous ne pouvons pas encore nous fier aux LLM pour se contrôler eux-mêmes. L'« alignement de sécurité » est actuellement un jeu de taupe. Tant que nous ne développerons pas des modèles *intrinsèquement* sûrs (où le concept de nuisance est ancré dans les poids, pas seulement dans le filtre), le déploiement en entreprise de l'IA générative exige une surveillance stricte des sorties et l'hypothèse que le modèle *peut* et *sera* contourné.
+Le jailbreaking prouve que nous ne pouvons pas encore nous fier aux LLM pour se contrôler eux-mêmes. L'« alignement de sécurité » est actuellement un jeu de taupe. Tant que nous ne développerons pas des modèles *intrinsèquement* sûrs (où le concept de nuisance est ancré dans les poids, pas seulement dans le filtre), le déploiement en entreprise de l'IA générative exige une surveillance stricte des sorties, une [gouvernance de l'IA](/fr/gouvernance-de-lia-defensive-garantir-que-votre-ia-defensive-nest-pas-biaisee), et l'hypothèse que le modèle *peut* et *sera* contourné.

@@ -14,7 +14,7 @@ readTime: 6
 
 Bienvenue dans la quatrième et dernière série de notre veille technologique : **Gouvernance, Éthique et Tendances futures**. Au cours des neuf derniers mois, nous avons exploré les réalités tactiques de l'IA en cybersécurité — de la prompt injection offensive au machine learning défensif en passant par le DevSecOps. Cependant, la technologie n'existe pas dans le vide. Pour les responsables IT et les architectes, déployer de l'IA n'est plus seulement un défi technique ; c'est une responsabilité juridique et stratégique profonde.
 
-Le changement réglementaire le plus significatif de notre industrie depuis le RGPD est désormais en cours : **L'European Union Artificial Intelligence Act (EU AI Act)**. Entré officiellement en vigueur en août 2024, le texte prévoit un déploiement par phases. Si les interdictions concernant les systèmes à « risque inacceptable » sont déjà actives, la date limite la plus critique pour les équipes IT d'entreprise approche rapidement : **le 2 août 2026**. D'ici là, tous les systèmes IA « à haut risque » devront entièrement se conformer aux mandats stricts de gouvernance, de transparence et de cybersécurité.
+Le changement réglementaire le plus significatif de notre industrie depuis le [RGPD](/fr/rgpd-et-llm-le-droit-a-loubli-dans-un-reseau-de-neurones) est désormais en cours : **L'European Union Artificial Intelligence Act (EU AI Act)**. Entré officiellement en vigueur en août 2024, le texte prévoit un déploiement par phases. Si les interdictions concernant les systèmes à « risque inacceptable » sont déjà actives, la date limite la plus critique pour les équipes IT d'entreprise approche rapidement : **le 2 août 2026**. D'ici là, tous les systèmes IA « à haut risque » devront entièrement se conformer aux mandats stricts de gouvernance, de transparence et de cybersécurité.
 
 ## 1. L'approche basée sur le risque et la classification
 
@@ -33,7 +33,7 @@ Pour les organisations d'entreprise, la catégorie la plus cruciale à identifie
 
 Si votre système est classifié à haut risque, « aller vite et casser les choses » n'est plus légalement autorisé. Les fournisseurs et les déployeurs doivent mettre en place un cadre de conformité complet avant que le système puisse recevoir le marquage CE et entrer sur le marché européen.
 
-* **Systèmes de gestion des risques et de la qualité :** Les organisations doivent établir un processus continu et itératif de gestion des risques tout au long du cycle de vie complet de l'IA. Il ne peut pas s'agir d'un audit ponctuel ; cela nécessite un Système de Management de la Qualité (SMQ) permanent pour documenter comment les risques sont identifiés et atténués.
+* **Systèmes de gestion des risques et de la qualité :** Les organisations doivent établir un processus continu et itératif de [gestion des risques](/fr/nist-ai-risk-management-framework-guide-pour-les-organisations) tout au long du cycle de vie complet de l'IA. Il ne peut pas s'agir d'un audit ponctuel ; cela nécessite un Système de Management de la Qualité (SMQ) permanent pour documenter comment les risques sont identifiés et atténués.
 * **Gouvernance des données et atténuation des biais :** L'Acte impose explicitement que les datasets utilisés pour l'entraînement, la validation et les tests soient pertinents, représentatifs et, dans la mesure du possible, exempts d'erreurs. Vous devez prouver que vous avez activement recherché et atténué les biais discriminatoires dans vos données d'entraînement.
 * **Documentation technique et archivage :** Les déploiements en boîte noire sont illégaux pour les systèmes à haut risque. Les fournisseurs doivent maintenir une documentation technique exhaustive détaillant l'architecture, les capacités et les limitations du modèle. De plus, le système doit automatiquement journaliser les événements (traçabilité) afin que les autorités puissent enquêter sur les incidents si l'IA prend une décision préjudiciable.
 * **Supervision humaine (Human-in-the-Loop) :** Les systèmes à haut risque doivent être conçus de manière à permettre à des personnes physiques de les superviser efficacement. Un humain doit pouvoir intervenir, contrecarrer la décision de l'IA ou actionner un « kill switch » si le système se comporte de manière inattendue.
@@ -47,7 +47,7 @@ Le texte cible explicitement les vecteurs de menace spécifiques à l'IA. Les or
 * **Les exemples adversariaux :** Des entrées conçues pour tromper le modèle et lui faire effectuer une fausse classification (par exemple, contourner la sécurité biométrique).
 * **Les défauts du modèle :** Des incohérences ou des failles dans l'environnement d'exploitation.
 
-Pour l'équipe de cybersécurité, cela signifie que le scan de vulnérabilités traditionnel n'est plus suffisant. Vous devez mettre en place un red team et des tests de robustesse adversariale spécifiques à l'IA pour certifier légalement le système.
+Pour l'équipe de cybersécurité, cela signifie que le scan de vulnérabilités traditionnel n'est plus suffisant. Vous devez mettre en place un red team et des tests de robustesse adversariale spécifiques à l'IA pour certifier légalement le système. Pour approfondir la structuration de cette démarche au sein de votre organisation, consultez notre article sur la [gouvernance de l'IA défensive](/fr/gouvernance-de-lia-defensive).
 
 ## 4. Le coût de la non-conformité
 

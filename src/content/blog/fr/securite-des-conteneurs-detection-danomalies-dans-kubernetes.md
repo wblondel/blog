@@ -17,12 +17,12 @@ Les outils de sécurité traditionnels conçus pour les machines virtuelles stat
 
 ## 1. L'illusion de la sécurité par scan d'images statique
 
-Le fondement de la sécurité des conteneurs a traditionnellement été le scan d'images « Shift Left ». Avant qu'une image Docker soit déployée sur le cluster Kubernetes, un scanner de pipeline CI/CD la vérifie par rapport à une base de données de Common Vulnerabilities and Exposures (CVE) connus.
+Le fondement de la sécurité des conteneurs a traditionnellement été le scan d'images « Shift Left ». Avant qu'une image Docker soit déployée sur le cluster Kubernetes, un scanner de pipeline CI/CD la vérifie par rapport à une base de données de Common Vulnerabilities and Exposures (CVE) connus — un processus étroitement lié au maintien d'un [Software Bill of Materials (SBOM)](/fr/sbom-suivre-les-composants-ia-dans-votre-chaine-logicielle) précis.
 
 Bien qu'essentiel, le scan d'images indique uniquement si le conteneur *démarre* dans un état vulnérable. Il n'offre aucune protection une fois le conteneur en cours d'exécution.
 * **Exploits zero-day :** Si un attaquant utilise un exploit zero-day inédit pour compromettre un conteneur Nginx en cours d'exécution, le scanner d'images statique ne le saura pas, car la vulnérabilité n'était pas dans sa base de données CVE.
 * **Malware sans fichier :** Les attaquants exécutent fréquemment du code malveillant directement dans la mémoire volatile (RAM) du conteneur sans jamais écrire de fichier sur le disque. Les scanners statiques cherchant des binaires malveillants sont entièrement contournés.
-* **Dérive de configuration :** Un conteneur peut être déployé de manière sécurisée, mais une politique de contrôle d'accès basé sur les rôles (RBAC) K8s mal configurée peut permettre à un attaquant de s'attacher au pod après le déploiement et d'escalader les privilèges.
+* **Dérive de configuration :** Un conteneur peut être déployé de manière sécurisée, mais une politique de contrôle d'accès basé sur les rôles (RBAC) K8s mal configurée — le type de dérive que les outils de [CSPM (gestion de la posture de sécurité cloud)](/fr/cspm-gestion-de-la-posture-de-securite-cloud-ia-pour-le-monitoring) sont conçus pour détecter — peut permettre à un attaquant de s'attacher au pod après le déploiement et d'escalader les privilèges.
 
 ## 2. Observabilité profonde avec eBPF et machine learning
 
@@ -37,7 +37,7 @@ Cependant, eBPF génère une avalanche écrasante de données de télémétrie. 
 Une fois que le modèle ML a établi la baseline du comportement du conteneur, il agit comme un détecteur de dérive incroyablement sensible. Il comprend l'ADN spécifique du fonctionnement attendu d'un microservice.
 
 * **Anomalies de processus :** L'IA sait que le conteneur `payment-processing` n'exécute que le processus `node`. Si eBPF détecte soudainement que ce conteneur crée un shell `/bin/bash` ou exécute `curl` pour télécharger un script depuis une IP externe, l'IA le signale instantanément comme une anomalie à haute confiance, même si aucune signature de malware connue n'est présente.
-* **Mouvement latéral réseau :** Dans Kubernetes, les conteneurs communiquent fréquemment entre eux. Le modèle ML cartographie ces voies de communication standards. Si un conteneur web frontend qui ne parle normalement qu'à l'API backend tente soudainement d'ouvrir une connexion SSH vers un pod de base de données dans un autre namespace, l'IA reconnaît la signature comportementale d'un mouvement latéral et d'une exfiltration de données.
+* **Mouvement latéral réseau :** Dans Kubernetes, les conteneurs communiquent fréquemment entre eux. Le modèle ML cartographie ces voies de communication standards. Si un conteneur web frontend qui ne parle normalement qu'à l'[API backend](/fr/securite-api-detection-de-patterns-anormaux-dans-les-microservices) tente soudainement d'ouvrir une connexion SSH vers un pod de base de données dans un autre namespace, l'IA reconnaît la signature comportementale d'un mouvement latéral et d'une exfiltration de données.
 
 ## 4. Réponse automatisée à la vitesse de la machine
 

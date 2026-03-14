@@ -28,7 +28,7 @@ Because the victim model's outputs are "high quality" (clean, reasoned), the att
 ## 2. Why Steal a Model?
 
 * **Financial Gain:** Why pay OpenAI or Google for every API call when you can run a stolen clone locally for free? This "API Bypass" destroys the victim's business model.
-* **White-Box Attacks:** Once the attacker has a local copy, they have "White Box" access. They can analyze the gradients and weights to find **Adversarial Examples** (inputs that crash the model) offline, and then launch those attacks against the real secure server with a 100% success rate.
+* **White-Box Attacks:** Once the attacker has a local copy, they have "White Box" access. They can analyze the gradients and weights to find **[Adversarial Examples](/en/adversarial-examples-fooling-image-recognition-systems)** (inputs that crash the model) offline, and then launch those attacks against the real secure server with a 100% success rate.
 
 ## 3. Functionally Equivalent Extraction
 
@@ -47,4 +47,4 @@ Defending against extraction is hard because legitimate users *need* to query th
 
 ## Conclusion
 
-Model Extraction transforms AI from a SaaS (Software as a Service) into a downloadable asset, often without the owner's consent. For companies deploying AI, this means that the **API Gateway** is the new firewall. Rate limiting is no longer just for performance; it is a critical security control to prevent the slow-motion exfiltration of the company's brain.
+Model Extraction transforms AI from a SaaS (Software as a Service) into a downloadable asset, often without the owner's consent. For companies deploying AI, this means that the **[API Gateway](/en/api-security-detecting-anomaly-usage-patterns-in-microservices)** is the new firewall. Rate limiting is no longer just for performance; it is a critical security control to prevent the slow-motion exfiltration of the company's brain.

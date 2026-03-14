@@ -14,7 +14,7 @@ readTime: 4
 
 À l'ère de la banque numérique, ouvrir un compte implique rarement de se rendre en agence. Les utilisateurs effectuent plutôt un processus de « Know Your Customer » (KYC) via une application smartphone : ils scannent leur carte d'identité, puis enregistrent une courte vidéo selfie, souvent en suivant des instructions comme « tournez la tête à gauche » ou « clignez des yeux ».
 
-Ce processus repose sur la « Liveness Detection » — l'hypothèse qu'un flux vidéo représente un être humain vivant, présent à cet instant précis. L'IA générative a fracassé cette hypothèse. On observe désormais des « Deepfake Injection Attacks » où des criminels utilisent la technologie de face-swapping en temps réel pour passer ces contrôles biométriques, ouvrant des comptes mules pour blanchir de l'argent ou accéder à des crédits au nom d'autrui.
+Ce processus repose sur la « [Liveness Detection](/fr/detection-de-vivacite-biometrique-contrer-les-deepfakes) » — l'hypothèse qu'un flux vidéo représente un être humain vivant, présent à cet instant précis. L'IA générative a fracassé cette hypothèse. On observe désormais des « Deepfake Injection Attacks » où des criminels utilisent la technologie de face-swapping en temps réel pour passer ces contrôles biométriques, ouvrant des comptes mules pour blanchir de l'argent ou accéder à des crédits au nom d'autrui.
 
 ## 1. Le Vecteur d'Attaque : L'Injection de Caméra
 
@@ -32,7 +32,7 @@ Cependant, les modèles d'IA générative modernes peuvent animer une photo stat
 
 ## 3. L'Ampleur de la Menace
 
-Il ne s'agit pas d'un risque théorique. Début 2024, un groupe sophistiqué a utilisé des deepfakes pour contourner les contrôles KYC d'un grand exchange de cryptomonnaies, créant des milliers de comptes vérifiés. Ces comptes ont ensuite été vendus sur le Dark Web comme des identités « Fully Verified » jusqu'à 200 dollars pièce. Ce marché de l'« Identity-as-a-Service » alimente les retraits d'argent liés aux ransomwares et le financement du terrorisme.
+Il ne s'agit pas d'un risque théorique. Début 2024, un groupe sophistiqué a utilisé des deepfakes pour contourner les contrôles KYC d'un grand exchange de cryptomonnaies, créant des milliers de comptes vérifiés. Ces comptes ont ensuite été vendus sur le Dark Web comme des identités « Fully Verified » jusqu'à 200 dollars pièce. Ce marché de l'« Identity-as-a-Service » alimente les retraits d'argent liés aux ransomwares et le financement du terrorisme, en complément des [attaques par clonage vocal](/fr/clonage-vocal-vishing-la-nouvelle-frontiere-de-la-fraude-au-president) dans le paysage plus large des menaces deepfake.
 
 ## 4. Défense : Liveness Passive et Attestation Matérielle
 

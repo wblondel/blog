@@ -30,7 +30,7 @@ Modern NGFWs (pioneered by vendors like Palo Alto Networks and Check Point) embe
 
 ## 2. Defeating C2 with Neural DNS Security
 
-In Week 24, we discussed how attackers hide in encrypted traffic. Another major evasion technique used by malware to communicate with Command and Control (C2) servers is the **Domain Generation Algorithm (DGA)**.
+In Week 24, we discussed how attackers hide in [encrypted traffic](/en/network-traffic-analysis-nta-detecting-encrypted-malicious-traffic). Another major evasion technique used by malware to communicate with Command and Control (C2) servers is the **Domain Generation Algorithm (DGA)**.
 
 A DGA allows malware to mathematically generate thousands of random-looking domain names every day (e.g., `xeogrhxquuubt.com`). The attacker registers just one of these domains to send commands. Because the domains change constantly, traditional URL blocklists are useless.
 
@@ -43,7 +43,7 @@ Deep learning firewalls tackle this using Recurrent Neural Networks (RNNs) and L
 
 ## 3. IoT Visibility and Microsegmentation
 
-The modern corporate network is flooded with unmanaged "Internet of Things" (IoT) devices: smart TVs, IP cameras, medical sensors, and connected HVAC systems. You cannot install an EDR agent on a smart lightbulb, making them prime targets for botnets.
+The modern corporate network is flooded with unmanaged "Internet of Things" (IoT) devices: smart TVs, IP cameras, medical sensors, and connected HVAC systems. You cannot install an [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint) agent on a smart lightbulb, making them prime targets for botnets.
 
 AI-powered NGFWs act as the ultimate security guard for these "headless" devices. 
 * **Behavioral Profiling:** The firewall uses machine learning to passively listen to network traffic and automatically fingerprint every connected device. It identifies the vendor, OS, and firmware version without any manual configuration.

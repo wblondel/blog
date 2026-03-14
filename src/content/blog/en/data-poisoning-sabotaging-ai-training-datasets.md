@@ -13,7 +13,7 @@ readTime: 3
 
 We often assume that AI models are objective. They are not; they are a direct reflection of their training data. **Data Poisoning** is an attack where a malicious actor injects "bad" data into the training set *before* the model is built.
 
-The goal is not to break the model immediately (which would be noticed), but to create a specific, hidden vulnerability—a **Backdoor**. The model will function perfectly for 99.9% of inputs, but when it sees a specific "Trigger" (like a small yellow sticker on a stop sign), it will catastrophically fail (misclassifying the stop sign as a speed limit sign).
+The goal is not to break the model immediately (which would be noticed), but to create a specific, hidden vulnerability—a **Backdoor**. The model will function perfectly for 99.9% of inputs, but when it sees a specific "Trigger" (like a small yellow sticker on a stop sign), it will catastrophically fail (misclassifying the stop sign as a speed limit sign), a vulnerability closely related to [adversarial examples](/en/adversarial-examples-fooling-image-recognition-systems).
 
 ## How a backdoor attack works
 
@@ -57,4 +57,4 @@ Detecting poisoning is notoriously difficult once the model is trained.
 
 ## Conclusion
 
-Data Poisoning turns the strength of Deep Learning (pattern recognition) into a weakness. As AI models become critical infrastructure, the security of the **Dataset** is just as important as the security of the **Code**. We are moving toward a future where datasets will need to be "digitally signed" and audited like financial records.
+Data Poisoning turns the strength of Deep Learning (pattern recognition) into a weakness. As AI models become critical infrastructure, the security of the **Dataset** is just as important as the security of the **Code**, much like tracking components through a [Software Bill of Materials (SBOM)](/en/software-bill-of-materials-sbom-tracking-ai-components). We are moving toward a future where datasets will need to be "digitally signed" and audited like financial records.

@@ -12,7 +12,7 @@ readTime: 5
 
 ## Introduction: The Need for Machine-Speed Defense
 
-In our previous article, we saw how an AI-powered SIEM correlates millions of logs to detect a complex attack. But detection is only half the battle. If a SIEM triggers a critical ransomware alert at 2:00 AM on a Sunday, and a human analyst takes 45 minutes to wake up, log in, and isolate the infected server, the battle is already lost. Modern malware encrypts entire networks in minutes. 
+In our previous article, we saw how an AI-powered [SIEM](/en/ai-powered-siem-reducing-alert-fatigue-for-soc-analysts) correlates millions of logs to detect a complex attack. But detection is only half the battle. If a SIEM triggers a critical ransomware alert at 2:00 AM on a Sunday, and a human analyst takes 45 minutes to wake up, log in, and isolate the infected server, the battle is already lost. Modern malware encrypts entire networks in minutes. 
 
 To fight machine-speed attacks, we need machine-speed defense. This is where **SOAR (Security Orchestration, Automation, and Response)** comes in. While the SIEM is the "brain" that detects the threat, the SOAR platform is the "hands" that neutralize it, automatically executing complex remediation steps across dozens of different security tools without requiring human intervention.
 
@@ -20,7 +20,7 @@ To fight machine-speed attacks, we need machine-speed defense. This is where **S
 
 To understand SOAR, we must break down its two primary functions:
 
-* **Orchestration (The API Glue):** Historically, a SOC analyst had to swivel between different screens—logging into the firewall to block an IP, then logging into Active Directory to disable a user, then logging into the EDR to quarantine a laptop. Orchestration solves this by connecting all these disparate tools via APIs. The SOAR platform acts as a centralized command center that can "speak" to your Cisco firewall, your CrowdStrike EDR, and your Microsoft Azure AD simultaneously.
+* **Orchestration (The API Glue):** Historically, a SOC analyst had to swivel between different screens—logging into the firewall to block an IP, then logging into Active Directory to disable a user, then logging into the [EDR](/en/edr-and-the-role-of-ml-agents-securing-the-endpoint) to quarantine a laptop. Orchestration solves this by connecting all these disparate tools via APIs. The SOAR platform acts as a centralized command center that can "speak" to your Cisco firewall, your CrowdStrike EDR, and your Microsoft Azure AD simultaneously.
 * **Automation (The Execution):** Once the tools are connected, automation takes over. Instead of a human clicking the buttons, the SOAR platform runs predefined scripts to execute actions across the orchestrated tools instantly.
 
 ## 2. The Power of Automated Playbooks
@@ -54,4 +54,4 @@ By automating Tier 1 triage and containment, SOAR platforms drastically reduce M
 
 ## Conclusion
 
-A modern SOC cannot function on human reflexes alone. SOAR transforms incident response from a manual, stress-inducing scramble into a standardized, automated, and mathematically precise operation. As AI-driven attacks become faster and more autonomous, deploying a SOAR architecture is no longer a luxury; it is an absolute necessity for enterprise survival.
+A modern SOC cannot function on human reflexes alone. SOAR transforms incident response from a manual, stress-inducing scramble into a standardized, automated, and mathematically precise operation. As AI-driven attacks become faster and more autonomous, deploying a SOAR architecture alongside a robust [Zero Trust framework](/en/zero-trust-architecture-in-the-age-of-ai-continuous-verification) is no longer a luxury; it is an absolute necessity for enterprise survival.

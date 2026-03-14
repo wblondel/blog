@@ -15,7 +15,7 @@ In the European Union, data privacy is not just a best practice; it is a fundame
 
 For traditional IT systems, complying with Article 17 is straightforward, albeit sometimes complex to execute. If a user requests their data be deleted, a database administrator executes a `DELETE` command across the SQL tables, purges the backups, and the data is gone. 
 
-However, the rapid adoption of Large Language Models (LLMs) has created a massive collision between legal mandates and computer science. How do you delete a specific person's data from an AI that has already ingested it, learned from it, and baked it into a billion-parameter neural network? For IT architects and enterprise leaders, solving this paradox is critical to deploying AI legally.
+However, the rapid adoption of Large Language Models (LLMs) has created a massive collision between legal mandates and computer science. How do you delete a specific person's data from an AI that has already ingested it, learned from it, and baked it into a billion-parameter neural network? For IT architects and enterprise leaders, solving this paradox is critical to deploying AI legally — especially given the strict mandates of the [EU AI Act](/en/the-eu-ai-act-compliance-requirements-for-high-risk-systems).
 
 ## 1. The Fundamental Architectural Conflict
 
@@ -52,10 +52,10 @@ While promising, true Machine Unlearning is still largely experimental and has n
 
 Because the underlying technology of "unlearning" is not yet mature, IT architects must rely on system-level workarounds to maintain GDPR compliance while leveraging AI. 
 
-* **Strict Data Sanitization Before Training:** The most effective defense is shifting left. Enterprise teams must utilize aggressive Data Loss Prevention (DLP) and PII redaction pipelines to scrub all personal data from the corpus *before* the model ever sees it during the training or fine-tuning phase. 
+* **Strict Data Sanitization Before Training:** The most effective defense is shifting left. Enterprise teams must utilize aggressive Data Loss Prevention (DLP) and PII redaction pipelines to scrub all personal data from the corpus *before* the model ever sees it during the training or fine-tuning phase. This also helps mitigate [data poisoning](/en/data-poisoning) risks by enforcing strict control over what enters the training pipeline. 
 * **Retrieval-Augmented Generation (RAG):** Instead of fine-tuning the model on sensitive customer data, organizations are adopting RAG architectures. In a RAG system, the LLM itself contains no personal data. When a user asks a question, the system queries a traditional, secure database for the relevant facts, temporarily feeds those facts into the LLM's prompt window, and generates an answer. If a user requests deletion, IT simply deletes their record from the traditional database. The LLM immediately loses access to that data, perfectly satisfying Article 17.
 * **Input and Output Guardrails:** Specialized AI firewalls are deployed to actively monitor the model's output. Even if the model managed to memorize a piece of PII during training, the output filter acts as a fail-safe, intercepting and redacting the personal data before it is ever displayed to an end-user.
 
 ## Conclusion
 
-The conflict between the GDPR and Generative AI highlights a recurring theme in modern IT: the law expects deterministic compliance from increasingly probabilistic systems. Until the science of Machine Unlearning matures, organizations must architect their AI deployments defensively. By heavily utilizing RAG architectures and strict pre-training sanitization, IT leaders can harness the power of LLMs without crossing the formidable boundary of the Right to Be Forgotten.
+The conflict between the GDPR and Generative AI highlights a recurring theme in modern IT: the law expects deterministic compliance from increasingly probabilistic systems. Until the science of Machine Unlearning matures, organizations must architect their AI deployments defensively. Questions of [data sovereignty](/en/data-sovereignty-private-llms-vs-public-cloud-apis) also become paramount when deciding where and how personal data is processed. By heavily utilizing RAG architectures and strict pre-training sanitization, IT leaders can harness the power of LLMs without crossing the formidable boundary of the Right to Be Forgotten.

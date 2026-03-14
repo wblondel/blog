@@ -11,7 +11,7 @@ readTime: 5
 
 ## Introduction: The Blueprint for Trustworthy AI
 
-As organizations rush to integrate artificial intelligence into their operations, IT leaders face a daunting challenge: how do you manage the risks of a technology that is inherently probabilistic, opaque, and rapidly evolving? While regulations like the EU AI Act provide strict legal boundaries, they often lack the tactical, day-to-day blueprints engineering teams need to actually build secure systems.
+As organizations rush to integrate artificial intelligence into their operations, IT leaders face a daunting challenge: how do you manage the risks of a technology that is inherently probabilistic, opaque, and rapidly evolving? While regulations like the [EU AI Act](/en/the-eu-ai-act-compliance-requirements-for-high-risk-systems) provide strict legal boundaries, they often lack the tactical, day-to-day blueprints engineering teams need to actually build secure systems.
 
 Enter the **NIST AI Risk Management Framework (AI RMF)**. Released by the U.S. National Institute of Standards and Technology, the AI RMF is a voluntary, foundational framework designed to help organizations incorporate trustworthiness into the design, development, use, and evaluation of AI products, services, and systems. Much like the renowned NIST Cybersecurity Framework (CSF) became the global gold standard for infosec, the AI RMF is quickly becoming the definitive playbook for enterprise AI governance.
 
@@ -43,7 +43,7 @@ You cannot manage what you do not understand. The **Map** function forces organi
 
 Once the terrain is mapped, the **Measure** function applies rigorous, objective testing. NIST outlines several characteristics of "Trustworthy AI" that must be measured:
 * **Validity and Reliability:** Does the model actually do what it claims to do under stress?
-* **Safety and Security:** Is the model resilient against adversarial attacks, prompt injection, and data poisoning?
+* **Safety and Security:** Is the model resilient against adversarial attacks, prompt injection, and data poisoning? Tools like [AI-powered SIEM](/en/ai-powered-siem) platforms can help continuously monitor these threats in production.
 * **Fairness and Bias:** Are there disparate impacts on protected demographic groups? 
 * **Explainability and Transparency:** Can the system's output be understood and interpreted by a human operator?
 
@@ -59,4 +59,4 @@ Because AI systems are dynamic, the Manage function heavily emphasizes continuou
 
 ## Conclusion
 
-The NIST AI RMF bridges the gap between high-level ethical principles and practical, boots-on-the-ground engineering. For IT professionals and technical managers, adopting this framework is no longer just a theoretical exercise; it is a strategic imperative. By implementing Govern, Map, Measure, and Manage, organizations can confidently deploy innovative AI solutions while demonstrating to auditors, regulators, and customers that they are actively securing the future of their software supply chain.
+The NIST AI RMF bridges the gap between high-level ethical principles and practical, boots-on-the-ground engineering. For IT professionals and technical managers, adopting this framework is no longer just a theoretical exercise; it is a strategic imperative. By implementing Govern, Map, Measure, and Manage, organizations can confidently deploy innovative AI solutions while demonstrating to auditors, regulators, and customers that they are actively securing the future of their software supply chain. For practical guidance on putting these principles into practice, see our article on the [governance of AI-powered defense](/en/governance-of-ai-defense).
