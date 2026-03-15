@@ -3,7 +3,7 @@ title: "SAST vs. DAST : Améliorer l'analyse de code avec le Machine Learning"
 coverImage: "../../../assets/post-covers/sast-vs-dast-enhancing-code-scanning-with-machine-learning.png"
 description: "Découvrez comment le Machine Learning transforme le SAST et le DAST, réduit les faux positifs et détecte des vulnérabilités complexes dans les applications modernes."
 pubDate: 2025-09-20T10:00:00.000Z
-tags: ["SAST", "DAST", "Machine Learning", "AppSec", "DevSecOps", "Secure Coding"]
+tags: ["SAST", "DAST", "Machine Learning", "AppSec", "DevSecOps", "Codage sécurisé"]
 series: "devsecops-ia"
 seriesOrder: 2
 readTime: 6

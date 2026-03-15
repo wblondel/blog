@@ -4,7 +4,7 @@ seoTitle: "Gouvernance IA Défensive : Éviter les Biais Algorithmiques"
 description: "Explorez les risques du biais algorithmique en cybersécurité. Découvrez comment l'IA Explicable (XAI) et la gouvernance empêchent les modèles défensifs de prendre des décisions discriminatoires."
 pubDate: 2025-09-05T10:00:00.000Z
 coverImage: "../../../assets/post-covers/jeshoots-com-fzOITuS1DIQ-unsplash.jpg"
-tags: ["Gouvernance IA", "Biais dans l'IA", "UEBA", "IA Explicable", "SOC", "Blue Team", "Cyber Défense"]
+tags: ["Gouvernance de l'IA", "Biais dans l'IA", "UEBA", "IA Explicable", "SOC", "Blue Team", "Cyberdéfense"]
 series: "defense-ia-active"
 seriesOrder: 14
 readTime: 6

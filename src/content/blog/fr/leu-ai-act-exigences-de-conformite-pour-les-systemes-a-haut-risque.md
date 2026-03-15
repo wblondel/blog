@@ -4,7 +4,7 @@ seoTitle: "EU AI Act : conformité pour les systèmes à haut risque"
 coverImage: "../../../assets/post-covers/eu-ai-act-compliance-requirements.png"
 description: "Comprenez l'impact de l'EU AI Act sur l'IT d'entreprise. Découvrez la classification des systèmes IA à haut risque et les exigences de conformité obligatoires avant la deadline de 2026."
 pubDate: 2025-12-13T10:00:00.000Z
-tags: ["EU AI Act", "AI Governance", "Conformité", "IA à haut risque", "Stratégie de cybersécurité"]
+tags: ["EU AI Act", "Gouvernance de l'IA", "Conformité", "IA à haut risque", "Stratégie de cybersécurité"]
 series: "gouvernance-ia-futur"
 seriesOrder: 1
 readTime: 6

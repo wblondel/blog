@@ -53,4 +53,4 @@ Le Zero Trust n'est pas un produit que l'on peut acheter dans une boîte ; c'est
 
 ***
 
-La semaine prochaine, nous plongerons plus profondément dans les technologies spécifiques utilisées pour vérifier l'identité humaine dans un framework Zero Trust, en nous concentrant sur la manière dont les Blue Teams luttent contre les deepfakes grâce à la **détection de vivacité biométrique** (Biometric Liveness Detection).
+La semaine prochaine, nous plongerons plus profondément dans les technologies spécifiques utilisées pour vérifier l'identité humaine dans un framework Zero Trust, en nous concentrant sur la manière dont les Blue Teams luttent contre les deepfakes grâce à la **détection de vivacité biométrique**.

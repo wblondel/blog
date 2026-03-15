@@ -4,7 +4,7 @@ seoTitle: "Détection des Menaces Internes : UEBA et Analyse Comportementale"
 description: "Explorez comment l'UEBA et l'analyse de sentiment pilotées par l'IA détectent les menaces internes malveillantes. Naviguez dans les limites éthiques et légales de la surveillance du comportement des employés."
 pubDate: 2026-02-07T10:00:00.000Z
 coverImage: "../../../assets/post-covers/insider-threat-detection-identifiying-disgruntled-employees.png"
-tags: ["Menace Interne", "UEBA", "Analyse de Sentiment", "Stratégie Cybersécurité", "Éthique IA", "Confidentialité des Données"]
+tags: ["Menace Interne", "UEBA", "Analyse de Sentiment", "Stratégie de cybersécurité", "Éthique IA", "Confidentialité des Données"]
 series: "gouvernance-ia-futur"
 seriesOrder: 9
 readTime: 6

@@ -3,7 +3,7 @@ title: "RGPD & LLM : Le « Droit à l'Oubli » dans un Réseau de Neurones"
 description: "Explorez le conflit technique et juridique entre le droit à l'effacement du RGPD et l'architecture probabiliste des Large Language Models, et comment les entreprises peuvent s'adapter."
 pubDate: 2025-12-20T10:00:00.000Z
 coverImage: "../../../assets/post-covers/gdpr-llms-right-to-be-forgotten.png"
-tags: ["RGPD", "Droit à l'Oubli", "Machine Unlearning", "LLMs", "Gouvernance de l'IA", "Conformité"]
+tags: ["RGPD", "Droit à l'Oubli", "Machine Unlearning", "LLM", "Gouvernance de l'IA", "Conformité"]
 series: "gouvernance-ia-futur"
 seriesOrder: 2
 readTime: 6

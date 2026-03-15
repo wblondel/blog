@@ -4,7 +4,7 @@ seoTitle: "Sécurité Email : NLP pour Détecter le Phishing Sémantique"
 description: "Découvrez comment les passerelles de messagerie sécurisée modernes utilisent le Natural Language Processing (NLP) et l'IA sémantique pour détecter le phishing avancé et la compromission des emails professionnels."
 pubDate: 2025-08-01T10:00:00.000Z
 coverImage: "../../../assets/post-covers/email-security-gateways-nlp-semantic-phishing.png"
-tags: ["Passerelle Email Sécurisée", "NLP", "Phishing", "BEC", "Machine Learning", "Blue Team", "Cyber Défense"]
+tags: ["Passerelle Email Sécurisée", "NLP", "Phishing", "BEC", "Machine Learning", "Blue Team", "Cyberdéfense"]
 series: "defense-ia-active"
 seriesOrder: 9
 readTime: 6

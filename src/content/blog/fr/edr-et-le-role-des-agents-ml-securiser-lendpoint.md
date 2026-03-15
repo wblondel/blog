@@ -3,7 +3,7 @@ title: "EDR et le Rôle des Agents ML : Sécuriser l'Endpoint"
 description: "Découvrez comment les agents EDR alimentés par l'IA utilisent des modèles de machine learning locaux pour détecter en temps réel les malwares fileless, les ransomwares et les menaces zero-day."
 pubDate: 2025-08-08T10:00:00.000Z
 coverImage: "../../../assets/post-covers/edr-ml-agents-securing-endpoint.png"
-tags: ["EDR", "Sécurité des Endpoints", "Machine Learning", "Malware Fileless", "Ransomware", "Blue Team", "Cyber Défense"]
+tags: ["EDR", "Sécurité des Endpoints", "Machine Learning", "Malware Fileless", "Ransomware", "Blue Team", "Cyberdéfense"]
 series: "defense-ia-active"
 seriesOrder: 10
 readTime: 6

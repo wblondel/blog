@@ -2,7 +2,7 @@
 title: "XDR et IA : le threat hunting pour unifier la stack de sécurité"
 description: "Découvrez comment XDR brise les silos de sécurité en utilisant l'IA pour corréler la télémétrie des endpoints, des réseaux, des identités et du cloud pour un threat hunting proactif."
 pubDate: 2025-08-29T10:00:00.000Z
-tags: ["XDR", "Threat Hunting", "Machine Learning", "SOC", "Blue Team", "Cyber Defense", "Télémétrie"]
+tags: ["XDR", "Threat Hunting", "Machine Learning", "SOC", "Blue Team", "Cyberdéfense", "Télémétrie"]
 coverImage: "../../../assets/post-covers/xdr-ai-threat-hunting.png"
 series: "defense-ia-active"
 seriesOrder: 13

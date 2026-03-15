@@ -4,7 +4,7 @@ seoTitle: "IA et OSINT : automatiser la collecte de renseignements"
 description: "Comment l'IA automatise la reconnaissance OSINT. Exploration de la reconnaissance faciale (PimEyes), de la stylométrie et de la construction de profils de cibles à grande échelle."
 pubDate: 2025-05-09T18:12:00.000Z
 coverImage: "../../../assets/post-covers/chris-yang-1tnS_BVy9Jk-unsplash.jpg"
-tags: ["OSINT (Open Source Intelligence)", "PimEyes", "Reconnaissance Faciale", "Stylométrie", "Reconnaissance", "Vie Privée", "Graphe Social"]
+tags: ["OSINT (Open Source Intelligence)", "PimEyes", "Reconnaissance Faciale", "Stylométrie", "Reconnaissance", "Confidentialité des Données", "Graphe Social"]
 series: "menaces-ia-offensive"
 seriesOrder: 10
 readTime: 3

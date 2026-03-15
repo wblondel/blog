@@ -3,7 +3,7 @@ title: "Empoisonnement de données : saboter les datasets d'entraînement IA"
 description: "Comment les attaquants corrompent les données d'entraînement IA avec des backdoors cachés. Explorez les attaques « Clean Label », les triggers et les risques liés aux datasets open-source."
 pubDate: 2025-05-23T10:00:00.000Z
 coverImage: "../../../assets/post-covers/deng-xiang--WXQm_NTK0U-unsplash.jpg"
-tags: ["Empoisonnement de données", "Attaques par backdoor", "Machine Learning adversarial", "Attaque Clean Label", "Sécurité de la chaîne d'approvisionnement", "Sécurité de l'IA", "Intégrité des datasets"]
+tags: ["Empoisonnement de données", "Attaques par backdoor", "Machine Learning adversarial", "Attaque Clean Label", "Sécurité de la chaîne d'approvisionnement", "Sûreté de l'IA", "Intégrité des datasets"]
 series: "menaces-ia-offensive"
 seriesOrder: 12
 readTime: 3

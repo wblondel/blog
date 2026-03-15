@@ -4,7 +4,7 @@ seoTitle: "WAF : s'adapter aux nouveaux vecteurs d'injection IA"
 coverImage: "../../../assets/post-covers/web-application-firewalls-waf-adapting-to-new-injection-vectors.png"
 description: "Découvrez pourquoi les WAF traditionnels échouent face aux payloads générés par IA et au prompt injection, et comment les WAAP pilotés par ML sécurisent les applications modernes intégrant des LLM."
 pubDate: 2025-11-01T10:00:00.000Z
-tags: ["WAF", "WAAP", "Prompt Injection", "DevSecOps", "AppSec", "LLM Security"]
+tags: ["WAF", "WAAP", "Injection de prompt", "DevSecOps", "AppSec", "Sécurité des LLM"]
 series: "devsecops-ia"
 seriesOrder: 8
 readTime: 6

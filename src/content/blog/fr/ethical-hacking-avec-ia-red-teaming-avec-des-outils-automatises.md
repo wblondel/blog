@@ -4,7 +4,7 @@ seoTitle: "Ethical Hacking avec l'IA : Red Teaming Automatisé"
 description: "Explorez comment l'IA révolutionne l'ethical hacking et le red teaming. Découvrez les avantages stratégiques et les exigences de gouvernance liés à l'émulation adversariale automatisée."
 pubDate: 2026-02-14T10:00:00.000Z
 coverImage: "../../../assets/post-covers/ethical-hacking-with-ai.png"
-tags: ["Ethical Hacking", "Red Teaming", "Sécurité IA", "Tests d'Intrusion", "DevSecOps"]
+tags: ["Ethical Hacking", "Red Teaming", "Sécurité de l'IA", "Tests d'Intrusion", "DevSecOps"]
 series: "gouvernance-ia-futur"
 seriesOrder: 10
 readTime: 6

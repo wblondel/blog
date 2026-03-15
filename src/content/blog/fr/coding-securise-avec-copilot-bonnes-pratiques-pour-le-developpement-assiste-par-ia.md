@@ -4,7 +4,7 @@ seoTitle: "Coding sécurisé avec Copilot : bonnes pratiques IA"
 coverImage: "../../../assets/post-covers/secure-coding-with-copilot-best-practices-for-ai-assisted-dev.png"
 description: "Découvrez les bonnes pratiques DevSecOps essentielles pour utiliser des assistants de code IA comme GitHub Copilot de façon sécurisée, du prompt engineering aux garde-fous dans l'IDE."
 pubDate: 2025-09-27T10:00:00.000Z
-tags: ["GitHub Copilot", "Secure Coding", "DevSecOps", "Assistants IA", "AppSec", "LLM"]
+tags: ["GitHub Copilot", "Codage sécurisé", "DevSecOps", "Assistants IA", "AppSec", "LLM"]
 series: "devsecops-ia"
 seriesOrder: 3
 readTime: 6

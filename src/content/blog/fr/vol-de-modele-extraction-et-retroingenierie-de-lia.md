@@ -3,7 +3,7 @@ title: "Vol de modèle et extraction : La rétro-ingénierie de l'IA"
 description: "Comment les attaquants volent des modèles IA propriétaires via des API publiques. Explorez l'extraction de modèles, la distillation de connaissances et les défenses comme le watermarking."
 pubDate: 2025-05-16T10:00:00.000Z
 coverImage: "../../../assets/post-covers/rock-staar-9UiCwdn_q_o-unsplash.jpg"
-tags: ["Extraction de modèle", "Distillation de connaissances", "Vol de propriété intellectuelle", "Sécurité des API", "Machine Learning adversarial", "Watermarking", "Attaques par canal auxiliaire"]
+tags: ["Extraction de modèle", "Distillation de connaissances", "Vol de propriété intellectuelle", "Sécurité API", "Machine Learning adversarial", "Watermarking", "Attaques par canal auxiliaire"]
 series: "menaces-ia-offensive"
 seriesOrder: 11
 readTime: 3

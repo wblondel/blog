@@ -4,7 +4,7 @@ seoTitle: "Spear phishing automatisé : les LLM et l'ingénierie sociale"
 description: "Découvrez comment les LLM automatisent le spear phishing. Analyse du passage du spam générique à l'ingénierie sociale pilotée par IA et stratégies de défense clés."
 pubDate: 2025-03-14T18:10:00.000Z
 coverImage: "../../../assets/post-covers/le-vu-vSlCNmZdjHQ-unsplash.jpg"
-tags: ["Automatisation OSINT", "Authentification FIDO2", "Menaces IA Génératives", "Spear Phishing", "Sécurité LLM", "Ingénierie Sociale", "WormGPT", "Business Email Compromise (BEC)"]
+tags: ["Automatisation OSINT", "Authentification FIDO2", "Menaces IA Génératives", "Spear Phishing", "Sécurité des LLM", "Ingénierie Sociale", "WormGPT", "Business Email Compromise (BEC)"]
 series: "menaces-ia-offensive"
 seriesOrder: 2
 readTime: 4

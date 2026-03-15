@@ -1,10 +1,10 @@
 ---
 title: "Deepfake Vidéo dans le KYC : Contourner la Vérification Biométrique"
 seoTitle: "Deepfake Vidéo dans le KYC : Vérification Biométrique"
-description: "Comment les injections de vidéos deepfake contournent la vérification d'identité KYC. Analyse de la menace pesant sur la liveness detection et du besoin de défenses au niveau matériel."
+description: "Comment les injections de vidéos deepfake contournent la vérification d'identité KYC. Analyse de la menace pesant sur la détection de vivacité et du besoin de défenses au niveau matériel."
 pubDate: 2025-04-04T18:04:00.000Z
 coverImage: "../../../assets/post-covers/tom-kotov-jIQqNvDihBA-unsplash.jpg"
-tags: ["Biométrie", "Face Swapping", "Prévention de la Fraude", "Deepfakes", "KYC (Know Your Customer)", "Vérification d'Identité", "Liveness Detection"]
+tags: ["Biométrie", "Face Swapping", "Prévention de la Fraude", "Deepfakes", "KYC (Know Your Customer)", "Vérification d'Identité", "Détection de vivacité"]
 series: "menaces-ia-offensive"
 seriesOrder: 5
 readTime: 4
@@ -14,7 +14,7 @@ readTime: 4
 
 À l'ère de la banque numérique, ouvrir un compte implique rarement de se rendre en agence. Les utilisateurs effectuent plutôt un processus de « Know Your Customer » (KYC) via une application smartphone : ils scannent leur carte d'identité, puis enregistrent une courte vidéo selfie, souvent en suivant des instructions comme « tournez la tête à gauche » ou « clignez des yeux ».
 
-Ce processus repose sur la « [Liveness Detection](/fr/detection-de-vivacite-biometrique-contrer-les-deepfakes/) » — l'hypothèse qu'un flux vidéo représente un être humain vivant, présent à cet instant précis. L'IA générative a fracassé cette hypothèse. On observe désormais des « Deepfake Injection Attacks » où des criminels utilisent la technologie de face-swapping en temps réel pour passer ces contrôles biométriques, ouvrant des comptes mules pour blanchir de l'argent ou accéder à des crédits au nom d'autrui.
+Ce processus repose sur la « [détection de vivacité](/fr/detection-de-vivacite-biometrique-contrer-les-deepfakes/) » — l'hypothèse qu'un flux vidéo représente un être humain vivant, présent à cet instant précis. L'IA générative a fracassé cette hypothèse. On observe désormais des « Deepfake Injection Attacks » où des criminels utilisent la technologie de face-swapping en temps réel pour passer ces contrôles biométriques, ouvrant des comptes mules pour blanchir de l'argent ou accéder à des crédits au nom d'autrui.
 
 ## 1. Le Vecteur d'Attaque : L'Injection de Caméra
 

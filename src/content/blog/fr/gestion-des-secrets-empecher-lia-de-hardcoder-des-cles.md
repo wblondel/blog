@@ -3,7 +3,7 @@ title: "Gestion des secrets : empêcher l'IA de hardcoder des clés"
 coverImage: "../../../assets/post-covers/secrets-management-preventing-ai-from-hardcoding-keys.png"
 description: "Apprenez à empêcher les assistants de code IA de hardcoder des secrets. Explorez le scan de secrets par ML, les pre-commit hooks et l'intégration dynamique avec un vault."
 pubDate: 2025-10-18T10:00:00.000Z
-tags: ["Gestion des secrets", "DevSecOps", "GitHub Copilot", "AppSec", "Secure Coding", "Secret Scanning"]
+tags: ["Gestion des secrets", "DevSecOps", "GitHub Copilot", "AppSec", "Codage sécurisé", "Secret Scanning"]
 series: "devsecops-ia"
 seriesOrder: 6
 readTime: 6

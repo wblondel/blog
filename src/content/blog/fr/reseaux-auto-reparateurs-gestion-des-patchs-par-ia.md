@@ -3,7 +3,7 @@ title: "Réseaux auto-réparateurs : gestion des patchs par IA"
 description: "Découvrez comment les réseaux auto-réparateurs pilotés par IA automatisent la gestion des patchs, priorisent les vulnérabilités et isolent dynamiquement les systèmes non patchés."
 pubDate: 2025-07-18T10:00:00.000Z
 coverImage: "../../../assets/post-covers/self-healing-networks-ai-driven-patch-management.png"
-tags: ["Réseaux auto-réparateurs", "Gestion des patchs", "Gestion des vulnérabilités", "AIOps", "Automatisation", "Blue Team", "Cyber Defense"]
+tags: ["Réseaux auto-réparateurs", "Gestion des patchs", "Gestion des vulnérabilités", "AIOps", "Automatisation", "Blue Team", "Cyberdéfense"]
 series: "defense-ia-active"
 seriesOrder: 7
 readTime: 6

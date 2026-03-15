@@ -3,7 +3,7 @@ title: 'Jailbreaking des LLM : Le phénomène "DAN" (Do Anything Now)'
 description: "Comment les utilisateurs contournent les filtres de sécurité de l'IA avec les jailbreaks \"DAN\". Explorez l'évolution du roleplay aux attaques automatisées et les limites de l'alignement RLHF."
 pubDate: 2025-04-18T18:02:00.000Z
 coverImage: "../../../assets/post-covers/jailbreaking-llms.png"
-tags: ["Jailbreaking", "DAN (Do Anything Now)", "RLHF", "Alignement de l'IA", "Red Teaming", "Ingénierie de prompt", "Sécurité des LLM"]
+tags: ["Jailbreaking", "DAN (Do Anything Now)", "RLHF", "Alignement de l'IA", "Red Teaming", "Ingénierie de prompt", "Sûreté des LLM"]
 series: "menaces-ia-offensive"
 seriesOrder: 7
 readTime: 3

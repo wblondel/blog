@@ -4,7 +4,7 @@ seoTitle: "Threat Intelligence prédictive : Anticiper les cyberattaques"
 description: "Découvrez comment l'IA transforme la Threat Intelligence, passant de listes noires réactives à des modèles prédictifs capables d'anticiper les cyberattaques avant qu'elles ne se produisent."
 pubDate: 2025-06-27T10:00:00.000Z
 coverImage: "../../../assets/post-covers/predictive-threat-intelligence.png"
-tags: ["Threat Intelligence", "IA prédictive", "Machine Learning", "Sécurité proactive", "IOC", "Dark Web", "Blue Team"]
+tags: ["Renseignement sur les menaces", "IA prédictive", "Machine Learning", "Sécurité proactive", "IOC", "Dark Web", "Blue Team"]
 series: "defense-ia-active"
 seriesOrder: 4
 readTime: 6

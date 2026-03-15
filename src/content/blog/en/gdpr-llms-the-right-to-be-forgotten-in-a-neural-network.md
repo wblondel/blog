@@ -3,7 +3,7 @@ title: "GDPR & LLMs: The 'Right to Be Forgotten' in a Neural Network"
 description: "Explore the technical and legal conflict between the GDPR's Right to Erasure and the probabilistic architecture of Large Language Models, and how enterprise IT can adapt."
 pubDate: 2025-12-20T10:00:00.000Z
 coverImage: "../../../assets/post-covers/gdpr-llms-right-to-be-forgotten.png"
-tags: ["GDPR", "Right to be Forgotten", "Machine Unlearning", "LLMs", "AI Governance", "Compliance"]
+tags: ["GDPR", "Right to be Forgotten", "Machine Unlearning", "LLM", "AI Governance", "Compliance"]
 series: "ai-governance-future" 
 seriesOrder: 2 
 readTime: 5

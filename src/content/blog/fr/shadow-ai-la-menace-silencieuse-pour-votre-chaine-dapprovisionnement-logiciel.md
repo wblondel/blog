@@ -3,7 +3,7 @@ title: "Shadow AI : la menace silencieuse pour votre supply chain logicielle"
 description: "Réduisez les risques du Shadow AI. Analysez comment les LLMs non autorisés provoquent l'exfiltration de données et introduisent des vulnérabilités critiques dans votre supply chain logicielle."
 pubDate: 2025-09-13T10:00:00.000Z
 coverImage: "../../../assets/post-covers/rene-bohmer-kGQSE4rUakg-unsplash.jpg"
-tags: ["Shadow AI", "DevSecOps", "Exfiltration de données", "GenAI Governance", "Supply Chain Security"]
+tags: ["Shadow AI", "DevSecOps", "Exfiltration de données", "Gouvernance GenAI", "Sécurité de la chaîne d'approvisionnement"]
 series: "devsecops-ia"
 seriesOrder: 1
 readTime: 5
