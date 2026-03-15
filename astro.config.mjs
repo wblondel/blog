@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import pagefind from 'astro-pagefind';
+//import pagefind from 'astro-pagefind';
 
 import icon from 'astro-icon';
 
@@ -144,7 +144,7 @@ export default defineConfig({
         "fa6-regular": ["*"]
       }
     }),
-    pagefind()
+    //pagefind()
   ],
   i18n: {
     defaultLocale: "en",
