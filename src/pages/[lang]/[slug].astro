@@ -38,7 +38,7 @@ const formattedDate = pubDate.toLocaleDateString(lang, { year: 'numeric', month:
 let seriesData = null;
 if (series) {
     const seriesCollection = await getCollection('series');
-    seriesData = seriesCollection.find((s: CollectionEntry<'series'>) => s.slug === `${lang}/${series}`);
+    seriesData = seriesCollection.find((s: CollectionEntry<'series'>) => s.id === `${lang}/${series}`);
 }
 
 const allBlogs = await getCollection('blog');
