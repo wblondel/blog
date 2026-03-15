@@ -16,8 +16,8 @@ const langStr = lang!; // getStaticPaths guarantees this is always defined
 const t = useTranslations(lang as any);
 const p = usePlural(lang as any);
 
-const allPosts = await getCollection("blog", ({ slug }) =>
-    slug.startsWith(`${lang}/`)
+const allPosts = await getCollection("blog", ({ id }) =>
+    id.startsWith(`${lang}/`)
 );
 allPosts.sort(
     (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>

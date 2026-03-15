@@ -14,8 +14,8 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as any);
 const p = usePlural(lang as any);
 
-const allPosts = await getCollection("blog", ({ slug }) =>
-    slug.startsWith(`${lang}/`)
+const allPosts = await getCollection("blog", ({ id }) =>
+    id.startsWith(`${lang}/`)
 );
 
 // Calculate tag frequencies and store original names

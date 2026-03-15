@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import AuthorCard from '../../components/AuthorCard.astro';
@@ -14,7 +14,7 @@ import PostTags from '../../components/PostTags.astro';
 export async function getStaticPaths() {
   const blogs = await getCollection('blog');
   return blogs.map((entry: CollectionEntry<'blog'>) => {
-    const [lang, ...slugParts] = entry.slug.split('/');
+    const [lang, ...slugParts] = entry.id.split('/');
     const slug = slugParts.join('/');
     return {
       params: { lang, slug },
@@ -28,7 +28,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content, headings } = await render(entry);
 const { title, seoTitle, description, pubDate, coverImage, tags, series, readTime } = entry.data;
 
 const lang = getLangFromUrl(Astro.url);
@@ -45,8 +45,8 @@ const allBlogs = await getCollection('blog');
 const translatedEntries = allBlogs.filter((b: CollectionEntry<'blog'>) => b.data.pubDate.valueOf() === pubDate.valueOf());
 
 const alternates: { lang: string; href: string; isFallback?: boolean }[] = translatedEntries.map((b: CollectionEntry<'blog'>) => {
-    const bLang = b.slug.split('/')[0];
-    const bSlug = b.slug.split('/').slice(1).join('/');
+    const bLang = b.id.split('/')[0];
+    const bSlug = b.id.split('/').slice(1).join('/');
     return {
         lang: bLang,
         href: `${Astro.site}${import.meta.env.BASE_URL.slice(1)}${bLang}/${bSlug}/`
@@ -69,11 +69,11 @@ for (const otherLang of allLangs) {
 
 
 // Point to the dynamically-generated Satori OG image endpoint
-const postSlug = entry.slug.split('/').slice(1).join('/');
+const postSlug = entry.id.split('/').slice(1).join('/');
 const ogImageURL = new URL(`${import.meta.env.BASE_URL}${lang}/${postSlug}/og.png`, Astro.site).toString();
 
 // Count total posts for this language (for the author card)
-const postCount = allBlogs.filter((b: CollectionEntry<'blog'>) => b.slug.startsWith(`${lang}/`)).length;
+const postCount = allBlogs.filter((b: CollectionEntry<'blog'>) => b.id.startsWith(`${lang}/`)).length;
 
 const articleSchema = JSON.stringify({
   "@context": "https://schema.org",

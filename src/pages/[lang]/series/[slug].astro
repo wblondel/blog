@@ -13,7 +13,7 @@ export async function getStaticPaths() {
     const seriesByTranslationKey: Record<string, {lang: string, slug: string}[]> = {};
     
     seriesEntries.forEach((entry: CollectionEntry<"series">) => {
-        const [lang, ...slugParts] = entry.slug.split("/");
+        const [lang, ...slugParts] = entry.id.split("/");
         const slug = slugParts.join("/");
         const tKey = entry.data.translationKey || slug; // Fallback to slug if no key exists
         
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
     });
 
     return seriesEntries.map((entry: CollectionEntry<"series">) => {
-        const [lang, ...slugParts] = entry.slug.split("/");
+        const [lang, ...slugParts] = entry.id.split("/");
         const slug = slugParts.join("/");
         const tKey = entry.data.translationKey || slug;
         
@@ -52,13 +52,13 @@ const alternates = rawAlternates?.map((alt: any) => ({
     href: `${Astro.site}${alt.href}`
 })) || [];
 
-const allPosts = await getCollection("blog", ({ slug }: { slug: string }) =>
-    slug.startsWith(`${lang}/`)
+const allPosts = await getCollection("blog", ({ id }: { id: string }) =>
+    id.startsWith(`${lang}/`)
 );
 const seriesPosts = allPosts
     .filter(
         (post: CollectionEntry<"blog">) =>
-            post.data.series === entry.slug.split("/").pop()
+            post.data.series === entry.id.split("/").pop()
     )
     .sort((a, b) => (a.data.seriesOrder || 0) - (b.data.seriesOrder || 0));
 ---

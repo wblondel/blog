@@ -13,8 +13,8 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as any);
 const p = usePlural(lang as any);
 
-const allPosts = await getCollection("blog", ({ slug }) =>
-    slug.startsWith(`${lang}/`)
+const allPosts = await getCollection("blog", ({ id }) =>
+    id.startsWith(`${lang}/`)
 );
 allPosts.sort(
     (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
@@ -53,7 +53,7 @@ const archiveAlternates = [
                             })}
                         </time>
                         <a
-                            href={`${import.meta.env.BASE_URL}${lang}/${post.slug.split("/").pop()}/`}
+                            href={`${import.meta.env.BASE_URL}${lang}/${post.id.split("/").pop()}/`}
                             class="text-lg font-medium text-foreground hover:text-primary transition-colors flex-1"
                         >
                             {post.data.title}

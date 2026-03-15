@@ -31,7 +31,7 @@ export async function getStaticPaths() {
     };
 
     allPosts.forEach((post: CollectionEntry<"blog">) => {
-        const lang = post.slug.split("/")[0] as "en" | "fr";
+        const lang = post.id.split("/")[0] as "en" | "fr";
         if (post.data.tags && post.data.tags.length > 0) {
             const rawTags = post.data.tags.map((tag: string) =>
                 tag.toLowerCase().replace(/\s+/g, "-")
@@ -113,8 +113,8 @@ const alternates = rawAlternates.map((alt: any) => ({
     isFallback: alt.isFallback ?? false,
 }));
 
-const allPosts = await getCollection("blog", ({ slug }: { slug: string }) =>
-    slug.startsWith(`${lang}/`)
+const allPosts = await getCollection("blog", ({ id }: { id: string }) =>
+    id.startsWith(`${lang}/`)
 );
 const tagPosts = allPosts.filter(
     (post: CollectionEntry<"blog">) =>

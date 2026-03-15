@@ -49,15 +49,14 @@ function getLocaleRedirects() {
             }
         };
 
-        // Parse English first.
-        parseLanguageDir('en');
-        // Parse French second (so identical slugs get directed to French if explicitly requested by someone reading FR? Wait, actually we usually want EN as default. Let's do FR first, then EN overwrites).
+        // Parse French first, then English, so that if a slug is the same in both languages, the English version is used.
         parseLanguageDir('fr');
         parseLanguageDir('en');
         
         redirects['/tags'] = `${base}/en/tags/`;
         redirects['/archive'] = `${base}/en/archive/`;
         redirects['/series'] = `${base}/en/series/`;
+        redirects['/portfolio'] = `${base}/en/portfolio/`;
         
     } catch (e) {
         console.error("Error generating redirects:", e);

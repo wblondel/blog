@@ -22,7 +22,7 @@ export async function GET(context) {
             : 'Senior full-stack web developer and amateur genealogist. Born geek with an Amstrad CPC 6128. PHP & Laravel Expert.',
         site: context.site,
         items: blog.map((post) => {
-            const slug = post.slug.split('/').pop();
+            const slug = post.id.split('/').pop();
             return {
                 title: post.data.title,
                 pubDate: post.data.pubDate,

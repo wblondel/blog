@@ -51,6 +51,7 @@ const base = import.meta.env.BASE_URL;
 let urlPath = Astro.url.pathname.startsWith(base) ? Astro.url.pathname.slice(base.length) : Astro.url.pathname.replace(/^\//, "");
 let cleanPath = urlPath.replace(/^(en|fr)\//, "").replace(/^(en|fr)$/, "");
 if (cleanPath.startsWith('/')) cleanPath = cleanPath.slice(1);
+if (cleanPath.endsWith('/')) cleanPath = cleanPath.slice(0, -1);
 defaultRelativePath = cleanPath ? '/' + cleanPath : '';
 ---
 

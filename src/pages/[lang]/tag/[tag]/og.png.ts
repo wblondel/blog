@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   const tagsByLang: Record<string, Map<string, string>> = { en: new Map(), fr: new Map() };
 
   allPosts.forEach((post) => {
-    const lang = post.slug.split("/")[0];
+    const lang = post.id.split("/")[0];
     if (post.data.tags) {
       post.data.tags.forEach((tag: string) => {
         const id = tag.toLowerCase().replace(/\s+/g, "-");

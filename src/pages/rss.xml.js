@@ -14,7 +14,7 @@ export async function GET(context) {
         site: context.site,
         items: blog.map((post) => {
             const lang = post.id.startsWith('fr/') ? 'fr' : 'en';
-            const slug = post.slug.split('/').pop();
+            const slug = post.id.split('/').pop();
 
             return {
                 title: post.data.title,
