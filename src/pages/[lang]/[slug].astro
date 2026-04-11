@@ -6,7 +6,7 @@ import Layout from '../../layouts/Layout.astro';
 import AuthorCard from '../../components/AuthorCard.astro';
 import CoverImage from '../../components/CoverImage.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
-import wblondelImage from '../../assets/wblondel.jpeg';
+import ProfilePictureImageCasual from '../../assets/wblondel.jpeg';
 import PostHeader from '../../components/PostHeader.astro';
 import PostTOC from '../../components/PostTOC.astro';
 import PostTags from '../../components/PostTags.astro';
@@ -124,7 +124,7 @@ const articleSchema = JSON.stringify({
                                     <div class="flex gap-3 items-center">
                                         <a target="_blank" rel="noopener" href={`${import.meta.env.BASE_URL}${lang}/`} title="William Blondel">
                                             <span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border border-border transition-opacity hover:opacity-80">
-                                                <Image src={wblondelImage} alt="Photo of William Blondel" width={80} height={80} class="aspect-square h-full w-full" loading="lazy" decoding="async" fetchpriority="low" />
+                                                <Image src={ProfilePictureImageCasual} alt="Photo of William Blondel" width={80} height={80} class="aspect-square h-full w-full" loading="lazy" decoding="async" fetchpriority="low" />
                                             </span>
                                         </a>
                                         <div class="min-w-0">
