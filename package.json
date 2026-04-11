@@ -9,13 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.0",
-    "@astrojs/rss": "^4.0.17",
-    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
     "@fontsource/inter": "^5.2.8",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "^6.0.4",
+    "astro": "^6.1.5",
     "astro-icon": "^1.1.5",
     "satori": "^0.25.0",
     "satori-html": "^0.3.2",
