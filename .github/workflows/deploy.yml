@@ -21,6 +21,14 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v6
 
+      - name: Cache OG Images
+        uses: actions/cache@v4
+        with:
+          path: .og-cache
+          key: og-images-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            og-images-${{ runner.os }}-
+
       - name: Install, build, and upload your Astro site
         uses: withastro/action@v5
         with:

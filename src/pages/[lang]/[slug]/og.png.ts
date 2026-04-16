@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import crypto from "crypto";
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import sharp from "sharp";
@@ -103,12 +104,36 @@ const ctaLabels: Record<string, string> = {
   en: "Learn More",
 };
 
+const CACHE_DIR = path.join(process.cwd(), ".og-cache");
+const TEMPLATE_VERSION = "v1";
+
 export async function GET({ props, params }: { props: { entry: CollectionEntry<"blog"> }; params: { lang: string } }) {
   await acquireLock();
 
   try {
     const { title, coverImage } = props.entry.data;
     const ctaLabel = ctaLabels[params.lang] ?? ctaLabels.en;
+
+    const hashData = JSON.stringify({
+      version: TEMPLATE_VERSION,
+      lang: params.lang,
+      title: title,
+      ctaLabel: ctaLabel,
+      // Handle both string and Astro image object shapes
+      coverImage: typeof coverImage === "string" ? coverImage : (coverImage as any)?.src || "",
+    });
+    
+    const hash = crypto.createHash("sha256").update(hashData).digest("hex");
+    const cachePath = path.join(CACHE_DIR, `${hash}.png`);
+
+    try {
+      const cached = await fs.readFile(cachePath);
+      return new Response(new Uint8Array(cached), {
+        headers: { "Content-Type": "image/png" },
+      });
+    } catch {
+      // cache miss, proceed to generation
+    }
 
     const [coverBase64] = await Promise.all([
       loadCoverAsBase64(coverImage),
@@ -294,6 +319,13 @@ export async function GET({ props, params }: { props: { entry: CollectionEntry<"
 
     const resvg = new Resvg(svg, { fitTo: { mode: "width", value: 1200 } });
     const png = resvg.render().asPng();
+
+    try {
+      await fs.mkdir(CACHE_DIR, { recursive: true });
+      await fs.writeFile(cachePath, png);
+    } catch (e) {
+      console.warn("[og.png] Failed to write cache:", e);
+    }
 
     return new Response(new Uint8Array(png), {
       headers: { "Content-Type": "image/png" },

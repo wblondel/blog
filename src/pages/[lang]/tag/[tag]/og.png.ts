@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import crypto from "crypto";
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { getCollection } from "astro:content";
@@ -62,11 +63,32 @@ function releaseLock() {
 
 // ─── Main endpoint ────────────────────────────────────────────────────────────
 
+const CACHE_DIR = path.join(process.cwd(), ".og-cache");
+const TEMPLATE_VERSION = "v1-tag";
+
 export async function GET({ props }: { props: { originalTag: string } }) {
   await acquireLock();
   try {
-    await loadFonts();
     const { originalTag } = props;
+
+    const hashData = JSON.stringify({
+      version: TEMPLATE_VERSION,
+      tag: originalTag
+    });
+    
+    const hash = crypto.createHash("sha256").update(hashData).digest("hex");
+    const cachePath = path.join(CACHE_DIR, `${hash}.png`);
+
+    try {
+      const cached = await fs.readFile(cachePath);
+      return new Response(new Uint8Array(cached), {
+        headers: { "Content-Type": "image/png" },
+      });
+    } catch {
+      // cache miss
+    }
+
+    await loadFonts();
     // Truncate very long tag names to avoid clipping
     const displayTag = `#${originalTag.length > 28 ? originalTag.slice(0, 27) + "…" : originalTag}`;
 
@@ -272,6 +294,13 @@ export async function GET({ props }: { props: { originalTag: string } }) {
 
     const resvg = new Resvg(svg, { fitTo: { mode: "width", value: 1200 } });
     const png = resvg.render().asPng();
+
+    try {
+      await fs.mkdir(CACHE_DIR, { recursive: true });
+      await fs.writeFile(cachePath, png);
+    } catch (e) {
+      console.warn("[tag og.png] Failed to write cache:", e);
+    }
 
     return new Response(new Uint8Array(png), {
       headers: { "Content-Type": "image/png" },
