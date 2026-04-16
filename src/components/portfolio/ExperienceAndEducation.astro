@@ -12,12 +12,12 @@ const { experience, education, lang } = Astro.props;
 const t = useTranslations(lang as any);
 
 const formatDate = (dateString: string) => {
-    if (dateString === 'Present') return t('portfolio.experience') === 'Experience' ? 'Present' : 'Aujourd\'hui';
+    if (dateString === 'Present') return t('portfolio.present');
     
     const [year, month] = dateString.split('-');
     const date = new Date(parseInt(year), parseInt(month) - 1);
     
-    return new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', { 
+    return new Intl.DateTimeFormat(t('site.locale') as string, { 
         month: 'short', 
         year: 'numeric' 
     }).format(date);
@@ -48,7 +48,14 @@ const formatDate = (dateString: string) => {
                         <div class="flex flex-col gap-1 mb-3">
                             <h3 class="font-bold text-lg text-foreground">{item.role}</h3>
                             <div class="flex items-center justify-between flex-wrap gap-2 text-sm">
-                                <span class="font-medium text-primary">{item.company}</span>
+                                {item.url ? (
+                                    <a href={item.url} target="_blank" rel="noopener noreferrer" class="font-medium text-primary hover:underline inline-flex items-center gap-1 group/link">
+                                        {item.company}
+                                        <Icon name="fa6-solid:arrow-up-right-from-square" class="w-2.5 h-2.5 opacity-50 group-hover/link:opacity-100 transition-opacity" />
+                                    </a>
+                                ) : (
+                                    <span class="font-medium text-primary">{item.company}</span>
+                                )}
                                 <span class="text-muted-foreground bg-muted px-2 py-0.5 rounded-full text-xs">
                                     {formatDate(item.startDate)} - {formatDate(item.endDate)}
                                 </span>
@@ -58,7 +65,7 @@ const formatDate = (dateString: string) => {
                                 {item.location}
                             </span>
                         </div>
-                        <p class="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                        <p class="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">{item.description}</p>
                     </div>
                 </div>
             ))}
@@ -88,7 +95,14 @@ const formatDate = (dateString: string) => {
                         <div class="flex flex-col gap-1 mb-3">
                             <h3 class="font-bold text-lg text-foreground leading-tight mb-1">{item.degree}</h3>
                             <div class="flex items-center justify-between flex-wrap gap-2 text-sm">
-                                <span class="font-medium text-primary">{item.institution}</span>
+                                {item.url ? (
+                                    <a href={item.url} target="_blank" rel="noopener noreferrer" class="font-medium text-primary hover:underline inline-flex items-center gap-1 group/link">
+                                        {item.institution}
+                                        <Icon name="fa6-solid:arrow-up-right-from-square" class="w-2.5 h-2.5 opacity-50 group-hover/link:opacity-100 transition-opacity" />
+                                    </a>
+                                ) : (
+                                    <span class="font-medium text-primary">{item.institution}</span>
+                                )}
                                 <span class="text-muted-foreground bg-muted px-2 py-0.5 rounded-full text-xs">
                                     {formatDate(item.startDate)} - {formatDate(item.endDate)}
                                 </span>
@@ -98,7 +112,7 @@ const formatDate = (dateString: string) => {
                                 {item.location}
                             </span>
                         </div>
-                        <p class="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                        <p class="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">{item.description}</p>
                     </div>
                 </div>
             ))}

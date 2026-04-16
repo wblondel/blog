@@ -26,8 +26,8 @@ const t = useTranslations(lang as any);
 const portfolioData = lang === 'fr' ? portfolioFr : portfolioEn;
 
 // Load Projects from content collections
-const projects = await getCollection("projects", ({ id }) => {
-    return id.startsWith(`${lang}/`);
+const projects = await getCollection("projects", ({ id, data }) => {
+    return id.startsWith(`${lang}/`) && (import.meta.env.DEV || !data.draft);
 });
 ---
 
@@ -77,7 +77,7 @@ const projects = await getCollection("projects", ({ id }) => {
             {portfolioData.recommendations && portfolioData.recommendations.length > 0 && (
                 <Recommendations recommendations={portfolioData.recommendations} lang={langStr}>
                     <Fragment slot="title">
-                        {langStr === 'fr' ? 'Recommandations' : 'Recommendations'}
+                        {t('portfolio.recommendations.title')}
                     </Fragment>
                 </Recommendations>
             )}

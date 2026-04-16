@@ -22,28 +22,162 @@
         "specialty": "Web application security and DevSecOps integration."
     },
     "experience": [
+        {
+            "id": "exp-1",
+            "role": "Systems Engineer & Software Engineer",
+            "company": "Horizon Trading Solutions",
+            "url": "https://www.horizontrading.io",
+            "location": "Paris, France",
+            "startDate": "2024-09",
+            "endDate": "Present",
+            "current": true,
+            "description": "• Systems Engineering: Implemented High Availability (HA) Nginx reverse proxy architecture using Keepalived and VRRP\n• Security/Identity: Directed the global migration of infrastructure services (Jenkins, Artifactory, SonarQube) to secure LDAPS/Active Directory via SSSD\n• IT Operations: Supervised major Linux OS upgrades (Ubuntu, Debian, Rocky Linux), storage expansion (LVM), and monitoring capabilities (Zabbix)\n• CI/CD: Maintained and administered complex continuous integration and delivery pipelines\n• Software Engineering: Developed internal automation tooling"
+        },
+        {
+            "id": "exp-2",
+            "role": "Lead Developer",
+            "company": "CreditBPO",
+            "url": "https://www.creditbpo.com",
+            "location": "Philippines",
+            "startDate": "2022-07",
+            "endDate": "2023-12",
+            "current": false,
+            "description": "• Reduced critical daily application exceptions from 4,000 to 0\n• Improved application rating report generation speed by over 110x\n• Upgraded legacy code base from Laravel 5.7 to 10\n• Managed infrastructure migration from Digital Ocean to Azure\n• Educated junior developers on best practices and conducted technical interviews"
+        },
+        {
+            "id": "exp-3",
+            "role": "Full Stack Web Developer & Linux SysAdmin",
+            "company": "Freelance",
+            "location": "Lyon, France",
+            "startDate": "2015-09",
+            "endDate": "2022-01",
+            "current": false,
+            "description": "• Developed websites with Python (Django) and PHP (Laravel, Symfony, CakePHP)\n• Built front-ends using Vue, Angular, Tailwind, Element Plus\n• Set up CI/CD pipelines (GitHub Actions, BitBucket Pipelines, Jenkins)\n• Managed Linux servers, Docker containers, and databases (MySQL, PostgreSQL)\n• Practiced Test Driven Development with PHPUnit and Selenium"
+        },
+        {
+            "id": "exp-4",
+            "role": "Senior Full Stack Web Developer",
+            "company": "C Estates Inc",
+            "url": "https://web.archive.org/web/20191211165239/https://cestates.io/",
+            "location": "Manila, Philippines",
+            "startDate": "2020-02",
+            "endDate": "2020-04",
+            "current": false,
+            "description": "• Developed new features (PHP with Yii2 Framework, MySQL, Redis) for a fractional real estate platform\n• Optimized static assets and improved browser compatibility\n• Set up continuous deployment workflow and configured servers to improve security"
+        },
+        {
+            "id": "exp-5",
+            "role": "CTO Growth-hacker",
+            "company": "Mostra Tirages d'Art",
+            "url": "",
+            "location": "Grenoble, France",
+            "startDate": "2016-07",
+            "endDate": "2016-12",
+            "current": false,
+            "description": "• Executed lead generation and Info Scraping using custom Python scripts (BeautifulSoup, XPath, OAuth)\n• Managed PrestaShop platform, implemented Google Analytics, Tag Manager, and Mixpanel\n• Improved accessibility and SEO strategies"
+        },
+        {
+            "id": "exp-6",
+            "role": "Co-founder & Web Developer",
+            "company": "EverCleanCar Ltd",
+            "location": "Lyon, France",
+            "startDate": "2015-06",
+            "endDate": "2016-12",
+            "current": false,
+            "description": "• Co-founded an eco-friendly mobile car cleaning service\n• Architected and developed the MVP web platform using CakePHP and Bootstrap\n• Designed MariaDB database and integrated PayPal API processing\n• Implemented Test Driven Development (TDD) via PHPUnit and Selenium"
+        }
     ],
     "skills": {
         "technical": [
+            "Python",
             "PHP",
-            "Laravel",
-            "Javascript",
+            "Laravel / Symfony",
+            "Vue.js",
             "Astro",
-            "TailwindCSS",
-            "SQL",
-            "Docker"
+            "Linux (Debian/RHEL)",
+            "Docker",
+            "Ansible",
+            "Nginx / Keepalived",
+            "Active Directory / LDAPS",
+            "Jenkins / CI",
+            "SonarQube",
+            "Artifactory",
+            "Azure",
+            "Zabbix",
+            "MySQL & PostgreSQL",
+            "Redis",
+            "TDD / Selenium",
+            "Git"
         ],
         "soft": [
-            "Agile Methodologies",
+            "Agile / Scrum",
+            "Technical Mentorship",
+            "Architecture & DevSecOps",
             "Code Review",
-            "Mentoring"
+            "Critical Incident Management"
         ]
     },
     "education": [
+        {
+            "degree": "BTS SIO specialized in Software Solutions (SLAM)",
+            "institution": "Lycée Polyvalent Corneille",
+            "url": "https://lyc-corneille-lacelle.ac-versailles.fr/",
+            "location": "La Celle-Saint-Cloud, France",
+            "startDate": "2024-09",
+            "endDate": "2026-06",
+            "description": "Apprenticeship."
+        },
+        {
+            "degree": "Software Engineering & Computer Science Curriculum",
+            "institution": "Ecole 42",
+            "url": "https://42.fr/",
+            "location": "Lyon, France",
+            "startDate": "2017-09",
+            "endDate": "2019-06",
+            "description": "Software engineering, C application development, web development, Linux system administration."
+        },
+        {
+            "degree": "Digital Project Management (Coursework)",
+            "institution": "L'École LDLC",
+            "url": "https://www.ecole-ldlc.com/",
+            "location": "Lyon, France",
+            "startDate": "2015-09",
+            "endDate": "2017-07",
+            "description": "Bachelor coursework: programming, web marketing tools, digital communication strategy, project management, business development, entrepreneurship."
+        },
+        {
+            "degree": "BSc Coursework in Business Intelligence & Econometrics",
+            "institution": "Université Lyon 2",
+            "url": "https://www.univ-lyon2.fr/",
+            "location": "Lyon, France",
+            "startDate": "2014-09",
+            "endDate": "2015-06",
+            "description": "First-year coursework (Licence Informatique Décisionnelle et Econométrie Appliquée)."
+        },
+        {
+            "degree": "French Baccalaureate (Economics & Math Spec)",
+            "institution": "Lycée Français de Kuala Lumpur",
+            "url": "https://www.lfkl.edu.my/",
+            "location": "Kuala Lumpur, Malaysia",
+            "startDate": "2010-09",
+            "endDate": "2014-06",
+            "description": "International high school diploma."
+        }
     ],
     "certifications": [
+        {
+            "name": "Full Stack Web Development Certification",
+            "issuer": "freeCodeCamp",
+            "date": "2016 - 2017"
+        }
     ],
     "interests": [
+        {
+            "label": "Genealogy & History (family tree of 23,000+ individuals)",
+            "url": "https://gw.geneanet.org/wgblondel_w"
+        },
+        "Tech & Science Literature (Hacker News, daily.dev, Phys.org)",
+        "Hiking & Mountain Biking"
     ],
     "recommendations": [
         {

@@ -2,7 +2,9 @@
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
-const { recommendations, lang = 'fr' } = Astro.props;
+const { recommendations, lang = 'en' } = Astro.props;
+import { useTranslations } from "../../i18n/utils";
+const t = useTranslations(lang as any);
 
 // Dynamically import all recommendation images
 const imageFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/recommendations/*.{jpeg,jpg,png,webp}');
@@ -31,7 +33,7 @@ const resolvedRecommendations = await Promise.all(
             <Icon name="fa6-solid:comment-dots" class="w-6 h-6" />
         </div>
         <h2 class="text-3xl font-bold tracking-tight text-foreground">
-            <slot name="title">Recommandations</slot>
+            <slot name="title">{t('portfolio.recommendations.title')}</slot>
         </h2>
     </div>
 
@@ -78,7 +80,7 @@ const resolvedRecommendations = await Promise.all(
                                 )}
                             </div>
                             <p class="text-sm text-muted-foreground">
-                                {rec.role} {lang === 'fr' ? 'chez' : 'at'} {rec.company}
+                                {rec.role} {t('portfolio.recommendations.at')} {rec.company}
                             </p>
                         </div>
                     </div>

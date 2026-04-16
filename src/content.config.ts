@@ -22,10 +22,12 @@ const projects = defineCollection({
     schema: ({ image }) => z.object({
         title: z.string(),
         context: z.string(),
+        draft: z.boolean().default(false).optional(),
         coverImage: z.union([image(), z.string()]).optional(),
         githubLink: z.url().optional(),
         liveLink: z.url().optional(),
         documentationLink: z.url().optional(),
+        ficheDescriptiveLink: z.string().optional(),
     }),
 });
 

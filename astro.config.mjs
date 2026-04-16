@@ -11,6 +11,9 @@ import icon from 'astro-icon';
 import fs from 'node:fs';
 import path from 'node:path';
 
+import rehypeImageZoom from "./src/rehype/rehype-image-zoom";
+import rehypeExternalLinks from "rehype-external-links";
+
 function getLocaleRedirects() {
     const redirects = {};
     const base = '';
@@ -170,6 +173,15 @@ export default defineConfig({
       prefixDefaultLocale: true,
       redirectToDefaultLocale: false
     }
+  },
+  markdown: {
+    rehypePlugins: [
+      rehypeImageZoom, 
+      [rehypeExternalLinks, { 
+        target: '_blank',
+        rel: ['external', 'noopener', 'noreferrer']
+      }]
+    ],
   },
   redirects: {
     ...getLocaleRedirects(),

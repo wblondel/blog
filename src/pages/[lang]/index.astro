@@ -113,13 +113,13 @@ const topTags = Array.from(tagsMap.entries())
                                     class="grid grid-cols-1 gap-6 items-stretch lg:grid-cols-2"
                                 >
                                     <aside
-                                        aria-label="About the publication"
+                                        aria-label="About the author"
                                         class="h-full *:h-full"
                                     >
                                         <AuthorCard postCount={allPosts.length} lang={lang} />
                                     </aside>
                                     <section
-                                        aria-label="Popular tags"
+                                        aria-label={t('tags.popular')}
                                         class="h-full *:h-full"
                                     >
                                         <div

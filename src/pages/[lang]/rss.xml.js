@@ -1,5 +1,6 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n/utils';
 import { languages } from '../../i18n/ui';
 
 export function getStaticPaths() {
@@ -9,6 +10,8 @@ export function getStaticPaths() {
 export async function GET(context) {
     const { lang } = context.params;
 
+    const t = useTranslations(lang);
+
     // Only get posts for the requested language
     const blog = await getCollection('blog', ({ id }) => id.startsWith(`${lang}/`));
 
@@ -16,10 +19,8 @@ export async function GET(context) {
     blog.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
     return rss({
-        title: lang === 'fr' ? 'Le Blog de William Blondel' : 'William Blondel’s Blog',
-        description: lang === 'fr'
-            ? 'Développeur web full-stack senior et généalogiste amateur. Né geek avec un Amstrad CPC 6128. Expert PHP & Laravel.'
-            : 'Senior full-stack web developer and amateur genealogist. Born geek with an Amstrad CPC 6128. PHP & Laravel Expert.',
+        title: t('rss.title'),
+        description: t('home.about'),
         site: context.site,
         items: blog.map((post) => {
             const slug = post.id.split('/').pop();
@@ -31,6 +32,6 @@ export async function GET(context) {
             };
         }),
         // Dynamically set the correct language tag
-        customData: `<language>${lang === 'en' ? 'en-us' : 'fr-fr'}</language>`,
+        customData: `<language>${t('site.locale').toLowerCase()}</language>`,
     });
 }

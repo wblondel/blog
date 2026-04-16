@@ -12,62 +12,74 @@ const t = useTranslations(lang as any);
 const p = usePlural(lang as any);
 ---
 
-<div class="rounded-xl border bg-card text-card-foreground transition hover:border-slate-400 dark:hover:border-slate-600 p-5 flex flex-col justify-center">
+<div class="relative rounded-xl border bg-card text-card-foreground transition-colors hover:border-slate-400 dark:hover:border-slate-600 p-5 flex flex-col justify-center overflow-hidden">
     <div class="space-y-5">
         <!-- Avatar + name + post count -->
-        <div class="flex items-start gap-3">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-muted border border-border">
-                <Icon name="fa6-solid:blog" class="text-lg text-foreground" aria-hidden="true" />
+        <a href={`${import.meta.env.BASE_URL}${lang}/portfolio/`} class="group/author flex items-start gap-3 focus:outline-none">
+            <span class="absolute inset-0 z-0" aria-hidden="true"></span>
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-muted border border-border group-hover/author:border-primary/50 transition-colors relative z-10">
+                <Icon name="fa6-solid:blog" class="text-lg text-foreground group-hover/author:text-primary transition-colors" aria-hidden="true" />
             </div>
-            <div class="space-y-1 min-w-0">
-                <p class="text-lg font-semibold text-foreground">William Blondel</p>
+            <div class="space-y-1 min-w-0 relative z-10">
+                <p class="text-lg font-semibold text-foreground group-hover/author:text-primary transition-colors">William Blondel</p>
                 <p class="text-sm text-muted-foreground">{p(postCount, 'home.postsPublished')}</p>
             </div>
-        </div>
+        </a>
 
         <!-- Bio -->
         <div class="prose prose-sm dark:prose-invert max-w-none text-muted-foreground">
             <p>{t('home.about')}</p>
         </div>
 
-        <!-- Social links -->
+        <!-- Action and Social links -->
         <div class="border-t border-border pt-5">
-            <div class="flex flex-wrap items-center gap-3">
-                <a
-                    href="https://twitter.com/wgblondel"
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
-                    aria-label="Twitter / X"
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <a
+                        href="https://twitter.com/wgblondel"
+                        target="_blank"
+                        rel="noopener"
+                        class="relative z-10 inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
+                        aria-label="Twitter / X"
+                    >
+                        <Icon name="fa6-brands:x-twitter" class="h-4 w-4" aria-hidden="true" /><span class="sr-only">Twitter / X</span>
+                    </a>
+                    <a
+                        href="https://github.com/wblondel"
+                        target="_blank"
+                        rel="noopener"
+                        class="relative z-10 inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
+                        aria-label="GitHub"
+                    >
+                        <Icon name="fa6-brands:github" class="h-4 w-4" aria-hidden="true" /><span class="sr-only">GitHub</span>
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/wgblondel/"
+                        target="_blank"
+                        rel="noopener"
+                        class="relative z-10 inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
+                        aria-label="LinkedIn"
+                    >
+                        <Icon name="fa6-brands:linkedin" class="h-4 w-4" aria-hidden="true" /><span class="sr-only">LinkedIn</span>
+                    </a>
+                    <a
+                        href="https://williamblondel.fr"
+                        target="_blank"
+                        rel="noopener"
+                        class="relative z-10 inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
+                        aria-label="Website"
+                    >
+                        <Icon name="fa6-solid:globe" class="h-4 w-4" aria-hidden="true" /><span class="sr-only">williamblondel.fr</span>
+                    </a>
+                </div>
+                
+                <a 
+                    href={`${import.meta.env.BASE_URL}${lang}/portfolio/`} 
+                    class="relative z-10 inline-flex h-9 items-center gap-2 rounded-full bg-primary/10 px-4 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-primary hover:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    title={t('portfolio.title') as string}
                 >
-                    <Icon name="fa6-brands:x-twitter" class="h-4 w-4" aria-hidden="true" /><span class="sr-only">Twitter / X</span>
-                </a>
-                <a
-                    href="https://github.com/wblondel"
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
-                    aria-label="GitHub"
-                >
-                    <Icon name="fa6-brands:github" class="h-4 w-4" aria-hidden="true" /><span class="sr-only">GitHub</span>
-                </a>
-                <a
-                    href="https://www.linkedin.com/in/wgblondel/"
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
-                    aria-label="LinkedIn"
-                >
-                    <Icon name="fa6-brands:linkedin" class="h-4 w-4" aria-hidden="true" /><span class="sr-only">LinkedIn</span>
-                </a>
-                <a
-                    href="https://williamblondel.fr"
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground transition hover:text-foreground hover:bg-muted"
-                    aria-label="Website"
-                >
-                    <Icon name="fa6-solid:globe" class="h-4 w-4" aria-hidden="true" /><span class="sr-only">williamblondel.fr</span>
+                    {t('portfolio.title')}
+                    <Icon name="fa6-solid:arrow-right" class="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
             </div>
         </div>

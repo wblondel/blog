@@ -13,7 +13,7 @@ const t = useTranslations(lang);
 
 const targetLang = lang === 'en' ? 'fr' : 'en';
 const targetLabel = targetLang === 'en' ? 'EN' : 'FR';
-const reverseLabel = targetLang === 'fr' ? 'Passer en Français' : 'Switch to English';
+const reverseLabel = targetLang === 'fr' ? t('nav.switchToFr') : t('nav.switchToEn');
 
 let targetRelativeHref = import.meta.env.BASE_URL;
 
@@ -50,8 +50,8 @@ if (alternates) {
 >
     <a
         href="#main-content"
-        class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:shadow"
-        >Skip to main content</a
+        class="pointer-events-none absolute left-0 top-0 z-50 -translate-x-full px-4 py-2 font-bold focus:pointer-events-auto focus:translate-x-0 outline-none focus-visible:outline-1"
+        >{t('nav.skipToMainContent')}</a
     >
     <div
         class="relative w-full mx-auto xl:max-w-[80rem] 2xl:max-w-[90rem] px-4 sm:px-12 md:px-18 lg:px-16 xl:px-10"
@@ -266,7 +266,7 @@ if (alternates) {
         <div class="flex items-center justify-end mb-8">
             <button id="mobile-menu-close" class="inline-flex items-center justify-center rounded-md border border-border text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:bg-accent hover:text-accent-foreground h-8 w-8">
                 <Icon name="fa6-solid:xmark" class="h-4 w-4" aria-hidden="true" />
-                <span class="sr-only">Close</span>
+                <span class="sr-only">{t('nav.close')}</span>
             </button>
         </div>
         
@@ -298,7 +298,7 @@ if (alternates) {
             <h2 class="text-lg font-semibold text-foreground px-2">Recherche / Search</h2>
             <button id="search-modal-close" class="inline-flex items-center justify-center rounded-md border border-border text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-accent hover:text-accent-foreground h-8 w-8 shrink-0">
                 <Icon name="fa6-solid:xmark" class="h-4 w-4" aria-hidden="true" />
-                <span class="sr-only">Close search</span>
+                <span class="sr-only">{t('nav.closeSearch')}</span>
             </button>
         </div>
         <div class="p-6 overflow-y-auto pagefind-custom-theme">

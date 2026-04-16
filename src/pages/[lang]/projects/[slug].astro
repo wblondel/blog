@@ -1,0 +1,140 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getCollection, type CollectionEntry, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../../layouts/Layout.astro';
+import CoverImage from '../../../components/CoverImage.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => {
+      return import.meta.env.DEV || !data.draft;
+  });
+  return projects.map((entry: CollectionEntry<'projects'>) => {
+    const [lang, ...slugParts] = entry.id.split('/');
+    const slug = slugParts.join('/');
+    return {
+      params: { lang, slug },
+      props: { entry },
+    };
+  });
+}
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, context, coverImage, githubLink, liveLink, documentationLink, ficheDescriptiveLink } = entry.data;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang as any);
+
+const allProjects = await getCollection('projects', ({ data }) => {
+    return import.meta.env.DEV || !data.draft;
+});
+
+const projectSlug = entry.id.split('/').slice(1).join('/');
+const translatedEntries = allProjects.filter((p: CollectionEntry<'projects'>) => p.id.split('/').slice(1).join('/') === projectSlug);
+
+const alternates: { lang: string; href: string; isFallback?: boolean }[] = translatedEntries.map((p: CollectionEntry<'projects'>) => {
+    const pLang = p.id.split('/')[0];
+    return {
+        lang: pLang,
+        href: `${Astro.site}${import.meta.env.BASE_URL.slice(1)}${pLang}/projects/${projectSlug}/`
+    };
+});
+
+const allLangs = ['en', 'fr'];
+for (const otherLang of allLangs) {
+    if (!alternates.some(a => a.lang === otherLang)) {
+        alternates.push({
+            lang: otherLang,
+            href: `${Astro.site}${import.meta.env.BASE_URL.slice(1)}${otherLang}/portfolio/`,
+            isFallback: true,
+        });
+    }
+}
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": context,
+  "author": [{
+      "@type": "Person",
+      "name": "William Blondel",
+      "url": new URL(`${import.meta.env.BASE_URL}${lang}`, Astro.site).toString()
+  }]
+});
+---
+<Layout title={title} description={context} alternates={alternates} ogType="article" articleSchema={articleSchema}>
+    <section class="py-12 md:py-20 lg:py-24">
+        <div class="px-4 sm:px-8 max-w-4xl mx-auto">
+            
+            <a href={`${import.meta.env.BASE_URL}${lang}/portfolio/`} class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8 group">
+                <Icon name="fa6-solid:arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                {t('portfolio.back')}
+            </a>
+
+            <div class="flex flex-col gap-6 mb-12">
+                <div class="flex items-center gap-3">
+                    <div class="p-3 bg-primary/10 text-primary rounded-xl">
+                        <Icon name="fa6-solid:folder-open" class="w-6 h-6" />
+                    </div>
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">{title}</h1>
+                <p class="text-xl text-muted-foreground leading-relaxed">{context}</p>
+
+                <div class="flex flex-wrap gap-4 pt-4 border-t border-border/50">
+                    {githubLink && (
+                        <a href={githubLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-muted text-foreground hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors text-sm font-medium">
+                            <Icon name="fa6-brands:github" class="w-4 h-4" />
+                            {t('portfolio.githubLink')}
+                        </a>
+                    )}
+                    {liveLink && (
+                        <a href={liveLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-muted text-foreground hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors text-sm font-medium">
+                            <Icon name="fa6-solid:link" class="w-4 h-4" />
+                            {t('portfolio.liveLink')}
+                        </a>
+                    )}
+                    {documentationLink && (
+                        <a href={documentationLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-muted text-foreground hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors text-sm font-medium">
+                            <Icon name="fa6-solid:file-lines" class="w-4 h-4" />
+                            {t('portfolio.documentationLink')}
+                        </a>
+                    )}
+                    {ficheDescriptiveLink && (
+                        <a href={ficheDescriptiveLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-muted text-foreground hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors text-sm font-medium">
+                            <Icon name="fa6-solid:graduation-cap" class="w-4 h-4" />
+                            {t('portfolio.ficheDescriptiveLink')}
+                        </a>
+                    )}
+                </div>
+            </div>
+
+            {coverImage && (
+                <div class="mb-16 rounded-2xl overflow-hidden border border-border shadow-lg">
+                    <CoverImage
+                        src={coverImage}
+                        alt={title}
+                        loading="eager"
+                        fetchpriority="high"
+                        widths={[400, 800, 1200]}
+                        sizes="(max-width: 1200px) 100vw, 1200px"
+                        maxWidth={1200}
+                        wrapperClass="relative w-full overflow-hidden aspect-[16/9] md:aspect-[2/1]"
+                        imgClass="w-full h-full object-cover"
+                    />
+                </div>
+            )}
+
+            <div class="prose dark:prose-invert text-muted-foreground prose-headings:text-foreground prose-strong:text-foreground prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-pre:bg-muted dark:prose-pre:bg-muted prose-pre:text-foreground prose-pre:border prose-pre:border-border max-w-none text-base sm:text-lg">
+                <Content />
+            </div>
+        </div>
+    </section>
+</Layout>
