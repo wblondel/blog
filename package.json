@@ -24,6 +24,9 @@
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
   },
+  "overrides": {
+    "vite": "^7"
+  },
   "devDependencies": {
     "@iconify-json/fa6-brands": "^1.2.6",
     "@iconify-json/fa6-regular": "^1.2.4",
