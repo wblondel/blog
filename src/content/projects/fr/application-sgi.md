@@ -131,33 +131,9 @@ app/
 
 ### 4.2 Cycle de vie d'une demande
 
-```
-   ┌────────┐  processOrder   ┌────────────┐  markOrdered   ┌─────────┐
-   │  Sent  │ ──────────────► │ Processing │ ─────────────► │ Ordered │
-   └───┬────┘                  └─────┬──────┘                 └───┬─────┘
-       │                              │                            │
-       │                              │                            │ markReceived
-       │                              │                            ▼
-       │                              │                       ┌──────────┐
-       │                              │                       │ Received │
-       │                              │                       └────┬─────┘
-       │                              │                            │ closeOrder
-       │                              │                            ▼
-       │                              │                        ┌────────┐
-       └──────────────┬───────────────┴────────────────┐       │ Closed │
-                      │  cancelOrder (admin tout statut │       └────────┘
-                      │  non terminal ; demandeur uniquement
-                      │  sa propre demande au statut Sent)
-                      ▼
-                  ┌───────────┐
-                  │ Cancelled │
-                  └───────────┘
-```
+![Machine à états — Cycle de vie d'une demande de commande](../../../assets/projects/application-sgi/diagrams/order_status_workflow.svg)
 
 Statuts terminaux : `Closed`, `Cancelled`. Toute tentative de transition invalide est rejetée par `OrderStatus::canTransitionTo()` **et** par la `OrderPolicy` (double sécurité).
-
-> **[CAPTURE 3 — Workflow : diagramme visuel de la machine à états]**
-> *Schéma visuel propre du cycle de vie d'une commande (reprenant le diagramme ASCII ci-dessus). Actions et acteurs indiqués sur chaque transition.*
 
 ### 4.3 Parcours « Création d'une demande »
 
