@@ -15,14 +15,20 @@ document.addEventListener("click", (e) => {
   if (!isDesktop()) return;
 
   const overlay = document.querySelector(".zoom-overlay");
-  const img = e.target.closest(".zoomable-img");
+  
+  const clickableSvg = e.target.closest(".clickable-svg");
+  if (clickableSvg) {
+    window.open(clickableSvg.src, '_blank');
+    return;
+  }
 
+  const img = e.target.closest(".zoomable-img");
   if (img) {
     zoomImage(overlay, img);
     return;
   }
 
-  if (overlay.classList.contains("active")) {
+  if (overlay && overlay.classList.contains("active")) {
     unzoomImage(overlay);
   }
 });

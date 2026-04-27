@@ -85,7 +85,7 @@ L'environnement est documenté dans le document [Environnement de développement
 | `vacation_periods` | Périodes de vacances scolaires (Zone C) | utilisée par `OrderAgeCalculator` |
 | `audits` | Trace de toutes les actions sensibles | `morphTo` |
 
-![Diagramme de classes des modèles Eloquent](../../../assets/projects/application-sgi/diagrams/models_class_diagram_20260401.png)
+![Diagramme de classes des modèles Eloquent](../../../assets/projects/application-sgi/diagrams/models_class_diagram.png)
 *<p align="center">Figure 1 — Diagramme de classes des modèles Eloquent</p>*
 
 ### 3.2 Architecture applicative
@@ -106,7 +106,8 @@ app/
 └── Services/               # OrderAgeCalculator (calcul jours ouvrés)
 ```
 
-![Diagramme de classes des ressources Filament](../../../assets/projects/application-sgi/diagrams/filament_class_diagram_20260401.svg)
+![Diagramme de classes des ressources Filament](../../../assets/projects/application-sgi/diagrams/filament_class_diagram.svg)
+*<p align="center">Figure 2 — Diagramme de classes des ressources Filament</p>*
 
 ### 3.3 Patterns mis en œuvre
 
@@ -132,6 +133,7 @@ app/
 ### 4.2 Cycle de vie d'une demande
 
 ![Machine à états — Cycle de vie d'une demande de commande](../../../assets/projects/application-sgi/diagrams/order_status_workflow.svg)
+*<p align="center">Figure 3 — Machine à états — Cycle de vie d'une demande de commande</p>*
 
 Statuts terminaux : `Closed`, `Cancelled`. Toute tentative de transition invalide est rejetée par `OrderStatus::canTransitionTo()` **et** par la `OrderPolicy` (double sécurité).
 
@@ -144,14 +146,14 @@ Statuts terminaux : `Closed`, `Cancelled`. Toute tentative de transition invalid
 5. À la création, `mutateFormDataBeforeCreate()` force `user_id` au demandeur courant et `status = Sent`.
 6. `afterCreate()` déclenche la notification `OrderCreated` à tous les `super_admin`.
 
-> **[CAPTURE 4 — Formulaire de création de commande (vide)]**
-> *Capture du formulaire OrderForm dans Filament : section générale (service, fournisseur, description), champ d'upload du devis PDF.*
+![Formulaire de création de commande](../../../assets/projects/application-sgi/screenshots/Formulaire_Création_Demande_Vide.png)
+*<p align="center">Figure 4 — Formulaire de création de commande (vide)</p>*
 
-> **[CAPTURE 5 — Formulaire avec devis PDF joint]**
-> *Capture montrant que lorsqu'un devis PDF est joint, les champs « référence » et « prix unitaire » deviennent obligatoires sur chaque ligne (validation conditionnelle visible via les astérisques rouges).*
+![Formulaire avec devis PDF joint](../../../assets/projects/application-sgi/screenshots/Formulaire_Création_Demande_Avec_Devis.png)
+*<p align="center">Figure 5 — Formulaire de création de commande avec devis PDF joint</p>*
 
-> **[CAPTURE 6 — Repeater des lignes de commande]**
-> *Capture du Repeater avec 2-3 lignes remplies montrant le calcul automatique du total (quantité x prix unitaire) et le montant global.*
+![Repeater des lignes de commande](../../../assets/projects/application-sgi/screenshots/Repeater_des_lignes_de_commande.png)
+*<p align="center">Figure 6 — Repeater des lignes de commande</p>*
 
 ### 4.4 Parcours « Traitement par l'Intendance »
 
@@ -162,20 +164,21 @@ Statuts terminaux : `Closed`, `Cancelled`. Toute tentative de transition invalid
 5. Une fois les produits remis au service demandeur, il clique sur **« Clôturer »** : statut → `Closed` (terminal).
 6. À chaque transition, la notification `OrderStatusChanged` est envoyée au demandeur (ancien statut, nouveau statut, fournisseur, service, lien direct).
 
-> **[CAPTURE 7 — Liste des commandes (vue administrateur)]**
-> *Capture de la table des commandes côté admin : colonnes ID, demandeur, service, fournisseur, statut (badges colorés), âge en jours ouvrés, montant total en euros. Filtres par statut/service/fournisseur visibles.*
+![Liste des commandes (vue administrateur)](../../../assets/projects/application-sgi/screenshots/Liste_demandes_vue_Administrateur.png)
+*<p align="center">Figure 7 — Liste des commandes (vue administrateur)</p>*
 
-> **[CAPTURE 8 — Liste des commandes (vue demandeur)]**
-> *Même page mais connecté en tant que demandeur : seules ses propres commandes sont visibles (preuve du filtrage Eloquent par ownership).*
+![Liste des commandes (vue demandeur)](../../../assets/projects/application-sgi/screenshots/Liste_demandes_vue_demandeur.png)
+*<p align="center">Figure 8 — Liste des commandes (vue demandeur)</p>*
 
-> **[CAPTURE 9 — Page Edit d'une commande au statut « Sent »]**
-> *Capture de la page d'édition montrant les actions disponibles (« Mettre en traitement », « Annuler »). La section Admin est visible car connecté en super_admin.*
+![Modification d'une commande au statut "Envoyé"](../../../assets/projects/application-sgi/screenshots/edition_commande_status_sent_en_tant_que_admin.png)
+*<p align="center">Figure 9 — Page de modification d'une commande au statut "Envoyé" (vue administrateur)</p>*
 
-> **[CAPTURE 10 — Modale « Mettre en traitement » (processOrder)]**
-> *Capture de la modale avec le Select du budget filtré par le service de la commande.*
+![Modale "Traiter" (processOrder)](../../../assets/projects/application-sgi/screenshots/modale_traiter_commande.png)
+*<p align="center">Figure 10 — Modale "Traiter" (processOrder) (vue administrateur)</p>*
 
-> **[CAPTURE 11 — Modale « Marquer comme commandée » (markOrdered)]**
-> *Capture de la modale avec le DatePicker pour la date de livraison estimée.*
+![Modale "Commander" (markOrdered)](../../../assets/projects/application-sgi/screenshots/modale_commander.png)
+*<p align="center">Figure 11 — Modale "Commander" (markOrdered) (vue administrateur)</p>*
+
 
 > **[CAPTURE 12 — Page Edit d'une commande au statut « Closed »]**
 > *Capture montrant qu'aucune action de transition n'est disponible (preuve que isTerminal() fonctionne en UI).*
@@ -332,3 +335,4 @@ L'interface est entièrement traduite en **français** et en **anglais** pour le
 | Diagramme de classes des ressources Filament | `.docs/filament_class_diagram.svg` / `.puml` | Découpage des ressources Filament. |
 | Plan des sprints, user stories, tickets, vélocité | `.docs/Gestion de projet - Répartition des tâches.xlsx` | Suivi détaillé du backlog et de la charge. |
 | Fiche descriptive (Annexe VII-1-B) | `.docs/ANNEXE_VII-1-B_Fiche_Descriptive.md` | Recto / Verso de la fiche officielle. |
+
