@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 //import pagefind from 'astro-pagefind';
+import mermaid from 'astro-mermaid';
 
 import icon from 'astro-icon';
 
@@ -150,6 +151,10 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   integrations: [
+    mermaid({
+      theme: 'dark',
+      autoTheme: true
+    }),
     mdx(),
     sitemap({
       i18n: {
