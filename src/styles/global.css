@@ -155,3 +155,105 @@
   cursor: zoom-in;
   transition: transform 0.3s;
 }
+
+.autoscroll-frame {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 2rem auto;
+  display: block;
+}
+
+.autoscroll-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  will-change: transform;
+  animation: autoscroll-pan var(--autoscroll-duration, 10s) ease-in-out infinite;
+}
+
+@keyframes autoscroll-pan {
+  0%, 5%    { transform: translateY(0); }
+  45%, 55%  { transform: translateY(var(--autoscroll-distance, 0)); }
+  95%, 100% { transform: translateY(0); }
+}
+
+@media (hover: hover) {
+  .autoscroll-frame[data-pause-on-hover="true"]:hover .autoscroll-img {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .autoscroll-img {
+    animation: none;
+  }
+}
+
+.lang-tabs {
+  margin: 2rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.lang-tabs > .lang-tab-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lang-tab-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--muted);
+}
+
+.lang-tab-label {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  user-select: none;
+  margin-bottom: -1px;
+}
+
+.lang-tab-label:hover {
+  color: var(--foreground);
+}
+
+.lang-tabs > .lang-tab-input-fr:focus-visible ~ .lang-tab-bar .lang-tab-label-fr,
+.lang-tabs > .lang-tab-input-en:focus-visible ~ .lang-tab-bar .lang-tab-label-en {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+
+.lang-tab-panel {
+  display: none;
+}
+
+.lang-tab-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.lang-tabs > .lang-tab-input-fr:checked ~ .lang-tab-panel-fr,
+.lang-tabs > .lang-tab-input-en:checked ~ .lang-tab-panel-en {
+  display: block;
+}
+
+.lang-tabs > .lang-tab-input-fr:checked ~ .lang-tab-bar .lang-tab-label-fr,
+.lang-tabs > .lang-tab-input-en:checked ~ .lang-tab-bar .lang-tab-label-en {
+  color: var(--foreground);
+  border-bottom-color: var(--primary);
+  background: var(--card);
+}

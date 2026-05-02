@@ -9,15 +9,22 @@ export default function rehypeImageZoom() {
           return;
         }
 
-        // Skip zooming for SVGs as they can be very wide and often need to be viewed natively
-        const src = node.properties?.src || "";
         node.properties = node.properties || {};
-        if (String(src).endsWith(".svg")) {
-          node.properties.class = (node.properties.class || "") + " clickable-svg cursor-pointer";
+
+        // Skip autoscrolling images — they live inside a fixed viewport with their own animation
+        const existingClass = String(node.properties.class || "");
+        if (existingClass.split(/\s+/).includes("autoscroll-img")) {
           return;
         }
 
-        node.properties.class = (node.properties.class || "") + " zoomable-img";
+        // Skip zooming for SVGs as they can be very wide and often need to be viewed natively
+        const src = node.properties?.src || "";
+        if (String(src).endsWith(".svg")) {
+          node.properties.class = existingClass + " clickable-svg cursor-pointer";
+          return;
+        }
+
+        node.properties.class = existingClass + " zoomable-img";
       }
     });
   };

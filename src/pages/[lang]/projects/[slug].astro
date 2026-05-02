@@ -26,7 +26,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, context, coverImage, githubLink, liveLink, documentationLink, ficheDescriptiveLink } = entry.data;
+const { title, context, coverImage, githubLink, liveLink, documentationLink, projectManagementLink, ficheDescriptiveLink } = entry.data;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang as any);
@@ -105,6 +105,12 @@ const articleSchema = JSON.stringify({
                         <a href={documentationLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-muted text-foreground hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors text-sm font-medium">
                             <Icon name="fa6-solid:file-lines" class="w-4 h-4" />
                             {t('portfolio.documentationLink')}
+                        </a>
+                    )}
+                    {projectManagementLink && (
+                        <a href={projectManagementLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-muted text-foreground hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors text-sm font-medium">
+                            <Icon name="fa6-brands:trello" class="w-4 h-4" />
+                            {t('portfolio.projectManagementLink')}
                         </a>
                     )}
                     {ficheDescriptiveLink && (

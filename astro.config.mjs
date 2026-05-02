@@ -14,6 +14,8 @@ import path from 'node:path';
 import rehypeImageZoom from "./src/rehype/rehype-image-zoom";
 import rehypeExternalLinks from "rehype-external-links";
 import remarkVideoOptimizer from "./src/remark/remark-video-optimizer.js";
+import remarkAutoscrollImage from "./src/remark/remark-autoscroll-image.js";
+import remarkLanguageTabs from "./src/remark/remark-language-tabs.js";
 
 function getLocaleRedirects() {
     const redirects = {};
@@ -177,7 +179,9 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [
-      remarkVideoOptimizer
+      remarkVideoOptimizer,
+      remarkAutoscrollImage,
+      remarkLanguageTabs
     ],
     rehypePlugins: [
       rehypeImageZoom, 

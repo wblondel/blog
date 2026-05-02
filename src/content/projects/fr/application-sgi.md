@@ -1,11 +1,12 @@
 ---
 title: "Système de Gestion de l'Intendance (SGI)"
 context: "Module \"Demandes de commande de fournitures\""
-githubLink: "https://github.com/wblondel/application-sgi"
+githubLink: "https://github.com/LucaBONNIN/application-sgi"
 liveLink: "https://app-sgi.127011.xyz"
-documentationLink: "https://docs.example.com"
 ficheDescriptiveLink: "/documents/E6/BLONDEL_WILLIAM_ANNEXE_VII-1-B_R2.pdf"
-draft: true
+projectManagementLink: "https://trello.com/b/eIcnlMPs/application-sgi"
+draft: false
+coverImage: "../../../assets/projects/application-sgi/cover.jpg"
 ---
 
 # Compte rendu détaillé
@@ -19,7 +20,7 @@ draft: true
 | **Équipe projet** | William Blondel, Luca Bonnin, Nicolas Ignacio |
 | **Méthode** | Scrum, sprints de 1 à 2 semaines |
 | **Période** | 22 janvier 2026 → 25 mars 2026 (5 sprints) |
-| **Volumétrie** | 24 user stories, 57 tickets, 116 story points livrés |
+| **Volumétrie** | 25 user stories, 63 tickets, 116 story points livrés |
 | **Outils de suivi** | [Trello](https://trello.com/b/eIcnlMPs/application-sgi) + classeur [Gestion_Projet_App_SGI.xlsx](/documents/E6/Gestion_Projet_App_SGI.xlsx) |
 
 ### 1.1 Problématique métier
@@ -112,7 +113,7 @@ app/
 ### 3.3 Patterns mis en œuvre
 
 - **Server-Driven UI** : toute l'interface est définie en PHP (pas de HTML/CSS/JS manuel).
-- **Machine à états** centralisée sur l'enum `OrderStatus` (`allowedTransitions`, `canTransitionTo`, `isTerminal`) — *single source of truth* pour les transitions.
+- **Machine à états** centralisée sur l'enum `OrderStatus` (`allowedTransitions`, `canTransitionTo`, `isTerminal`) : *source de vérité unique* pour les transitions.
 - **Policies Laravel** appliquant les règles d'autorisation à chaque action métier (CRUD + transitions).
 - **Form Requests / validation Filament** : règles de validation déclaratives (incluant la validation **conditionnelle** sur la présence du devis PDF).
 - **Service Layer** isolant la logique métier complexe (`OrderAgeCalculator`).
@@ -179,14 +180,11 @@ Statuts terminaux : `Closed`, `Cancelled`. Toute tentative de transition invalid
 ![Modale "Commander" (markOrdered)](../../../assets/projects/application-sgi/screenshots/modale_commander.png)
 *<p align="center">Figure 11 — Modale "Commander" (markOrdered) (vue administrateur)</p>*
 
-![Modification d'une commande au statut "Fermée"](https://placehold.co/2560x1462)
-*<p align="center">Figure 12 — Page de modification d'une commande au statut "Fermée"</p>*
+![Email OrderCreated envoyé aux administrateurs lors de la création d'une commande](../../../assets/projects/application-sgi/screenshots/email_nouvelle_demande.png)
+*<p align="center">Figure 12 — Email OrderCreated envoyé aux administrateurs lors de la création d'une commande</p>*
 
-![Email OrderCreated envoyé aux administrateurs lors de la création d'une commande](https://placehold.co/2560x1462)
-*<p align="center">Figure 13 — Email OrderCreated envoyé aux administrateurs lors de la création d'une commande</p>*
-
-![Email OrderStatusChanged envoyé au demandeur lors d'une transition de statut](https://placehold.co/2560x1462)
-*<p align="center">Figure 14 - Email OrderStatusChanged envoyé au demandeur lors d'une transition de statut</p>*
+![Email OrderStatusChanged envoyé au demandeur lors d'une transition de statut](../../../assets/projects/application-sgi/screenshots/email_changement_statut.png)
+*<p align="center">Figure 13 - Email OrderStatusChanged envoyé au demandeur lors d'une transition de statut</p>*
 
 ### 4.5 Règle métier de l'ancienneté
 
@@ -208,34 +206,44 @@ L'ancienneté est affichée dans la table des commandes (suffixe « j »), `null
 - **Audit** : tous les modèles implémentent `Auditable`, et les événements d'authentification (connexion et déconnexion) sont également audités via `Listeners/`.
 
 ![Gestion des rôles (Filament Shield)](../../../assets/projects/application-sgi/screenshots/gestion_des_roles.png)
-*<p align="center">Figure 15 - Gestion des rôles (Filament Shield)</p>*
+*<p align="center">Figure 14 - Gestion des rôles (Filament Shield)</p>*
 
-![Gestion des permissions (Filament Shield)](../../../assets/projects/application-sgi/screenshots/gestion_des_permissions.mov)
-*<p align="center">Figure 16 - Gestion des permissions (Filament Shield)</p>*
+![Gestion des permissions (Filament Shield)](../../../assets/projects/application-sgi/screenshots/gestion_des_permissions.jpg#autoscroll&duration=15)
+*<p align="center">Figure 15 - Gestion des permissions (Filament Shield)</p>*
 
-
-> **[CAPTURE 16 — Historique d'audit sur une commande]**
-> *Capture de la page d'audit montrant les modifications successives d'une commande (qui a modifié quoi, quand, anciennes/nouvelles valeurs).*
+![Historique d'audit](../../../assets/projects/application-sgi/screenshots/historique_audit.png)
+*<p align="center">Figure 16 - Historique d'audit</p>*
 
 ---
 
 ## 6. Stratégie de test
 
-| Fichier | Type | Tests | Couverture |
-| --- | --- | --- | --- |
-| `tests/Unit/OrderStatusTest.php` | Unitaire | 7 | Toutes les transitions valides et invalides, état terminal, état non terminal. |
-| `tests/Unit/OrderAgeCalculatorTest.php` | Unitaire | 9 | Jours ouvrés, week-ends exclus, vacances exclues, cas limites (`from >= to`, intervalle vide). |
-| `tests/Feature/OrderPolicyTest.php` | Feature | 28 | CRUD admin/demandeur, `cancel`, `processOrder`, `markOrdered`, `markReceived`, `closeOrder`. |
-| `tests/Feature/Filament/Orders/CreateOrderTest.php` | Feature (Livewire) | 7 | Création d'une commande, auto-fill du `user_id`, statut `Sent` automatique, notification admin, validations conditionnelles. |
-| `tests/Feature/Filament/Orders/ListOrdersTest.php` | Feature (Livewire) | 5 | Chargement de la page, vision admin / demandeur, filtres. |
-| `tests/Feature/Notifications/OrderNotificationTest.php` | Feature | 6 | Contenu des e-mails, canaux, payload `toArray` pour `OrderCreated` et `OrderStatusChanged`. |
+Toutes les classes de test se trouvent dans le dossier `tests/`.
 
-**Total : 62 tests, 138+ assertions.**
+Les tests unitaires sont dans `tests/Unit/` et les tests fonctionnels sont dans `tests/Feature/`.
 
-Lancement : `./.infrastructure/scripts/mcp-wait.sh ./vendor/bin/spin run -T php php artisan test --compact`.
+| Fichier | Tests | Couverture |
+| --- | --- | --- |
+| `Unit/OrderAgeCalculatorTest.php` | 9 | Jours ouvrés, week-ends exclus, vacances exclues, cas limites (`from >= to`, intervalle vide). |
+| `Unit/OrderStatusTest.php` | 7 | Toutes les transitions valides et invalides, état terminal, état non terminal. |
+| `Feature/DemoBannerTest.php` | 3 | Affichage de la bannière en mode démonstration et des identifiants de test. |
+| `Feature/Filament/Budgets/CreateBudgetTest.php` | 4 | Création d'un budget, conversion euros vers centimes, validation de l'année. |
+| `Feature/Filament/Budgets/EditBudgetTest.php` | 1 | Redirection après modification. |
+| `Feature/Filament/Categories/CreateCategoryTest.php` | 7 | Création d'une catégorie, génération du slug automatique, redirection. |
+| `Feature/Filament/Categories/EditCategoryTest.php` | 1 | Redirection après modification. |
+| `Feature/Filament/Orders/CreateOrderTest.php` | 8 | Création d'une commande, auto-fill du `user_id`, statut `Sent` automatique, notification admin, validations conditionnelles, conversion euros -> centimes. |
+| `Feature/Filament/Orders/ListOrdersTest.php` | 5 | Chargement de la page, vision admin / demandeur, filtres. |
+| `Feature/Filament/Suppliers/SupplierResourceTest.php` | 4 | Chargement de la page, accès admin / demandeur, création d'un fournisseur. |
+| `Feature/Notifications/OrderNotificationTest.php` | 6 | Contenu des e-mails, canaux, payload `toArray` pour `OrderCreated` et `OrderStatusChanged`. |
+| `Feature/OrderPolicyTest.php` | 28 | CRUD admin/demandeur, `cancel`, `processOrder`, `markOrdered`, `markReceived`, `closeOrder`. |
+| `Feature/ResetDemoCommandTest.php` | 1 | Suppression des fichiers uploadés lors de la réinitialisation de l'instance de démonstration. |
 
-> **[CAPTURE 17 — Sortie des tests PHPUnit (tous verts)]**
-> *Capture de la sortie terminal de `php artisan test --compact` montrant les 62 tests verts (PASS) et les 138+ assertions.*
+**Total : 84 tests, 217 assertions.**
+
+Lancement : `spin run php artisan test`.
+
+<script src="https://asciinema.org/a/ePUD6pDv0VOkqIWm.js" id="asciicast-ePUD6pDv0VOkqIWm" async="true"></script>
+*<p align="center">Figure 17 - Sortie des tests PHPUnit</p>*
 
 ---
 
@@ -243,8 +251,9 @@ Lancement : `./.infrastructure/scripts/mcp-wait.sh ./vendor/bin/spin run -T php 
 
 L'interface est entièrement traduite en **français** et en **anglais** pour les ressources `Order` et `VacationPeriod` (labels, sections, actions, champs, descriptions). Les autres ressources héritent des traductions de base de Filament fournies par `laravel-lang/lang`.
 
-> **[CAPTURE 18 — Calendrier des vacances scolaires (VacationPeriodResource)]**
-> *Capture de la liste des périodes de vacances scolaires dans Filament (Zone C — Paris, 2025-2026 et 2026-2027).*
+![Affichage des vacances scolaires (français)](../../../assets/projects/application-sgi/screenshots/liste_vacances_scolaires_fr.png#langtab=fr)
+![Affichage des vacances scolaires (anglais)](../../../assets/projects/application-sgi/screenshots/liste_vacances_scolaires_en.png#langtab=en)
+*<p align="center">Figure 18 - Affichage des vacances scolaires</p>*
 
 ---
 
@@ -252,53 +261,48 @@ L'interface est entièrement traduite en **français** et en **anglais** pour le
 
 | Sprint | Période | Objectif | Pts | Tickets |
 | :---: | --- | --- | :---: | :---: |
-| **0** — Cadrage | 22/01 → 28/01/2026 | Choix techno, environnement Spin Pro, projet Laravel vierge | 15 | 6 |
-| **1** — Fondation | 29/01 → 11/02/2026 | Migrations, modèles, enum `OrderStatus`, factories, Shield | 23 | 16 |
-| **2** — CRUD & formulaire | 12/02 → 25/02/2026 | Ressources Filament, formulaire role-aware, upload PDF, repeater, policies | 29 | 14 |
-| **3** — Workflow & métier | 26/02 → 11/03/2026 | Machine à états, actions de transition, vacances scolaires, calculateur d'ancienneté | 30 | 15 |
-| **4** — Notifications, i18n & tests | 12/03 → 25/03/2026 | Notifications queued, traductions FR/EN, suite PHPUnit complète | 19 | 12 |
-| **Total** | | | **116** | **57** |
+| **0** - Cadrage | 22/01 → 28/01/2026 | Choix techno, environnement Spin Pro, projet Laravel vierge | 15 | 6 |
+| **1** - Fondation | 29/01 → 11/02/2026 | Migrations, modèles, enum `OrderStatus`, factories, Shield | 23 | 16 |
+| **2** - CRUD & formulaire | 12/02 → 25/02/2026 | Ressources Filament, formulaire role-aware, upload PDF, repeater, policies | 29 | 14 |
+| **3** - Workflow & métier | 26/02 → 11/03/2026 | Machine à états, actions de transition, vacances scolaires, calculateur d'ancienneté | 30 | 15 |
+| **4** - Notifications, i18n & tests | 12/03 → 25/03/2026 | Notifications queued, traductions FR/EN, suite PHPUnit complète | 19 | 12 |
+| **Total** | | | **116** | **63** |
 
 ### Charge par développeur
 
 | Développeur | Story points | Part |
 | --- | :---: | :---: |
-| William Gérald Blondel | 51 | 44 % |
+| William Blondel | 51 | 44 % |
 | Luca Bonnin | 33 | 28 % |
 | Nicolas Ignacio | 32 | 28 % |
 | **Total** | **116** | **100 %** |
 
-> Détail par ticket : feuille « Tickets » du classeur `Gestion de projet - Répartition des tâches.xlsx`.
-
-> **[CAPTURE 19 — Board Trello du projet]**
-> *Capture du board Trello montrant les colonnes/listes et les cartes du backlog.*
-
-> **[CAPTURE 20 — Dashboard Laravel Horizon]**
-> *Capture du dashboard Horizon montrant un job de notification traité avec succès.*
+![Historique d'audit](../../../assets/projects/application-sgi/screenshots/trello.png)
+*<p align="center">Figure 19 - Board Trello du projet</p>*
 
 ---
 
-## 9. Bilan du candidat
+## 9. Bilan
 
 ### 9.1 Compétences mobilisées (référentiel BTS SIO bloc 2)
 
 **Concevoir et développer une solution applicative**
 
-- *Analyser un besoin exprimé et son contexte juridique* : entretiens avec l'équipe Intendance, formalisation du besoin dans `Ébauche Spécifications techniques.docx`, prise en compte de la traçabilité (audit) et du RGPD (comptes nominatifs, finalité limitée).
-- *Participer à la conception de l'architecture* : choix Laravel + Filament + PostgreSQL motivés et documentés (`Etude_Comparative_et_Choix_Technologiques.md`).
+- *Analyser un besoin exprimé et son contexte juridique* : entretiens avec l'équipe Intendance, formalisation du besoin, prise en compte de la traçabilité (audit) et du RGPD (comptes nominatifs, finalité limitée).
+- *Participer à la conception de l'architecture* : choix Laravel + Filament + PostgreSQL motivés et [documentés](https://github.com/LucaBONNIN/application-sgi/blob/master/.docs/Etude_Comparative_et_Choix_Technologiques.md).
 - *Modéliser une solution applicative* : MCD, diagramme de classes des modèles Eloquent et des ressources Filament.
 - *Exploiter les ressources du cadre applicatif* : Eloquent, Form Requests, Policies, Notifications, Queues, Auditing, Filament v5 (SDUI), Filament Shield (RBAC).
 - *Identifier, développer, utiliser ou adapter des composants logiciels* : `Repeater`, `FileUpload`, `Action`, `RelationManager`, `OrderAgeCalculator` (composant maison), enum à machine à états.
 - *Utiliser des composants d'accès aux données* : Eloquent + relations typées + scopes (`scopeOverlapping`), évitement des N+1 par eager loading.
 - *Intégrer en continu* : Git, branches par fonctionnalité, revues croisées, Laravel Pint avant chaque commit, environnement CI Docker.
-- *Réaliser les tests nécessaires* : 62 tests PHPUnit couvrant les chemins nominaux, d'erreur et les cas limites.
+- *Réaliser les tests nécessaires* : Tests PHPUnit couvrant les chemins nominaux, d'erreur et les cas limites.
 - *Rédiger des documentations technique et d'utilisation* : étude comparative, environnement de développement, fiche descriptive, compte rendu détaillé, diagrammes de classes.
 - *Exploiter les fonctionnalités d'un environnement de développement et de tests* : PhpStorm + Laravel Idea, Spin Pro, Mailpit, Horizon, Boost MCP.
 
 **Assurer la maintenance corrective ou évolutive**
 
-- Itération incrémentale entre les sprints (ex. : ajout du statut `Closed` au Sprint 3, refactorisation de la `OrderPolicy`).
-- Correction de bugs identifiés en revue (ex. : `T-045` — `columnSpanFull` sur les sections du formulaire).
+- Itération incrémentale entre les sprints.
+- Correction de bugs identifiés en revue.
 
 **Gérer les données**
 
@@ -314,7 +318,7 @@ L'interface est entièrement traduite en **français** et en **anglais** pour le
 
 ### 9.3 Apports personnels
 
-- Mise en place de la **machine à états centralisée** sur l'enum (et non dupliquée dans la policy ou le contrôleur) — choix qui s'est révélé payant pour les tests.
+- Mise en place de la **machine à états centralisée** sur l'enum (et non dupliquée dans la policy ou le contrôleur), choix qui s'est révélé payant pour les tests.
 - Conception du **formulaire role-aware** qui élimine le besoin d'avoir deux écrans distincts pour le demandeur et l'administrateur.
 - **Validation conditionnelle** sur la présence du devis : règle métier exprimée déclarativement.
 - **Suite de tests** garantissant la non-régression sur les transitions de statut et les permissions.
@@ -331,11 +335,10 @@ L'interface est entièrement traduite en **français** et en **anglais** pour le
 
 | Document | Localisation | Contenu |
 | --- | --- | --- |
-| Étude comparative et choix technologiques | `.docs/Etude_Comparative_et_Choix_Technologiques.md` | Comparaison des stacks, justification de Laravel + Filament. |
-| Environnement de développement & architecture | `.docs/Environnement_de_Developpement_et_Architecture.md` | Spin Pro, PhpStorm, Git, qualité de code. |
-| Spécifications techniques (entretiens) | `.docs/Ébauche Spécifications techniques.docx` | Recueil du besoin, statuts, règles métier. |
-| Diagramme de classes des modèles Eloquent | `.docs/models_class_diagram.png` | Vue ER de la base de données. |
-| Diagramme de classes des ressources Filament | `.docs/filament_class_diagram.svg` / `.puml` | Découpage des ressources Filament. |
-| Plan des sprints, user stories, tickets, vélocité | `.docs/Gestion de projet - Répartition des tâches.xlsx` | Suivi détaillé du backlog et de la charge. |
-| Fiche descriptive (Annexe VII-1-B) | `.docs/ANNEXE_VII-1-B_Fiche_Descriptive.md` | Recto / Verso de la fiche officielle. |
+| Étude comparative et choix technologiques | [Lien](https://github.com/LucaBONNIN/application-sgi/blob/master/.docs/Etude_Comparative_et_Choix_Technologiques.md)| Comparaison des stacks, justification de Laravel + Filament. |
+| Environnement de développement & architecture | [Lien](https://github.com/LucaBONNIN/application-sgi/blob/master/.docs/Environnement_de_Developpement_et_Architecture.md) | Spin Pro, PhpStorm, Git, qualité de code. |
+| Diagramme de classes des modèles Eloquent | [Lien](https://raw.githubusercontent.com/LucaBONNIN/application-sgi/refs/heads/master/.docs/models_class_diagram.png) | Vue ER de la base de données. |
+| Diagramme de classes des ressources Filament | [Lien](https://raw.githubusercontent.com/LucaBONNIN/application-sgi/refs/heads/master/.docs/filament_class_diagram.svg) | Découpage des ressources Filament. |
+| Plan des sprints, user stories, tickets, vélocité | [Lien](/documents/E6/Gestion_Projet_App_SGI.xlsx) | Suivi détaillé du backlog et de la charge. |
+| Fiche descriptive (Annexe VII-1-B) | [Lien](/documents/E6/BLONDEL_WILLIAM_ANNEXE_VII-1-B_R2.pdf) | Recto / Verso de la fiche officielle. |
 
