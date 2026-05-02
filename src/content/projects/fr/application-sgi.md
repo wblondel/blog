@@ -157,7 +157,7 @@ Statuts terminaux : `Closed`, `Cancelled`. Toute tentative de transition invalid
 
 ### 4.4 Parcours « Traitement par l'Intendance »
 
-1. L'administrateur reçoit l'e-mail `OrderCreated` (Mailpit en local).
+1. L'administrateur reçoit l'e-mail `OrderCreated`.
 2. Il ouvre la commande, clique sur l'action **« Mettre en traitement »** : une modale lui demande de sélectionner un **budget** parmi ceux du service de la commande. Le statut passe à `Processing` et `budget_id` est renseigné.
 3. Il clique ensuite sur **« Marquer comme commandée »** : modale avec `DatePicker` pour la **date de livraison estimée**. Statut → `Ordered`.
 4. À réception physique des produits, il clique sur **« Marquer comme reçue »** : statut → `Received`.
@@ -170,8 +170,8 @@ Statuts terminaux : `Closed`, `Cancelled`. Toute tentative de transition invalid
 ![Liste des commandes (vue demandeur)](../../../assets/projects/application-sgi/screenshots/Liste_demandes_vue_demandeur.png)
 *<p align="center">Figure 8 — Liste des commandes (vue demandeur)</p>*
 
-![Modification d'une commande au statut "Envoyé"](../../../assets/projects/application-sgi/screenshots/edition_commande_status_sent_en_tant_que_admin.png)
-*<p align="center">Figure 9 — Page de modification d'une commande au statut "Envoyé" (vue administrateur)</p>*
+![Modification d'une commande au statut "Envoyée"](../../../assets/projects/application-sgi/screenshots/edition_commande_status_sent_en_tant_que_admin.png)
+*<p align="center">Figure 9 — Page de modification d'une commande au statut "Envoyée" (vue administrateur)</p>*
 
 ![Modale "Traiter" (processOrder)](../../../assets/projects/application-sgi/screenshots/modale_traiter_commande.png)
 *<p align="center">Figure 10 — Modale "Traiter" (processOrder) (vue administrateur)</p>*
@@ -179,15 +179,14 @@ Statuts terminaux : `Closed`, `Cancelled`. Toute tentative de transition invalid
 ![Modale "Commander" (markOrdered)](../../../assets/projects/application-sgi/screenshots/modale_commander.png)
 *<p align="center">Figure 11 — Modale "Commander" (markOrdered) (vue administrateur)</p>*
 
+![Modification d'une commande au statut "Fermée"](https://placehold.co/2560x1462)
+*<p align="center">Figure 12 — Page de modification d'une commande au statut "Fermée"</p>*
 
-> **[CAPTURE 12 — Page Edit d'une commande au statut « Closed »]**
-> *Capture montrant qu'aucune action de transition n'est disponible (preuve que isTerminal() fonctionne en UI).*
+![Email OrderCreated envoyé aux administrateurs lors de la création d'une commande](https://placehold.co/2560x1462)
+*<p align="center">Figure 13 — Email OrderCreated envoyé aux administrateurs lors de la création d'une commande</p>*
 
-> **[CAPTURE 13 — Email OrderCreated dans Mailpit]**
-> *Capture de la vue HTML de l'email envoyé aux super_admin lors de la création d'une commande (nom demandeur, service, fournisseur, lien).*
-
-> **[CAPTURE 14 — Email OrderStatusChanged dans Mailpit]**
-> *Capture de la vue HTML de l'email envoyé au demandeur lors d'une transition de statut (ancien statut, nouveau statut, fournisseur, service, lien).*
+![Email OrderStatusChanged envoyé au demandeur lors d'une transition de statut](https://placehold.co/2560x1462)
+*<p align="center">Figure 14 - Email OrderStatusChanged envoyé au demandeur lors d'une transition de statut</p>*
 
 ### 4.5 Règle métier de l'ancienneté
 
@@ -203,13 +202,17 @@ L'ancienneté est affichée dans la table des commandes (suffixe « j »), `null
 ## 5. Sécurité et autorisations
 
 - **Authentification** : Laravel native, MFA optionnel via Filament (l'intégration ENT est planifiée pour une itération ultérieure).
-- **Autorisation** : RBAC fine via Filament Shield. Deux rôles seulement : `super_admin` et `demandeurs`. Permissions granulaires par ressource et par action (`ViewAny:Order`, `View:Order`, `Update:Order`, `BypassOwnership:Order`, etc.).
-- **Filtrage Eloquent** dans `OrderResource::getEloquentQuery()` : un demandeur ne peut récupérer que ses propres commandes — la restriction est appliquée au niveau de la requête, pas seulement à l'affichage.
+- **Autorisation** : RBAC fine via Filament Shield. Deux rôles : `super_admin` et `demandeurs`. Permissions granulaires par ressource et par action (`ViewAny:Order`, `View:Order`, `Update:Order`, `BypassOwnership:Order`, etc.).
+- **Filtrage Eloquent** dans `OrderResource::getEloquentQuery()` : un demandeur ne peut récupérer que ses propres commandes. La restriction est appliquée au niveau de la requête, pas seulement à l'affichage.
 - **Policies** : la `OrderPolicy` couvre les opérations CRUD **et** les transitions de statut (`processOrder`, `markOrdered`, `markReceived`, `closeOrder`, `cancelOrder`). La règle métier « un demandeur ne peut éditer sa commande qu'au statut `Sent` » est encodée à un seul endroit.
-- **Audit** : tous les modèles implémentent `Auditable`, et les événements d'authentification (login / logout / failed login) sont également audités via `Listeners/`.
+- **Audit** : tous les modèles implémentent `Auditable`, et les événements d'authentification (connexion et déconnexion) sont également audités via `Listeners/`.
 
-> **[CAPTURE 15 — Gestion des rôles et permissions (Filament Shield)]**
-> *Capture de la page Shield montrant les rôles super_admin et demandeurs avec leurs permissions respectives (BypassOwnership:Order, ViewAny:Order, Create:Order, etc.).*
+![Gestion des rôles (Filament Shield)](../../../assets/projects/application-sgi/screenshots/gestion_des_roles.png)
+*<p align="center">Figure 15 - Gestion des rôles (Filament Shield)</p>*
+
+![Gestion des permissions (Filament Shield)](../../../assets/projects/application-sgi/screenshots/gestion_des_permissions.mov)
+*<p align="center">Figure 16 - Gestion des permissions (Filament Shield)</p>*
+
 
 > **[CAPTURE 16 — Historique d'audit sur une commande]**
 > *Capture de la page d'audit montrant les modifications successives d'une commande (qui a modifié quoi, quand, anciennes/nouvelles valeurs).*

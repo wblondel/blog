@@ -31,3 +31,4 @@ test-*.mjs
 
 src/assets/linkedin-profile
 .og-cache
+/public/video-cache/

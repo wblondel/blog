@@ -13,6 +13,7 @@ import path from 'node:path';
 
 import rehypeImageZoom from "./src/rehype/rehype-image-zoom";
 import rehypeExternalLinks from "rehype-external-links";
+import remarkVideoOptimizer from "./src/remark/remark-video-optimizer.js";
 
 function getLocaleRedirects() {
     const redirects = {};
@@ -175,6 +176,9 @@ export default defineConfig({
     }
   },
   markdown: {
+    remarkPlugins: [
+      remarkVideoOptimizer
+    ],
     rehypePlugins: [
       rehypeImageZoom, 
       [rehypeExternalLinks, { 
