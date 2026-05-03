@@ -991,6 +991,8 @@ Plusieurs refactorings visant à améliorer la maintenabilité ou ajouter des fo
 
 ## 6. Compétences mobilisées (référentiel BTS SIO)
 
+### 6.1 Bloc 2 — Conception et développement d'applications (E6 SLAM)
+
 | Compétence | Comment elle a été mobilisée dans ce projet |
 |---|---|
 | **Analyser un besoin exprimé et son contexte juridique** | Lecture, formalisation et validation de la check-list manuelle existante avec le Release Manager et la QA. Prise en compte du contexte réglementaire interne (sécurité des accès, gestion des secrets, RGPD pour les données personnelles AD). |
@@ -1013,6 +1015,26 @@ Plusieurs refactorings visant à améliorer la maintenabilité ou ajouter des fo
 | **Développer des fonctionnalités applicatives au sein d'un système de gestion de base de données** | Création d'un schéma SQLite via SQLAlchemy `Base.metadata.create_all`, sérialisation/désérialisation JSON dans des colonnes `Text`, *upsert* manuel pour les exécutions partielles. |
 | **Concevoir ou adapter une base de données** | Choix du modèle (table unique `executions` avec colonnes JSON), choix des index (`timestamp`, `status`), évolution du schéma sans migration formelle (SQLite local, recréation autorisée). |
 | **Administrer et déployer une base de données** | SQLite *file-based*, persistance dans le volume Docker `storage/`, sauvegarde simple par copie de fichier. |
+
+### 6.2 Bloc 1 — Support et mise à disposition de services informatiques (E5)
+
+Ce projet contribue également à la couverture du référentiel E5. Le tableau ci-dessous liste les sous-compétences que cette réalisation permet de démontrer ; les autres sont prises en charge par d'autres pièces du portfolio.
+
+| Compétence | Comment elle a été mobilisée dans ce projet |
+|---|---|
+| **Recenser et identifier les ressources numériques** | Section 2.1 *« Outils déjà en place »* : recensement exhaustif des ressources consommées par l'outil (Jira Cloud, PSRV, Microsoft Teams, Active Directory, Lucca, GitLab interne, Microsoft Entra ID), avec rôle métier et mode d'accès pour chacune. |
+| **Exploiter des référentiels, normes et standards** | OAuth 2.0 (MSAL), REST/JSON, JSON Schema (via Pydantic), spécification *Adaptive Cards* de Microsoft, conventions Atlassian Jira Cloud API, PEP 8 imposé par Ruff *preset ALL*. |
+| **Mettre en place et vérifier les niveaux d'habilitation associés à un service** | Authentification SSO Microsoft Entra ID (flux *Authorization Code*), middleware Starlette appliquant *« deny by default »*, mapping de groupes Entra ID sur deux rôles applicatifs (`read` consultation seule, `readwrite` complet), redirection sur `/access-denied` pour les utilisateurs hors groupe (cf. section 3.5). |
+| **Vérifier les conditions de la continuité d'un service informatique** | Mécanisme *fail-safe* avec persistance prioritaire du rapport (statut `partial` si l'envoi Teams échoue), `wait_for_health()` HTTP sur le PSRV avant toute interaction, gestion explicite de l'arrêt du processus Java via PID file, redémarrage automatique des conteneurs Docker en production. |
+| **Gérer des sauvegardes** | Persistance de l'historique dans un volume Docker `storage/` ; la simple copie du fichier SQLite suffit pour une sauvegarde complète, ce qui est documenté dans le `README.md`. *(Compétence approfondie dans un projet portfolio dédié à Veeam Backup & Replication.)* |
+| **Vérifier le respect des règles d'utilisation des ressources numériques** | Gestion stricte des secrets via variables d'environnement (`pydantic-settings`), exécution sous utilisateur non-root dans le conteneur, vendoring du paquet privé `lucca` pour ne pas exposer le registre interne, accès journalisé à Active Directory. |
+| **Traiter des demandes concernant les applications** | L'outil **est** un service interne d'assistance aux Release Managers : il automatise une procédure de support manuelle, met à jour la documentation interne *« How To Deliver a H3 Service Pack »* et notifie automatiquement les bonnes personnes via Teams (avec bascule sur le QC assignee + code reviewer si l'assigné est en congés). |
+| **Analyser les objectifs et les modalités d'organisation d'un projet** | Section 1.3 *expression du besoin* (formulation par le tuteur d'entreprise, validation avec QA et Release Managers), section 2 *analyse préalable*, section 3 *conception et architecture*. |
+| **Planifier les activités** | Initialisation datée du projet (17 décembre 2024), refactorings planifiés en itérations successives (cf. section 5.3), planification cron à parité de semaine pour ne déclencher l'outil qu'aux moments utiles du cycle Scrum. |
+| **Évaluer les indicateurs de suivi d'un projet et analyser les écarts** | Persistance du champ `duration_seconds` à chaque exécution dans la table `executions`, statuts `success` / `partial` / `error`, vue *History* permettant d'analyser les écarts entre exécutions successives (durée, taux d'échec Teams, anomalies récurrentes). |
+| **Réaliser les tests d'intégration et d'acceptation d'un service** | Suite pytest (tests unitaires + asynchrones + composants web), mocks des services externes via `pytest-mock`, **mode démonstration** activable par variable d'environnement pour tests d'acceptation sans accès au réseau d'entreprise, build d'examen *offline* (`Dockerfile.exam`). |
+| **Déployer un service** | Image Docker multi-stage (development / production), `compose.yaml` avec **trois profils** (`dev`, `prod`, `registry`), pipeline GitLab CI publiant l'image dans le registry interne, déploiement automatisé sur le serveur `dashupgrade`, planification cron avec logique de parité de semaine pour les exécutions récurrentes. |
+| **Accompagner les utilisateurs dans la mise en place d'un service** | Mise à jour de la documentation interne *« How To Deliver a H3 Service Pack »* après mise en service, accompagnement des Release Managers successifs via le canal Teams *HMM Release*, [`README.md`](https://github.com/wblondel/h3-release-checker/README.md) couvrant build, configuration, commandes et déploiement. |
 
 ---
 
