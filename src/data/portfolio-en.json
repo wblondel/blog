@@ -95,6 +95,9 @@
             "Vue.js",
             "Astro",
             "Linux (Debian/RHEL)",
+            "Windows Server",
+            "Powershell",
+            "Bash",
             "Docker",
             "Ansible",
             "Nginx / Keepalived",
@@ -166,9 +169,39 @@
     ],
     "certifications": [
         {
-            "name": "Full Stack Web Development Certification",
-            "issuer": "freeCodeCamp",
-            "date": "2016 - 2017"
+            "name": "Junior Cybersecurity Analyst Career Path",
+            "issuer": "Cisco",
+            "date": "March 2026",
+            "link": "https://www.credly.com/badges/d04a6f7e-c9c7-4696-9a3e-b325dac54a7a/linked_in_profile",
+            "course_link": "https://www.netacad.com/career-paths/cybersecurity?courseLang=en-US"
+        },
+        {
+            "name": "SecNumacadémie",
+            "issuer": "ANSSI",
+            "date": "29/05/2025",
+            "link": "/documents/certifications/SecNumAcademie.pdf",
+            "course_link": "https://secnumacademie.gouv.fr/"
+        },
+        {
+            "name": "Python Programmer Track (end of 2023 version)",
+            "issuer": "DataCamp",
+            "date": "November 2023",
+            "link": "https://www.datacamp.com/completed/statement-of-accomplishment/track/6b84ba7541f9eea6358a681a863f394afeb2a5ae",
+            "course_link": "https://www.datacamp.com/completed/statement-of-accomplishment/track/6b84ba7541f9eea6358a681a863f394afeb2a5ae"
+        },
+        {
+            "name": "Career Essentials in GitHub Professional Certificate",
+            "issuer": "GitHub",
+            "date": "02/11/2023",
+            "link": "https://www.linkedin.com/learning/certificates/d6e9c50230e45db008cc03c2ec8be1450c1481d77ac39e82c55047fa30ce0733",
+            "course_link": "https://www.linkedin.com/learning/paths/career-essentials-in-github-professional-certificate"
+        },
+        {
+            "name": "Prepare for the GitHub Foundations Certifications",
+            "issuer": "LinkedIn",
+            "date": "30/10/2023",
+            "link": "https://www.linkedin.com/learning/certificates/882cf36a6b55281f70180be5f82067f6825b7bd92d2fcf1d38f9eeb565be35c4",
+            "course_link": "https://www.linkedin.com/learning/paths/prepare-for-the-github-foundations-certification"
         }
     ],
     "interests": [

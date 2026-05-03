@@ -70,9 +70,38 @@ const t = useTranslations(lang as any);
                 {certifications.map((cert) => (
                     <li class="flex items-start gap-3">
                         <Icon name="fa6-solid:award" class="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                        <div class="min-w-0">
-                            <p class="font-medium text-foreground text-sm break-words">{cert.name}</p>
-                            <p class="text-xs text-muted-foreground mt-0.5">{cert.issuer} • {cert.date}</p>
+                        <div class="min-w-0 w-full">
+                            {cert.link ? (
+                                <a 
+                                    href={cert.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="group inline-flex items-center font-medium text-foreground text-sm break-words hover:text-primary transition-colors"
+                                >
+                                    {cert.name}
+                                    <Icon name="fa6-solid:arrow-up-right-from-square" class="w-3 h-3 ml-1.5 opacity-50 group-hover:opacity-100 transition-opacity" />
+                                </a>
+                            ) : (
+                                <p class="font-medium text-foreground text-sm break-words">{cert.name}</p>
+                            )}
+                            
+                            <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mt-0.5">
+                                <p class="text-xs text-muted-foreground">{cert.issuer} • {cert.date}</p>
+                                {cert.course_link && (
+                                    <>
+                                        <span class="text-muted-foreground/30 text-xs hidden sm:inline">•</span>
+                                        <a 
+                                            href={cert.course_link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center text-[11px] font-medium text-primary/80 hover:text-primary transition-colors"
+                                        >
+                                            <Icon name="fa6-solid:graduation-cap" class="w-3 h-3 mr-1" />
+                                            {t('portfolio.certifications.course')}
+                                        </a>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </li>
                 ))}
