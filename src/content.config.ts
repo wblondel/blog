@@ -26,9 +26,12 @@ const projects = defineCollection({
         coverImage: z.union([image(), z.string()]).optional(),
         githubLink: z.url().optional(),
         liveLink: z.url().optional(),
+        credentialsLink: z.url().optional(),
         documentationLink: z.url().optional(),
         projectManagementLink: z.url().optional(),
         ficheDescriptiveLink: z.string().optional(),
+        bts: z.enum(['e6']).optional(),
+        order: z.number().optional(),
     }),
 });
 

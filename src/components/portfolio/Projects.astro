@@ -10,6 +10,18 @@ interface Props {
 
 const { projects, lang } = Astro.props;
 const t = useTranslations(lang as any);
+
+const sortedProjects = [...projects].sort((a, b) => {
+    const aE6 = a.data.bts === 'e6' ? 0 : 1;
+    const bE6 = b.data.bts === 'e6' ? 0 : 1;
+    if (aE6 !== bE6) return aE6 - bE6;
+
+    const aOrder = a.data.order ?? Number.POSITIVE_INFINITY;
+    const bOrder = b.data.order ?? Number.POSITIVE_INFINITY;
+    if (aOrder !== bOrder) return aOrder - bOrder;
+
+    return a.data.title.localeCompare(b.data.title);
+});
 ---
 
 <section class="mt-12">
@@ -20,9 +32,9 @@ const t = useTranslations(lang as any);
         <h2 class="text-3xl font-bold tracking-tight text-foreground">{t('portfolio.projects')}</h2>
     </div>
 
-    {projects.length > 0 ? (
+    {sortedProjects.length > 0 ? (
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project) => (
+            {sortedProjects.map((project) => (
                 <div class="group relative flex flex-col bg-card border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:border-primary/50 transition-all duration-300">
                     <a href={`${import.meta.env.BASE_URL}${lang}/projects/${project.id.split('/').slice(1).join('/')}/`} aria-hidden="true" class="absolute inset-0 z-10"></a>
                     <!-- Project Image Area -->
@@ -39,6 +51,11 @@ const t = useTranslations(lang as any);
                             </div>
                         )}
                         <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300 pointer-events-none"></div>
+                        {project.data.bts === 'e6' && (
+                            <div class="absolute top-4 left-4 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded shadow-sm z-20">
+                                {t('portfolio.badge.bts.e6')}
+                            </div>
+                        )}
                         {project.data.draft && (
                             <div class="absolute top-4 right-4 bg-destructive text-destructive-foreground text-xs font-bold px-2 py-1 rounded shadow-sm z-20">
                                 DRAFT
@@ -72,7 +89,7 @@ const t = useTranslations(lang as any);
                             )}
                             
                             {project.data.liveLink && (
-                                <a 
+                                <a
                                     href={project.data.liveLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -80,6 +97,18 @@ const t = useTranslations(lang as any);
                                 >
                                     <Icon name="fa6-solid:link" class="w-4 h-4" />
                                     {t('portfolio.liveLink')}
+                                </a>
+                            )}
+
+                            {project.data.credentialsLink && (
+                                <a
+                                    href={project.data.credentialsLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors hover:underline"
+                                >
+                                    <Icon name="fa6-solid:key" class="w-4 h-4" />
+                                    {t('portfolio.credentialsLink')}
                                 </a>
                             )}
 

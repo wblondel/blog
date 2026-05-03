@@ -5,6 +5,8 @@ githubLink: "https://github.com/LucaBONNIN/application-sgi"
 liveLink: "https://app-sgi.127011.xyz"
 ficheDescriptiveLink: "/documents/E6/BLONDEL_WILLIAM_ANNEXE_VII-1-B_R2.pdf"
 projectManagementLink: "https://trello.com/b/eIcnlMPs/application-sgi"
+bts: "e6"
+order: 1
 draft: false
 coverImage: "../../../assets/projects/application-sgi/cover.jpg"
 ---

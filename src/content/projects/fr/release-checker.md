@@ -3,7 +3,10 @@ title: "H3 Release Checker"
 context: "Outil d'automatisation des contrôles avant publication d'une version du logiciel H3."
 githubLink: "https://github.com/wblondel/h3-release-checker"
 liveLink: "https://h3-release-checker.127011.xyz"
+credentialsLink: "https://vault.bitwarden.com/#/send/LcadTOY89UegX7Q_APybQQ/Nckp62GzCGI5SVTcfZ-cWg"
 ficheDescriptiveLink: "/documents/E6/BLONDEL_WILLIAM_ANNEXE_VII-1-B_R1.pdf"
+bts: "e6"
+order: 2
 draft: false
 coverImage: "../../../assets/projects/h3-release-checker/cover.png"
 ---
