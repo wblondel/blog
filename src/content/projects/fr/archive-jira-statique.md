@@ -1,7 +1,7 @@
 ---
 title: "Archivage statique d'une instance Jira"
 context: "Migration d'une instance Jira 3.13 historique vers une archive HTML statique consultable, recherchable et protégée par SSO Microsoft Entra ID."
-githubLink: "https://github.com/wblondel/jira3-parser"
+githubLink: "https://github.com/wblondel/jira3-to-html"
 order: 4
 draft: false
 coverImage: "../../../assets/projects/archive-jira-statique/cover.png"
@@ -80,7 +80,7 @@ flowchart TB
     subgraph build["🛠️ Pipeline de build (poste développeur)"]
         XML["📄 export.xml<br/>(plusieurs centaines de Mo)"]
         ATT["📁 attachments/<br/>(arborescence brute)"]
-        PARSER["🐍 jira3-parser<br/>Python + Jinja2"]
+        PARSER["🐍 jira3-to-html<br/>Python + Jinja2"]
         PAGEFIND["🔎 Pagefind<br/>(génère l'index)"]
     end
 
@@ -125,7 +125,7 @@ La solution comporte donc **trois grands pans** :
 Le projet est packagé avec **Poetry** et structuré ainsi :
 
 ```
-jira3-parser/
+jira3-to-html/
 ├── main.py                 ← point d'entrée (délègue à cli.py)
 ├── jira_parser/
 │   ├── cli.py              ← arguments CLI (--issue, --index-only)
@@ -475,7 +475,7 @@ flowchart LR
 | 3 | `poetry run python main.py` (≈ plusieurs minutes). |
 | 4 | `scp -r output/ user@jira-archive.mycompany.lan:/tmp/` |
 | 5 | `sudo mv /tmp/output/* /srv/jira-archive/` |
-| 6 | `pagefind --config /opt/jira3-parser/conf/pagefind/pagefind.yml` *(jusqu'à 32 Go de RAM/swap)* |
+| 6 | `pagefind --config /opt/jira3-to-html/conf/pagefind/pagefind.yml` *(jusqu'à 32 Go de RAM/swap)* |
 | 7 | `sudo nginx -t && sudo systemctl reload nginx` |
 
 Il existe également deux modes incrémentaux (utiles en cas de correction d'un seul ticket) :
@@ -519,7 +519,7 @@ Cette réalisation couvre **principalement le Bloc 1**.
 | **Collecter, suivre et orienter des demandes** | Recueil et formalisation du besoin avec le tuteur d'entreprise (§ 1.2). Diagnostic et résolution de cas concrets : pièces jointes contenant `?` dans le nom, consommation mémoire excessive du parseur sur les exports complets, divergence entre les conventions de nommage des dossiers `attachments/` selon les projets (six chemins testés en cascade). |
 | **Traiter des demandes concernant les services réseau et système, applicatifs** | Configuration nginx (deux fichiers : `jira.conf` côté reverse-proxy avec `auth_request` + TLS ; `jira.conf` côté backend avec IP allowlist + réécritures legacy). Ajustement des buffers nginx (`large_client_header_buffers 4 16k`, `proxy_buffer_size 128k`, `proxy_buffers 4 256k`) pour absorber les *id tokens* JWT volumineux contenant la liste des `groups`. Configuration du serveur OIDC (oauth2-proxy.cfg). |
 | **Traiter des demandes concernant les applications** | Bug `?` dans les noms de pièces jointes : la cause racine était l'interprétation par nginx du `?` comme début de *query string*. La correction via redirection 301 ré-encodant `?` en `%3F` a été pensée pour fonctionner aussi récursivement sur des noms multi-`?`. Bug de mémoire : passage d'un `ET.parse()` global à un `ET.iterparse()` streaming + `elem.clear()` + `parent.remove()`. |
-| **Développer la présence en ligne de l'organisation : valoriser l'image, référencer, faire évoluer un site Web** | Bien que l'archive soit interne (non publique), la même rigueur s'applique : génération de pages **HTML5 sémantiques**, **responsive** (commits `bf9af66 feat: make archive fully responsive`, `df39102 fix: use minmax(0, fr) in grid`), **accessibilité** (titres hiérarchisés, balises `<a>` propres), URL **propres et pérennes** (`/jira/browse/<KEY>/`), recherche full-text (Pagefind) — tout ceci améliore la **visibilité interne** des connaissances de l'entreprise. |
+| **Développer la présence en ligne de l'organisation : valoriser l'image, référencer, faire évoluer un site Web** | Bien que l'archive soit interne (non publique), la même rigueur s'applique : génération de pages **HTML5 sémantiques**, **responsive**, **accessibilité** (titres hiérarchisés, balises `<a>` propres), URL **propres et pérennes** (`/jira/browse/<KEY>/`), recherche full-text (Pagefind) — tout ceci améliore la **visibilité interne** des connaissances de l'entreprise. |
 | **Analyser les objectifs et les modalités d'organisation d'un projet** | § 1 : analyse de la situation existante (Jira 3.13 vieillissant, coût croissant, peu d'utilisateurs actifs), formulation du besoin avec le tuteur, choix d'une cible (« archive statique, indexée, sécurisée »), arbitrages (lecture seule, pas de moteur dynamique). |
 | **Planifier les activités** | Décomposition en lots successifs visibles dans l'historique Git : initialisation Poetry & extraction HTML par templates (mars 2026), responsive design et corrections de markup, tests unitaires, optimisation mémoire, configuration nginx + Compose local, durcissement par IP allowlist + intégration oauth2-proxy. |
 | **Évaluer les indicateurs de suivi d'un projet et analyser les écarts** | Mesures de performance : durée de génération, taille de l'archive produite, consommation RAM (cas critique du *master index* sur l'export complet), nombre de pièces jointes manquantes. Chaque écart a donné lieu à un commit `fix:` ciblé. |
@@ -542,7 +542,7 @@ Bien que ce projet soit principalement une réalisation E5, il mobilise aussi pl
 | **Utiliser des composants d'accès aux données** | `xml.etree.ElementTree.iterparse()` en mode streaming (event-based parsing), `collections.defaultdict(list)` pour les associations 1-N (commentaires, pièces jointes, *fix versions*, *components*, etc.), filesystem comme système de stockage final. |
 | **Intégrer en continu les versions d'une solution applicative** | Workflow Git linéaire avec messages de commit conventionnels (`feat:`, `fix:`, `refactor:`, `chore:`), tags d'étape (initial Poetry, extraction templates, responsive, tests, mémoire, nginx + Compose, oauth2-proxy). Image Docker `nginx:alpine` minimale pour la prévisualisation locale. |
 | **Réaliser les tests nécessaires à la validation ou à la mise en production d'éléments adaptés ou développés** | Suite pytest sur les 4 modules métier, fixtures `make_xml()` / `minimal_lookups` / `minimal_parsed_data` / `patched_renderer`. Validation de bout en bout en local via `docker compose up` avec la même configuration nginx que la production. |
-| **Rédiger des documentations technique et d'utilisation d'une solution applicative** | [`README.md`](https://github.com/wblondel/jira3-parser/blob/master/README.md) couvrant prérequis, génération, indexation, contrainte mémoire Pagefind. Configuration nginx auto-documentée par commentaires. Ce compte rendu. |
+| **Rédiger des documentations technique et d'utilisation d'une solution applicative** | [`README.md`](https://github.com/wblondel/jira3-to-html/blob/master/README.md) couvrant prérequis, génération, indexation, contrainte mémoire Pagefind. Configuration nginx auto-documentée par commentaires. Ce compte rendu. |
 | **Exploiter les fonctionnalités d'un environnement de développement et de tests** | PyCharm / VS Code, Poetry (`poetry install`, `poetry shell`, `poetry run`), Git/GitHub, Docker Compose pour la prévisualisation, pytest pour les tests, `nginx -t` pour valider la configuration avant `reload`. |
 | **Recueillir, analyser et mettre à jour les informations sur une version d'une solution applicative** | Historique Git linéaire avec messages explicites, commits *fix:* ciblés, évolutions documentées dans le `README.md`. |
 | **Évaluer la qualité d'une solution applicative** | Sécurité : échappement HTML systématique avant interprétation du wiki markup, neutralisation de `javascript:` dans les liens (`markup.py`), `Content-Disposition: attachment` pour bloquer l'exécution de pièces jointes potentiellement actives, IP allowlist + SSO. Performance : streaming XML, `lookups` indexés, `defaultdict` pour éviter les `KeyError`. Maintenabilité : modules courts (chacun < 300 lignes), templates lisibles. |
