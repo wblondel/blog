@@ -1,9 +1,11 @@
 ---
 title: "Déploiement de l'application SGI sur Windows Server 2025"
-context: "Mise en place de l'environnement de démonstration de l'application SGI sur une infrastructure Windows Server 2025 / WSL2 / Docker Swarm."
-githubLink: "https://github.com/wblondel/application-sgi"
+context: "Challenge personnel : mise en production de l'application SGI sur Windows Server 2025 via WSL2, Docker Swarm et ServerSideUp Spin."
+githubLink: "https://github.com/LucaBONNIN/application-sgi"
 liveLink: "https://app-sgi.127011.xyz"
-draft: true
+order: 3
+draft: false
+coverImage: "../../../assets/projects/deploiement-application-sgi/cover.png"
 ---
 
 # Compte rendu détaillé
@@ -13,22 +15,23 @@ draft: true
 | Élément | Détail |
 | --- | --- |
 | **Application** | SGI — Système de Gestion de l'Intendance (application web Laravel 12 / Filament v5) |
-| **Environnement cible** | Windows Server 2025 (contrainte imposée par le client fictif) |
+| **Environnement cible** | Windows Server 2025 (contrainte auto-imposée pour le challenge technique) |
 | **Hébergement** | Serveur physique Lenovo ThinkCentre M715q (AMD Ryzen PRO, 8 Go RAM) sous Proxmox VE, hébergé sur site |
 | **Objectif** | Rendre l'application accessible en HTTPS sur un nom de domaine public avec certificat Let's Encrypt, depuis une infrastructure Windows Server |
+| **Candidat** | William Gérald Blondel |
 | **Période** | Avril 2026 |
 
 ### 1.1 Problématique
 
 L'application SGI a été développée avec une pile technologique entièrement conteneurisée sous Linux (Docker, Traefik, PostgreSQL, Redis, Laravel Horizon). L'outillage de déploiement du projet — **ServerSideUp Spin** — est conçu exclusivement pour des hôtes Ubuntu.
 
-Or, le client fictif impose un déploiement sur **Windows Server 2025**. Il a donc fallu concevoir une architecture hybride permettant de concilier cette contrainte avec l'écosystème Docker/Linux du projet.
+Par curiosité technique et pour explorer un scénario réaliste (de nombreuses entreprises exécutent encore des workloads Windows Server), j'ai choisi de me contraindre à déployer sur **Windows Server 2025**. Il a donc fallu concevoir une architecture hybride permettant de concilier ce choix avec l'écosystème Docker/Linux du projet.
 
 ### 1.2 Contraintes identifiées
 
 | Contrainte | Impact |
 | --- | --- |
-| Windows Server 2025 obligatoire | Impossible d'utiliser `spin provision` (Ansible pour Ubuntu uniquement) |
+| Windows Server 2025 (contrainte auto-imposée) | Impossible d'utiliser `spin provision` (Ansible pour Ubuntu uniquement) |
 | Application conteneurisée (6 services Docker) | Nécessite un runtime Docker sous Windows |
 | Traefik en reverse proxy avec Let's Encrypt | Nécessite les ports 80/443 accessibles depuis Internet |
 | Hébergement sur site (réseau domestique) | Nécessite une exposition publique via redirection de ports |
@@ -49,45 +52,31 @@ Or, le client fictif impose un déploiement sur **Windows Server 2025**. Il a do
 
 ### 2.2 Architecture retenue
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                        Proxmox VE (Lenovo M715q)                       │
-│                         AMD Ryzen PRO — 8 Go RAM                       │
-│  ┌───────────────────────────────────────────────────────────────────┐  │
-│  │              Windows Server 2025 (VM — 8 Go RAM)                 │  │
-│  │                                                                   │  │
-│  │  ┌──────────────────────────────────────────────────────────┐     │  │
-│  │  │           WSL2 — Ubuntu 24.04 LTS (6 Go RAM)            │     │  │
-│  │  │                                                          │     │  │
-│  │  │  ┌──────────────────────────────────────────────────┐   │     │  │
-│  │  │  │            Docker Swarm (single node)            │   │     │  │
-│  │  │  │                                                  │   │     │  │
-│  │  │  │  ┌──────────┐  ┌──────┐  ┌───────┐  ┌───────┐  │   │     │  │
-│  │  │  │  │ Traefik  │  │ PHP  │  │ Redis │  │ Postgres│ │   │     │  │
-│  │  │  │  │ :80/:443 │  │ FPM  │  │       │  │        │ │   │     │  │
-│  │  │  │  └──────────┘  └──────┘  └───────┘  └───────┘  │   │     │  │
-│  │  │  │  ┌──────────┐  ┌──────────┐                     │   │     │  │
-│  │  │  │  │ Horizon  │  │ Schedule │                     │   │     │  │
-│  │  │  │  └──────────┘  └──────────┘                     │   │     │  │
-│  │  │  └──────────────────────────────────────────────────┘   │     │  │
-│  │  │           eth0 : 172.20.15.x (NAT interne WSL2)         │     │  │
-│  │  └──────────────────────────────────────────────────────────┘     │  │
-│  │                                                                   │  │
-│  │  Port Proxy (netsh) : 0.0.0.0:80/443/22 → 172.20.15.x:80/443/22│  │
-│  │  Pare-feu Windows : ports 80, 443, 22 autorisés                  │  │
-│  │  IP LAN : 192.168.1.35                                           │  │
-│  └───────────────────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────────────┘
-                                    │
-                    Redirection de ports (routeur)
-                     80/443 TCP → 192.168.1.35
-                                    │
-                                    ▼
-                           ┌─────────────────┐
-                           │    Internet      │
-                           │  (IP publique    │
-                           │   fixe)          │
-                           └─────────────────┘
+```mermaid
+graph TB
+    INTERNET(["🌐 Internet — IP publique fixe"])
+    ROUTER["🔀 Routeur domestique\nNAT/PAT :80/:443 → 192.168.1.35"]
+
+    subgraph PROXMOX["🖥️ Proxmox VE — Lenovo M715q (AMD Ryzen PRO, 8 Go RAM)"]
+        subgraph WINVM["Windows Server 2025 — VM — IP LAN : 192.168.1.35"]
+            PORTPROXY["netsh interface portproxy\n:22 / :80 / :443  →  172.20.15.x"]
+            subgraph WSL2["WSL2 — Ubuntu 24.04 LTS — Docker Swarm — 172.20.15.x"]
+                TRAEFIK["traefik v3.6\n:80 / :443 · Let's Encrypt"]
+                PHP["php · PHP-FPM + Nginx\nLaravel 12 / Filament v5"]
+                HORIZON["horizon · Laravel Horizon"]
+                SCHEDULE["schedule · Laravel Scheduler"]
+                PG[("postgres v18")]
+                REDIS[("redis v7.4")]
+            end
+        end
+    end
+
+    INTERNET -->|"HTTPS :443"| ROUTER
+    ROUTER -->|":80/:443 TCP"| PORTPROXY
+    PORTPROXY -->|"forward"| TRAEFIK
+    TRAEFIK -->|"reverse proxy"| PHP
+    PHP --- PG & REDIS
+    HORIZON --- REDIS
 ```
 
 ### 2.3 Flux réseau
@@ -244,7 +233,7 @@ Or, le client fictif impose un déploiement sur **Windows Server 2025**. Il a do
 
 ### 3.6 Préparation du serveur pour le déploiement
 
-**Objectif :** permettre à l'outil `spin deploy` (exécuté depuis le poste de développement) de se connecter au serveur via SSH et de piloter Docker Swarm.
+**Objectif :** permettre aux outils `spin provision` et `spin deploy` (exécutés depuis le poste de développement) de se connecter au serveur via SSH et de piloter Docker Swarm.
 
 **Actions réalisées :**
 
@@ -254,18 +243,31 @@ Or, le client fictif impose un déploiement sur **Windows Server 2025**. Il a do
    sudo systemctl enable ssh
    ```
 
-2. Création d'un utilisateur `deploy` dédié au déploiement :
-   ```bash
-   sudo useradd -m -s /bin/bash deploy
-   sudo usermod -aG docker deploy
-   ```
-   La clé publique SSH du poste de développement a été ajoutée aux `authorized_keys` de cet utilisateur.
-
-3. Initialisation du cluster Docker Swarm :
+2. Initialisation du cluster Docker Swarm (l'option `--advertise-addr` est nécessaire car WSL2 expose plusieurs interfaces réseau) :
    ```bash
    docker swarm init --advertise-addr 172.20.15.103
    ```
-   L'option `--advertise-addr` est nécessaire car WSL2 expose plusieurs interfaces réseau.
+
+3. Configuration du fichier `.spin.yml` pour déclarer le serveur de production et l'utilisateur de déploiement :
+   ```yaml
+   users:
+     - username: wblondel
+       name: William Blondel
+       groups: ['sudo']
+       authorized_keys:
+         - public_key: "ssh-ed25519 AAAA... wblondel@MacBook"
+
+   servers:
+     - server_name: dev-docker
+       environment: production
+       address: 192.168.1.35
+   ```
+
+4. Provisionnement du serveur via Spin (connexion initiale en `root`, avant que le compte de déploiement ne soit créé par les playbooks Ansible) :
+   ```bash
+   ./vendor/bin/spin provision -u root
+   ```
+   Spin exécute des playbooks Ansible qui créent l'utilisateur de déploiement, configurent les clés SSH autorisées et préparent l'environnement pour `spin deploy`.
 
 ### 3.7 Déploiement avec Spin
 
@@ -273,51 +275,48 @@ Or, le client fictif impose un déploiement sur **Windows Server 2025**. Il a do
 
 **Fonctionnement de `spin deploy` :**
 
-```
-┌─────────────────────────┐         SSH + tunnel inverse         ┌─────────────────────────┐
-│    MacBook (dev)         │ ──────────────────────────────────► │   Windows Server / WSL2  │
-│                          │                                      │                          │
-│  1. Charge .env.production│                                     │                          │
-│  2. Build Dockerfile.php │                                      │  5. Pull image via       │
-│     (docker buildx)      │                                      │     tunnel (127.0.0.1)   │
-│  3. Push vers registre   │         Tunnel SSH inversé          │  6. docker stack deploy  │
-│     local (:5080)        │ ◄─────── port 5080 ────────────────│     (Swarm)              │
-│  4. SSH → deploy@server  │                                      │                          │
-└─────────────────────────┘                                      └─────────────────────────┘
+```mermaid
+sequenceDiagram
+    participant MAC as 💻 MacBook (dev)
+    participant WSL as 🐧 WSL2 Ubuntu<br/>deploy@192.168.1.35
+    participant SWARM as 🐳 Docker Swarm
+
+    Note over MAC: ./vendor/bin/spin deploy production
+
+    MAC->>MAC: 1. Charge .env.production
+    MAC->>MAC: 2. Build image Docker<br/>(docker buildx — Dockerfile.php)
+    MAC->>MAC: 3. Push → registre local :5080
+    MAC->>WSL: 4. Connexion SSH + tunnel inverse<br/>:5080 WSL2 → :5080 MacBook
+    WSL->>MAC: 5. Pull de l'image<br/>(127.0.0.1:5080 via tunnel)
+    WSL->>SWARM: 6. docker stack deploy sgi-production
+    SWARM-->>MAC: ✅ Stack déployée (rollback auto si échec)
 ```
 
 **Actions réalisées sur le poste de développement (MacBook) :**
 
-1. Création du fichier d'inventaire `.spin-inventory.ini` :
-   ```ini
-   [production_managers]
-   192.168.1.35
-   ```
-   Ce fichier remplace l'inventaire dynamique Ansible (normalement peuplé par `spin provision`, inutilisable ici car conçu pour Ubuntu natif).
-
-2. Création du fichier `.env.production` avec les variables de production :
+1. Création du fichier `.env.production` avec les variables de production :
    - `APP_ENV=production`, `APP_DEBUG=false`
    - Mots de passe PostgreSQL et Redis générés aléatoirement (`openssl rand -base64 24`)
    - `APP_URL` pointant vers le nom de domaine public
    - `APP_KEY` générée avec `echo "base64:$(openssl rand -base64 32)"`
 
-3. Construction des assets frontend :
+2. Construction des assets frontend :
    ```bash
    ./vendor/bin/spin run node npm run build
    ```
 
-4. Suppression du fichier `public/hot` (fichier créé par le serveur de développement Vite, qui redirige Laravel vers `vite.dev.test` au lieu d'utiliser les assets compilés).
+3. Suppression du fichier `public/hot` (fichier créé par le serveur de développement Vite, qui redirige Laravel vers `vite.dev.test` au lieu d'utiliser les assets compilés).
 
-5. Ajout de `public/hot` au `.dockerignore` pour éviter toute récurrence du problème.
+4. Ajout de `public/hot` au `.dockerignore` pour éviter toute récurrence du problème.
 
-6. Lancement du déploiement :
+5. Lancement du déploiement :
    ```bash
    cp .env.production .env      # L'image Docker embarque le .env
    ./vendor/bin/spin deploy production
    cp .env.dev.bak .env         # Restauration de l'environnement de développement
    ```
 
-7. Exécution des migrations et du seeding :
+6. Exécution des migrations et du seeding :
    ```bash
    ssh deploy@192.168.1.35 'PHP=$(docker ps -q -f name=sgi-production_php.1); \
      docker exec $PHP php artisan migrate --force && \
@@ -429,43 +428,56 @@ Le pipeline CI/CD GitHub Actions existant (`action_deploy-production.yml`) peut 
 | `VirtualMachinePlatform : Disabled` malgré `wsl --install` | Sur Windows Server 2025, `wsl --install` n'active pas automatiquement les composants optionnels contrairement à Windows 11. | Activation manuelle via `Enable-WindowsOptionalFeature` + redémarrage. |
 | WSL2 s'arrête après le démarrage automatique | La tâche planifiée utilisait `SYSTEM` (pas d'accès aux distributions WSL) et la commande se terminait immédiatement. | Exécution sous le compte `Administrateur` avec `sleep infinity` au premier plan. |
 | `networkingMode=mirrored` échoue (erreur `0x803b0015`) | Le mode réseau miroir nécessite des capacités de virtualisation imbriquée que Proxmox ne transmet pas entièrement. | Retour au mode NAT par défaut + `netsh interface portproxy` pour la redirection de ports. |
-| Groupe Ansible `production` non trouvé par `spin deploy` | Spin attend un groupe nommé `production_managers` (et non `production`). | Correction du fichier `.spin-inventory.ini`. |
 | `MissingAppKeyException` au démarrage du conteneur PHP | `APP_KEY` vide dans `.env.production`. | Génération locale de la clé (`openssl rand -base64 32`) et redéploiement. |
 | L'application tente de se connecter à `vite.dev.test` | Le fichier `public/hot` (créé par `npm run dev`) était présent lors du build de l'image Docker. | Suppression du fichier et ajout au `.dockerignore`. |
 
 ---
 
-## 8. Bilan et compétences mobilisées
+## 8. Bilan
 
-### 8.1 Compétences du référentiel BTS SIO
+### 8.1 Compétences mobilisées (référentiel BTS SIO)
 
-**Bloc 1 — Support et mise à disposition de services informatiques**
+#### 8.1.1 Bloc 1 — Support et mise à disposition de services informatiques (E5)
 
-| Compétence | Mise en oeuvre |
-| --- | --- |
-| *Gérer le patrimoine informatique* | Inventaire et configuration de l'infrastructure : serveur physique Lenovo M715q, hyperviseur Proxmox, VM Windows Server 2025, distribution WSL2 Ubuntu 24.04. |
-| *Mettre à disposition des utilisateurs un service informatique* | Déploiement complet de l'application web accessible en HTTPS sur un nom de domaine public, avec certificat Let's Encrypt et redémarrage automatique. |
-| *Travailler en mode projet* | Identification des contraintes, étude comparative des solutions, planification des étapes de déploiement, résolution itérative des problèmes. |
+Ce projet est avant tout une réalisation du **Bloc 1**. Le tableau ci-dessous détaille comment chaque sous-compétence a été mobilisée ; les sous-compétences non couvertes ici sont démontrées dans d'autres pièces du portfolio.
 
-**Bloc 2 — Conception et développement d'applications (SLAM)**
+| Compétence | Comment elle a été mobilisée dans ce projet |
+|---|---|
+| **Recenser et identifier les ressources numériques** | Inventaire exhaustif de l'infrastructure déployée : serveur physique Lenovo ThinkCentre M715q (AMD Ryzen PRO, 8 Go RAM), hyperviseur Proxmox VE, VM Windows Server 2025 (8 Go RAM alloués), distribution WSL2 Ubuntu 24.04 LTS (6 Go RAM, 2 vCPU, eth0 172.20.15.103), 6 services Docker (Traefik, PHP-FPM, Horizon, Schedule, PostgreSQL, Redis), volumes persistants et réseau Docker `web-public`. Tous ces éléments sont documentés dans les sections 2.2 et 4 de ce compte rendu. |
+| **Exploiter des référentiels, normes et standards adoptés par le prestataire informatique** | Utilisation de standards ouverts : Docker Engine (spécification OCI), Docker Swarm (orchestration), Traefik v3.6 (proxy HTTP/2), protocole ACME HTTP-01 (RFC 8555) pour Let's Encrypt, OpenSSH (authentification par clé publique, RFC 4253), `netsh interface portproxy` (commande Microsoft documentée), format YAML pour la configuration Spin (`.spin.yml`), playbooks Ansible exécutés par `spin provision`. |
+| **Mettre en place et vérifier les niveaux d'habilitation associés à un service** | Création d'un utilisateur `deploy` dédié (sans mot de passe) appartenant au groupe `docker`, clé publique SSH du poste de développement ajoutée dans `authorized_keys` (interdiction de l'authentification par mot de passe), pare-feu Windows Defender limité aux ports 80, 443 et 22, port RDP (3389) restreint à l'IP de l'administrateur. Les services internes (PostgreSQL 5432, Redis 6379) ne sont exposés qu'à l'intérieur du réseau Docker. |
+| **Vérifier les conditions de la continuité d'un service informatique** | Deux tâches planifiées Windows garantissent le démarrage automatique sans intervention : (1) `sleep infinity` maintient WSL2 actif, systemd démarre Docker ; (2) le script `update-wsl-portproxy.ps1` recrée les règles `netsh` avec la nouvelle IP WSL2 après chaque redémarrage. Docker Swarm est configuré avec `restart_policy: condition: any` et `failure_action: rollback`. Health checks actifs sur chaque service (PostgreSQL : `pg_isready`, Redis : `redis-cli ping`, PHP : `/up`, Traefik : `traefik healthcheck`). |
+| **Gérer des sauvegardes** | Les données critiques (PostgreSQL, Redis, fichiers uploadés, certificats TLS Let's Encrypt) sont stockées dans des volumes Docker nommés et persistants, indépendants du cycle de vie des conteneurs. Un rollback automatique Docker Swarm est configuré (`failure_action: rollback`) pour revenir à la version précédente en cas d'échec d'un redéploiement. La sauvegarde des volumes peut être réalisée par simple export Docker. |
+| **Vérifier le respect des règles d'utilisation des ressources numériques** | Fichier `.env.production` exclu du versionnage Git (`.gitignore`) ; fichier `public/hot` (qui aurait exposé l'adresse du serveur Vite) ajouté au `.dockerignore` pour ne jamais être inclus dans l'image Docker ; secrets (mots de passe BDD, Redis, clé `APP_KEY`) générés avec `openssl rand` (entropie suffisante) ; clé SSH exclusive (aucun mot de passe ne circule en clair). |
+| **Collecter, suivre et orienter des demandes** | Diagnostic méthodique et itératif de 7 problèmes techniques successifs : chaque problème a été identifié (message d'erreur, log système ou comportement observé), analysé (cause racine), résolu (action corrective précise) et documenté dans ce compte rendu (section 7). Cette démarche illustre la capacité à traiter des incidents de manière structurée même sur des technologies nouvelles. |
+| **Traiter des demandes concernant les services réseau et système, applicatifs** | Configuration réseau complète : mode NAT WSL2, redirection dynamique (`netsh interface portproxy` sur 22/80/443 vers l'IP interne de WSL2), ouverture du pare-feu Windows Defender, redirection de ports TCP 80/443 sur le routeur domestique avec réservation DHCP. Résolution du problème de mode `networkingMode=mirrored` (erreur `0x803b0015`) par retour au mode NAT. |
+| **Traiter des demandes concernant les applications** | Résolution de deux problèmes applicatifs distincts : (1) `MissingAppKeyException` — `APP_KEY` vide dans `.env.production`, corrigée par génération `openssl rand -base64 32` et redéploiement ; (2) `vite.dev.test` — fichier `public/hot` présent lors du build de l'image Docker, corrigé par suppression du fichier et ajout au `.dockerignore`. |
+| **Analyser les objectifs et les modalités d'organisation d'un projet** | Section 1 et 2 de ce compte rendu : analyse des 5 contraintes imposées (Windows Server, conteneurs Docker, Traefik/Let's Encrypt, hébergement sur site, virtualisation Proxmox), étude comparative de 4 solutions possibles (Docker Desktop, IIS natif, WSL2 + Docker Engine, VM Hyper-V) avec verdict argumenté pour chacune. |
+| **Planifier les activités** | Décomposition du déploiement en 8 étapes séquentielles (sections 3.1 à 3.8 de ce compte rendu), chacune avec un objectif précis, une liste d'actions et un résultat attendu. Les 12 étapes de déploiement ont été suivies et complétées dans l'ordre. |
+| **Évaluer les indicateurs de suivi d'un projet et analyser les écarts** | Section 7 : les 7 problèmes rencontrés constituent autant d'écarts par rapport au plan initial. Pour chacun, la cause racine a été identifiée et une solution corrective a été appliquée. Ce suivi permet de mesurer la complexité réelle de l'infrastructure (virtualisation imbriquée, réseau WSL2, interopérabilité Windows/Linux) par rapport à une installation Linux native directe. |
+| **Réaliser les tests d'intégration et d'acceptation d'un service** | Tests de bout en bout après chaque étape : connexion SSH depuis le MacBook (`ssh deploy@192.168.1.35`), test Docker (`docker run hello-world`), test de redémarrage automatique après reboot de la VM, test HTTP/HTTPS depuis Internet (`curl https://app-sgi.127011.xyz`), validation des health checks Docker Swarm (`docker service ps sgi-production_php`), vérification de la signature du certificat Let's Encrypt dans le navigateur. |
+| **Déployer un service** | **Cœur du projet** : déploiement de 6 services Docker (Traefik, PHP-FPM, Horizon, Schedule, PostgreSQL, Redis) via `spin deploy production`, qui orchestre le build multi-stage de l'image Docker (buildx), le push vers le registre local (port 5080), l'établissement d'un tunnel SSH inverse, et le `docker stack deploy` sur le nœud Swarm. Migrations, seeders et optimisation Laravel exécutés via SSH après le déploiement. |
+| **Accompagner les utilisateurs dans la mise en place d'un service** | Ce compte rendu détaillé (sections 1 à 9) constitue la documentation de référence. La section 6 fournit la procédure de redéploiement complète, prête à être utilisée par un autre développeur. Le rapport `.docs/Rapport_Deploiement_Windows_Server.md` est versionné dans le dépôt Git du projet. |
+| **Mettre en place son environnement d'apprentissage personnel** | Exploration et maîtrise de technologies nouvelles : Proxmox VE (hyperviseur), WSL2 sur Windows Server 2025, Docker Swarm (vs Docker Compose en développement), Traefik v3.6, `netsh interface portproxy`, tâches planifiées Windows Server, flux `spin provision` + `spin deploy` en production. |
+| **Mettre en œuvre des outils et stratégies de veille informationnelle** | Documentation officielle consultée : Microsoft (WSL2 sur Windows Server, `netsh interface portproxy`, tâches planifiées), Docker (Engine, Swarm, Buildx), Traefik (v3.6, `providers.swarm`, ACME), Let's Encrypt (ACME HTTP-01, RFC 8555), Proxmox VE (virtualisation imbriquée KVM AMD), ServerSideUp Spin (`.spin.yml`, `spin provision`, `spin deploy`). |
 
-| Compétence | Mise en oeuvre |
-| --- | --- |
-| *Intégrer en continu les versions d'une solution applicative* | Utilisation de `spin deploy` pour le déploiement continu : build automatisé des images Docker, transfert via registre local + tunnel SSH, déploiement Swarm avec rollback automatique. |
-| *Exploiter les fonctionnalités d'un environnement de développement et de tests* | Maîtrise de Docker, Docker Swarm, Traefik, Spin, SSH, `netsh interface portproxy`, tâches planifiées Windows. |
+#### 8.1.2 Bloc 2 — Conception et développement d'applications (E6 SLAM)
 
-**Bloc 3 — Cybersécurité d'une solution applicative et de son développement (SLAM)**
+Ce projet de déploiement complète les deux réalisations E6 (*Application SGI* et *H3 Release Checker*) sur les compétences de mise en production et d'environnement. Il ne se substitue pas à ces réalisations pour les compétences de conception et de développement.
 
-| Compétence | Mise en oeuvre |
-| --- | --- |
-| *Sécuriser le déploiement d'une solution applicative* | HTTPS avec Let's Encrypt, secrets générés aléatoirement, accès SSH par clé publique, pare-feu Windows configuré, services internes non exposés. |
-| *Prendre en compte la sécurité dans un projet de développement* | Fichiers `.env` exclus du versionnage, `.dockerignore` empêchant l'inclusion de fichiers sensibles, utilisateur `deploy` dédié sans mot de passe. |
+| Compétence | Comment elle a été mobilisée dans ce projet |
+|---|---|
+| **Intégrer en continu les versions d'une solution applicative** | Flux `spin provision` + `spin deploy production` : `spin provision -u root` prépare le serveur via des playbooks Ansible ; `spin deploy production` orchestre le build multi-stage de l'image Docker (`docker buildx`), le push vers le registre local (port 5080), la création d'un tunnel SSH inverse, et le `docker stack deploy` avec rollback automatique. La procédure de redéploiement (section 6) permet des livraisons ultérieures en 5 commandes. |
+| **Rédiger des documentations technique et d'utilisation d'une solution applicative** | Ce compte rendu détaillé (9 sections, schémas ASCII de l'architecture et du flux `spin deploy`, tableaux de comparaison des solutions, procédure de redéploiement en section 6, tableau des 8 difficultés rencontrées), le rapport `.docs/Rapport_Deploiement_Windows_Server.md` versionné dans le dépôt, et les deux scripts PowerShell commentés (`start-wsl.cmd`, `update-wsl-portproxy.ps1`). |
+| **Exploiter les fonctionnalités d'un environnement de développement et de tests** | Maîtrise de l'outillage de déploiement : Docker Engine (daemon, CLI, Compose, Buildx), Docker Swarm (`docker swarm init --advertise-addr`, `docker stack deploy`, `docker service ps`, rollback), Traefik v3.6 (`providers.swarm`, ACME, entrypoints), ServerSideUp Spin (`spin deploy`, `spin run`), OpenSSH (tunnel inverse, `authorized_keys`), PowerShell (`netsh`, `New-ScheduledTask`, `Enable-WindowsOptionalFeature`), Proxmox CLI (`qm set --cpu host`). |
+
+Les compétences de conception, modélisation, développement de composants, gestion de base de données et tests applicatifs sont couvertes dans les projets *Application SGI* (Réalisation 2, E6) et *H3 Release Checker* (Réalisation 1, E6).
 
 ### 8.2 Apports personnels
 
 - **Conception d'une architecture hybride Windows/Linux** conciliant la contrainte « Windows Server » avec l'écosystème Docker/Linux du projet — solution documentée et reproductible.
-- **Résolution méthodique** de 8 problèmes techniques successifs (virtualisation imbriquée, composants Windows, réseau WSL2, autostart, Ansible, clé applicative, assets Vite) par diagnostic systématique.
-- **Adaptation de l'outil `spin deploy`** à un contexte non prévu par ses concepteurs (serveur non provisionné par Spin) grâce à l'analyse du code source et l'utilisation du fichier d'inventaire statique `.spin-inventory.ini`.
+- **Résolution méthodique** de 7 problèmes techniques successifs (virtualisation imbriquée, composants Windows, réseau WSL2, autostart, clé applicative, assets Vite) par diagnostic systématique.
+- **Mise en œuvre du flux `spin provision` + `spin deploy`** dans un contexte non standard : une fois la couche réseau (WSL2 NAT, netsh portproxy, SSH via port proxy) correctement construite, Spin fonctionne comme sur un serveur Ubuntu natif — ce qui valide l'architecture hybride Windows/Linux retenue.
 - **Automatisation complète** : le serveur redémarre de manière autonome (tâches planifiées Windows → WSL2 → systemd → Docker → services applicatifs) sans intervention manuelle.
 
 ### 8.3 Limites et perspectives
@@ -481,12 +493,11 @@ Le pipeline CI/CD GitHub Actions existant (`action_deploy-production.yml`) peut 
 
 | Document | Description |
 | --- | --- |
-| `.spin.yml` | Configuration Spin (profils matériels, utilisateurs, serveurs) |
-| `.spin-inventory.ini` | Inventaire statique Ansible pour le déploiement |
+| `.spin.yml` | Configuration Spin : utilisateurs, clés SSH autorisées, serveurs de production (`address`, `environment`) |
 | `.env.production` | Variables d'environnement de production (non versionné) |
-| `docker-compose.yml` | Définition de base des services Docker |
-| `docker-compose.prod.yml` | Surcharges de production (Traefik, volumes, replicas, health checks) |
-| `Dockerfile.php` | Image Docker multi-stage pour PHP-FPM + Nginx |
-| `.infrastructure/conf/traefik/prod/traefik.yml` | Configuration Traefik (entrypoints, ACME, Cloudflare trusted IPs) |
-| `C:\start-wsl.cmd` | Script de démarrage automatique de WSL2 |
-| `C:\update-wsl-portproxy.ps1` | Script de mise à jour dynamique des règles de redirection de ports |
+| [`docker-compose.yml`](https://github.com/LucaBONNIN/application-sgi/blob/master/docker-compose.yml) | Définition de base des services Docker |
+| [`docker-compose.prod.yml`](https://github.com/LucaBONNIN/application-sgi/blob/master/docker-compose.prod.yml) | Surcharges de production (Traefik, volumes, replicas, health checks) |
+| [`Dockerfile.php`](https://github.com/LucaBONNIN/application-sgi/blob/master/Dockerfile.php) | Image Docker multi-stage pour PHP-FPM + Nginx |
+| [`.infrastructure/conf/traefik/prod/traefik.yml`](https://github.com/LucaBONNIN/application-sgi/blob/master/.infrastructure/conf/traefik/prod/traefik.yml) | Configuration Traefik (entrypoints, ACME, Cloudflare trusted IPs) |
+| [C:\start-wsl.cmd](#34-démarrage-automatique-au-boot-de-windows) | Script de démarrage automatique de WSL2 |
+| [C:\update-wsl-portproxy.ps1](#35-configuration-réseau--redirection-de-ports) | Script de mise à jour dynamique des règles de redirection de ports |
