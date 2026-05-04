@@ -501,3 +501,4 @@ Les compétences de conception, modélisation, développement de composants, ges
 | [`.infrastructure/conf/traefik/prod/traefik.yml`](https://github.com/LucaBONNIN/application-sgi/blob/master/.infrastructure/conf/traefik/prod/traefik.yml) | Configuration Traefik (entrypoints, ACME, Cloudflare trusted IPs) |
 | [C:\start-wsl.cmd](#34-démarrage-automatique-au-boot-de-windows) | Script de démarrage automatique de WSL2 |
 | [C:\update-wsl-portproxy.ps1](#35-configuration-réseau--redirection-de-ports) | Script de mise à jour dynamique des règles de redirection de ports |
+

@@ -364,4 +364,3 @@ Ce projet contribue également à la couverture du référentiel E5. Le tableau 
 | Diagramme de classes des ressources Filament | [Lien](https://raw.githubusercontent.com/LucaBONNIN/application-sgi/refs/heads/master/.docs/filament_class_diagram.svg) | Découpage des ressources Filament. |
 | Plan des sprints, user stories, tickets, vélocité | [Lien](/documents/E6/Gestion_Projet_App_SGI.xlsx) | Suivi détaillé du backlog et de la charge. |
 | Fiche descriptive (Annexe VII-1-B) | [Lien](/documents/E6/BLONDEL_WILLIAM_ANNEXE_VII-1-B_R2.pdf) | Recto / Verso de la fiche officielle. |
-

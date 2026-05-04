@@ -579,3 +579,4 @@ J'ai particulièrement apprécié de découvrir le pattern `auth_request` de ngi
 - **Sauvegarde automatisée** : versionner les exports XML successifs sur stockage froid (Veeam ou équivalent) pour pouvoir reconstituer une archive intermédiaire si besoin.
 - **Audit d'accès enrichi** : exploiter les en-têtes `X-Auth-Request-User` / `X-Auth-Request-Email` pour produire un rapport périodique sur l'usage de l'archive (qui, quand, quels tickets).
 - **Migration vers HTTP/3** : la VM reverse-proxy supporte déjà HTTP/2 ; l'ajout de HTTP/3 (QUIC) pourrait être envisagé en cas de mise à jour générale du parc.
+

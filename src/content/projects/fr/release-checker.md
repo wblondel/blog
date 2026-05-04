@@ -1067,3 +1067,4 @@ J'ai particulièrement apprécié :
 - Permettre une *whitelist* / *blacklist* de packages, afin de pouvoir ignorer volontairement certaines anomalies récurrentes.
 - Migrer SQLite vers PostgreSQL si la base d'historique grossit (plusieurs années d'historique).
 - Intégrer la **vérification du QC** (statut Jira *Quality Control*) directement dans le rapport.
+

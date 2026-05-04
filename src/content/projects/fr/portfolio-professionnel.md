@@ -462,3 +462,4 @@ Bien que ce projet ne soit pas une des **deux réalisations professionnelles** p
 ---
 
 Les sources, la configuration complète et l'historique du projet sont accessibles publiquement sur [GitHub](https://github.com/wblondel/blog).
+
