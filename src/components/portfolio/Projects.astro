@@ -6,9 +6,10 @@ import { useTranslations } from "../../i18n/utils";
 interface Props {
     projects: CollectionEntry<"projects">[];
     lang: string;
+    e5Link?: string;
 }
 
-const { projects, lang } = Astro.props;
+const { projects, lang, e5Link } = Astro.props;
 const t = useTranslations(lang as any);
 
 const sortedProjects = [...projects].sort((a, b) => {
@@ -25,11 +26,24 @@ const sortedProjects = [...projects].sort((a, b) => {
 ---
 
 <section class="mt-12">
-    <div class="flex items-center gap-3 mb-8">
-        <div class="p-3 bg-primary/10 text-primary rounded-xl">
-            <Icon name="fa6-solid:folder-open" class="w-6 h-6" />
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div class="flex items-center gap-3">
+            <div class="p-3 bg-primary/10 text-primary rounded-xl">
+                <Icon name="fa6-solid:folder-open" class="w-6 h-6" />
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight text-foreground">{t('portfolio.projects')}</h2>
         </div>
-        <h2 class="text-3xl font-bold tracking-tight text-foreground">{t('portfolio.projects')}</h2>
+        
+        {e5Link && (
+            <a 
+                href={e5Link} 
+                target="_blank" 
+                class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary/10 text-primary border border-primary/20 px-5 py-2.5 font-medium hover:bg-primary hover:text-primary-foreground hover:shadow-md transition-all duration-300 whitespace-nowrap"
+            >
+                <Icon name="fa6-solid:table" class="w-4 h-4" />
+                {t('portfolio.downloadE5')}
+            </a>
+        )}
     </div>
 
     {sortedProjects.length > 0 ? (
