@@ -11,6 +11,7 @@ import icon from 'astro-icon';
 // Auto-generate french fallback redirects to preserve localized routing exactly without causing 404s
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import rehypeImageZoom from "./src/rehype/rehype-image-zoom";
 import rehypeExternalLinks from "rehype-external-links";
@@ -172,7 +173,28 @@ export default defineConfig({
         "fa6-regular": ["*"]
       }
     }),
-    pagefind()
+    pagefind(),
+    {
+      name: 'copy-remark-caches',
+      hooks: {
+        'astro:build:done': ({ dir }) => {
+          const outDir = fileURLToPath(dir);
+          const copyCache = (cacheName) => {
+            const src = path.resolve('./public/' + cacheName);
+            const dest = path.join(outDir, cacheName);
+            console.log(`[copy-remark-caches] Copying ${src} to ${dest}`);
+            if (fs.existsSync(src)) {
+              fs.cpSync(src, dest, { recursive: true });
+              console.log(`[copy-remark-caches] Success copying ${cacheName}`);
+            } else {
+              console.log(`[copy-remark-caches] Source not found: ${src}`);
+            }
+          };
+          copyCache('image-cache');
+          copyCache('video-cache');
+        }
+      }
+    }
   ],
   i18n: {
     defaultLocale: "en",
