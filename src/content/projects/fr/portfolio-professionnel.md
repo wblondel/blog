@@ -389,7 +389,7 @@ Permissions minimales accordées : `contents: read`, `pages: write`, `id-token: 
 | **Vérifier les conditions de la continuité d'un service informatique** | Hébergement CDN GitHub Pages (SLA implicite multi-régions), redirections 301 préservant les liens entrants, surveillance des builds via les notifications GitHub. |
 | **Gérer des sauvegardes** | Versionnage Git + miroirs locaux ; aucun état serveur à sauvegarder grâce à l'architecture statique. |
 | **Vérifier le respect des règles d'utilisation** | RGPD : aucun cookie sans consentement, GTM opt-in, mention légale dans le footer, pas de stockage de données personnelles côté serveur. |
-| **Collecter, suivre et orienter des demandes** | Le formulaire de contact (mailto:) oriente les sollicitations vers `contact@williamblondel.fr` ; suivi via Issues GitHub pour les bugs reportés. |
+| **Collecter, suivre et orienter des demandes** | Suivi via les Issues GitHub pour les bugs reportés ou notifications de mises à jour de dépendances (Dependabot). |
 | **Traiter des demandes concernant les applications** | Issues GitHub publiques, corrections livrées via des PR Dependabot ou *feature branches*. |
 | **Participer à la valorisation de l'image de l'organisation** | Section **Portfolio** complète (CV, expériences, certifications, recommandations, projets) en deux langues, partage social via les images OG dynamiques. |
 | **Référencer les services en ligne et mesurer leur visibilité** | Sitemap soumis à Google Search Console, audits Lighthouse / Sitebulb, mesure PostHog via GTM, balises `hreflang` pour le ciblage géographique. |
