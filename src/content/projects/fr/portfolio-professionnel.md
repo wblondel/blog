@@ -452,7 +452,6 @@ Bien que ce projet ne soit pas une des **deux réalisations professionnelles** p
 
 ### 10.3 Pistes d'évolution
 
-- Réintégrer **Pagefind** (recherche full-text *client-side*) — actuellement commenté dans `astro.config.mjs`.
 - Ajouter un *workflow* GitHub Actions de **vérification de liens cassés** (lychee) sur chaque PR.
 - Ajouter une page **`/uses`** listant matériel et logiciels utilisés (tendance « now / uses »).
 - Étendre les **tests Playwright** à un *smoke test* automatisé (visite des principales routes + capture d'écran).
