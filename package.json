@@ -9,14 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/mdx": "^5.0.6",
     "@astrojs/rss": "^4.0.18",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource/inter": "^5.2.8",
     "@mermaid-js/layout-elk": "^0.2.1",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.2.4",
-    "astro": "^6.2.1",
+    "astro": "^6.3.8",
     "astro-icon": "^1.1.5",
     "astro-mermaid": "^2.0.1",
     "astro-pagefind": "^1.8.6",
