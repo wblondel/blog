@@ -170,6 +170,13 @@
     ],
     "certifications": [
         {
+            "name": "GDPR Workshop",
+            "issuer": "CNIL",
+            "date": "22/05/2026",
+            "link": "/documents/certifications/Atelier_RGPD_CNIL_Modules_1_a_5.pdf",
+            "course_link": "https://atelier-rgpd.cnil.fr"
+        },
+        {
             "name": "Junior Cybersecurity Analyst Career Path",
             "issuer": "Cisco",
             "date": "March 2026",
