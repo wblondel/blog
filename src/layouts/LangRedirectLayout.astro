@@ -1,0 +1,48 @@
+---
+// Language-aware redirect for top-level locale-less routes (/, /portfolio, …).
+// - <meta refresh> handles crawlers (always → English fallback)
+// - JS handles humans (→ /fr/ if navigator.language starts with "fr", else /en/)
+interface Props {
+  /** Subpath after the locale segment, e.g. "portfolio". Empty for site root. */
+  subpath?: string;
+  /** Page title shown briefly before the redirect fires. */
+  title?: string;
+}
+
+const { subpath = "", title = "William Blondel" } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const suffix = subpath ? `/${subpath}` : "";
+const enUrl = `${base}/en${suffix}/`;
+const frUrl = `${base}/fr${suffix}/`;
+const canonicalEn = new URL(enUrl, Astro.site).toString();
+const canonicalFr = new URL(frUrl, Astro.site).toString();
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+
+    <!-- Crawlers: instant redirect to English (no JS needed) -->
+    <meta http-equiv="refresh" content={`0; url=${enUrl}`} />
+
+    <!-- Canonical: tell search engines English is the default -->
+    <link rel="canonical" href={canonicalEn} />
+
+    <!-- hreflang: let crawlers discover both language variants -->
+    <link rel="alternate" hreflang="en" href={canonicalEn} />
+    <link rel="alternate" hreflang="fr" href={canonicalFr} />
+    <link rel="alternate" hreflang="x-default" href={canonicalEn} />
+
+    <slot name="head" />
+
+    <!-- Humans: instant JS redirect before first paint, with language detection -->
+    <script define:vars={{ enUrl, frUrl }}>
+      const lang = (navigator.language || navigator.userLanguage || "").toLowerCase();
+      window.location.replace(lang.startsWith("fr") ? frUrl : enUrl);
+    </script>
+  </head>
+  <body></body>
+</html>

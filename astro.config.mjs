@@ -60,12 +60,10 @@ function getLocaleRedirects() {
         // Parse French first, then English, so that if a slug is the same in both languages, the English version is used.
         parseLanguageDir('fr');
         parseLanguageDir('en');
-        
-        redirects['/tags'] = `${base}/en/tags/`;
-        redirects['/archive'] = `${base}/en/archive/`;
-        redirects['/series'] = `${base}/en/series/`;
-        redirects['/portfolio'] = `${base}/en/portfolio/`;
-        
+
+        // Locale-less top-level routes (/portfolio, /tags, /archive, /series) are
+        // handled by language-aware redirect pages under src/pages/, not hardcoded
+        // here — those would force every visitor to /en/ regardless of browser locale.
     } catch (e) {
         console.error("Error generating redirects:", e);
     }
